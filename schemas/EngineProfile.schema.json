@@ -1,0 +1,22 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "engine_id": {
+      "title": "Engine Id",
+      "type": "string"
+    },
+    "settings": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Settings",
+      "type": "object"
+    }
+  },
+  "required": [
+    "engine_id",
+    "settings"
+  ],
+  "title": "EngineProfile",
+  "type": "object"
+}

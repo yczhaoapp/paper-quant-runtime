@@ -51,6 +51,9 @@ def main() -> None:
     holdout = DatasetDeclaration(
         dataset_id=dataset_id,
         granularity=declaration.granularity,
+        session_timezone=declaration.session_timezone,
+        session_open=declaration.session_open,
+        session_close=declaration.session_close,
         fields=declaration.fields,
         symbols=declaration.symbols,
         event_count=len(evaluation),

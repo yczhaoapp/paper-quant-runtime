@@ -6,14 +6,14 @@
 | --- | --- | --- |
 | 统一契约 | 实现并纳入自动测试 | 规则、监督、强化学习经同一目录入口执行训练、保存、重载、推理和回测；Schema 与实际对象一致 |
 | 18 个策略 | 18/18 纳入逐项验收 | 三类各六个实质不同的策略；按字段、粒度、动作、训练算法和成交行为逐一验证；额外动态生成未登记包检查通用入口 |
-| 论文证据 | 18/18 方法主张绑定；其中 3 项真实 CC BY PDF 离线接入 | 固定公开来源、页级声明、方法边界、实现符号、数值 oracle 和已执行测试绑定；不把文本锚点误作语义复现证明 |
+| 论文证据 | 18/18 方法主张绑定；其中 3 项真实 CC BY PDF 离线接入 | 18 项核对来源、方法边界、实现符号及本轮独立 oracle；仅 3 份入库 PDF 做原文字节和页级锚点核验，不把文本锚点误作语义复现证明 |
 | 公开真实行情 | 八条公开 AAPL 方法运行轨，共用一份原始 CSV | 以内部 D1 口径固定真实公开样例来源、原始文件和哈希；不把八条运行轨计为八个独立市场 |
 | 兼容转换 | 显式授权并纳入自动测试 | 映射、聚合记录依据、范围、关闭开关和双向哈希；非法或不支持的转换结构化失败 |
 | 失败和报告 | 指定路径纳入自动测试 | 机器可读失败覆盖外部引擎意外异常和现金不足订单；成功报告含订单、成交、账户、模型及日志 |
 | 沙箱 | 严格 worker 与验收脚本已实现 | 容器中无网络、只读根目录、非 root、资源限制；无法证明时失败；发布时保留同源码树回执 |
 | 独立复验 | 锁定依赖与多平台 CI 工作流已实现 | 新提交重新运行一键主机与容器验证、多平台 CI 并保留可下载证据；旧版本收据不代表新版本 |
 
-每次发布以该提交的 [跨平台 CI](https://github.com/yczhaoapp/paper-quant-runtime/actions/workflows/verify.yml) 与下载收据为准。`scripts/acceptance.py` 检查 18 个包、研究绑定与独立 oracle 路径，并逐项发布主机报告；严格验收运行同一清单的容器报告，核对轨迹与模型哈希。本地严格验证不代替远端发布验收。
+每次发布以该提交的 [跨平台 CI](https://github.com/yczhaoapp/paper-quant-runtime/actions/workflows/verify.yml) 与下载收据为准。`scripts/acceptance.py` 检查 18 个包、研究绑定、实现符号与本轮实际执行的精确 oracle 节点，并逐项发布可离线核验和冷启动回放的主机报告；还另行运行八条公开 AAPL 轨迹，把原始 CSV、训练来源、报告和 bundle 哈希写入验收收据。严格验收运行同一清单的容器报告，核对轨迹与模型哈希。本地严格验证不代替远端发布验收。
 
 这里的 D1 是**本项目内部的数据证据分级**：固定可公开获取的原始行情字节、来源、哈希和时间切分；它不是题目官方等级，也不表示原论文实验数据复现。
 
@@ -21,6 +21,6 @@
 
 研究候选清单在 `research/candidates.json`。它固定三类各六个不同方法的实施目标，同时保留逐条来源核对状态和主要适配风险。候选条目不计作已实现策略，也不代表论文方法或实验已经复现。验收时按真实运行包、论文主张与代码/测试绑定、数据来源和回测收据分别计数。
 
-当前计数中有 `rule.moving_average_crossover`、`rule.channel_breakout`、`rule.time_sliced_execution`、`rule.microprice_toy`、`rule.reservation_quote`、`rule.pairs_distance`、`supervised.queue_imbalance`、`supervised.logistic_direction`、`supervised.ridge_three_day_price`、`supervised.gaussian_nb_direction`、`supervised.cross_sectional_rank`、`supervised.random_forest_operations`、`reinforcement.sarsa_inventory`、`reinforcement.double_q_market_making` 与 `reinforcement.execution_value_learning` 与 `reinforcement.risk_averse_bandit` 、`reinforcement.actor_critic_allocation` 与 `reinforcement.pairs_actor_critic`。六条规则分别实现 VMA(2,20,0)、TRB(50,0.01,C=10)、TWAP 等量切片基准、仅在布朗不平衡假设下成立的 L1 加权中间价特例、按第 29、30 式计算的库存相关 L2 限价报价，以及三标的形成期选对与两倍标准差配对交易；各有独立公式或调度 oracle 与统一运行轨。配对样例用 252/126 个交易日代表论文的十二/六个月，只选一对、只用合成收盘价，无股息重投；两条腿在引擎中分别于下一个标的事件成交，不保证原子执行。队列不平衡监督样例验证 L1 特征、二参数 logistic 训练与逐 tick 预测；日线监督样例验证公开 OHLCV 的时间切分、五特征 logistic、三日窗口 Ridge、四特征 Gaussian NB 与三类操作随机森林训练、标签敏感性、保存重载与回测；三标的横截面样例验证 Elastic Net 惩罚目标、形成后的收益标签与逐日预测排序，使用独立合成面板；强化学习样例分别验证实际下一动作 SARSA、双表选择/交叉估值 Double Q，以及剩余时间/库存状态的倒序经验价值更新与到期完成约束，以及一维风险厌恶 Bandit 的 normal-gamma 后验、Thompson 抽样和部署期在线更新，以及公开行情上的连续 Actor-Critic 组合权重策略梯度与 TD 价值更新，还验证离散 A2C 配对交易的滚动回归观察、三动作策略梯度、TD 价值更新和双腿目标订单。执行学习样例把论文的限价撤改单缩减为下一 tick 成交的子单数量动作，合成训练格点不等同于 NASDAQ 订单流。十八者都有成交的统一运行包及页级主张记录。Double Q 的双表更新符合原算法，但交易状态、动作、tile coding、资格迹、撮合环境和经验结果仍属方法适配；不能将算法级复现等同于交易论文实验复现。微观价格样例不声称完整 Markov 估计器；L2 做市样例不声称原论文的成交到达过程和结果。配对、横截面排序、队列不平衡、微观价格、L2 做市与部分强化学习的演示行情和训练样本仍是合成夹具。新配对 A2C 样例使用合成日线、线性策略和固定成对名义规模，仅属于 RL1 方法适配；不代表论文的加密货币分钟数据、RL2 连续投资规模或原实验绩效。`examples/basic_rule` 是接口教学样例，不列入 18 项论文策略计数。
+当前计数中有 `rule.moving_average_crossover`、`rule.channel_breakout`、`rule.time_sliced_execution`、`rule.microprice_toy`、`rule.reservation_quote`、`rule.pairs_distance`、`supervised.queue_imbalance`、`supervised.logistic_direction`、`supervised.ridge_three_day_price`、`supervised.gaussian_nb_direction`、`supervised.cross_sectional_rank`、`supervised.random_forest_operations`、`reinforcement.sarsa_inventory`、`reinforcement.double_q_market_making` 与 `reinforcement.execution_value_learning` 与 `reinforcement.risk_averse_bandit` 、`reinforcement.actor_critic_allocation` 与 `reinforcement.pairs_actor_critic`。六条规则分别实现 VMA(2,20,0)、TRB(50,0.01,C=10)、TWAP 等量切片基准、仅在布朗不平衡假设下成立的 L1 加权中间价特例、按第 29、30 式计算的库存相关 L2 限价报价，以及三标的形成期选对与两倍标准差配对交易；各有独立公式或调度 oracle 与统一运行轨。配对样例用 252/126 个交易日代表论文的十二/六个月，只选一对、只用合成收盘价，无股息重投；两条腿在引擎中分别于下一个标的事件成交，不保证原子执行。队列不平衡监督样例验证 L1 特征、二参数 logistic 训练与逐 tick 预测；日线监督样例验证公开 OHLCV 的时间切分、五特征 logistic、三日窗口 Ridge、四特征 Gaussian NB 与三类操作随机森林训练、标签敏感性、保存重载与回测；三标的横截面样例验证 Elastic Net 惩罚目标、形成后的收益标签与逐日预测排序，使用独立合成面板；强化学习样例分别验证实际下一动作 SARSA、双表选择/交叉估值 Double Q，以及剩余时间/库存状态的倒序经验价值更新与到期完成约束，以及一维风险厌恶 Bandit 的 normal-gamma 后验、Thompson 抽样和部署期在线更新，以及公开行情上的连续 Actor-Critic 组合权重策略梯度与 TD 价值更新，还验证离散 A2C 配对交易的滚动回归观察、三动作策略梯度、TD 价值更新和双腿目标订单。执行学习样例把论文的限价撤改单缩减为下一 tick 成交的子单数量动作，合成训练格点不等同于 NASDAQ 订单流。十八者都有成交的统一运行包、来源主张与本轮独立 oracle；仅三份入库 PDF 提供可离线核查的页级原文锚点。Double Q 的双表更新符合原算法，但交易状态、动作、tile coding、资格迹、撮合环境和经验结果仍属方法适配；不能将算法级复现等同于交易论文实验复现。微观价格样例不声称完整 Markov 估计器；L2 做市样例不声称原论文的成交到达过程和结果。配对、横截面排序、队列不平衡、微观价格、L2 做市与部分强化学习的演示行情和训练样本仍是合成夹具。新配对 A2C 样例使用合成日线、线性策略和固定成对名义规模，仅属于 RL1 方法适配；不代表论文的加密货币分钟数据、RL2 连续投资规模或原实验绩效。`examples/basic_rule` 是接口教学样例，不列入 18 项论文策略计数。
 
 严格策略 worker 已在本地容器中完成三类策略的主机差分，并验证动态导入无法写入只读策略挂载。单次执行报告记录 worker 镜像和容器 ID；一键验收脚本使用本轮 attempt ID、源码哈希和日志哈希防止旧成功收据混入。公开 CI 对每个平台运行 18 项主机验收，并在 Linux 上完成无缓存严格构建与 18 项容器验收；实际是否通过，以对应提交的运行结果为准。

@@ -84,10 +84,6 @@ def test_sample_report_exports_comparable_observation(tmp_path: Path) -> None:
                 "sample-minute-bars",
                 "--method",
                 "moving-average-crossover",
-                "--profile-sha256",
-                "c" * 64,
-                "--initial-cash",
-                "100000",
                 "--output",
                 str(observation),
             ]

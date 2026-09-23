@@ -1,11 +1,31 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, time
 from decimal import Decimal
 from enum import StrEnum
-from typing import Annotated, Literal
+from typing import Annotated, Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
+
+_POSITIVE_DECIMAL_WIRE: dict[str, Any] = {
+    "anyOf": [
+        {"type": "number", "exclusiveMinimum": 0},
+        {"type": "string", "pattern": (
+            r"^\+?(?:0*[1-9]\d*(?:\.\d*)?|0*\.\d*[1-9]\d*)(?:[eE][+-]?\d+)?$"
+        )},
+    ]
+}
+_NONNEGATIVE_DECIMAL_WIRE: dict[str, Any] = {
+    "anyOf": [
+        {"type": "number", "minimum": 0},
+        {"type": "string", "pattern": (
+            r"^(?:\+?(?:(?:0|[1-9]\d*)(?:\.\d*)?|\.\d+)|-0+(?:\.0*)?)(?:[eE][+-]?\d+)?$"
+        )},
+    ]
+}
+_OPTIONAL_POSITIVE_DECIMAL_WIRE: dict[str, Any] = {
+    "anyOf": [*_POSITIVE_DECIMAL_WIRE["anyOf"], {"type": "null"}]
+}
 
 
 class Model(BaseModel):
@@ -80,8 +100,10 @@ class StrategyDeclaration(Model):
     actions: frozenset[Literal["none", "prediction", "target_position", "submit_order"]]
     training_required: bool
     source: str
-    max_abs_position: Decimal | None = Field(default=None, gt=0)
-    max_order_quantity: Decimal | None = Field(default=None, gt=0)
+    max_abs_position: Decimal | None = Field(default=None, gt=0,
+                                              json_schema_extra=_OPTIONAL_POSITIVE_DECIMAL_WIRE)
+    max_order_quantity: Decimal | None = Field(default=None, gt=0,
+                                               json_schema_extra=_OPTIONAL_POSITIVE_DECIMAL_WIRE)
 
     @model_validator(mode="after")
     def check_training(self) -> StrategyDeclaration:
@@ -98,6 +120,9 @@ class DatasetDeclaration(Model):
     symbols: frozenset[str]
     event_count: int = Field(ge=1)
     content_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+    session_timezone: str = "UTC"
+    session_open: time | None = None
+    session_close: time | None = None
 
 
 class EngineCapability(Model):
@@ -105,11 +130,19 @@ class EngineCapability(Model):
     granularities: frozenset[Granularity]
     data_fields: frozenset[str]
     actions: frozenset[str]
+    execution_fields: dict[Granularity, frozenset[str]] = Field(default_factory=dict)
+
+
+class EngineProfile(Model):
+    engine_id: str
+    settings: dict[str, str]
 
 
 class RunPolicy(Model):
     symbol_map: dict[str, str] = Field(default_factory=dict)
     allow_day_aggregation: bool = False
+    aggregation_session_open: time | None = None
+    aggregation_session_close: time | None = None
     financing_mode: Literal["cash_only", "unbounded_margin"] = "cash_only"
     sandbox: Literal["development", "strict"] = "development"
 
@@ -147,8 +180,12 @@ class ExecutionPlan(Model):
     training_sha256: str | None
     engine_capability: EngineCapability
     engine_sha256: str
+    engine_profile: EngineProfile
+    engine_profile_sha256: str
     policy: RunPolicy
     policy_sha256: str
+    package_source_sha256: str | None = None
+    package_class_name: str | None = None
     conversions: tuple[Conversion, ...] = ()
 
 
@@ -198,8 +235,9 @@ class SubmitOrder(Model):
     client_order_id: str
     symbol: str
     side: Literal["buy", "sell"]
-    quantity: Decimal = Field(gt=0)
-    limit_price: Decimal | None = Field(default=None, gt=0)
+    quantity: Decimal = Field(gt=0, json_schema_extra=_POSITIVE_DECIMAL_WIRE)
+    limit_price: Decimal | None = Field(default=None, gt=0,
+                                        json_schema_extra=_OPTIONAL_POSITIVE_DECIMAL_WIRE)
     reason: str
 
 
@@ -226,9 +264,9 @@ class Fill(Model):
     order_id: str
     symbol: str
     side: Literal["buy", "sell"]
-    quantity: Decimal = Field(gt=0)
-    price: Decimal = Field(gt=0)
-    fee: Decimal = Field(ge=0)
+    quantity: Decimal = Field(gt=0, json_schema_extra=_POSITIVE_DECIMAL_WIRE)
+    price: Decimal = Field(gt=0, json_schema_extra=_POSITIVE_DECIMAL_WIRE)
+    fee: Decimal = Field(ge=0, json_schema_extra=_NONNEGATIVE_DECIMAL_WIRE)
     timestamp: datetime
 
 
@@ -284,6 +322,7 @@ class RunReport(Model):
     plan: ExecutionPlan
     artifact: Artifact | None
     worker_receipt: WorkerReceipt | None = None
+    training_worker_receipt: WorkerReceipt | None = None
     source_events_sha256: str
     effective_events_sha256: str
     decisions: tuple[Decision, ...]
@@ -299,4 +338,19 @@ class RunReport(Model):
             raise ValueError(
                 "strict reports require a worker receipt; development reports forbid it"
             )
+        if (self.plan.sandbox == "strict" and self.artifact is not None) != (
+            self.training_worker_receipt is not None
+        ):
+            raise ValueError("strict trained reports require both worker receipts")
         return self
+
+
+class RunBundle(Model):
+    report: RunReport
+    strategy_declaration: StrategyDeclaration
+    dataset_declaration: DatasetDeclaration
+    source_events: tuple[MarketEvent, ...]
+    effective_events: tuple[MarketEvent, ...]
+    training_request: TrainingRequest | None
+    model_base64: str | None
+    package_source: str | None

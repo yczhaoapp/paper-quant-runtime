@@ -47,3 +47,17 @@ def test_different_execution_profile_blocks_numerical_claim() -> None:
     assert result.status == "incomparable"
     assert result.reasons == ("execution_profile_sha256",)
     assert result.equity_delta is None
+
+
+def test_non_marketable_limit_prices_remain_behaviorally_distinct() -> None:
+    baseline = observation().model_copy(update={"actions": (
+        ObservedAction(event_id="one", kind="submit_order", symbol="AAA",
+                       side="buy", quantity=Decimal(1),
+                       client_order_id="order-one", limit_price=Decimal("90")),
+    )})
+    candidate = baseline.model_copy(update={"actions": (
+        baseline.actions[0].model_copy(update={"limit_price": Decimal("91")}),
+    )})
+    result = compare(baseline, candidate)
+    assert result.status == "comparable"
+    assert result.same_actions is False

@@ -5,6 +5,7 @@ from typing import Literal
 
 from pydantic import Field
 
+from paperquant.compiler import fingerprint
 from paperquant.models import (
     Model,
     NoOp,
@@ -22,6 +23,8 @@ class ObservedAction(Model):
     quantity: Decimal | None = None
     side: Literal["buy", "sell"] | None = None
     value: Decimal | None = None
+    client_order_id: str | None = None
+    limit_price: Decimal | None = None
 
 
 class ObservedFill(Model):
@@ -60,9 +63,20 @@ def from_report(
     *,
     scenario_id: str,
     method_id: str,
-    execution_profile_sha256: str,
-    initial_cash: Decimal,
+    execution_profile_sha256: str | None = None,
+    initial_cash: Decimal | None = None,
 ) -> Observation:
+    profile = report.plan.engine_profile
+    bound_profile_sha256 = fingerprint(profile.settings)
+    if execution_profile_sha256 is not None and execution_profile_sha256 != bound_profile_sha256:
+        raise ValueError("comparison profile differs from bound engine settings")
+    bound_cash = profile.settings.get("initial_cash")
+    if bound_cash is not None:
+        if initial_cash is not None and initial_cash != Decimal(bound_cash):
+            raise ValueError("comparison cash differs from bound engine settings")
+        initial_cash = Decimal(bound_cash)
+    if initial_cash is None:
+        raise ValueError("external engine must declare or supply initial cash")
     actions = []
     for decision in report.decisions:
         for action in decision.actions:
@@ -94,6 +108,8 @@ def from_report(
                         symbol=action.symbol,
                         quantity=action.quantity,
                         side=action.side,
+                        client_order_id=action.client_order_id,
+                        limit_price=action.limit_price,
                     )
                 )
     return Observation(
@@ -101,7 +117,7 @@ def from_report(
         method_id=method_id,
         source_events_sha256=report.source_events_sha256,
         effective_events_sha256=report.effective_events_sha256,
-        execution_profile_sha256=execution_profile_sha256,
+        execution_profile_sha256=bound_profile_sha256,
         initial_cash=initial_cash,
         final_equity=report.final_equity,
         actions=tuple(actions),

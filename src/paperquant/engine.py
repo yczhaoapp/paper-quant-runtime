@@ -1,8 +1,11 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import datetime
 from decimal import Decimal
 from typing import Literal, NoReturn, Protocol
+
+from pydantic import TypeAdapter, ValidationError
 
 from paperquant.compiler import fingerprint
 from paperquant.models import (
@@ -11,6 +14,7 @@ from paperquant.models import (
     ContractFault,
     Decision,
     EngineCapability,
+    EngineProfile,
     ErrorCode,
     ExecutionPlan,
     Failure,
@@ -53,7 +57,11 @@ class _Intent:
     symbol: str
     target: Decimal | None
     signed_quantity: Decimal | None
+    created_at: datetime
     limit_price: Decimal | None = None
+
+
+_ACTIONS = TypeAdapter(tuple[Action, ...])
 
 
 class DecisionStrategy(Protocol):
@@ -66,6 +74,8 @@ class BacktestEngine(Protocol):
     """Trusted engine boundary; strategy training remains with the runtime."""
 
     def capability(self, fields: frozenset[str]) -> EngineCapability: ...
+
+    def profile(self) -> EngineProfile: ...
 
     def run(
         self, *, plan: ExecutionPlan, strategy: DecisionStrategy,
@@ -81,6 +91,11 @@ def reference_capability(fields: frozenset[str]) -> EngineCapability:
         granularities=frozenset(Granularity),
         data_fields=fields,
         actions=frozenset({"none", "prediction", "target_position", "submit_order"}),
+        execution_fields={
+            Granularity.TICK: frozenset({"price"}),
+            Granularity.MINUTE: frozenset({"open", "close"}),
+            Granularity.DAY: frozenset({"open", "close"}),
+        },
     )
 
 
@@ -97,6 +112,20 @@ class ReferenceEngine:
 
     def capability(self, fields: frozenset[str]) -> EngineCapability:
         return reference_capability(fields)
+
+    def profile(self) -> EngineProfile:
+        return EngineProfile(
+            engine_id="paperquant.reference",
+            settings={
+                "initial_cash": str(self.initial_cash),
+                "fee_rate": str(self.fee_rate),
+                "matching": "next-symbol-event-after-order-availability",
+                "tick_price": "price",
+                "bar_fill_price": "open",
+                "bar_mark_price": "close",
+                "slippage": "none",
+            },
+        )
 
     @staticmethod
     def _fail(
@@ -139,6 +168,8 @@ class ReferenceEngine:
             or fingerprint(plan.engine_capability) != plan.engine_sha256
             or fingerprint(self.capability(plan.engine_capability.data_fields))
             != plan.engine_sha256
+            or fingerprint(self.profile()) != plan.engine_profile_sha256
+            or fingerprint(plan.engine_profile) != plan.engine_profile_sha256
         ):
             self._fail(plan, Stage.BACKTEST, ErrorCode.ENGINE_UNSUPPORTED,
                        "Plan capability is not bound to the selected engine")
@@ -178,6 +209,9 @@ class ReferenceEngine:
             remaining: list[_Intent] = []
             for intent in pending:
                 if intent.symbol != event.symbol:
+                    remaining.append(intent)
+                    continue
+                if fill_time < intent.created_at:
                     remaining.append(intent)
                     continue
                 current = holdings.get(intent.symbol, _Holding())
@@ -310,7 +344,10 @@ class ReferenceEngine:
             )
             snapshots.append(snapshot)
             try:
-                actions = strategy.decide(event, snapshot)
+                actions = strategy.decide(
+                    MarketEvent.model_validate(event.model_dump(mode="python")),
+                    AccountSnapshot.model_validate(snapshot.model_dump(mode="python")),
+                )
             except ContractFault:
                 raise
             except Exception as exc:
@@ -320,9 +357,19 @@ class ReferenceEngine:
                     ErrorCode.BACKTEST_FAILED,
                     "Strategy inference failed",
                     cause=type(exc).__name__,
+                    reason=str(exc)[:200],
+                    strategy_id=plan.strategy_id,
+                    event_id=event.event_id,
                 )
             if type(actions) is not tuple:
                 self._fail(plan, Stage.INFER, ErrorCode.ACTION_INVALID, "Actions must be a tuple")
+            try:
+                actions = _ACTIONS.validate_python(
+                    tuple(action.model_dump(mode="python") for action in actions)
+                )
+            except (AttributeError, TypeError, ValueError, ValidationError):
+                self._fail(plan, Stage.INFER, ErrorCode.ACTION_INVALID,
+                           "Strategy actions do not satisfy the wire schema")
             target_symbols: set[str] = set()
             for action in actions:
                 if not isinstance(action, (NoOp, Prediction, TargetPosition, SubmitOrder)):
@@ -348,7 +395,8 @@ class ReferenceEngine:
                             plan, Stage.INFER, ErrorCode.ORDER_REJECTED, "Target exceeds limit"
                         )
                     order_id = f"target:{len(decisions)}:{action.symbol}"
-                    pending.append(_Intent(order_id, action.symbol, action.quantity, None))
+                    pending.append(_Intent(order_id, action.symbol, action.quantity, None,
+                                           event.available_time))
                 elif isinstance(action, SubmitOrder):
                     if action.client_order_id in known_order_ids:
                         self._fail(
@@ -360,13 +408,20 @@ class ReferenceEngine:
                         self._fail(
                             plan, Stage.INFER, ErrorCode.ORDER_REJECTED, "Order exceeds limit"
                         )
-                    signed = action.quantity if action.side == "buy" else -action.quantity
+                    if action.side == "buy":
+                        signed = action.quantity
+                    elif action.side == "sell":
+                        signed = -action.quantity
+                    else:
+                        self._fail(plan, Stage.INFER, ErrorCode.ACTION_INVALID,
+                                   "Unknown order side")
                     pending.append(
                         _Intent(
                             action.client_order_id,
                             action.symbol,
                             None,
                             signed,
+                            event.available_time,
                             action.limit_price,
                         )
                     )

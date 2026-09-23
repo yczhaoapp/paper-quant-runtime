@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import ast
+import base64
 import hashlib
 import importlib.util
 import json
@@ -11,6 +12,7 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 from paperquant.compiler import canonical_document, compile_run, fingerprint
 from paperquant.engine import BacktestEngine
+from paperquant.evidence import verify_bundle_file
 from paperquant.models import (
     ContractFault,
     DatasetDeclaration,
@@ -25,7 +27,7 @@ from paperquant.models import (
     TrainingRequest,
 )
 from paperquant.output import prepare_output
-from paperquant.runtime import _execute, run
+from paperquant.runtime import _execute
 from paperquant.sandbox import DockerWorkerStrategy
 
 
@@ -91,7 +93,7 @@ def run_package(
     training: TrainingRequest | None = None,
 ) -> RunReport:
     prepare_output(output)
-    manifest, _ = inspect_package(run_id, package_dir)
+    manifest, source = inspect_package(run_id, package_dir)
     try:
         actual_capability = engine.capability(engine_capability.data_fields)
     except Exception:
@@ -104,9 +106,12 @@ def run_package(
         strategy=manifest.declaration,
         dataset=dataset,
         engine=engine_capability,
+        engine_profile=engine.profile(),
         policy=policy,
         events=events,
         training=training,
+        package_source_sha256=manifest.source_sha256,
+        package_class_name=manifest.class_name,
     )
     if policy.sandbox == "strict":
         with DockerWorkerStrategy(
@@ -126,6 +131,9 @@ def run_package(
                 output=output,
                 training=training,
                 worker_receipt=strategy.receipt,
+                fresh_strategy=strategy.restart_for_inference,
+                package_source=source,
+                package_class_name=manifest.class_name,
             )
     source_path = package_dir.resolve() / "strategy.py"
     module_spec = importlib.util.spec_from_file_location(
@@ -152,7 +160,7 @@ def run_package(
         manifest.declaration
     ):
         _fail(run_id, ErrorCode.INPUT_INVALID, "Loaded strategy declaration differs from manifest")
-    return run(
+    return _execute(
         run_id=run_id,
         strategy=strategy,
         dataset=dataset,
@@ -162,6 +170,9 @@ def run_package(
         engine=engine,
         output=output,
         training=training,
+        fresh_strategy=factory,
+        package_source=source,
+        package_class_name=manifest.class_name,
     )
 
 
@@ -177,3 +188,55 @@ def write_manifest(root: Path, declaration: StrategyDeclaration, class_name: str
         encoding="utf-8",
         newline="\n",
     )
+
+
+def replay_bundle(*, bundle_path: Path, package_dir: Path, engine: BacktestEngine) -> RunReport:
+    """Rebuild inference without training and compare every trace to a saved run."""
+    bundle = verify_bundle_file(bundle_path)
+    report = bundle.report
+    plan = report.plan
+    manifest, source = inspect_package(plan.run_id, package_dir)
+    if (manifest.source_sha256 != plan.package_source_sha256
+        or manifest.class_name != plan.package_class_name
+        or fingerprint(manifest.declaration) != plan.declaration_sha256
+        or source.decode("utf-8") != bundle.package_source):
+        _fail(plan.run_id, ErrorCode.INPUT_INVALID, "Replay package differs from bound source")
+    if (fingerprint(engine.capability(plan.engine_capability.data_fields)) != plan.engine_sha256
+        or fingerprint(engine.profile()) != plan.engine_profile_sha256):
+        _fail(plan.run_id, ErrorCode.ENGINE_UNSUPPORTED,
+              "Replay engine differs from bound execution settings")
+    if plan.sandbox == "strict":
+        strategy = DockerWorkerStrategy(
+            run_id=plan.run_id, package_dir=package_dir,
+            declaration=manifest.declaration, source_sha256=manifest.source_sha256,
+        )
+    else:
+        spec = importlib.util.spec_from_file_location(
+            f"paperquant_replay_{manifest.source_sha256}", package_dir / "strategy.py")
+        if spec is None or spec.loader is None:
+            _fail(plan.run_id, ErrorCode.INPUT_INVALID, "Replay module cannot be loaded")
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        strategy = getattr(module, manifest.class_name)()
+    try:
+        if report.artifact is not None:
+            assert bundle.model_base64 is not None
+            strategy.load(base64.b64decode(bundle.model_base64, validate=True))
+        traces = engine.run(plan=plan, strategy=strategy, events=bundle.effective_events)
+    except ContractFault:
+        raise
+    except Exception as exc:
+        raise ContractFault(Failure(
+            run_id=plan.run_id, stage=Stage.LOAD, code=ErrorCode.MODEL_CORRUPT,
+            message="Cold replay could not restore the strategy",
+            details={"cause": type(exc).__name__, "reason": str(exc)[:200]},
+        )) from exc
+    finally:
+        if isinstance(strategy, DockerWorkerStrategy):
+            strategy.close()
+    if traces != (report.decisions, report.orders, report.fills, report.accounts):
+        raise ContractFault(Failure(
+            run_id=plan.run_id, stage=Stage.BACKTEST, code=ErrorCode.BACKTEST_FAILED,
+            message="Cold replay differs from saved decision or account traces",
+        ))
+    return report

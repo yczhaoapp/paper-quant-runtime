@@ -16,6 +16,22 @@ ROOT = Path(__file__).resolve().parents[1]
 RECIPE = ROOT / "research/recipes/yang-malik-rl1.json"
 
 
+def test_paper_run_links_fixed_source_to_cold_replayed_bundle(tmp_path: Path) -> None:
+    destination = tmp_path / "paper-run"
+    assert main([
+        "paper-run", "--recipe", str(ROOT / "research/recipes/pardo-time-sliced.json"),
+        "--dataset", str(ROOT / "examples/public_aapl/dataset.json"),
+        "--events", str(ROOT / "examples/public_aapl/events.json"),
+        "--policy", str(ROOT / "examples/public_aapl/policy.json"),
+        "--output", str(destination),
+    ]) == 0
+    receipt = json.loads((destination / "paper-run.json").read_text())
+    assert receipt["status"] == "passed"
+    assert receipt["strategy_id"] == "rule.time_sliced_execution"
+    assert receipt["source_sha256"]
+    assert receipt["bundle_sha256"]
+
+
 @pytest.mark.parametrize(
     ("recipe_file", "fixture_name", "package_name", "training_file", "pages"),
     [

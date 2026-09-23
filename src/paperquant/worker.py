@@ -10,7 +10,7 @@ from contextlib import redirect_stdout
 from pathlib import Path
 from typing import Any
 
-from pydantic import TypeAdapter
+from pydantic import TypeAdapter, ValidationError
 
 from paperquant.compiler import fingerprint
 from paperquant.models import AccountSnapshot, Action, MarketEvent, TrainingRequest
@@ -58,7 +58,13 @@ def _handle(strategy: Any, request: dict[str, Any]) -> dict[str, Any]:
         with redirect_stdout(sys.stderr):
             actions = strategy.decide(event, account)
         if type(actions) is not tuple:
-            raise TypeError("strategy actions must be a tuple")
+            return {"ok": False, "code": "ACTION_INVALID"}
+        try:
+            actions = _ACTIONS.validate_python(
+                tuple(action.model_dump(mode="python") for action in actions)
+            )
+        except (AttributeError, TypeError, ValueError, ValidationError):
+            return {"ok": False, "code": "ACTION_INVALID"}
         return {"ok": True, "actions": _ACTIONS.dump_python(actions, mode="json")}
     raise ValueError("unknown worker operation")
 

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import timedelta
+from datetime import time, timedelta
 from decimal import Decimal
 from pathlib import Path
 
@@ -99,6 +99,9 @@ def test_bar_clock_cannot_hide_lookahead(problem: str) -> None:
     dataset = DatasetDeclaration(
         dataset_id="clock-defect",
         granularity=Granularity.DAY,
+        session_timezone="America/New_York",
+        session_open=time(9, 30),
+        session_close=time(16),
         fields=frozenset(events[0].values),
         symbols=frozenset({"AAPL"}),
         event_count=2,

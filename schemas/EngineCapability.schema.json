@@ -32,6 +32,20 @@
       "title": "Engine Id",
       "type": "string"
     },
+    "execution_fields": {
+      "additionalProperties": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "propertyNames": {
+        "$ref": "#/$defs/Granularity"
+      },
+      "title": "Execution Fields",
+      "type": "object"
+    },
     "granularities": {
       "items": {
         "$ref": "#/$defs/Granularity"

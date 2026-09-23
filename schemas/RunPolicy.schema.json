@@ -1,6 +1,32 @@
 {
   "additionalProperties": false,
   "properties": {
+    "aggregation_session_close": {
+      "anyOf": [
+        {
+          "format": "time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Aggregation Session Close"
+    },
+    "aggregation_session_open": {
+      "anyOf": [
+        {
+          "format": "time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Aggregation Session Open"
+    },
     "allow_day_aggregation": {
       "default": false,
       "title": "Allow Day Aggregation",

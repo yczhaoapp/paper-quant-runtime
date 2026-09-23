@@ -43,6 +43,37 @@
     "granularity": {
       "$ref": "#/$defs/Granularity"
     },
+    "session_close": {
+      "anyOf": [
+        {
+          "format": "time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Session Close"
+    },
+    "session_open": {
+      "anyOf": [
+        {
+          "format": "time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Session Open"
+    },
+    "session_timezone": {
+      "default": "UTC",
+      "title": "Session Timezone",
+      "type": "string"
+    },
     "symbols": {
       "items": {
         "type": "string"

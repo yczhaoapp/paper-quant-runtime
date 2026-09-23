@@ -90,6 +90,8 @@ def test_minimum_distance_pair_and_trades_match_independent_oracle(
     dataset = DatasetDeclaration(
         dataset_id=f"synthetic-pairs-{'swapped' if swap else 'base'}",
         granularity="day",
+        session_open=events[0].bar_open_time.time(),
+        session_close=events[0].event_time.time(),
         fields=frozenset(events[0].values),
         symbols=frozenset(SYMBOLS),
         event_count=len(events),

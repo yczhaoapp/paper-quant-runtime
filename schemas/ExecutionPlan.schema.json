@@ -104,6 +104,20 @@
           "title": "Engine Id",
           "type": "string"
         },
+        "execution_fields": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "propertyNames": {
+            "$ref": "#/$defs/Granularity"
+          },
+          "title": "Execution Fields",
+          "type": "object"
+        },
         "granularities": {
           "items": {
             "$ref": "#/$defs/Granularity"
@@ -122,6 +136,28 @@
       "title": "EngineCapability",
       "type": "object"
     },
+    "EngineProfile": {
+      "additionalProperties": false,
+      "properties": {
+        "engine_id": {
+          "title": "Engine Id",
+          "type": "string"
+        },
+        "settings": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Settings",
+          "type": "object"
+        }
+      },
+      "required": [
+        "engine_id",
+        "settings"
+      ],
+      "title": "EngineProfile",
+      "type": "object"
+    },
     "Granularity": {
       "enum": [
         "tick",
@@ -134,6 +170,32 @@
     "RunPolicy": {
       "additionalProperties": false,
       "properties": {
+        "aggregation_session_close": {
+          "anyOf": [
+            {
+              "format": "time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Aggregation Session Close"
+        },
+        "aggregation_session_open": {
+          "anyOf": [
+            {
+              "format": "time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Aggregation Session Open"
+        },
         "allow_day_aggregation": {
           "default": false,
           "title": "Allow Day Aggregation",
@@ -210,6 +272,13 @@
       "title": "Engine Id",
       "type": "string"
     },
+    "engine_profile": {
+      "$ref": "#/$defs/EngineProfile"
+    },
+    "engine_profile_sha256": {
+      "title": "Engine Profile Sha256",
+      "type": "string"
+    },
     "engine_sha256": {
       "title": "Engine Sha256",
       "type": "string"
@@ -254,6 +323,30 @@
         }
       ],
       "title": "Max Order Quantity"
+    },
+    "package_class_name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Package Class Name"
+    },
+    "package_source_sha256": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Package Source Sha256"
     },
     "policy": {
       "$ref": "#/$defs/RunPolicy"
@@ -325,6 +418,8 @@
     "training_sha256",
     "engine_capability",
     "engine_sha256",
+    "engine_profile",
+    "engine_profile_sha256",
     "policy",
     "policy_sha256"
   ],

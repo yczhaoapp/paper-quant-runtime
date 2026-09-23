@@ -172,6 +172,128 @@
       "title": "Conversion",
       "type": "object"
     },
+    "DataNeed": {
+      "additionalProperties": false,
+      "properties": {
+        "fields": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Fields",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "granularity": {
+          "$ref": "#/$defs/Granularity"
+        },
+        "minimum_events_per_symbol": {
+          "default": 1,
+          "minimum": 1,
+          "title": "Minimum Events Per Symbol",
+          "type": "integer"
+        },
+        "symbols": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Symbols",
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "granularity",
+        "fields",
+        "symbols"
+      ],
+      "title": "DataNeed",
+      "type": "object"
+    },
+    "DatasetDeclaration": {
+      "additionalProperties": false,
+      "properties": {
+        "content_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Content Sha256",
+          "type": "string"
+        },
+        "contract_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Contract Version",
+          "type": "string"
+        },
+        "dataset_id": {
+          "title": "Dataset Id",
+          "type": "string"
+        },
+        "event_count": {
+          "minimum": 1,
+          "title": "Event Count",
+          "type": "integer"
+        },
+        "fields": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Fields",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "granularity": {
+          "$ref": "#/$defs/Granularity"
+        },
+        "session_close": {
+          "anyOf": [
+            {
+              "format": "time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Session Close"
+        },
+        "session_open": {
+          "anyOf": [
+            {
+              "format": "time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Session Open"
+        },
+        "session_timezone": {
+          "default": "UTC",
+          "title": "Session Timezone",
+          "type": "string"
+        },
+        "symbols": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Symbols",
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "dataset_id",
+        "granularity",
+        "fields",
+        "symbols",
+        "event_count",
+        "content_sha256"
+      ],
+      "title": "DatasetDeclaration",
+      "type": "object"
+    },
     "Decision": {
       "additionalProperties": false,
       "properties": {
@@ -580,6 +702,66 @@
       "title": "Granularity",
       "type": "string"
     },
+    "MarketEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "available_time": {
+          "format": "date-time",
+          "title": "Available Time",
+          "type": "string"
+        },
+        "bar_open_time": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bar Open Time"
+        },
+        "event_id": {
+          "title": "Event Id",
+          "type": "string"
+        },
+        "event_time": {
+          "format": "date-time",
+          "title": "Event Time",
+          "type": "string"
+        },
+        "symbol": {
+          "title": "Symbol",
+          "type": "string"
+        },
+        "values": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              }
+            ]
+          },
+          "title": "Values",
+          "type": "object"
+        }
+      },
+      "required": [
+        "event_id",
+        "symbol",
+        "event_time",
+        "available_time",
+        "values"
+      ],
+      "title": "MarketEvent",
+      "type": "object"
+    },
     "NoOp": {
       "additionalProperties": false,
       "properties": {
@@ -808,6 +990,222 @@
       "title": "RunPolicy",
       "type": "object"
     },
+    "RunReport": {
+      "additionalProperties": false,
+      "properties": {
+        "accounts": {
+          "items": {
+            "$ref": "#/$defs/AccountSnapshot"
+          },
+          "title": "Accounts",
+          "type": "array"
+        },
+        "artifact": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Artifact"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "decisions": {
+          "items": {
+            "$ref": "#/$defs/Decision"
+          },
+          "title": "Decisions",
+          "type": "array"
+        },
+        "effective_events_sha256": {
+          "title": "Effective Events Sha256",
+          "type": "string"
+        },
+        "fills": {
+          "items": {
+            "$ref": "#/$defs/Fill"
+          },
+          "title": "Fills",
+          "type": "array"
+        },
+        "final_equity": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Final Equity"
+        },
+        "logs": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Logs",
+          "type": "array"
+        },
+        "orders": {
+          "items": {
+            "$ref": "#/$defs/OrderEvent"
+          },
+          "title": "Orders",
+          "type": "array"
+        },
+        "plan": {
+          "$ref": "#/$defs/ExecutionPlan"
+        },
+        "run_id": {
+          "title": "Run Id",
+          "type": "string"
+        },
+        "source_events_sha256": {
+          "title": "Source Events Sha256",
+          "type": "string"
+        },
+        "status": {
+          "const": "succeeded",
+          "default": "succeeded",
+          "title": "Status",
+          "type": "string"
+        },
+        "training_worker_receipt": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/WorkerReceipt"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "worker_receipt": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/WorkerReceipt"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "run_id",
+        "plan",
+        "artifact",
+        "source_events_sha256",
+        "effective_events_sha256",
+        "decisions",
+        "orders",
+        "fills",
+        "accounts",
+        "final_equity",
+        "logs"
+      ],
+      "title": "RunReport",
+      "type": "object"
+    },
+    "StrategyDeclaration": {
+      "additionalProperties": false,
+      "properties": {
+        "actions": {
+          "items": {
+            "enum": [
+              "none",
+              "prediction",
+              "target_position",
+              "submit_order"
+            ],
+            "type": "string"
+          },
+          "title": "Actions",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "contract_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Contract Version",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/DataNeed"
+        },
+        "kind": {
+          "$ref": "#/$defs/StrategyKind"
+        },
+        "max_abs_position": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "pattern": "^\\+?(?:0*[1-9]\\d*(?:\\.\\d*)?|0*\\.\\d*[1-9]\\d*)(?:[eE][+-]?\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max Abs Position"
+        },
+        "max_order_quantity": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "pattern": "^\\+?(?:0*[1-9]\\d*(?:\\.\\d*)?|0*\\.\\d*[1-9]\\d*)(?:[eE][+-]?\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max Order Quantity"
+        },
+        "source": {
+          "title": "Source",
+          "type": "string"
+        },
+        "strategy_id": {
+          "title": "Strategy Id",
+          "type": "string"
+        },
+        "training_required": {
+          "title": "Training Required",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "strategy_id",
+        "kind",
+        "data",
+        "actions",
+        "training_required",
+        "source"
+      ],
+      "title": "StrategyDeclaration",
+      "type": "object"
+    },
+    "StrategyKind": {
+      "enum": [
+        "rule",
+        "supervised",
+        "reinforcement"
+      ],
+      "title": "StrategyKind",
+      "type": "string"
+    },
     "SubmitOrder": {
       "additionalProperties": false,
       "properties": {
@@ -916,6 +1314,142 @@
       "title": "TargetPosition",
       "type": "object"
     },
+    "TrainingRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "dataset_id": {
+          "title": "Dataset Id",
+          "type": "string"
+        },
+        "samples": {
+          "items": {
+            "$ref": "#/$defs/TrainingSample"
+          },
+          "title": "Samples",
+          "type": "array"
+        },
+        "seed": {
+          "title": "Seed",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "dataset_id",
+        "seed",
+        "samples"
+      ],
+      "title": "TrainingRequest",
+      "type": "object"
+    },
+    "TrainingSample": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Action"
+        },
+        "features": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              }
+            ]
+          },
+          "title": "Features",
+          "type": "object"
+        },
+        "next_action": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Next Action"
+        },
+        "next_features": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                    "type": "string"
+                  }
+                ]
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Next Features"
+        },
+        "reward": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reward"
+        },
+        "target": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Target"
+        },
+        "terminal": {
+          "default": false,
+          "title": "Terminal",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "features"
+      ],
+      "title": "TrainingSample",
+      "type": "object"
+    },
     "WorkerReceipt": {
       "additionalProperties": false,
       "properties": {
@@ -960,120 +1494,72 @@
   },
   "additionalProperties": false,
   "properties": {
-    "accounts": {
+    "dataset_declaration": {
+      "$ref": "#/$defs/DatasetDeclaration"
+    },
+    "effective_events": {
       "items": {
-        "$ref": "#/$defs/AccountSnapshot"
+        "$ref": "#/$defs/MarketEvent"
       },
-      "title": "Accounts",
+      "title": "Effective Events",
       "type": "array"
     },
-    "artifact": {
+    "model_base64": {
       "anyOf": [
         {
-          "$ref": "#/$defs/Artifact"
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Model Base64"
+    },
+    "package_source": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Package Source"
+    },
+    "report": {
+      "$ref": "#/$defs/RunReport"
+    },
+    "source_events": {
+      "items": {
+        "$ref": "#/$defs/MarketEvent"
+      },
+      "title": "Source Events",
+      "type": "array"
+    },
+    "strategy_declaration": {
+      "$ref": "#/$defs/StrategyDeclaration"
+    },
+    "training_request": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/TrainingRequest"
         },
         {
           "type": "null"
         }
       ]
-    },
-    "decisions": {
-      "items": {
-        "$ref": "#/$defs/Decision"
-      },
-      "title": "Decisions",
-      "type": "array"
-    },
-    "effective_events_sha256": {
-      "title": "Effective Events Sha256",
-      "type": "string"
-    },
-    "fills": {
-      "items": {
-        "$ref": "#/$defs/Fill"
-      },
-      "title": "Fills",
-      "type": "array"
-    },
-    "final_equity": {
-      "anyOf": [
-        {
-          "type": "number"
-        },
-        {
-          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
-          "type": "string"
-        }
-      ],
-      "title": "Final Equity"
-    },
-    "logs": {
-      "items": {
-        "type": "string"
-      },
-      "title": "Logs",
-      "type": "array"
-    },
-    "orders": {
-      "items": {
-        "$ref": "#/$defs/OrderEvent"
-      },
-      "title": "Orders",
-      "type": "array"
-    },
-    "plan": {
-      "$ref": "#/$defs/ExecutionPlan"
-    },
-    "run_id": {
-      "title": "Run Id",
-      "type": "string"
-    },
-    "source_events_sha256": {
-      "title": "Source Events Sha256",
-      "type": "string"
-    },
-    "status": {
-      "const": "succeeded",
-      "default": "succeeded",
-      "title": "Status",
-      "type": "string"
-    },
-    "training_worker_receipt": {
-      "anyOf": [
-        {
-          "$ref": "#/$defs/WorkerReceipt"
-        },
-        {
-          "type": "null"
-        }
-      ],
-      "default": null
-    },
-    "worker_receipt": {
-      "anyOf": [
-        {
-          "$ref": "#/$defs/WorkerReceipt"
-        },
-        {
-          "type": "null"
-        }
-      ],
-      "default": null
     }
   },
   "required": [
-    "run_id",
-    "plan",
-    "artifact",
-    "source_events_sha256",
-    "effective_events_sha256",
-    "decisions",
-    "orders",
-    "fills",
-    "accounts",
-    "final_equity",
-    "logs"
+    "report",
+    "strategy_declaration",
+    "dataset_declaration",
+    "source_events",
+    "effective_events",
+    "training_request",
+    "model_base64",
+    "package_source"
   ],
-  "title": "RunReport",
+  "title": "RunBundle",
   "type": "object"
 }

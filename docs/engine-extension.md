@@ -1,8 +1,8 @@
 # 回测引擎扩展边界
 
-运行时负责训练、保存、重载、输入编译和报告；回测引擎负责逐事件调用策略、订单状态、撮合、账户与成交。引擎不需要声明训练能力。`paperquant.engine.BacktestEngine` 是可信引擎端协议，要求实现 `capability(fields)` 与 `run(plan, strategy, events)`；调用方给出的 `EngineCapability` 必须与所选引擎实时返回的能力完全相同，否则在策略训练之前以 `ENGINE_UNSUPPORTED` 失败。此项检查能阻止把别的引擎或虚构能力写进执行计划。
+运行时负责训练、保存、冷启动重载、输入编译和报告；回测引擎负责逐事件调用策略、订单状态、撮合、账户与成交。引擎不需要声明训练能力。`paperquant.engine.BacktestEngine` 是可信引擎端协议，要求实现 `capability(fields)`、`profile()` 与 `run(plan, strategy, events)`；调用方给出的 `EngineCapability` 必须与所选引擎实时返回的能力完全相同，否则在策略训练之前以 `ENGINE_UNSUPPORTED` 失败。`profile()` 记录实际初始现金、手续费和撮合语义，执行前后也核对其哈希。
 
-`capability` 必须明确引擎 ID、接受的时间粒度、行情字段与动作。`run` 以已经编译的 `ExecutionPlan` 和有效事件为输入，返回顺序一致的 `Decision`、`OrderEvent`、`Fill`、`AccountSnapshot`。每条事件必须对应一条决策与账户快照；无交易也要有决策记录。运行时再次核对决策和账户轨迹、动作范围，以及成交对应的已接受和已完成订单。引擎自身仍应校验计划中的策略标识、声明哈希、引擎 ID、有效事件哈希和能力哈希，并把不支持的撮合或账户语义作为结构化错误返回，不能写零值冒充未知的持仓盈亏。`ReferenceEngine` 实现了该协议；`tests/test_engine_extension.py` 使用另一独立驱动证明训练、保存、重载、推理和报告不会因引擎 ID 被硬编码而受阻。
+`capability` 必须明确引擎 ID、接受的时间粒度、行情字段、动作，以及各粒度撮合与估值所需的 `execution_fields`。公共编译器只协商所选引擎的字段；参考引擎显式要求 tick 的 `price` 或 bar 的 `open/close`，quote-only 外部引擎可声明自身的报价字段。`run` 以已经编译的 `ExecutionPlan` 和有效事件为输入，返回顺序一致的 `Decision`、`OrderEvent`、`Fill`、`AccountSnapshot`。每条事件必须对应一条决策与账户快照；无交易也要有决策记录。运行时再次核对决策和账户轨迹、动作范围，以及成交对应的已接受和已完成订单，并拒绝先于接受时间的成交。引擎自身仍应校验计划中的策略标识、声明哈希、引擎 ID、有效事件哈希、能力与执行配置哈希，并把不支持的撮合或账户语义作为结构化错误返回，不能写零值冒充未知的持仓盈亏。`ReferenceEngine` 实现了该协议；`tests/test_engine_extension.py` 使用另一独立驱动证明训练、保存、重载、推理和报告不会因引擎 ID 被硬编码而受阻。
 
 参考引擎也核对计划中的政策快照与哈希，按其中的资金模式处理购买力。外部引擎应把相同政策映射到自身执行配置；不能实现时应以结构化不支持错误退出。外部引擎意外抛出的普通异常由运行时转成 `BACKTEST_FAILED`；这并不证明该引擎的成交和账户数值正确，接入时仍需专门的差分测试。
 

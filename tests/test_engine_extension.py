@@ -12,6 +12,7 @@ from paperquant.models import (
     ContractFault,
     Decision,
     EngineCapability,
+    EngineProfile,
     ErrorCode,
     Granularity,
     RunPolicy,
@@ -36,6 +37,11 @@ class IndependentSignalEngine:
             data_fields=fields,
             actions=frozenset({"none"}),
         )
+
+    def profile(self) -> EngineProfile:
+        return EngineProfile(engine_id="test.independent-signal-engine",
+                             settings={"initial_cash": "1000", "matching": "none",
+                                       "fee_rate": "0"})
 
     def run(self, *, plan, strategy, events):
         assert plan.engine_id == "test.independent-signal-engine"
@@ -69,7 +75,7 @@ def test_separate_engine_executes_train_reload_infer_and_report(tmp_path: Path) 
         policy=RunPolicy(),
         events=events, engine=engine, output=tmp_path, training=request,
     )
-    assert learner.threshold == 2
+    assert learner.threshold is None
     assert report.plan.engine_id == "test.independent-signal-engine"
     assert report.artifact is not None
     assert len(report.decisions) == len(events)

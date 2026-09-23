@@ -38,6 +38,9 @@ def main() -> None:
     dataset = DatasetDeclaration(
         dataset_id=dataset_id,
         granularity=original.granularity,
+        session_timezone=original.session_timezone,
+        session_open=original.session_open,
+        session_close=original.session_close,
         fields=original.fields,
         symbols=original.symbols,
         event_count=len(evaluation),
