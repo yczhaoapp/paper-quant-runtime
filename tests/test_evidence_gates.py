@@ -1,11 +1,15 @@
 from __future__ import annotations
 
 import json
+import runpy
 from pathlib import Path
 
 import pytest
 
-from scripts.acceptance import _check_implementation, _run_oracles
+_ACCEPTANCE = runpy.run_path(str(Path(__file__).resolve().parents[1]
+                                 / "scripts/acceptance.py"))
+_check_implementation = _ACCEPTANCE["_check_implementation"]
+_run_oracles = _ACCEPTANCE["_run_oracles"]
 
 
 def test_nonexistent_claim_symbol_fails_before_acceptance() -> None:

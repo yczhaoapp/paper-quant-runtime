@@ -35,7 +35,7 @@ jobs:
       - name: Install locked dependencies
         run: uv sync --locked --extra dev
       - name: Unit and integration tests
-        run: uv run --no-sync pytest -q -p no:cacheprovider
+        run: uv run --no-sync python -m pytest -q -p no:cacheprovider
       - name: Lint
         run: uv run --no-sync ruff check .
       - name: Type check
