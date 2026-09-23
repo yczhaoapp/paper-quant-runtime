@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, datetime, time, timedelta
 from decimal import Decimal
 from pathlib import Path
 
@@ -153,7 +153,7 @@ def test_learning_lifecycle_saves_and_reloads_exact_model(tmp_path: Path) -> Non
         output=tmp_path,
         training=training,
     )
-    assert learner.threshold == 2
+    assert learner.threshold is None  # Inference ran in a fresh instance.
     assert report.artifact is not None
     assert report.artifact.training_sha256 == fingerprint(training)
     assert (tmp_path / report.artifact.relative_path).read_bytes() == b"2"
@@ -251,7 +251,10 @@ def test_engine_exception_is_structured_backtest_failure(tmp_path: Path) -> None
         )
     assert caught.value.failure.stage == "backtest"
     assert caught.value.failure.code == ErrorCode.BACKTEST_FAILED
-    assert caught.value.failure.details == {"cause": "RuntimeError"}
+    assert caught.value.failure.details == {
+        "cause": "RuntimeError", "reason": "engine-internal-failure",
+        "strategy_id": "sample-rule",
+    }
     assert not (tmp_path / "report.json").exists()
 
 
@@ -386,7 +389,16 @@ def test_explicit_symbol_mapping_records_both_event_hashes() -> None:
 
 
 def test_minute_to_day_aggregation_requires_explicit_policy() -> None:
-    events = bars()
+    first = bars()[0]
+    events = tuple(
+        first.model_copy(update={
+            "event_id": f"session-{index}",
+            "event_time": first.event_time + timedelta(minutes=index),
+            "available_time": first.available_time + timedelta(minutes=index),
+            "bar_open_time": first.bar_open_time + timedelta(minutes=index),
+        })
+        for index in range(61)
+    )
     spec = declaration().model_copy(
         update={
             "data": DataNeed(
@@ -411,7 +423,9 @@ def test_minute_to_day_aggregation_requires_explicit_policy() -> None:
         strategy=spec,
         dataset=dataset(events),
         engine=reference_capability(frozenset(events[0].values)),
-        policy=RunPolicy(allow_day_aggregation=True),
+        policy=RunPolicy(allow_day_aggregation=True,
+                         aggregation_session_open=time(9, 29, 30),
+                         aggregation_session_close=time(10, 30)),
         events=events,
     )
     assert len(daily) == 1

@@ -11,6 +11,9 @@
     "volume"
   ],
   "granularity": "day",
+  "session_close": "16:00:00",
+  "session_open": "09:30:00",
+  "session_timezone": "America/New_York",
   "symbols": [
     "AAPL"
   ]

@@ -8,10 +8,11 @@ import queue
 import subprocess
 import tempfile
 import threading
+import uuid
 from pathlib import Path
 from typing import Any, NoReturn, Self
 
-from pydantic import TypeAdapter
+from pydantic import TypeAdapter, ValidationError
 
 from paperquant.compiler import fingerprint
 from paperquant.models import (
@@ -67,6 +68,10 @@ class DockerWorkerStrategy:
     ) -> None:
         self.run_id = run_id
         self.declaration = declaration
+        self._package_dir = package_dir
+        self._source_sha256 = source_sha256
+        self._image = image
+        self._container_name = f"paperquant-{uuid.uuid4().hex}"
         self._process: subprocess.Popen[bytes] | None = None
         self._replies: queue.Queue[bytes | None] = queue.Queue(maxsize=1)
         try:
@@ -93,6 +98,8 @@ class DockerWorkerStrategy:
             "-i",
             "--cidfile",
             str(cidfile),
+            "--name",
+            self._container_name,
             "--network",
             "none",
             "--read-only",
@@ -140,9 +147,11 @@ class DockerWorkerStrategy:
                 _unavailable(run_id, "Worker did not attest the expected strategy package")
             container_id = cidfile.read_text(encoding="ascii").strip()
             self._verify_container(container_id, package_path)
-        except ContractFault:
+        except ContractFault as exc:
             self.close()
-            raise
+            raise ContractFault(exc.failure.model_copy(update={
+                "details": {**exc.failure.details, "worker_container_cleanup": "verified"}
+            })) from exc
         except Exception as exc:
             self.close()
             _unavailable(
@@ -230,8 +239,22 @@ class DockerWorkerStrategy:
             self._process.stdin.flush()
         except (BrokenPipeError, OSError):
             _unavailable(self.run_id, "Strict worker protocol input closed")
-        result = self._receive()
+        try:
+            result = self._receive()
+        except ContractFault as exc:
+            operation_stage = {
+                "train": Stage.TRAIN, "load": Stage.LOAD, "decide": Stage.INFER,
+            }.get(str(request.get("op")), Stage.LOAD)
+            raise ContractFault(exc.failure.model_copy(update={
+                "stage": operation_stage,
+                "details": {**exc.failure.details, "operation": str(request.get("op"))},
+            })) from exc
         if result.get("ok") is not True:
+            if result.get("code") == "ACTION_INVALID" and request.get("op") == "decide":
+                raise ContractFault(Failure(
+                    run_id=self.run_id, stage=Stage.INFER, code=ErrorCode.ACTION_INVALID,
+                    message="Isolated strategy returned an invalid action",
+                ))
             raise RuntimeError(f"worker rejected operation: {result.get('cause', 'unknown')}")
         return result
 
@@ -250,33 +273,84 @@ class DockerWorkerStrategy:
                 "account": account.model_dump(mode="json"),
             }
         )
-        return _ACTIONS.validate_python(response["actions"])
+        try:
+            return _ACTIONS.validate_python(response["actions"])
+        except (KeyError, ValidationError, TypeError, ValueError) as exc:
+            raise ContractFault(Failure(
+                run_id=self.run_id, stage=Stage.INFER, code=ErrorCode.ACTION_INVALID,
+                message="Isolated strategy action did not satisfy the wire schema",
+                details={"cause": type(exc).__name__},
+            )) from exc
+
+    def restart_for_inference(self) -> DockerWorkerStrategy:
+        """Destroy the training worker before starting an untrained inference worker."""
+        self.close()
+        DockerWorkerStrategy.__init__(
+            self,
+            run_id=self.run_id,
+            package_dir=self._package_dir,
+            declaration=self.declaration,
+            source_sha256=self._source_sha256,
+            image=self._image,
+        )
+        return self
 
     def close(self) -> None:
         process = self._process
         self._process = None
-        if process is None:
-            self._cid_directory.cleanup()
-            return
-        if process.poll() is None and process.stdin is not None:
-            try:
-                process.stdin.write(b'{"op":"stop"}\n')
-                process.stdin.flush()
-            except (BrokenPipeError, OSError):
-                pass
+        process_error: Exception | None = None
         try:
-            process.wait(timeout=2)
-        except subprocess.TimeoutExpired:
-            process.kill()
-            process.wait(timeout=2)
-        if process.stdin is not None:
-            process.stdin.close()
-        if process.stdout is not None:
-            process.stdout.close()
-        self._cid_directory.cleanup()
+            if process is not None and process.poll() is None and process.stdin is not None:
+                try:
+                    process.stdin.write(b'{"op":"stop"}\n')
+                    process.stdin.flush()
+                except (BrokenPipeError, OSError):
+                    pass
+            if process is not None:
+                try:
+                    process.wait(timeout=2)
+                except subprocess.TimeoutExpired:
+                    process.kill()
+                    process.wait(timeout=2)
+        except (OSError, subprocess.TimeoutExpired) as exc:
+            process_error = exc
+        finally:
+            if process is not None:
+                for stream in (process.stdin, process.stdout):
+                    if stream is not None:
+                        try:
+                            stream.close()
+                        except OSError as exc:
+                            process_error = exc
+        try:
+            removed = subprocess.run(
+                ["docker", "rm", "-f", self._container_name],
+                capture_output=True, timeout=10, check=False,
+            )
+            inspected = subprocess.run(
+                ["docker", "inspect", self._container_name],
+                capture_output=True, timeout=10, check=False,
+            )
+            missing = b"no such" in inspected.stderr.lower()
+            if inspected.returncode == 0 or not missing:
+                _unavailable(self.run_id, "Strict worker cleanup was not verified",
+                             container=self._container_name,
+                             remove_exit=str(removed.returncode))
+        except (OSError, subprocess.TimeoutExpired) as exc:
+            _unavailable(self.run_id, "Strict worker cleanup could not be verified",
+                         cause=type(exc).__name__)
+        finally:
+            self._cid_directory.cleanup()
+        if process_error is not None:
+            _unavailable(self.run_id, "Docker client did not exit cleanly",
+                         cause=type(process_error).__name__)
 
     def __enter__(self) -> Self:
         return self
 
-    def __exit__(self, *_exc: object) -> None:
+    def __exit__(self, _type: object, exc: object, _traceback: object) -> None:
         self.close()
+        if isinstance(exc, ContractFault):
+            raise ContractFault(exc.failure.model_copy(update={
+                "details": {**exc.failure.details, "worker_container_cleanup": "verified"}
+            })) from exc

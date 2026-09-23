@@ -30,6 +30,8 @@ def atomic_bytes(path: Path, payload: bytes) -> None:
 def prepare_output(root: Path) -> None:
     root.mkdir(parents=True, exist_ok=True)
     (root / "report.json").unlink(missing_ok=True)
+    (root / "bundle.json").unlink(missing_ok=True)
+    (root / "paper-run.json").unlink(missing_ok=True)
     (root / "failure.json").unlink(missing_ok=True)
 
 
@@ -63,6 +65,8 @@ class Attempt:
         )
 
     def failed(self, *, run_id: str, code: str, failure: bytes) -> None:
+        (self.root / "report.json").unlink(missing_ok=True)
+        (self.root / "bundle.json").unlink(missing_ok=True)
         atomic_bytes(self.root / "failure.json", failure)
         self._publish(
             "failed",

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, datetime, time, timedelta
 from decimal import Decimal
 from pathlib import Path
 
@@ -56,6 +56,8 @@ def main() -> None:
     dataset = DatasetDeclaration(
         dataset_id="fixture.synthetic-three-stock-pairs",
         granularity=Granularity.DAY,
+        session_open=time(9),
+        session_close=time(16),
         fields=frozenset(events[0].values),
         symbols=frozenset({"ALPHA", "BETA", "GAMMA"}),
         event_count=len(events),

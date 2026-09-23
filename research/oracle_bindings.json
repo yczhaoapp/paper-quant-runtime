@@ -1,0 +1,443 @@
+{
+  "schema_version": "1.0",
+  "bindings": {
+    "reinforcement.actor_critic_allocation": {
+      "claim_sha256": "e929de978603e40232204e88635270a23a36d0c0872fe2334e213809bdb4be93",
+      "source_sha256": "f9e07b93048ee549cc7a969ef80bd2b32404e65f2d7954e57effc40495572a65",
+      "oracle_sha256": "2c496673e73407eb0e7078a6b7a6229f0c4956f72632706dbe622bbd51949040",
+      "node_ids": [
+        "tests/test_actor_critic_allocation_paper.py::test_training_transition_lineage_is_disjoint_from_public_evaluation",
+        "tests/test_actor_critic_allocation_paper.py::test_on_policy_actor_and_td_critic_match_independent_reference[3]",
+        "tests/test_actor_critic_allocation_paper.py::test_on_policy_actor_and_td_critic_match_independent_reference[17]",
+        "tests/test_actor_critic_allocation_paper.py::test_on_policy_actor_and_td_critic_match_independent_reference[71]",
+        "tests/test_actor_critic_allocation_paper.py::test_gaussian_policy_score_gradient_has_expected_finite_difference",
+        "tests/test_actor_critic_allocation_paper.py::test_successor_price_change_alters_fitted_policy"
+      ],
+      "claim_nodes": [
+        [
+          "tests/test_actor_critic_allocation_paper.py::test_on_policy_actor_and_td_critic_match_independent_reference[3]",
+          "tests/test_actor_critic_allocation_paper.py::test_on_policy_actor_and_td_critic_match_independent_reference[17]",
+          "tests/test_actor_critic_allocation_paper.py::test_on_policy_actor_and_td_critic_match_independent_reference[71]"
+        ],
+        [
+          "tests/test_actor_critic_allocation_paper.py::test_on_policy_actor_and_td_critic_match_independent_reference[3]",
+          "tests/test_actor_critic_allocation_paper.py::test_on_policy_actor_and_td_critic_match_independent_reference[17]",
+          "tests/test_actor_critic_allocation_paper.py::test_on_policy_actor_and_td_critic_match_independent_reference[71]"
+        ],
+        [
+          "tests/test_actor_critic_allocation_paper.py::test_gaussian_policy_score_gradient_has_expected_finite_difference"
+        ]
+      ]
+    },
+    "reinforcement.double_q_market_making": {
+      "claim_sha256": "72bc9bd7fcd02e5c726a30f6dd92d475c83b941b77bfd63da4219a2b47e91d88",
+      "source_sha256": "94e0e1ad39c9c18321cc622dc4afdcb49d2068bc7f93bddfa682c66c90fb0bce",
+      "oracle_sha256": "adcc9a28fcf21925dbd322476037fef6d90021c7b38910fb41fbabbde9fd6a48",
+      "node_ids": [
+        "tests/test_double_q_paper.py::test_double_q_selects_with_one_table_and_evaluates_with_other[alpha0-gamma0]",
+        "tests/test_double_q_paper.py::test_double_q_selects_with_one_table_and_evaluates_with_other[alpha1-gamma1]",
+        "tests/test_double_q_paper.py::test_double_q_selects_with_one_table_and_evaluates_with_other[alpha2-gamma2]",
+        "tests/test_double_q_paper.py::test_seeded_random_transitions_match_independent_double_bellman_oracle[2]",
+        "tests/test_double_q_paper.py::test_seeded_random_transitions_match_independent_double_bellman_oracle[19]",
+        "tests/test_double_q_paper.py::test_seeded_random_transitions_match_independent_double_bellman_oracle[71]",
+        "tests/test_double_q_paper.py::test_double_q_lifecycle_and_artifact_binding"
+      ],
+      "claim_nodes": [
+        [
+          "tests/test_double_q_paper.py::test_seeded_random_transitions_match_independent_double_bellman_oracle[2]",
+          "tests/test_double_q_paper.py::test_seeded_random_transitions_match_independent_double_bellman_oracle[19]",
+          "tests/test_double_q_paper.py::test_seeded_random_transitions_match_independent_double_bellman_oracle[71]"
+        ],
+        [
+          "tests/test_double_q_paper.py::test_double_q_selects_with_one_table_and_evaluates_with_other[alpha0-gamma0]",
+          "tests/test_double_q_paper.py::test_double_q_selects_with_one_table_and_evaluates_with_other[alpha1-gamma1]",
+          "tests/test_double_q_paper.py::test_double_q_selects_with_one_table_and_evaluates_with_other[alpha2-gamma2]"
+        ],
+        [
+          "tests/test_double_q_paper.py::test_double_q_lifecycle_and_artifact_binding"
+        ]
+      ]
+    },
+    "reinforcement.execution_value_learning": {
+      "claim_sha256": "fc4a27d64e886aedcf61ddd2a19a84a9ac32c6488c120557045f7d156d68ae6f",
+      "source_sha256": "5bfe516b4a2ba5b7fbf389a79a9d900ebd0c3af91bf83513567575b1fd1c5496",
+      "oracle_sha256": "1db03db85f475697599a74b74fcb0d46d04b5a281eace9d4b35f16621b62012a",
+      "node_ids": [
+        "tests/test_execution_value_learning_paper.py::test_complete_training_lattice_and_backward_values_match_reference",
+        "tests/test_execution_value_learning_paper.py::test_reward_perturbation_changes_only_current_and_earlier_time_values[0]",
+        "tests/test_execution_value_learning_paper.py::test_reward_perturbation_changes_only_current_and_earlier_time_values[17]",
+        "tests/test_execution_value_learning_paper.py::test_reward_perturbation_changes_only_current_and_earlier_time_values[73]",
+        "tests/test_execution_value_learning_paper.py::test_execution_training_save_reload_and_episode_fills",
+        "tests/test_execution_value_learning_paper.py::test_missing_lattice_action_fails_closed"
+      ],
+      "claim_nodes": [
+        [
+          "tests/test_execution_value_learning_paper.py::test_complete_training_lattice_and_backward_values_match_reference"
+        ],
+        [
+          "tests/test_execution_value_learning_paper.py::test_complete_training_lattice_and_backward_values_match_reference"
+        ],
+        [
+          "tests/test_execution_value_learning_paper.py::test_execution_training_save_reload_and_episode_fills"
+        ]
+      ]
+    },
+    "reinforcement.pairs_actor_critic": {
+      "claim_sha256": "5baa8c2a67afd1c5b3783a806c1f3d6b2c8abc5013eeba02d6131e98b7dc6efb",
+      "source_sha256": "296f4832b0139f7201d10a126a938a4d4741996ea92e1b2d5a919a70dea96852",
+      "oracle_sha256": "714e5c0e3d4bc5dd8ffefaa44e1de2259ffe0e1430c66519e908c437f67ef0df",
+      "node_ids": [
+        "tests/test_pairs_actor_critic_paper.py::test_paper_binding_and_disjoint_chronology",
+        "tests/test_pairs_actor_critic_paper.py::test_discrete_a2c_updates_match_independent_reference[7]",
+        "tests/test_pairs_actor_critic_paper.py::test_discrete_a2c_updates_match_independent_reference[23]",
+        "tests/test_pairs_actor_critic_paper.py::test_discrete_a2c_updates_match_independent_reference[91]",
+        "tests/test_pairs_actor_critic_paper.py::test_causal_rolling_regression_matches_independent_statistics",
+        "tests/test_pairs_actor_critic_paper.py::test_softmax_score_property_and_reward_sensitivity"
+      ],
+      "claim_nodes": [
+        [
+          "tests/test_pairs_actor_critic_paper.py::test_causal_rolling_regression_matches_independent_statistics"
+        ],
+        [
+          "tests/test_pairs_actor_critic_paper.py::test_paper_binding_and_disjoint_chronology"
+        ],
+        [
+          "tests/test_pairs_actor_critic_paper.py::test_discrete_a2c_updates_match_independent_reference[7]",
+          "tests/test_pairs_actor_critic_paper.py::test_discrete_a2c_updates_match_independent_reference[23]",
+          "tests/test_pairs_actor_critic_paper.py::test_discrete_a2c_updates_match_independent_reference[91]"
+        ]
+      ]
+    },
+    "reinforcement.risk_averse_bandit": {
+      "claim_sha256": "f374656aa0ad4b6ac6279e3c5de05b500c53ce883d4c2b4ebbfac03c9cbc8cd7",
+      "source_sha256": "49a83b0ed0717e1484ddfeb40261033695fcc1a8cc3b073db0f145c9fca33887",
+      "oracle_sha256": "96ea9018227497d7da6bd63c21f57bd7f8fddf4e7467563b38f8a0f8e02acb37",
+      "node_ids": [
+        "tests/test_risk_averse_bandit_paper.py::test_scalar_normal_gamma_updates_and_thompson_scores_match_reference[3]",
+        "tests/test_risk_averse_bandit_paper.py::test_scalar_normal_gamma_updates_and_thompson_scores_match_reference[29]",
+        "tests/test_risk_averse_bandit_paper.py::test_scalar_normal_gamma_updates_and_thompson_scores_match_reference[71]",
+        "tests/test_risk_averse_bandit_paper.py::test_online_update_uses_arm_held_during_observed_interval",
+        "tests/test_risk_averse_bandit_paper.py::test_risk_penalty_lowers_sampled_scores_with_same_random_draws",
+        "tests/test_risk_averse_bandit_paper.py::test_bandit_lifecycle_and_online_actions"
+      ],
+      "claim_nodes": [
+        [
+          "tests/test_risk_averse_bandit_paper.py::test_scalar_normal_gamma_updates_and_thompson_scores_match_reference[3]",
+          "tests/test_risk_averse_bandit_paper.py::test_scalar_normal_gamma_updates_and_thompson_scores_match_reference[29]",
+          "tests/test_risk_averse_bandit_paper.py::test_scalar_normal_gamma_updates_and_thompson_scores_match_reference[71]"
+        ],
+        [
+          "tests/test_risk_averse_bandit_paper.py::test_risk_penalty_lowers_sampled_scores_with_same_random_draws"
+        ],
+        [
+          "tests/test_risk_averse_bandit_paper.py::test_online_update_uses_arm_held_during_observed_interval"
+        ]
+      ]
+    },
+    "reinforcement.sarsa_inventory": {
+      "claim_sha256": "65687b08902c6e4af2bf5684ef635595b00fbb3cca47bd21101f9a9584e0762d",
+      "source_sha256": "5838b82af6b888bb3c723d69d1ac038387150aa7a2d723bfb8628e80347f7fb4",
+      "oracle_sha256": "c01bd6b5713d7190bdfeaa9ab998215125104fc4f3fcbca6fabad77fa5f5e7ed",
+      "node_ids": [
+        "tests/test_sarsa_paper.py::test_sarsa_uses_actual_next_action_not_greedy_maximum[alpha0-gamma0-reward0]",
+        "tests/test_sarsa_paper.py::test_sarsa_uses_actual_next_action_not_greedy_maximum[alpha1-gamma1-reward1]",
+        "tests/test_sarsa_paper.py::test_sarsa_uses_actual_next_action_not_greedy_maximum[alpha2-gamma2-reward2]",
+        "tests/test_sarsa_paper.py::test_sarsa_uses_actual_next_action_not_greedy_maximum[alpha3-gamma3-reward3]",
+        "tests/test_sarsa_paper.py::test_terminal_transition_cannot_bootstrap",
+        "tests/test_sarsa_paper.py::test_wrong_next_behavior_action_is_rejected",
+        "tests/test_sarsa_paper.py::test_reinforcement_package_lifecycle_and_artifact_provenance"
+      ],
+      "claim_nodes": [
+        [
+          "tests/test_sarsa_paper.py::test_sarsa_uses_actual_next_action_not_greedy_maximum[alpha0-gamma0-reward0]",
+          "tests/test_sarsa_paper.py::test_sarsa_uses_actual_next_action_not_greedy_maximum[alpha1-gamma1-reward1]",
+          "tests/test_sarsa_paper.py::test_sarsa_uses_actual_next_action_not_greedy_maximum[alpha2-gamma2-reward2]",
+          "tests/test_sarsa_paper.py::test_sarsa_uses_actual_next_action_not_greedy_maximum[alpha3-gamma3-reward3]"
+        ],
+        [
+          "tests/test_sarsa_paper.py::test_sarsa_uses_actual_next_action_not_greedy_maximum[alpha0-gamma0-reward0]",
+          "tests/test_sarsa_paper.py::test_sarsa_uses_actual_next_action_not_greedy_maximum[alpha1-gamma1-reward1]",
+          "tests/test_sarsa_paper.py::test_sarsa_uses_actual_next_action_not_greedy_maximum[alpha2-gamma2-reward2]",
+          "tests/test_sarsa_paper.py::test_sarsa_uses_actual_next_action_not_greedy_maximum[alpha3-gamma3-reward3]"
+        ]
+      ]
+    },
+    "rule.channel_breakout": {
+      "claim_sha256": "3d643c3b6ba3a1f2d1b22e3ed497edad48a32101129f39bc546d6f91033adfb5",
+      "source_sha256": "59faea398cc2f97294bf6d25d731cfb995c2fda9f36c4547cef1c2dd5ad73811",
+      "oracle_sha256": "d42476b3a4eec0521a75eda488ce3b12fb6d4087301a457e24a183bae956c0a7",
+      "node_ids": [
+        "tests/test_channel_breakout_paper.py::test_paper_trb_matches_independent_crossing_and_holding_oracle[3]",
+        "tests/test_channel_breakout_paper.py::test_paper_trb_matches_independent_crossing_and_holding_oracle[17]",
+        "tests/test_channel_breakout_paper.py::test_paper_trb_matches_independent_crossing_and_holding_oracle[41]",
+        "tests/test_channel_breakout_paper.py::test_paper_trb_matches_independent_crossing_and_holding_oracle[73]",
+        "tests/test_channel_breakout_paper.py::test_channel_breakout_runs_on_pinned_public_bars"
+      ],
+      "claim_nodes": [
+        [
+          "tests/test_channel_breakout_paper.py::test_paper_trb_matches_independent_crossing_and_holding_oracle[3]",
+          "tests/test_channel_breakout_paper.py::test_paper_trb_matches_independent_crossing_and_holding_oracle[17]",
+          "tests/test_channel_breakout_paper.py::test_paper_trb_matches_independent_crossing_and_holding_oracle[41]",
+          "tests/test_channel_breakout_paper.py::test_paper_trb_matches_independent_crossing_and_holding_oracle[73]"
+        ],
+        [
+          "tests/test_channel_breakout_paper.py::test_paper_trb_matches_independent_crossing_and_holding_oracle[3]",
+          "tests/test_channel_breakout_paper.py::test_paper_trb_matches_independent_crossing_and_holding_oracle[17]",
+          "tests/test_channel_breakout_paper.py::test_paper_trb_matches_independent_crossing_and_holding_oracle[41]",
+          "tests/test_channel_breakout_paper.py::test_paper_trb_matches_independent_crossing_and_holding_oracle[73]"
+        ]
+      ]
+    },
+    "rule.microprice_toy": {
+      "claim_sha256": "e69306358095e13b460a920f44125c3612eacbfd81878fff198bb6d7470f19f7",
+      "source_sha256": "900f70e095e4a462e06ec79b2c0c0b46f26ee8f75ebb74b372ebe99bc5c62a49",
+      "oracle_sha256": "0c2e894c6bcdc9aca64ce705b357c7d466dd33b41ce185eb2f2a0c0f42c0ad57",
+      "node_ids": [
+        "tests/test_microprice_toy_paper.py::test_toy_price_matches_independent_rational_formula_and_trade_mapping[3]",
+        "tests/test_microprice_toy_paper.py::test_toy_price_matches_independent_rational_formula_and_trade_mapping[17]",
+        "tests/test_microprice_toy_paper.py::test_toy_price_matches_independent_rational_formula_and_trade_mapping[71]",
+        "tests/test_microprice_toy_paper.py::test_synthetic_l1_toy_price_completes_runtime_and_trades",
+        "tests/test_microprice_toy_paper.py::test_invalid_book_fails_instead_of_producing_a_price"
+      ],
+      "claim_nodes": [
+        [
+          "tests/test_microprice_toy_paper.py::test_toy_price_matches_independent_rational_formula_and_trade_mapping[3]",
+          "tests/test_microprice_toy_paper.py::test_toy_price_matches_independent_rational_formula_and_trade_mapping[17]",
+          "tests/test_microprice_toy_paper.py::test_toy_price_matches_independent_rational_formula_and_trade_mapping[71]"
+        ]
+      ]
+    },
+    "rule.moving_average_crossover": {
+      "claim_sha256": "93baa99f13d4e68b88b6d699f1f672b6c6e2038543e94183f8a8eecfba8c44be",
+      "source_sha256": "ffdf872bcd9c0d4bb0f8aa5f28e47a0094ac5a9b194404288954290e127431ff",
+      "oracle_sha256": "64d7f6809b73fa0745372669a64629b06562eb53c8f8585bf4b717fd242b2426",
+      "node_ids": [
+        "tests/test_moving_average_paper.py::test_paper_vma_signal_matches_independent_rolling_formula[2]",
+        "tests/test_moving_average_paper.py::test_paper_vma_signal_matches_independent_rolling_formula[17]",
+        "tests/test_moving_average_paper.py::test_paper_vma_signal_matches_independent_rolling_formula[29]",
+        "tests/test_moving_average_paper.py::test_committed_daily_fixture_runs_with_two_opposing_trades"
+      ],
+      "claim_nodes": [
+        [
+          "tests/test_moving_average_paper.py::test_paper_vma_signal_matches_independent_rolling_formula[2]",
+          "tests/test_moving_average_paper.py::test_paper_vma_signal_matches_independent_rolling_formula[17]",
+          "tests/test_moving_average_paper.py::test_paper_vma_signal_matches_independent_rolling_formula[29]"
+        ],
+        [
+          "tests/test_moving_average_paper.py::test_paper_vma_signal_matches_independent_rolling_formula[2]",
+          "tests/test_moving_average_paper.py::test_paper_vma_signal_matches_independent_rolling_formula[17]",
+          "tests/test_moving_average_paper.py::test_paper_vma_signal_matches_independent_rolling_formula[29]"
+        ]
+      ]
+    },
+    "rule.pairs_distance": {
+      "claim_sha256": "db0a31ecbb44a0d2978b168bd31561779a82411948ef8f0d1492c6124e664828",
+      "source_sha256": "e01afc561e29b43f823c97390a47bee022ca3e23576609bc21931c5e6e71886a",
+      "oracle_sha256": "acd9392f8a22ddbb9952be712c8ca1d2d28d4439dcd049b1b4066a3b41084421",
+      "node_ids": [
+        "tests/test_pairs_distance_paper.py::test_minimum_distance_pair_and_trades_match_independent_oracle[False]",
+        "tests/test_pairs_distance_paper.py::test_minimum_distance_pair_and_trades_match_independent_oracle[True]",
+        "tests/test_pairs_distance_paper.py::test_fixture_is_pinned_and_synchronized"
+      ],
+      "claim_nodes": [
+        [
+          "tests/test_pairs_distance_paper.py::test_minimum_distance_pair_and_trades_match_independent_oracle[False]",
+          "tests/test_pairs_distance_paper.py::test_minimum_distance_pair_and_trades_match_independent_oracle[True]"
+        ],
+        [
+          "tests/test_pairs_distance_paper.py::test_minimum_distance_pair_and_trades_match_independent_oracle[False]",
+          "tests/test_pairs_distance_paper.py::test_minimum_distance_pair_and_trades_match_independent_oracle[True]"
+        ],
+        [
+          "tests/test_pairs_distance_paper.py::test_fixture_is_pinned_and_synchronized"
+        ]
+      ]
+    },
+    "rule.reservation_quote": {
+      "claim_sha256": "d3eb27af79aa1a9f76863092f23adadf6314bbcf6b0f77410912aa630da0fb5e",
+      "source_sha256": "97343aeea07fa1ef37d43e3764a9ea7336f0637b5ab4f798ec55f2ebbd89339d",
+      "oracle_sha256": "d350f1036c09754e78fe0579153c6da943f9d5ed8a91b79af3d3409c61be7044",
+      "node_ids": [
+        "tests/test_reservation_quote_paper.py::test_random_equations_match_independent_reservation_and_spread[3]",
+        "tests/test_reservation_quote_paper.py::test_random_equations_match_independent_reservation_and_spread[17]",
+        "tests/test_reservation_quote_paper.py::test_random_equations_match_independent_reservation_and_spread[71]",
+        "tests/test_reservation_quote_paper.py::test_l2_quote_run_has_price_bound_limits_and_real_fills",
+        "tests/test_reservation_quote_paper.py::test_invalid_l2_depth_is_rejected_before_quoting"
+      ],
+      "claim_nodes": [
+        [
+          "tests/test_reservation_quote_paper.py::test_random_equations_match_independent_reservation_and_spread[3]",
+          "tests/test_reservation_quote_paper.py::test_random_equations_match_independent_reservation_and_spread[17]",
+          "tests/test_reservation_quote_paper.py::test_random_equations_match_independent_reservation_and_spread[71]"
+        ],
+        [
+          "tests/test_reservation_quote_paper.py::test_random_equations_match_independent_reservation_and_spread[3]",
+          "tests/test_reservation_quote_paper.py::test_random_equations_match_independent_reservation_and_spread[17]",
+          "tests/test_reservation_quote_paper.py::test_random_equations_match_independent_reservation_and_spread[71]"
+        ]
+      ]
+    },
+    "rule.time_sliced_execution": {
+      "claim_sha256": "405ee6b04c24829203de2208f74196f7c10932b6bef702dcbf7aba4ba891f077",
+      "source_sha256": "b227d3f49bdc31b4946db1b910a813f383a757b2f1edadeae3f7f6270fb83459",
+      "oracle_sha256": "52e528d67e0b446cc03784890449e42181ff068191ae65e31de51a909533a622",
+      "node_ids": [
+        "tests/test_time_sliced_paper.py::test_random_parent_schedules_preserve_volume_and_terminal_silence[3]",
+        "tests/test_time_sliced_paper.py::test_random_parent_schedules_preserve_volume_and_terminal_silence[17]",
+        "tests/test_time_sliced_paper.py::test_random_parent_schedules_preserve_volume_and_terminal_silence[71]",
+        "tests/test_time_sliced_paper.py::test_public_twap_has_twelve_child_orders_and_next_open_fills"
+      ],
+      "claim_nodes": [
+        [
+          "tests/test_time_sliced_paper.py::test_random_parent_schedules_preserve_volume_and_terminal_silence[3]",
+          "tests/test_time_sliced_paper.py::test_random_parent_schedules_preserve_volume_and_terminal_silence[17]",
+          "tests/test_time_sliced_paper.py::test_random_parent_schedules_preserve_volume_and_terminal_silence[71]"
+        ],
+        [
+          "tests/test_time_sliced_paper.py::test_random_parent_schedules_preserve_volume_and_terminal_silence[3]",
+          "tests/test_time_sliced_paper.py::test_random_parent_schedules_preserve_volume_and_terminal_silence[17]",
+          "tests/test_time_sliced_paper.py::test_random_parent_schedules_preserve_volume_and_terminal_silence[71]"
+        ]
+      ]
+    },
+    "supervised.cross_sectional_rank": {
+      "claim_sha256": "264f119b5fb286595c41360ad689da0cc77d38a3f79fce889340c371fb44921f",
+      "source_sha256": "4fd97bcb737e325280b270a4c9fb33c9e720efaf24b14b36fd1a809f60ab9038",
+      "oracle_sha256": "46e066192971e61e423e7172626fe2f1b498d49fc5030d5f82e10238412aa351",
+      "node_ids": [
+        "tests/test_cross_sectional_rank_paper.py::test_panel_rebuilds_and_training_precedes_all_evaluation_opens",
+        "tests/test_cross_sectional_rank_paper.py::test_elastic_net_kkt_and_forecast_rank_oracle[120]",
+        "tests/test_cross_sectional_rank_paper.py::test_elastic_net_kkt_and_forecast_rank_oracle[240]",
+        "tests/test_cross_sectional_rank_paper.py::test_elastic_net_kkt_and_forecast_rank_oracle[360]",
+        "tests/test_cross_sectional_rank_paper.py::test_return_sign_inversion_changes_fit_and_rank"
+      ],
+      "claim_nodes": [
+        [
+          "tests/test_cross_sectional_rank_paper.py::test_elastic_net_kkt_and_forecast_rank_oracle[120]",
+          "tests/test_cross_sectional_rank_paper.py::test_elastic_net_kkt_and_forecast_rank_oracle[240]",
+          "tests/test_cross_sectional_rank_paper.py::test_elastic_net_kkt_and_forecast_rank_oracle[360]"
+        ],
+        [
+          "tests/test_cross_sectional_rank_paper.py::test_elastic_net_kkt_and_forecast_rank_oracle[120]",
+          "tests/test_cross_sectional_rank_paper.py::test_elastic_net_kkt_and_forecast_rank_oracle[240]",
+          "tests/test_cross_sectional_rank_paper.py::test_elastic_net_kkt_and_forecast_rank_oracle[360]"
+        ]
+      ]
+    },
+    "supervised.gaussian_nb_direction": {
+      "claim_sha256": "b729f73da1de9fe03b15bf10cc2692dacc16e1a596afdb920f43e7f7539c169e",
+      "source_sha256": "8d8785c9419e45709610c7eb1f66a2d328ddf46dc945d6548081d5ba2b6eaac3",
+      "oracle_sha256": "1aaee018a2b7091cb6b0ae80d7bfa63174a764e904df4b7c5ff71148f7fc6681",
+      "node_ids": [
+        "tests/test_gaussian_nb_paper.py::test_public_labels_are_chronological_and_rebuildable",
+        "tests/test_gaussian_nb_paper.py::test_gaussian_training_and_posterior_match_independent_oracle[100]",
+        "tests/test_gaussian_nb_paper.py::test_gaussian_training_and_posterior_match_independent_oracle[200]",
+        "tests/test_gaussian_nb_paper.py::test_gaussian_training_and_posterior_match_independent_oracle[320]",
+        "tests/test_gaussian_nb_paper.py::test_label_inversion_changes_both_class_distributions"
+      ],
+      "claim_nodes": [
+        [
+          "tests/test_gaussian_nb_paper.py::test_gaussian_training_and_posterior_match_independent_oracle[100]",
+          "tests/test_gaussian_nb_paper.py::test_gaussian_training_and_posterior_match_independent_oracle[200]",
+          "tests/test_gaussian_nb_paper.py::test_gaussian_training_and_posterior_match_independent_oracle[320]"
+        ],
+        [
+          "tests/test_gaussian_nb_paper.py::test_gaussian_training_and_posterior_match_independent_oracle[100]",
+          "tests/test_gaussian_nb_paper.py::test_gaussian_training_and_posterior_match_independent_oracle[200]",
+          "tests/test_gaussian_nb_paper.py::test_gaussian_training_and_posterior_match_independent_oracle[320]"
+        ]
+      ]
+    },
+    "supervised.logistic_direction": {
+      "claim_sha256": "a5845263dd4ba58536d338bc9dd882bb086f3f33d537e3d456334d232744732e",
+      "source_sha256": "36775edde2aafb1827dbef4121999b668f8f063b59a8352ef757e350bf12a08e",
+      "oracle_sha256": "f80bd903bde739d39057d32c691de74adb9af48767d5d4523dd22785622c3058",
+      "node_ids": [
+        "tests/test_logistic_direction_paper.py::test_training_labels_and_split_reconstruct_from_pinned_raw_market",
+        "tests/test_logistic_direction_paper.py::test_public_logistic_training_reload_and_trades",
+        "tests/test_logistic_direction_paper.py::test_training_is_label_sensitive_and_reduces_log_loss[2]",
+        "tests/test_logistic_direction_paper.py::test_training_is_label_sensitive_and_reduces_log_loss[3]",
+        "tests/test_logistic_direction_paper.py::test_training_is_label_sensitive_and_reduces_log_loss[5]"
+      ],
+      "claim_nodes": [
+        [
+          "tests/test_logistic_direction_paper.py::test_training_labels_and_split_reconstruct_from_pinned_raw_market"
+        ],
+        [
+          "tests/test_logistic_direction_paper.py::test_training_is_label_sensitive_and_reduces_log_loss[2]",
+          "tests/test_logistic_direction_paper.py::test_training_is_label_sensitive_and_reduces_log_loss[3]",
+          "tests/test_logistic_direction_paper.py::test_training_is_label_sensitive_and_reduces_log_loss[5]"
+        ]
+      ]
+    },
+    "supervised.queue_imbalance": {
+      "claim_sha256": "017a6e75af897511449a1ad223416e28d258aa46abf71700717755fc5cd40cd4",
+      "source_sha256": "bbae180778b9da9f84160891ae4a258a09b08047f6550a109e9e369a30ac3d93",
+      "oracle_sha256": "8743b2183e6d37b391d2cfb1e6d016fcf32379748277417c64ee300aea96b5bc",
+      "node_ids": [
+        "tests/test_queue_imbalance_paper.py::test_tick_learning_package_trains_reload_predicts_and_trades",
+        "tests/test_queue_imbalance_paper.py::test_training_labels_change_model_and_predictions",
+        "tests/test_queue_imbalance_paper.py::test_randomized_training_improves_independent_log_likelihood[4]",
+        "tests/test_queue_imbalance_paper.py::test_randomized_training_improves_independent_log_likelihood[19]",
+        "tests/test_queue_imbalance_paper.py::test_randomized_training_improves_independent_log_likelihood[71]"
+      ],
+      "claim_nodes": [
+        [
+          "tests/test_queue_imbalance_paper.py::test_tick_learning_package_trains_reload_predicts_and_trades"
+        ],
+        [
+          "tests/test_queue_imbalance_paper.py::test_randomized_training_improves_independent_log_likelihood[4]",
+          "tests/test_queue_imbalance_paper.py::test_randomized_training_improves_independent_log_likelihood[19]",
+          "tests/test_queue_imbalance_paper.py::test_randomized_training_improves_independent_log_likelihood[71]"
+        ]
+      ]
+    },
+    "supervised.random_forest_operations": {
+      "claim_sha256": "ea81f12ead248887bea4aff811200cdde58414f26646c919fb6c07f396d39e2b",
+      "source_sha256": "f3abc82a1b5ae512f907a9d1608bb08ebf011556570e372ccc16c5f1d51adf2b",
+      "oracle_sha256": "ab3c4c718146513af3fd12eb3b5ab8ac05aff39f5ccf65666edc85ba14e2825e",
+      "node_ids": [
+        "tests/test_random_forest_operations_paper.py::test_operation_labels_and_chronology_rebuild_from_public_bars",
+        "tests/test_random_forest_operations_paper.py::test_bootstrap_forest_votes_match_independent_tree_traversal[5]",
+        "tests/test_random_forest_operations_paper.py::test_bootstrap_forest_votes_match_independent_tree_traversal[23]",
+        "tests/test_random_forest_operations_paper.py::test_bootstrap_forest_votes_match_independent_tree_traversal[73]",
+        "tests/test_random_forest_operations_paper.py::test_training_labels_and_seed_change_forest_artifact"
+      ],
+      "claim_nodes": [
+        [
+          "tests/test_random_forest_operations_paper.py::test_bootstrap_forest_votes_match_independent_tree_traversal[5]",
+          "tests/test_random_forest_operations_paper.py::test_bootstrap_forest_votes_match_independent_tree_traversal[23]",
+          "tests/test_random_forest_operations_paper.py::test_bootstrap_forest_votes_match_independent_tree_traversal[73]"
+        ],
+        [
+          "tests/test_random_forest_operations_paper.py::test_operation_labels_and_chronology_rebuild_from_public_bars"
+        ],
+        [
+          "tests/test_random_forest_operations_paper.py::test_operation_labels_and_chronology_rebuild_from_public_bars"
+        ]
+      ]
+    },
+    "supervised.ridge_three_day_price": {
+      "claim_sha256": "2ca8722501c717b8aa521a21cbdbd9b2205d0e333ddde11e3e83ff997032fcf1",
+      "source_sha256": "60359adeb0b5eff3d47fb75b78d0dee807eeaae8c28a23fa793ea058bb169ab2",
+      "oracle_sha256": "8c8ec9f1993cad2ee5c105dfc33051b4783af3aaefbcad1420fe5da7d353de25",
+      "node_ids": [
+        "tests/test_ridge_three_day_paper.py::test_public_ridge_lineage_reconstructs_every_window_and_label",
+        "tests/test_ridge_three_day_paper.py::test_ridge_train_reload_predict_and_backtest",
+        "tests/test_ridge_three_day_paper.py::test_random_ridge_fit_satisfies_independent_normal_equations[3]",
+        "tests/test_ridge_three_day_paper.py::test_random_ridge_fit_satisfies_independent_normal_equations[17]",
+        "tests/test_ridge_three_day_paper.py::test_random_ridge_fit_satisfies_independent_normal_equations[71]"
+      ],
+      "claim_nodes": [
+        [
+          "tests/test_ridge_three_day_paper.py::test_public_ridge_lineage_reconstructs_every_window_and_label"
+        ],
+        [
+          "tests/test_ridge_three_day_paper.py::test_random_ridge_fit_satisfies_independent_normal_equations[3]",
+          "tests/test_ridge_three_day_paper.py::test_random_ridge_fit_satisfies_independent_normal_equations[17]",
+          "tests/test_ridge_three_day_paper.py::test_random_ridge_fit_satisfies_independent_normal_equations[71]"
+        ]
+      ]
+    }
+  }
+}

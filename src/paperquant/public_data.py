@@ -78,6 +78,9 @@ def load_plotly_apple(path: Path) -> tuple[DatasetDeclaration, tuple[MarketEvent
     declaration = DatasetDeclaration(
         dataset_id=f"public.plotly-aapl.{PLOTLY_COMMIT[:12]}",
         granularity=Granularity.DAY,
+        session_timezone="America/New_York",
+        session_open=time(9, 30),
+        session_close=time(16),
         fields=frozenset({"open", "high", "low", "close", "volume"}),
         symbols=frozenset({"AAPL"}),
         event_count=len(series),

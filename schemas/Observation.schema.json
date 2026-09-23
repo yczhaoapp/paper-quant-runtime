@@ -3,6 +3,18 @@
     "ObservedAction": {
       "additionalProperties": false,
       "properties": {
+        "client_order_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Client Order Id"
+        },
         "event_id": {
           "title": "Event Id",
           "type": "string"
@@ -16,6 +28,22 @@
           ],
           "title": "Kind",
           "type": "string"
+        },
+        "limit_price": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Limit Price"
         },
         "quantity": {
           "anyOf": [

@@ -74,11 +74,11 @@
         "limit_price": {
           "anyOf": [
             {
-              "exclusiveMinimum": 0.0,
+              "exclusiveMinimum": 0,
               "type": "number"
             },
             {
-              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "pattern": "^\\+?(?:0*[1-9]\\d*(?:\\.\\d*)?|0*\\.\\d*[1-9]\\d*)(?:[eE][+-]?\\d+)?$",
               "type": "string"
             },
             {
@@ -91,11 +91,11 @@
         "quantity": {
           "anyOf": [
             {
-              "exclusiveMinimum": 0.0,
+              "exclusiveMinimum": 0,
               "type": "number"
             },
             {
-              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "pattern": "^\\+?(?:0*[1-9]\\d*(?:\\.\\d*)?|0*\\.\\d*[1-9]\\d*)(?:[eE][+-]?\\d+)?$",
               "type": "string"
             }
           ],

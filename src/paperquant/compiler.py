@@ -3,9 +3,10 @@ from __future__ import annotations
 import hashlib
 import json
 from collections import defaultdict
-from datetime import UTC, datetime
+from datetime import datetime, time
 from decimal import Decimal
 from typing import Any, NoReturn
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 from pydantic import BaseModel
 
@@ -14,6 +15,7 @@ from paperquant.models import (
     Conversion,
     DatasetDeclaration,
     EngineCapability,
+    EngineProfile,
     ErrorCode,
     ExecutionPlan,
     Failure,
@@ -41,12 +43,12 @@ def canonical_document(value: Any) -> Any:
         return [canonical_document(item) for item in value]
     if isinstance(value, Decimal):
         return str(value)
-    if isinstance(value, datetime):
+    if isinstance(value, (datetime, time)):
         return value.isoformat()
     return value
 
 
-def fingerprint(value: BaseModel | tuple[MarketEvent, ...]) -> str:
+def fingerprint(value: BaseModel | tuple[MarketEvent, ...] | dict[str, str]) -> str:
     payload = json.dumps(
         canonical_document(value), sort_keys=True, separators=(",", ":"), ensure_ascii=False
     ).encode("utf-8")
@@ -69,6 +71,17 @@ def _check_source(
     ids: set[str] = set()
     previous: tuple[datetime, str] | None = None
     last_available_by_symbol: dict[str, datetime] = {}
+    sessions: set[tuple[str, str]] = set()
+    try:
+        session_zone = ZoneInfo(dataset.session_timezone)
+    except ZoneInfoNotFoundError:
+        _reject(run_id, Stage.INPUT, ErrorCode.INPUT_INVALID,
+                "Dataset session timezone is unknown")
+    if dataset.granularity == Granularity.DAY and (
+        dataset.session_open is None or dataset.session_close is None
+    ):
+        _reject(run_id, Stage.INPUT, ErrorCode.TIMEFRAME_MISMATCH,
+                "Daily data requires an explicit session open and close")
     for event in events:
         if event.event_id in ids or event.symbol not in dataset.symbols:
             _reject(
@@ -88,6 +101,28 @@ def _check_source(
                     ErrorCode.INPUT_INVALID,
                     "Bar open precedes the prior signal availability",
                 )
+            duration = (event.event_time - event.bar_open_time).total_seconds()
+            if dataset.granularity == Granularity.MINUTE and not 0 <= duration <= 60:
+                _reject(run_id, Stage.INPUT, ErrorCode.TIMEFRAME_MISMATCH,
+                        "Minute bar duration is outside one minute", event_id=event.event_id)
+            if dataset.granularity == Granularity.DAY:
+                if not 3600 <= duration <= 86400:
+                    _reject(run_id, Stage.INPUT, ErrorCode.TIMEFRAME_MISMATCH,
+                            "Daily bar does not span a trading session",
+                            event_id=event.event_id)
+                opening = event.bar_open_time.astimezone(session_zone).time().replace(tzinfo=None)
+                closing = event.event_time.astimezone(session_zone).time().replace(tzinfo=None)
+                if opening != dataset.session_open or closing != dataset.session_close:
+                    _reject(run_id, Stage.INPUT, ErrorCode.TIMEFRAME_MISMATCH,
+                            "Daily bar does not match its declared trading session",
+                            event_id=event.event_id)
+                session = (event.symbol,
+                           event.bar_open_time.astimezone(session_zone).date().isoformat())
+                if session in sessions:
+                    _reject(run_id, Stage.INPUT, ErrorCode.TIMEFRAME_MISMATCH,
+                            "More than one daily bar exists for a symbol and session",
+                            event_id=event.event_id)
+                sessions.add(session)
         elif event.bar_open_time is not None:
             _reject(run_id, Stage.INPUT, ErrorCode.INPUT_INVALID, "Tick has a bar open time")
         ordering = (event.available_time, event.event_id)
@@ -122,7 +157,9 @@ def _map_symbols(
     )
 
 
-def _aggregate_days(run_id: str, events: tuple[MarketEvent, ...]) -> tuple[MarketEvent, ...]:
+def _aggregate_days(
+    run_id: str, events: tuple[MarketEvent, ...], session_timezone: str
+) -> tuple[MarketEvent, ...]:
     required = {"open", "high", "low", "close", "volume"}
     if any(not required <= event.values.keys() for event in events):
         _reject(
@@ -132,8 +169,10 @@ def _aggregate_days(run_id: str, events: tuple[MarketEvent, ...]) -> tuple[Marke
             "Daily aggregation requires complete OHLCV bars",
         )
     groups: dict[tuple[str, str], list[MarketEvent]] = defaultdict(list)
+    zone = ZoneInfo(session_timezone)
     for event in events:
-        key = (event.symbol, event.event_time.astimezone(UTC).date().isoformat())
+        assert event.bar_open_time is not None
+        key = (event.symbol, event.bar_open_time.astimezone(zone).date().isoformat())
         groups[key].append(event)
     result: list[MarketEvent] = []
     for (symbol, day), bars in groups.items():
@@ -175,11 +214,20 @@ def compile_run(
     strategy: StrategyDeclaration,
     dataset: DatasetDeclaration,
     engine: EngineCapability,
+    engine_profile: EngineProfile | None = None,
     policy: RunPolicy,
     events: tuple[MarketEvent, ...],
     training: TrainingRequest | None = None,
+    package_source_sha256: str | None = None,
+    package_class_name: str | None = None,
 ) -> tuple[ExecutionPlan, tuple[MarketEvent, ...]]:
     _check_source(run_id, dataset, events)
+    if engine_profile is None:
+        engine_profile = EngineProfile(engine_id=engine.engine_id,
+                                       settings={"mode": "compile-only"})
+    if engine_profile.engine_id != engine.engine_id:
+        _reject(run_id, Stage.COMPILE, ErrorCode.ENGINE_UNSUPPORTED,
+                "Execution profile belongs to another engine")
     if strategy.training_required:
         if training is None or training.dataset_id != dataset.dataset_id or not training.samples:
             _reject(
@@ -203,16 +251,8 @@ def compile_run(
             "Dataset lacks fields",
             missing=missing,
         )
-    execution_fields = (
-        {"price"} if strategy.data.granularity == Granularity.TICK else {"open", "close"}
-    )
-    if not execution_fields <= dataset.fields:
-        _reject(
-            run_id,
-            Stage.COMPILE,
-            ErrorCode.DATA_FIELD_MISSING,
-            "Dataset lacks execution price fields",
-        )
+    execution_fields = engine.execution_fields.get(strategy.data.granularity,
+                                                    frozenset())
 
     conversions: list[Conversion] = []
     effective = events
@@ -250,7 +290,11 @@ def compile_run(
                 ErrorCode.TIMEFRAME_MISMATCH,
                 "No authorized conversion can satisfy the required granularity",
             )
-        aggregated = _aggregate_days(run_id, effective)
+        if (policy.aggregation_session_open is None
+            or policy.aggregation_session_close is None):
+            _reject(run_id, Stage.COMPILE, ErrorCode.TIMEFRAME_MISMATCH,
+                    "Day aggregation requires an explicit target session")
+        aggregated = _aggregate_days(run_id, effective, dataset.session_timezone)
         conversions.append(
             Conversion(
                 transformation="minute_to_day",
@@ -261,7 +305,9 @@ def compile_run(
                 affected_symbols=tuple(sorted({event.symbol for event in effective})),
                 input_sha256=fingerprint(effective),
                 output_sha256=fingerprint(aggregated),
-                parameters={"calendar": "UTC"},
+                parameters={"calendar": dataset.session_timezone,
+                            "session_open": policy.aggregation_session_open.isoformat(),
+                            "session_close": policy.aggregation_session_close.isoformat()},
                 lossy=True,
             )
         )
@@ -272,10 +318,26 @@ def compile_run(
         )
 
     _check_effective_timing(run_id, effective)
+    if strategy.data.granularity != dataset.granularity:
+        effective_declaration = DatasetDeclaration(
+            dataset_id=dataset.dataset_id,
+            granularity=strategy.data.granularity,
+            fields=frozenset.intersection(*(frozenset(item.values) for item in effective)),
+            symbols=strategy.data.symbols,
+            event_count=len(effective),
+            content_sha256=fingerprint(effective),
+            session_timezone=dataset.session_timezone,
+            session_open=policy.aggregation_session_open,
+            session_close=policy.aggregation_session_close,
+        )
+        _check_source(run_id, effective_declaration, effective)
 
     if strategy.data.granularity not in engine.granularities:
         _reject(run_id, Stage.COMPILE, ErrorCode.ENGINE_UNSUPPORTED, "Engine lacks granularity")
     required_fields = strategy.data.fields | execution_fields
+    if not required_fields <= set.intersection(*(set(item.values) for item in effective)):
+        _reject(run_id, Stage.COMPILE, ErrorCode.DATA_FIELD_MISSING,
+                "Effective dataset lacks engine execution fields")
     if not required_fields <= engine.data_fields:
         _reject(run_id, Stage.COMPILE, ErrorCode.ENGINE_UNSUPPORTED, "Engine lacks market fields")
     counts = {
@@ -306,8 +368,12 @@ def compile_run(
             training_sha256=fingerprint(training) if training is not None else None,
             engine_capability=engine,
             engine_sha256=fingerprint(engine),
+            engine_profile=engine_profile,
+            engine_profile_sha256=fingerprint(engine_profile),
             policy=policy,
             policy_sha256=fingerprint(policy),
+            package_source_sha256=package_source_sha256,
+            package_class_name=package_class_name,
             conversions=tuple(conversions),
         ),
         effective,

@@ -1,15 +1,28 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import os
+import subprocess
+from decimal import Decimal
 from pathlib import Path
 
 import pytest
 from test_contract import bars, dataset, declaration
+from test_package import SOURCE
 
 from paperquant.cli import main
-from paperquant.models import ErrorCode, Failure, RunReport
+from paperquant.models import (
+    AccountSnapshot,
+    ContractFault,
+    ErrorCode,
+    Failure,
+    RunReport,
+    TrainingRequest,
+    TrainingSample,
+)
 from paperquant.package import write_manifest
+from paperquant.sandbox import DockerWorkerStrategy
 
 ROOT = Path(__file__).resolve().parents[1]
 STRICT = ROOT / "examples/strict-policy.json"
@@ -204,3 +217,105 @@ class Probe:
     assert failure.code == ErrorCode.BACKTEST_FAILED
     assert not (package / "injected.txt").exists()
     assert not (output / "report.json").exists()
+
+
+def test_timeout_stops_and_removes_the_actual_container(tmp_path: Path) -> None:
+    package = tmp_path / "hanging"
+    package.mkdir()
+    source = SOURCE.replace(
+        'return (TargetPosition(symbol=event.symbol, quantity=Decimal("1"), reason="signal"),)',
+        'while True:\n            pass',
+    )
+    assert source != SOURCE
+    (package / "strategy.py").write_text(source, encoding="utf-8")
+    write_manifest(package, declaration(), "ExternalRule")
+    worker = DockerWorkerStrategy(
+        run_id="timeout-cleanup", package_dir=package, declaration=declaration(),
+        source_sha256=hashlib.sha256(source.encode()).hexdigest(),
+    )
+    container_id = worker.receipt.container_id
+    original_receive = worker._receive
+    worker._receive = lambda *, timeout=20: original_receive(timeout=min(timeout, 1))
+    with pytest.raises(ContractFault) as caught:
+        with worker:
+            worker.decide(
+                bars()[0], AccountSnapshot(timestamp=bars()[0].available_time,
+                    cash=Decimal(1000), equity=Decimal(1000), positions=(), open_order_ids=()),
+            )
+    assert caught.value.failure.code == ErrorCode.SANDBOX_UNAVAILABLE
+    assert caught.value.failure.details["worker_container_cleanup"] == "verified"
+    inspected = subprocess.run(["docker", "inspect", container_id],
+                               capture_output=True, check=False, timeout=10)
+    assert inspected.returncode != 0
+    assert b"no such" in inspected.stderr.lower()
+
+
+@pytest.mark.parametrize("operation", ["train", "load"])
+def test_training_or_loading_timeout_also_removes_container(
+    operation: str, tmp_path: Path,
+) -> None:
+    package = tmp_path / operation
+    package.mkdir()
+    source = '''\
+from decimal import Decimal
+from paperquant.strategy_api import (
+    DataNeed, Granularity, NoOp, StrategyDeclaration, StrategyKind,
+)
+class HangingLearner:
+    declaration = StrategyDeclaration(
+        strategy_id="sample-learning", kind=StrategyKind.SUPERVISED,
+        data=DataNeed(granularity=Granularity.MINUTE,
+                      fields=frozenset({"close", "open"}), symbols=frozenset({"AAA"})),
+        actions=frozenset({"target_position", "none"}),
+        training_required=True, source="public-method-description",
+        max_abs_position=Decimal("2"),
+    )
+    def train(self, request):
+        while True:
+            pass
+    def load(self, payload):
+        while True:
+            pass
+    def decide(self, event, account):
+        return (NoOp(reason="unused"),)
+'''
+    (package / "strategy.py").write_text(source, encoding="utf-8")
+    write_manifest(package, declaration(learning=True), "HangingLearner")
+    worker = DockerWorkerStrategy(
+        run_id=f"timeout-{operation}", package_dir=package,
+        declaration=declaration(learning=True),
+        source_sha256=hashlib.sha256(source.encode()).hexdigest(),
+    )
+    container_id = worker.receipt.container_id
+    original_receive = worker._receive
+    worker._receive = lambda *, timeout=20: original_receive(timeout=min(timeout, 1))
+    with pytest.raises(ContractFault) as caught:
+        with worker:
+            if operation == "train":
+                worker.train(TrainingRequest(dataset_id="local-bars", seed=1, samples=(
+                    TrainingSample(features={"close": Decimal(1)}, target=Decimal(1)),
+                )))
+            else:
+                worker.load(b"model")
+    assert caught.value.failure.code == ErrorCode.SANDBOX_UNAVAILABLE
+    assert caught.value.failure.stage == operation
+    assert caught.value.failure.details["worker_container_cleanup"] == "verified"
+    inspected = subprocess.run(["docker", "inspect", container_id],
+                               capture_output=True, check=False, timeout=10)
+    assert inspected.returncode != 0
+
+
+def test_constructor_failure_records_verified_cleanup(tmp_path: Path) -> None:
+    package = tmp_path / "bad-constructor"
+    package.mkdir()
+    source = SOURCE + "\nraise RuntimeError('constructor-failed')\n"
+    (package / "strategy.py").write_text(source, encoding="utf-8")
+    write_manifest(package, declaration(), "ExternalRule")
+    with pytest.raises(ContractFault) as caught:
+        DockerWorkerStrategy(
+            run_id="bad-constructor", package_dir=package,
+            declaration=declaration(),
+            source_sha256=hashlib.sha256(source.encode()).hexdigest(),
+        )
+    assert caught.value.failure.code == ErrorCode.SANDBOX_UNAVAILABLE
+    assert caught.value.failure.details["worker_container_cleanup"] == "verified"

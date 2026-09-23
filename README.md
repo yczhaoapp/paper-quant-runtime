@@ -10,13 +10,13 @@ Paper Quant Runtime 是面向公开研究策略的可执行契约。它将策略
 - 策略只使用公开的行情、账户、动作和制品接口；回测引擎保持独立。
 - 转换默认关闭，启用时记录依据、受影响范围、关闭开关与输入输出哈希。
 - 参考撮合默认拒绝现金不足的买入；需要融资的样例必须在政策中显式声明，报告保留该假设。
-- 每个训练产物记录内容哈希，加载时重新校验。
+- 每个训练产物记录内容哈希；训练实例退出后，新实例仅凭保存的字节加载模型并执行推理。
 - 失败返回机器可读的错误，不补造行情、模型或订单。
 - 市价与限价订单均有明确的下一事件语义；未成交限价单显式过期。
 
 接口与错误语义见 [契约说明](docs/contract.md)，可执行的引擎协议见[扩展边界](docs/engine-extension.md)，真实 PDF 与 PDF/HTML/TeX 接入边界见[论文接入说明](docs/paper-intake.md)；逐项能力与证据边界见 [验收矩阵](docs/development-plan.md)。
 
-研究候选清单记录了 18 个拟实现的方法与来源核对状态；候选数量不是已完成数量。不同实现的效果比较使用中立观察格式，要求相同的输入哈希、方法标识和执行条件哈希，输出动作/成交路径与权益差。观察相同只说明该场景中的行为一致，不证明论文实验结果复现。格式和使用方式见 [比较协议](docs/comparison.md)。
+研究候选清单记录了 18 个方法与来源核对状态；候选清单本身不作为完成证据，实际完成以对应策略包、oracle 和运行收据为准。不同实现的效果比较使用中立观察格式，要求相同的输入哈希、方法标识和执行条件哈希，输出动作/成交路径与权益差。观察相同只说明该场景中的行为一致，不证明论文实验结果复现。格式和使用方式见 [比较协议](docs/comparison.md)。
 
 当前开发样例使用 Python 3.12 或 3.13 和 `uv` 0.12.18；`uv.lock` 固定主机及 CI 依赖：
 
@@ -31,7 +31,15 @@ uv run --no-sync python -m paperquant.cli run \
 uv run --no-sync pytest -q
 ```
 
-`runs/demo/report.json` 包含实际执行计划、兼容记录、逐事件决策、订单、成交和账户快照。失败时同一命令写入 `failure.json` 并返回非零退出码；同一输出目录的新尝试会使旧成功报告失效。严格隔离所需的镜像或 Docker 不可用时返回 `SANDBOX_UNAVAILABLE`。
+`runs/demo/report.json` 包含实际执行计划、引擎执行配置、兼容记录、逐事件决策、订单、成交和账户快照。`bundle.json` 另附完整声明、源与有效行情、训练请求、模型字节及策略源码，便于离线校验和不训练的冷启动回放：
+
+```bash
+uv run --no-sync python -m paperquant.cli verify-bundle --bundle runs/demo/bundle.json
+uv run --no-sync python -m paperquant.cli replay-bundle \
+  --bundle runs/demo/bundle.json --package examples/basic_rule
+```
+
+失败时同一命令写入 `failure.json` 并返回非零退出码；同一输出目录的新尝试会使旧成功报告和输入附件失效。严格隔离所需的镜像或 Docker 不可用时返回 `SANDBOX_UNAVAILABLE`。
 
 严格模式将策略放进单独的只读、断网、非 root Docker worker；同一验收命令会无缓存构建镜像、对照三类策略的主机与容器轨迹，并生成与本轮尝试绑定的收据：
 
@@ -39,7 +47,7 @@ uv run --no-sync pytest -q
 uv run --no-sync python scripts/verify_strict.py --require-clean --output runs/strict-verification
 ```
 
-该命令还会逐项执行 `examples/catalog.json` 中的 18 个策略，要求每项生成真实决策、成交、论文主张绑定、独立 oracle 测试路径，以及主机和严格 worker 的一致轨迹；并验证三篇真实 CC BY PDF 的页级接入和策略绑定。逐项报告与 `acceptance.json` 位于本轮 `attempts/<attempt_id>/acceptance/`，主收据保存该验收文件的 SHA-256。只需查看主机运行时，也可执行 `uv run --no-sync python scripts/acceptance.py --output runs/acceptance-host`。
+该命令还会逐项执行 `examples/catalog.json` 中的 18 个策略，要求每项生成真实决策、成交、可离线重验的运行包和冷启动回放；论文主张核对实际实现符号，并把精确 oracle 测试节点绑定到本轮 JUnit 与源码哈希；同时比较主机和严格 worker 轨迹，并验证三篇真实 CC BY PDF 的页级接入和策略绑定。逐项报告与 `acceptance.json` 位于本轮 `attempts/<attempt_id>/acceptance/`，主收据保存该验收文件的 SHA-256。只需查看主机运行时，也可执行 `uv run --no-sync python scripts/acceptance.py --output runs/acceptance-host`。
 
 隔离边界、实际容器配置核查及已知限制见 [沙箱说明](docs/sandbox.md)。
 

@@ -14,7 +14,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=8,<9", "ruff>=0.6,<1", "mypy>=1.11,<2"]
+dev = ["pytest>=8,<9", "ruff>=0.6,<1", "mypy>=1.11,<2", "jsonschema>=4,<5"]
 
 [project.scripts]
 paperquant = "paperquant.cli:main"

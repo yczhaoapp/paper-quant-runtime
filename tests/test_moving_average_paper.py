@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 import random
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, datetime, time, timedelta
 from decimal import Decimal
 from pathlib import Path
 
@@ -55,6 +55,8 @@ def test_paper_vma_signal_matches_independent_rolling_formula(seed: int, tmp_pat
     dataset = DatasetDeclaration(
         dataset_id=f"oracle-{seed}",
         granularity=Granularity.DAY,
+        session_open=time(10),
+        session_close=time(16),
         fields=fields,
         symbols=frozenset({"DEMO"}),
         event_count=len(events),

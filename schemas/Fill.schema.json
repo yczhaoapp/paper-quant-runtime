@@ -4,11 +4,11 @@
     "fee": {
       "anyOf": [
         {
-          "minimum": 0.0,
+          "minimum": 0,
           "type": "number"
         },
         {
-          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "pattern": "^(?:\\+?(?:(?:0|[1-9]\\d*)(?:\\.\\d*)?|\\.\\d+)|-0+(?:\\.0*)?)(?:[eE][+-]?\\d+)?$",
           "type": "string"
         }
       ],
@@ -21,11 +21,11 @@
     "price": {
       "anyOf": [
         {
-          "exclusiveMinimum": 0.0,
+          "exclusiveMinimum": 0,
           "type": "number"
         },
         {
-          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "pattern": "^\\+?(?:0*[1-9]\\d*(?:\\.\\d*)?|0*\\.\\d*[1-9]\\d*)(?:[eE][+-]?\\d+)?$",
           "type": "string"
         }
       ],
@@ -34,11 +34,11 @@
     "quantity": {
       "anyOf": [
         {
-          "exclusiveMinimum": 0.0,
+          "exclusiveMinimum": 0,
           "type": "number"
         },
         {
-          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "pattern": "^\\+?(?:0*[1-9]\\d*(?:\\.\\d*)?|0*\\.\\d*[1-9]\\d*)(?:[eE][+-]?\\d+)?$",
           "type": "string"
         }
       ],
