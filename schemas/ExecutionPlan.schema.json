@@ -3,6 +3,19 @@
     "Conversion": {
       "additionalProperties": false,
       "properties": {
+        "affected_symbols": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Affected Symbols",
+          "type": "array"
+        },
+        "can_disable": {
+          "const": true,
+          "default": true,
+          "title": "Can Disable",
+          "type": "boolean"
+        },
         "input_sha256": {
           "title": "Input Sha256",
           "type": "string"
@@ -10,6 +23,11 @@
         "lossy": {
           "title": "Lossy",
           "type": "boolean"
+        },
+        "output_event_count": {
+          "minimum": 1,
+          "title": "Output Event Count",
+          "type": "integer"
         },
         "output_sha256": {
           "title": "Output Sha256",
@@ -22,6 +40,23 @@
           "title": "Parameters",
           "type": "object"
         },
+        "policy_switch": {
+          "enum": [
+            "symbol_map",
+            "allow_day_aggregation"
+          ],
+          "title": "Policy Switch",
+          "type": "string"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "source_event_count": {
+          "minimum": 1,
+          "title": "Source Event Count",
+          "type": "integer"
+        },
         "transformation": {
           "enum": [
             "symbol_map",
@@ -33,6 +68,11 @@
       },
       "required": [
         "transformation",
+        "reason",
+        "policy_switch",
+        "source_event_count",
+        "output_event_count",
+        "affected_symbols",
         "input_sha256",
         "output_sha256",
         "parameters",
@@ -90,6 +130,43 @@
       ],
       "title": "Granularity",
       "type": "string"
+    },
+    "RunPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "allow_day_aggregation": {
+          "default": false,
+          "title": "Allow Day Aggregation",
+          "type": "boolean"
+        },
+        "financing_mode": {
+          "default": "cash_only",
+          "enum": [
+            "cash_only",
+            "unbounded_margin"
+          ],
+          "title": "Financing Mode",
+          "type": "string"
+        },
+        "sandbox": {
+          "default": "development",
+          "enum": [
+            "development",
+            "strict"
+          ],
+          "title": "Sandbox",
+          "type": "string"
+        },
+        "symbol_map": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Symbol Map",
+          "type": "object"
+        }
+      },
+      "title": "RunPolicy",
+      "type": "object"
     }
   },
   "additionalProperties": false,
@@ -137,6 +214,14 @@
       "title": "Engine Sha256",
       "type": "string"
     },
+    "financing_mode": {
+      "enum": [
+        "cash_only",
+        "unbounded_margin"
+      ],
+      "title": "Financing Mode",
+      "type": "string"
+    },
     "granularity": {
       "$ref": "#/$defs/Granularity"
     },
@@ -169,6 +254,9 @@
         }
       ],
       "title": "Max Order Quantity"
+    },
+    "policy": {
+      "$ref": "#/$defs/RunPolicy"
     },
     "policy_sha256": {
       "title": "Policy Sha256",
@@ -224,6 +312,7 @@
     "dataset_id",
     "engine_id",
     "sandbox",
+    "financing_mode",
     "granularity",
     "symbols",
     "required_fields",
@@ -236,6 +325,7 @@
     "training_sha256",
     "engine_capability",
     "engine_sha256",
+    "policy",
     "policy_sha256"
   ],
   "title": "ExecutionPlan",

@@ -2,18 +2,19 @@
 
 Paper Quant Runtime 是面向公开研究策略的可执行契约。它将策略声明、行情输入、训练制品、推理动作和回测报告连接到同一条可检查的运行流程。
 
-当前仓库已实现规则、监督学习、强化学习三类各六个不同策略，覆盖字段与时间粒度校验、显式兼容转换、结构化失败、隔离执行和统一报告。项目自带逐项验收与严格容器验证；公开仓库和跨平台远端 CI 的交付状态以实际发布收据为准，不由策略数量推断。
+当前仓库已实现规则、监督学习、强化学习三类各六个不同策略，覆盖字段与时间粒度校验、显式兼容转换、结构化失败、隔离执行和统一报告。项目自带逐项验收与严格容器验证；公开仓库和跨平台远端 CI 的交付状态以对应提交的实际收据为准，不由策略数量推断。
 
 设计原则：
 
 - 先根据声明和实际输入编译运行计划，再加载策略代码。
 - 策略只使用公开的行情、账户、动作和制品接口；回测引擎保持独立。
-- 转换默认关闭，启用时必须记录输入、输出与转换依据。
+- 转换默认关闭，启用时记录依据、受影响范围、关闭开关与输入输出哈希。
+- 参考撮合默认拒绝现金不足的买入；需要融资的样例必须在政策中显式声明，报告保留该假设。
 - 每个训练产物记录内容哈希，加载时重新校验。
 - 失败返回机器可读的错误，不补造行情、模型或订单。
 - 市价与限价订单均有明确的下一事件语义；未成交限价单显式过期。
 
-接口与错误语义见 [契约说明](docs/contract.md)，可执行的引擎协议见[扩展边界](docs/engine-extension.md)，真实 PDF 与 PDF/HTML/TeX 接入边界见[论文接入说明](docs/paper-intake.md)；尚未完成的发布门禁见 [开发计划](docs/development-plan.md)。
+接口与错误语义见 [契约说明](docs/contract.md)，可执行的引擎协议见[扩展边界](docs/engine-extension.md)，真实 PDF 与 PDF/HTML/TeX 接入边界见[论文接入说明](docs/paper-intake.md)；逐项能力与证据边界见 [验收矩阵](docs/development-plan.md)。
 
 研究候选清单记录了 18 个拟实现的方法与来源核对状态；候选数量不是已完成数量。不同实现的效果比较使用中立观察格式，要求相同的输入哈希、方法标识和执行条件哈希，输出动作/成交路径与权益差。观察相同只说明该场景中的行为一致，不证明论文实验结果复现。格式和使用方式见 [比较协议](docs/comparison.md)。
 
@@ -236,6 +237,7 @@ uv run --no-sync python -m paperquant.cli run \
   --dataset examples/pairs_actor_critic/dataset.json \
   --events examples/pairs_actor_critic/events.json \
   --training examples/pairs_actor_critic/training.json \
+  --policy examples/pairs_actor_critic/policy.json \
   --output runs/pairs-actor-critic
 ```
 

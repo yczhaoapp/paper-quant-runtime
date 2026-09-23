@@ -49,10 +49,21 @@ def test_strict_worker_matches_host_behavior(
     ]
     if training is not None:
         base.extend(["--training", str(ROOT / "examples" / fixture / training)])
+    fixture_policy = ROOT / "examples" / fixture / "policy.json"
+    if fixture_policy.is_file():
+        base.extend(["--policy", str(fixture_policy)])
+    strict_policy = tmp_path / "strict-policy.json"
+    settings = json.loads(fixture_policy.read_text()) if fixture_policy.is_file() else {}
+    settings["sandbox"] = "strict"
+    strict_policy.write_text(json.dumps(settings), encoding="utf-8")
     host_output = tmp_path / "host"
     strict_output = tmp_path / "strict"
     assert main(["run", *base, "--output", str(host_output)]) == 0
-    assert main(["run", *base, "--policy", str(STRICT), "--output", str(strict_output)]) == 0
+    strict_base = list(base)
+    if fixture_policy.is_file():
+        strict_base = strict_base[:-2]
+    assert main(["run", *strict_base, "--policy", str(strict_policy),
+                 "--output", str(strict_output)]) == 0
     host = RunReport.model_validate_json((host_output / "report.json").read_bytes())
     strict = RunReport.model_validate_json((strict_output / "report.json").read_bytes())
     assert host.plan.sandbox == "development"

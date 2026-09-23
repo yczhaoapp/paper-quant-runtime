@@ -209,6 +209,68 @@ def test_target_derived_fill_obeys_per_order_quantity_limit(tmp_path: Path) -> N
     assert not (tmp_path / "report.json").exists()
 
 
+def test_cash_only_rejects_unfunded_fill_and_margin_is_explicit(tmp_path: Path) -> None:
+    events = bars()
+    args = dict(
+        dataset=dataset(events),
+        engine_capability=reference_capability(frozenset(events[0].values)),
+        events=events,
+        engine=ReferenceEngine(initial_cash=Decimal("1")),
+    )
+    with pytest.raises(ContractFault) as caught:
+        run(
+            run_id="cash-only", strategy=ScheduledRule(), policy=RunPolicy(),
+            output=tmp_path / "cash-only", **args,
+        )
+    assert caught.value.failure.code == ErrorCode.ORDER_REJECTED
+    assert caught.value.failure.details["available_cash"] == "1"
+    assert not (tmp_path / "cash-only/report.json").exists()
+
+    report = run(
+        run_id="margin", strategy=ScheduledRule(),
+        policy=RunPolicy(financing_mode="unbounded_margin"),
+        output=tmp_path / "margin", **args,
+    )
+    assert report.plan.financing_mode == "unbounded_margin"
+    assert report.plan.policy.financing_mode == "unbounded_margin"
+    assert min(account.cash for account in report.accounts) < 0
+    assert report.final_equity == Decimal("3")
+
+
+def test_engine_exception_is_structured_backtest_failure(tmp_path: Path) -> None:
+    class BrokenEngine(ReferenceEngine):
+        def run(self, *, plan, strategy, events):
+            raise RuntimeError("engine-internal-failure")
+
+    events = bars()
+    with pytest.raises(ContractFault) as caught:
+        run(
+            run_id="broken-engine", strategy=ScheduledRule(), dataset=dataset(events),
+            engine_capability=reference_capability(frozenset(events[0].values)),
+            policy=RunPolicy(), events=events, engine=BrokenEngine(), output=tmp_path,
+        )
+    assert caught.value.failure.stage == "backtest"
+    assert caught.value.failure.code == ErrorCode.BACKTEST_FAILED
+    assert caught.value.failure.details == {"cause": "RuntimeError"}
+    assert not (tmp_path / "report.json").exists()
+
+
+def test_engine_malformed_trace_is_structured_backtest_failure(tmp_path: Path) -> None:
+    class MalformedEngine(ReferenceEngine):
+        def run(self, *, plan, strategy, events):
+            return (), (), (), ("not-an-account",)
+
+    events = bars()
+    with pytest.raises(ContractFault) as caught:
+        run(
+            run_id="malformed-engine", strategy=ScheduledRule(), dataset=dataset(events),
+            engine_capability=reference_capability(frozenset(events[0].values)),
+            policy=RunPolicy(), events=events, engine=MalformedEngine(), output=tmp_path,
+        )
+    assert caught.value.failure.code == ErrorCode.BACKTEST_FAILED
+    assert not (tmp_path / "report.json").exists()
+
+
 @pytest.mark.parametrize("failure", ["field", "timeframe", "symbol", "hash"])
 def test_compiler_rejects_unavailable_inputs(failure: str) -> None:
     events = bars()
@@ -315,6 +377,12 @@ def test_explicit_symbol_mapping_records_both_event_hashes() -> None:
     assert plan.conversions[0].input_sha256 == fingerprint(mapped)
     assert plan.conversions[0].output_sha256 == fingerprint(events)
     assert plan.conversions[0].lossy is False
+    assert plan.conversions[0].policy_switch == "symbol_map"
+    assert plan.conversions[0].can_disable is True
+    assert plan.conversions[0].source_event_count == len(mapped)
+    assert plan.conversions[0].output_event_count == len(events)
+    assert plan.conversions[0].affected_symbols == ("SOURCE",)
+    assert plan.conversions[0].reason
 
 
 def test_minute_to_day_aggregation_requires_explicit_policy() -> None:
@@ -351,6 +419,11 @@ def test_minute_to_day_aggregation_requires_explicit_policy() -> None:
     assert daily[0].values["close"] == events[-1].values["close"]
     assert daily[0].values["volume"] == sum(event.values["volume"] for event in events)
     assert plan.conversions[0].lossy is True
+    assert plan.conversions[0].policy_switch == "allow_day_aggregation"
+    assert plan.conversions[0].can_disable is True
+    assert plan.conversions[0].source_event_count == len(events)
+    assert plan.conversions[0].output_event_count == len(daily)
+    assert plan.conversions[0].affected_symbols == ("AAA",)
 
 
 def test_late_bar_cannot_reorder_a_daily_close_silently() -> None:

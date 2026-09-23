@@ -13,6 +13,7 @@ uv run --no-sync python -m paperquant.cli run \
   --dataset examples/pairs_actor_critic/dataset.json \
   --events examples/pairs_actor_critic/events.json \
   --training examples/pairs_actor_critic/training.json \
+  --policy examples/pairs_actor_critic/policy.json \
   --output runs/paper-pair
 ```
 

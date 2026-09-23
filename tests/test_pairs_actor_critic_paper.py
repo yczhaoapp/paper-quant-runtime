@@ -104,7 +104,8 @@ def test_discrete_a2c_updates_match_independent_reference(seed: int, tmp_path: P
     request = original.model_copy(update={"seed": seed})
     report = run_package(
         run_id=f"pair-a2c-{seed}", package_dir=PACKAGE, dataset=dataset,
-        engine_capability=reference_capability(dataset.fields), policy=RunPolicy(),
+        engine_capability=reference_capability(dataset.fields),
+        policy=RunPolicy(financing_mode="unbounded_margin"),
         events=events, engine=ReferenceEngine(), output=tmp_path, training=request,
     )
     assert report.artifact is not None
@@ -175,7 +176,8 @@ def test_softmax_score_property_and_reward_sensitivity(tmp_path: Path) -> None:
     for name, training in (("original", request), ("changed", altered)):
         report = run_package(
             run_id=name, package_dir=PACKAGE, dataset=dataset,
-            engine_capability=reference_capability(dataset.fields), policy=RunPolicy(),
+            engine_capability=reference_capability(dataset.fields),
+            policy=RunPolicy(financing_mode="unbounded_margin"),
             events=events, engine=ReferenceEngine(), output=tmp_path/name,
             training=training,
         )

@@ -9,13 +9,17 @@ from typing import NoReturn, Protocol, cast
 from paperquant.compiler import compile_run, fingerprint
 from paperquant.engine import BacktestEngine, DecisionStrategy
 from paperquant.models import (
+    AccountSnapshot,
     Artifact,
     ContractFault,
     DatasetDeclaration,
+    Decision,
     EngineCapability,
     ErrorCode,
     Failure,
+    Fill,
     MarketEvent,
+    OrderEvent,
     RunPolicy,
     RunReport,
     Stage,
@@ -177,7 +181,24 @@ def _execute(
         _fail(
             run_id, Stage.INFER, ErrorCode.INPUT_INVALID, "Strategy declaration changed during run"
         )
-    decisions, orders, fills, accounts = engine.run(plan=plan, strategy=strategy, events=effective)
+    try:
+        traces = engine.run(
+            plan=plan, strategy=strategy, events=effective
+        )
+    except ContractFault:
+        raise
+    except Exception as exc:
+        _fail(
+            run_id, Stage.BACKTEST, ErrorCode.BACKTEST_FAILED,
+            "Engine execution raised an exception", cause=type(exc).__name__,
+        )
+    expected = (Decision, OrderEvent, Fill, AccountSnapshot)
+    if (type(traces) is not tuple or len(traces) != 4
+        or any(type(trace) is not tuple or any(not isinstance(item, model) for item in trace)
+               for trace, model in zip(traces, expected, strict=True))):
+        _fail(run_id, Stage.BACKTEST, ErrorCode.BACKTEST_FAILED,
+              "Engine returned malformed traces")
+    decisions, orders, fills, accounts = traces
     if len(decisions) != len(effective) or len(accounts) != len(effective):
         _fail(run_id, Stage.BACKTEST, ErrorCode.BACKTEST_FAILED,
               "Engine returned incomplete decision or account traces")
