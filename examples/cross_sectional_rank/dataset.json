@@ -1,0 +1,18 @@
+{
+  "content_sha256": "5714281676a57375ce11774efe45704117d82e552a3fe793a5f5fc4041555b59",
+  "contract_version": "1.0",
+  "dataset_id": "fixture.synthetic-cross-sectional-holdout",
+  "event_count": 120,
+  "fields": [
+    "close",
+    "liquidity",
+    "open",
+    "signal"
+  ],
+  "granularity": "day",
+  "symbols": [
+    "ALPHA",
+    "BETA",
+    "GAMMA"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "container_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Container Id",
+      "type": "string"
+    },
+    "controls": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Controls",
+      "type": "array"
+    },
+    "image_id": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Image Id",
+      "type": "string"
+    },
+    "protocol_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Protocol Version",
+      "type": "string"
+    },
+    "source_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Source Sha256",
+      "type": "string"
+    }
+  },
+  "required": [
+    "image_id",
+    "container_id",
+    "source_sha256",
+    "controls"
+  ],
+  "title": "WorkerReceipt",
+  "type": "object"
+}

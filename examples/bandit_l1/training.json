@@ -1,0 +1,600 @@
+{
+  "dataset_id": "fixture.synthetic-bandit-l1",
+  "samples": [
+    {
+      "action": -1,
+      "features": {
+        "context": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.023",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "context": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.003",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "context": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.017",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": -1,
+      "features": {
+        "context": "0.2"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.011",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "context": "0.2"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.003",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "context": "0.2"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.005",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": -1,
+      "features": {
+        "context": "-0.2"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.011",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "context": "-0.2"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.003",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "context": "-0.2"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.005",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": -1,
+      "features": {
+        "context": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.023",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "context": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.003",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "context": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.017",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": -1,
+      "features": {
+        "context": "0.1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.001",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "context": "0.1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.003",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "context": "0.1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.007",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": -1,
+      "features": {
+        "context": "-0.3"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.009",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "context": "-0.3"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.003",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "context": "-0.3"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.015",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": -1,
+      "features": {
+        "context": "0.4"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.013",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "context": "0.4"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.003",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "context": "0.4"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.019",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": -1,
+      "features": {
+        "context": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.003",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "context": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.003",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "context": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.003",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": -1,
+      "features": {
+        "context": "-0.4"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.019",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "context": "-0.4"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.003",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "context": "-0.4"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.013",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": -1,
+      "features": {
+        "context": "0.3"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.015",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "context": "0.3"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.003",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "context": "0.3"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.009",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": -1,
+      "features": {
+        "context": "-0.1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.007",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "context": "-0.1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.003",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "context": "-0.1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.001",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": -1,
+      "features": {
+        "context": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.017",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "context": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.003",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "context": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.023",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": -1,
+      "features": {
+        "context": "0.2"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.005",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "context": "0.2"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.003",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "context": "0.2"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.011",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": -1,
+      "features": {
+        "context": "-0.2"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.005",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "context": "-0.2"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.003",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "context": "-0.2"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.011",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": -1,
+      "features": {
+        "context": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.017",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "context": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.003",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "context": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.023",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": -1,
+      "features": {
+        "context": "0.1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.007",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "context": "0.1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.003",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "context": "0.1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.001",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": -1,
+      "features": {
+        "context": "-0.3"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.015",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "context": "-0.3"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.003",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "context": "-0.3"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.009",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": -1,
+      "features": {
+        "context": "0.4"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.019",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "context": "0.4"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.003",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "context": "0.4"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.013",
+      "target": null,
+      "terminal": false
+    }
+  ],
+  "seed": 29
+}

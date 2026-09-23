@@ -1,0 +1,20 @@
+{
+  "evaluation_days": [
+    121,
+    160
+  ],
+  "evaluation_sha256": "5714281676a57375ce11774efe45704117d82e552a3fe793a5f5fc4041555b59",
+  "first_evaluation_open_time": "2026-05-02T09:00:00+00:00",
+  "generator": "scripts/build_cross_sectional_fixture.py",
+  "last_label_available_time": "2026-05-01T16:00:00+00:00",
+  "source_panel_sha256": "2b46858e3e00e34c93a747a267db4f2531106c77cd54bbe0c16102c994c532d6",
+  "training_feature_days": [
+    0,
+    119
+  ],
+  "training_label_days": [
+    1,
+    120
+  ],
+  "training_sha256": "18ce97e0930c1fb6321499cf3bffc37bb5a4798e808c24ff4021c6dd218179d4"
+}

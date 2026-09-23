@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "source": {
+    "title": "Reinforcement Learning Pair Trading: A Dynamic Scaling Approach",
+    "url": "https://arxiv.org/pdf/2407.16103",
+    "file": "../sources/yang-malik-2024.pdf",
+    "format": "pdf",
+    "sha256": "9b30affe7f856c1add02ff4fb8bb7f3eac670e877a19bf3c91a18bbf4fc98eb3",
+    "license": "CC BY 4.0"
+  },
+  "package": "../../strategies/reinforcement.pairs_actor_critic",
+  "package_source_sha256": "296f4832b0139f7201d10a126a938a4d4741996ea92e1b2d5a919a70dea96852",
+  "claim_file": "../claims/pairs_actor_critic.json",
+  "expected": {
+    "strategy_id": "reinforcement.pairs_actor_critic",
+    "kind": "reinforcement",
+    "granularity": "day",
+    "training_required": true,
+    "symbols": ["ALPHA", "BETA"],
+    "actions": ["none", "prediction", "target_position"]
+  },
+  "anchors": [
+    {"page": 7, "text": "Spread Calculation", "claim_index": 0},
+    {"page": 8, "text": "Observation Space", "claim_index": 1},
+    {"page": 9, "text": "discrete action space", "claim_index": 1},
+    {"page": 12, "text": "PPO and A2C are applicable", "claim_index": 2}
+  ],
+  "review_note": "Human review selects the paper's RL1 branch, maps its three actions and causal spread observations to a reduced linear A2C package, and records data, reward and execution changes in the claim file. Text anchors establish provenance, not automatic semantic recovery."
+}

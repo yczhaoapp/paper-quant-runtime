@@ -1,0 +1,19 @@
+{
+  "content_sha256": "5c4a59aa233dcdafca67570630ab270a8690a3f78913b8a550beac34fcae9f5f",
+  "contract_version": "1.0",
+  "dataset_id": "fixture.synthetic-three-stock-pairs",
+  "event_count": 1137,
+  "fields": [
+    "close",
+    "high",
+    "low",
+    "open",
+    "volume"
+  ],
+  "granularity": "day",
+  "symbols": [
+    "ALPHA",
+    "BETA",
+    "GAMMA"
+  ]
+}

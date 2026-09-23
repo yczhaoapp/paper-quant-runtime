@@ -1,0 +1,23 @@
+{
+  "strategy_id": "rule.channel_breakout",
+  "source": {
+    "title": "Profitability of simple technical trading rules of Chinese stock exchange indexes",
+    "authors": ["Hong Zhu", "Zhi-Qiang Jiang", "Sai-Ping Li", "Wei-Xing Zhou"],
+    "url": "https://arxiv.org/pdf/1504.04254",
+    "version": "arXiv:1504.04254v1"
+  },
+  "claims": [
+    {"locator": "Section 2.2, PDF page 3, equations (7)-(8)", "statement": "TRB buy and short signals cross the 50-day historical maximum or minimum with band 0.01.", "implementation": "ChannelBreakout.decide: ceiling, floor, previous and price"},
+    {"locator": "Section 2.2, PDF page 3, paragraphs 1-2", "statement": "Ignore new signals during the fixed C=10-day holding period.", "implementation": "ChannelBreakout.decide: exit_at"}
+  ],
+  "chosen_variant": "TRB(50, 0.01), C=10 sessions",
+  "oracle": "tests/test_channel_breakout_paper.py",
+  "adaptations": [
+    "The trading index is replaced with pinned public AAPL OHLCV as an execution proxy; original SHCI/SZCI results are not reproduced.",
+    "The ten holding sessions are counted after the signal close; entry fills at the next opening and exit at the opening following the tenth held session.",
+    "Short target positions express the paper's short signal even though its Chinese-market investment discussion separately considers no-short-sale results."
+  ],
+  "algorithm_fidelity": "paper_signal_and_holding_rule_with_declared_execution_adaptation",
+  "data_fidelity": "public_market_proxy",
+  "experimental_fidelity": "not_reproduced"
+}

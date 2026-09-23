@@ -1,0 +1,24 @@
+{
+  "strategy_id": "supervised.ridge_three_day_price",
+  "source": {
+    "title": "Integrating feature selection and regression methods with technical indicators for predicting Apple Inc. stock prices",
+    "authors": ["Fatemeh Moodi", "Amir Jahangard-Rafsanjani"],
+    "url": "https://arxiv.org/pdf/2310.09903v5",
+    "version": "arXiv:2310.09903v5"
+  },
+  "claims": [
+    {"locator": "Abstract and Section 3, PDF pages 1 and 11", "statement": "A three-day feature window is evaluated for stock-price prediction.", "implementation": "scripts/build_public_ridge.py: window_features and forecast_horizon_bars"},
+    {"locator": "Section 3, PDF page 13", "statement": "Ridge is linear least squares with an L2 penalty.", "implementation": "RidgeThreeDayPrice.train normal equations and RidgeThreeDayPrice._solve"}
+  ],
+  "oracle": "tests/test_ridge_three_day_paper.py",
+  "adaptations": [
+    "The paper investigates 123 technical indicators and feature selection. This example uses only the three-day raw OHLCV window, so it is a Ridge-method adaptation, not the paper's selected-feature experiment.",
+    "The source text says the target is a price three days ahead. This example uses the closing price exactly three trading bars after the end of each input window; the source does not fully specify every preprocessing detail.",
+    "The paper's thirteen-year AAPL sample, selected indicator list, model scores and experimental returns are not reproduced. A fixed 506-bar public AAPL sample provides a chronological proxy.",
+    "The L2 coefficient is fixed to 1.0 and features are standardized using training-only moments; the paper does not specify an exact matching coefficient for this reduced feature set.",
+    "Converting the predicted future close to a unit long or short target and next-open fills is a runtime adaptation, not a trading rule attributed to the paper."
+  ],
+  "algorithm_fidelity": "ridge_l2_closed_form_with_declared_parameter_and_feature_adaptation",
+  "data_fidelity": "public_market_proxy_with_chronological_holdout",
+  "experimental_fidelity": "not_reproduced"
+}

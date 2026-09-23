@@ -1,0 +1,2505 @@
+{
+  "dataset_id": "fixture.synthetic-pair-a2c-holdout",
+  "samples": [
+    {
+      "action": null,
+      "features": {
+        "left_price": "101.1647373",
+        "right_price": "101.33617605",
+        "spread": "-0.2950138699880682",
+        "z_score": "-0.3445987678913973",
+        "zone": "0"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "101.73551447",
+        "right_price": "101.31346871",
+        "spread": "0.3866802453817684",
+        "z_score": "0.5576867804543257",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "101.73551447",
+        "right_price": "101.31346871",
+        "spread": "0.3866802453817684",
+        "z_score": "0.5576867804543257",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "102.35924513",
+        "right_price": "101.28362712",
+        "spread": "0.9980306662562839",
+        "z_score": "1.8007082034778803",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "102.35924513",
+        "right_price": "101.28362712",
+        "spread": "0.9980306662562839",
+        "z_score": "1.8007082034778803",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "102.93956332",
+        "right_price": "101.24745098",
+        "spread": "1.4581346948257874",
+        "z_score": "2.946342694633924",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "102.93956332",
+        "right_price": "101.24745098",
+        "spread": "1.4581346948257874",
+        "z_score": "2.946342694633924",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "103.39261786",
+        "right_price": "101.2058181",
+        "spread": "1.7108862966947527",
+        "z_score": "3.1965151130206335",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "103.39261786",
+        "right_price": "101.2058181",
+        "spread": "1.7108862966947527",
+        "z_score": "3.1965151130206335",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "103.66562974",
+        "right_price": "101.15967359",
+        "spread": "1.7284081858666127",
+        "z_score": "2.7583244681251577",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "103.66562974",
+        "right_price": "101.15967359",
+        "spread": "1.7284081858666127",
+        "z_score": "2.7583244681251577",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "103.74583583",
+        "right_price": "101.11001821",
+        "spread": "1.4964072154074302",
+        "z_score": "2.0980603786394427",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "103.74583583",
+        "right_price": "101.11001821",
+        "spread": "1.4964072154074302",
+        "z_score": "2.0980603786394427",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "103.65754625",
+        "right_price": "101.05789601",
+        "spread": "0.9833164763681452",
+        "z_score": "1.2940127830573693",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "103.65754625",
+        "right_price": "101.05789601",
+        "spread": "0.9833164763681452",
+        "z_score": "1.2940127830573693",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "103.44891251",
+        "right_price": "101.00438146",
+        "spread": "0.1474770301628041",
+        "z_score": "0.19782515614494842",
+        "zone": "0"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "103.44891251",
+        "right_price": "101.00438146",
+        "spread": "0.1474770301628041",
+        "z_score": "0.19782515614494842",
+        "zone": "0"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "103.17328737",
+        "right_price": "100.95056621",
+        "spread": "-0.8645611392396404",
+        "z_score": "-1.2588669419026852",
+        "zone": "-1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "103.17328737",
+        "right_price": "100.95056621",
+        "spread": "-0.8645611392396404",
+        "z_score": "-1.2588669419026852",
+        "zone": "-1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "102.87166439",
+        "right_price": "100.89754563",
+        "spread": "-1.6013082630290683",
+        "z_score": "-2.40239711251702",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "102.87166439",
+        "right_price": "100.89754563",
+        "spread": "-1.6013082630290683",
+        "z_score": "-2.40239711251702",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "102.56209368",
+        "right_price": "100.84640526",
+        "spread": "-1.8910065636393938",
+        "z_score": "-2.625556938774667",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "102.56209368",
+        "right_price": "100.84640526",
+        "spread": "-1.8910065636393938",
+        "z_score": "-2.625556938774667",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "102.23939614",
+        "right_price": "100.79820748",
+        "spread": "-1.9547237027838946",
+        "z_score": "-2.436586414884835",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "102.23939614",
+        "right_price": "100.79820748",
+        "spread": "-1.9547237027838946",
+        "z_score": "-2.436586414884835",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "101.88482702",
+        "right_price": "100.75397836",
+        "spread": "-1.977249383474316",
+        "z_score": "-2.2348765896909257",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "101.88482702",
+        "right_price": "100.75397836",
+        "spread": "-1.977249383474316",
+        "z_score": "-2.2348765896909257",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "101.48182091",
+        "right_price": "100.71469503",
+        "spread": "-2.0221494721608906",
+        "z_score": "-2.099996231172635",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "101.48182091",
+        "right_price": "100.71469503",
+        "spread": "-2.0221494721608906",
+        "z_score": "-2.099996231172635",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "101.03178175",
+        "right_price": "100.68127363",
+        "spread": "-2.086838123487354",
+        "z_score": "-2.0159774015121923",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "101.03178175",
+        "right_price": "100.68127363",
+        "spread": "-2.086838123487354",
+        "z_score": "-2.0159774015121923",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "100.56380236",
+        "right_price": "100.654558",
+        "spread": "-2.135663420476007",
+        "z_score": "-1.9496204341919676",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "100.56380236",
+        "right_price": "100.654558",
+        "spread": "-2.135663420476007",
+        "z_score": "-1.9496204341919676",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "100.13423965",
+        "right_price": "100.63530928",
+        "spread": "-2.118083191996238",
+        "z_score": "-1.8684444358600876",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "100.13423965",
+        "right_price": "100.63530928",
+        "spread": "-2.118083191996238",
+        "z_score": "-1.8684444358600876",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "99.81554798",
+        "right_price": "100.62419651",
+        "spread": "-1.9855702242741984",
+        "z_score": "-1.7440568381804176",
+        "zone": "-1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "99.81554798",
+        "right_price": "100.62419651",
+        "spread": "-1.9855702242741984",
+        "z_score": "-1.7440568381804176",
+        "zone": "-1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "99.67751032",
+        "right_price": "100.6217884",
+        "spread": "-1.7084896324664953",
+        "z_score": "-1.5508280581643854",
+        "zone": "-1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "99.67751032",
+        "right_price": "100.6217884",
+        "spread": "-1.7084896324664953",
+        "z_score": "-1.5508280581643854",
+        "zone": "-1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "99.76673784",
+        "right_price": "100.62854631",
+        "spread": "-1.2889886239196926",
+        "z_score": "-1.2625073047831992",
+        "zone": "-1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "99.76673784",
+        "right_price": "100.62854631",
+        "spread": "-1.2889886239196926",
+        "z_score": "-1.2625073047831992",
+        "zone": "-1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "100.0911018",
+        "right_price": "100.64481854",
+        "spread": "-0.7657072882856255",
+        "z_score": "-0.8484217467928158",
+        "zone": "-1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "100.0911018",
+        "right_price": "100.64481854",
+        "spread": "-0.7657072882856255",
+        "z_score": "-0.8484217467928158",
+        "zone": "-1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "100.61433295",
+        "right_price": "100.67083607",
+        "spread": "-0.20855782133151024",
+        "z_score": "-0.2739290509708992",
+        "zone": "0"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "100.61433295",
+        "right_price": "100.67083607",
+        "spread": "-0.20855782133151024",
+        "z_score": "-0.2739290509708992",
+        "zone": "0"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "101.26283464",
+        "right_price": "100.70670967",
+        "spread": "0.29455571946425607",
+        "z_score": "0.47435391301283275",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "101.26283464",
+        "right_price": "100.70670967",
+        "spread": "0.29455571946425607",
+        "z_score": "0.47435391301283275",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "101.94286059",
+        "right_price": "100.75242857",
+        "spread": "0.6535883362640789",
+        "z_score": "1.2832592999664278",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "101.94286059",
+        "right_price": "100.75242857",
+        "spread": "0.6535883362640789",
+        "z_score": "1.2832592999664278",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "102.56289833",
+        "right_price": "100.80786058",
+        "spread": "0.786761314095429",
+        "z_score": "1.7667829135918962",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "102.56289833",
+        "right_price": "100.80786058",
+        "spread": "0.786761314095429",
+        "z_score": "1.7667829135918962",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "103.05447405",
+        "right_price": "100.87275371",
+        "spread": "0.6190849028774892",
+        "z_score": "1.485982269508582",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "103.05447405",
+        "right_price": "100.87275371",
+        "spread": "0.6190849028774892",
+        "z_score": "1.485982269508582",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "103.38518958",
+        "right_price": "100.94673928",
+        "spread": "0.085112038181137",
+        "z_score": "0.2210827200589527",
+        "zone": "0"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "103.38518958",
+        "right_price": "100.94673928",
+        "spread": "0.085112038181137",
+        "z_score": "0.2210827200589527",
+        "zone": "0"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "103.56041286",
+        "right_price": "101.02933649",
+        "spread": "-0.7678877366076904",
+        "z_score": "-2.270798786226621",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "103.56041286",
+        "right_price": "101.02933649",
+        "spread": "-0.7678877366076904",
+        "z_score": "-2.270798786226621",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "103.6137917",
+        "right_price": "101.11995832",
+        "spread": "-1.570503352999367",
+        "z_score": "-4.462997142706189",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "103.6137917",
+        "right_price": "101.11995832",
+        "spread": "-1.570503352999367",
+        "z_score": "-4.462997142706189",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "103.59039204",
+        "right_price": "101.21791879",
+        "spread": "-1.9517589492833167",
+        "z_score": "-4.286441526206363",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "103.59039204",
+        "right_price": "101.21791879",
+        "spread": "-1.9517589492833167",
+        "z_score": "-4.286441526206363",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "103.5285663",
+        "right_price": "101.32244141",
+        "spread": "-2.0213425692594456",
+        "z_score": "-3.567181702745159",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "103.5285663",
+        "right_price": "101.32244141",
+        "spread": "-2.0213425692594456",
+        "z_score": "-3.567181702745159",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "103.44687404",
+        "right_price": "101.43266875",
+        "spread": "-2.004013145135673",
+        "z_score": "-3.047979707047097",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "103.44687404",
+        "right_price": "101.43266875",
+        "spread": "-2.004013145135673",
+        "z_score": "-3.047979707047097",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "103.34044987",
+        "right_price": "101.54767305",
+        "spread": "-1.9994389833749437",
+        "z_score": "-2.7177539992462627",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "103.34044987",
+        "right_price": "101.54767305",
+        "spread": "-1.9994389833749437",
+        "z_score": "-2.7177539992462627",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "103.18780975",
+        "right_price": "101.6664676",
+        "spread": "-2.0358713923729397",
+        "z_score": "-2.505627649798568",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "103.18780975",
+        "right_price": "101.6664676",
+        "spread": "-2.0358713923729397",
+        "z_score": "-2.505627649798568",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "102.96536845",
+        "right_price": "101.78801898",
+        "spread": "-2.113054707272397",
+        "z_score": "-2.362462563755448",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "102.96536845",
+        "right_price": "101.78801898",
+        "spread": "-2.113054707272397",
+        "z_score": "-2.362462563755448",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "102.66417519",
+        "right_price": "101.91125974",
+        "spread": "-2.208747915067363",
+        "z_score": "-2.252749966283906",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "102.66417519",
+        "right_price": "101.91125974",
+        "spread": "-2.208747915067363",
+        "z_score": "-2.252749966283906",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "102.30250518",
+        "right_price": "102.03510161",
+        "spread": "-2.278739815181268",
+        "z_score": "-2.146537660727755",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "102.30250518",
+        "right_price": "102.03510161",
+        "spread": "-2.278739815181268",
+        "z_score": "-2.146537660727755",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "101.92927444",
+        "right_price": "102.15844891",
+        "spread": "-2.263358365722297",
+        "z_score": "-2.016065652362767",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "101.92927444",
+        "right_price": "102.15844891",
+        "spread": "-2.263358365722297",
+        "z_score": "-2.016065652362767",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "101.61633139",
+        "right_price": "102.28021205",
+        "spread": "-2.101982320131384",
+        "z_score": "-1.8332403536970365",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "101.61633139",
+        "right_price": "102.28021205",
+        "spread": "-2.101982320131384",
+        "z_score": "-1.8332403536970365",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "101.44148464",
+        "right_price": "102.39932098",
+        "spread": "-1.751591906060014",
+        "z_score": "-1.565102839356715",
+        "zone": "-1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "101.44148464",
+        "right_price": "102.39932098",
+        "spread": "-1.751591906060014",
+        "z_score": "-1.565102839356715",
+        "zone": "-1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "101.46736662",
+        "right_price": "102.5147384",
+        "spread": "-1.203194647994442",
+        "z_score": "-1.1642535299584966",
+        "zone": "-1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "101.46736662",
+        "right_price": "102.5147384",
+        "spread": "-1.203194647994442",
+        "z_score": "-1.1642535299584966",
+        "zone": "-1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "101.72280809",
+        "right_price": "102.62547251",
+        "spread": "-0.4902926322274652",
+        "z_score": "-0.5484830937540229",
+        "zone": "-1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "101.72280809",
+        "right_price": "102.62547251",
+        "spread": "-0.4902926322274652",
+        "z_score": "-0.5484830937540229",
+        "zone": "-1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "102.19276528",
+        "right_price": "102.73058928",
+        "spread": "0.3140515695836683",
+        "z_score": "0.4354489885387526",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "102.19276528",
+        "right_price": "102.73058928",
+        "spread": "0.3140515695836683",
+        "z_score": "0.4354489885387526",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "102.8201953",
+        "right_price": "102.82922397",
+        "spread": "1.1113997404789444",
+        "z_score": "1.9754446779228898",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "102.8201953",
+        "right_price": "102.82922397",
+        "spread": "1.1113997404789444",
+        "z_score": "1.9754446779228898",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "103.51948709",
+        "right_price": "102.92059177",
+        "spread": "1.799615757446574",
+        "z_score": "3.5897835930321733",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "103.51948709",
+        "right_price": "102.92059177",
+        "spread": "1.799615757446574",
+        "z_score": "3.5897835930321733",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "104.19738013",
+        "right_price": "103.0039975",
+        "spread": "2.2958449613828122",
+        "z_score": "3.928049877258774",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "104.19738013",
+        "right_price": "103.0039975",
+        "spread": "2.2958449613828122",
+        "z_score": "3.928049877258774",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "104.77495927",
+        "right_price": "103.07884416",
+        "spread": "2.5541438367647658",
+        "z_score": "3.42830265568854",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "104.77495927",
+        "right_price": "103.07884416",
+        "spread": "2.5541438367647658",
+        "z_score": "3.42830265568854",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "105.20407539",
+        "right_price": "103.14464035",
+        "spread": "2.5727760398022426",
+        "z_score": "2.829542675178717",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "105.20407539",
+        "right_price": "103.14464035",
+        "spread": "2.5727760398022426",
+        "z_score": "2.829542675178717",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "105.47347868",
+        "right_price": "103.20100623",
+        "spread": "2.3894387995027806",
+        "z_score": "2.2930259648073257",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "105.47347868",
+        "right_price": "103.20100623",
+        "spread": "2.3894387995027806",
+        "z_score": "2.2930259648073257",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "105.60340712",
+        "right_price": "103.24767831",
+        "spread": "2.0664477905334167",
+        "z_score": "1.8278987796460906",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "105.60340712",
+        "right_price": "103.24767831",
+        "spread": "2.0664477905334167",
+        "z_score": "1.8278987796460906",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "105.63118644",
+        "right_price": "103.28451264",
+        "spread": "1.6709582321025636",
+        "z_score": "1.4250493653235543",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "105.63118644",
+        "right_price": "103.28451264",
+        "spread": "1.6709582321025636",
+        "z_score": "1.4250493653235543",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "105.59329266",
+        "right_price": "103.3114866",
+        "spread": "1.2566495287457258",
+        "z_score": "1.0732643650476443",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "105.59329266",
+        "right_price": "103.3114866",
+        "spread": "1.2566495287457258",
+        "z_score": "1.0732643650476443",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "105.5103407",
+        "right_price": "103.32869916",
+        "spread": "0.8525292740611121",
+        "z_score": "0.7550258255454525",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "105.5103407",
+        "right_price": "103.32869916",
+        "spread": "0.8525292740611121",
+        "z_score": "0.7550258255454525",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "105.38026792",
+        "right_price": "103.33636971",
+        "spread": "0.46190862726780324",
+        "z_score": "0.4395906841635694",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "105.38026792",
+        "right_price": "103.33636971",
+        "spread": "0.46190862726780324",
+        "z_score": "0.4395906841635694",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "105.18199682",
+        "right_price": "103.33483529",
+        "spread": "0.07105497065526833",
+        "z_score": "0.07559434250228116",
+        "zone": "0"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "105.18199682",
+        "right_price": "103.33483529",
+        "spread": "0.07105497065526833",
+        "z_score": "0.07559434250228116",
+        "zone": "0"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "104.88810969",
+        "right_price": "103.32454648",
+        "spread": "-0.3362626040123473",
+        "z_score": "-0.4175762745075396",
+        "zone": "-1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "104.88810969",
+        "right_price": "103.32454648",
+        "spread": "-0.3362626040123473",
+        "z_score": "-0.4175762745075396",
+        "zone": "-1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "104.48182858",
+        "right_price": "103.30606183",
+        "spread": "-0.7640480949282278",
+        "z_score": "-1.1476168586151694",
+        "zone": "-1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "104.48182858",
+        "right_price": "103.30606183",
+        "spread": "-0.7640480949282278",
+        "z_score": "-1.1476168586151694",
+        "zone": "-1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "103.97197306",
+        "right_price": "103.28004097",
+        "spread": "-1.1948036197020997",
+        "z_score": "-2.1387119633128586",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "103.97197306",
+        "right_price": "103.28004097",
+        "spread": "-1.1948036197020997",
+        "z_score": "-2.1387119633128586",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "103.40012399",
+        "right_price": "103.24723646",
+        "spread": "-1.5892335359333742",
+        "z_score": "-2.9782665853601498",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "103.40012399",
+        "right_price": "103.24723646",
+        "spread": "-1.5892335359333742",
+        "z_score": "-2.9782665853601498",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "102.83677843",
+        "right_price": "103.20848454",
+        "spread": "-1.8949056578544514",
+        "z_score": "-3.139551835459529",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "102.83677843",
+        "right_price": "103.20848454",
+        "spread": "-1.8949056578544514",
+        "z_score": "-3.139551835459529",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "102.3669827",
+        "right_price": "103.16469479",
+        "spread": "-2.059599420499751",
+        "z_score": "-2.840477457830827",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "102.3669827",
+        "right_price": "103.16469479",
+        "spread": "-2.059599420499751",
+        "z_score": "-2.840477457830827",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "102.06953488",
+        "right_price": "103.11683891",
+        "spread": "-2.0403553489140904",
+        "z_score": "-2.3925241403802326",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "102.06953488",
+        "right_price": "103.11683891",
+        "spread": "-2.0403553489140904",
+        "z_score": "-2.3925241403802326",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "101.9961357",
+        "right_price": "103.06593878",
+        "spread": "-1.7938365785583414",
+        "z_score": "-1.8651226082781813",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "101.9961357",
+        "right_price": "103.06593878",
+        "spread": "-1.7938365785583414",
+        "z_score": "-1.8651226082781813",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "102.1570603",
+        "right_price": "103.01305379",
+        "spread": "-1.2383516169187487",
+        "z_score": "-1.1945902384022913",
+        "zone": "-1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "102.1570603",
+        "right_price": "103.01305379",
+        "spread": "-1.2383516169187487",
+        "z_score": "-1.1945902384022913",
+        "zone": "-1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "102.51794197",
+        "right_price": "102.95926783",
+        "spread": "-0.2689004633809873",
+        "z_score": "-0.2540376671441325",
+        "zone": "0"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "102.51794197",
+        "right_price": "102.95926783",
+        "spread": "-0.2689004633809873",
+        "z_score": "-0.2540376671441325",
+        "zone": "0"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "103.00875273",
+        "right_price": "102.90567589",
+        "spread": "0.9457072153846866",
+        "z_score": "0.9210069487692224",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "103.00875273",
+        "right_price": "102.90567589",
+        "spread": "0.9457072153846866",
+        "z_score": "0.9210069487692224",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "103.54219369",
+        "right_price": "102.85337058",
+        "spread": "1.8770944477892044",
+        "z_score": "1.8803839720125626",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "103.54219369",
+        "right_price": "102.85337058",
+        "spread": "1.8770944477892044",
+        "z_score": "1.8803839720125626",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "104.03575446",
+        "right_price": "102.80342863",
+        "spread": "2.305262930813228",
+        "z_score": "2.2645373231485744",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "104.03575446",
+        "right_price": "102.80342863",
+        "spread": "2.305262930813228",
+        "z_score": "2.2645373231485744",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "104.43064048",
+        "right_price": "102.75689764",
+        "spread": "2.361479002408828",
+        "z_score": "2.20556412876854",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "104.43064048",
+        "right_price": "102.75689764",
+        "spread": "2.361479002408828",
+        "z_score": "2.20556412876854",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "104.70194319",
+        "right_price": "102.71478311",
+        "spread": "2.1947097901070265",
+        "z_score": "1.9491008604112923",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "104.70194319",
+        "right_price": "102.71478311",
+        "spread": "2.1947097901070265",
+        "z_score": "1.9491008604112923",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "104.85743487",
+        "right_price": "102.67803611",
+        "spread": "1.9051323263643667",
+        "z_score": "1.635909706142033",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "104.85743487",
+        "right_price": "102.67803611",
+        "spread": "1.9051323263643667",
+        "z_score": "1.635909706142033",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "104.92619143",
+        "right_price": "102.64754148",
+        "spread": "1.563930415165359",
+        "z_score": "1.327960877377527",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "104.92619143",
+        "right_price": "102.64754148",
+        "spread": "1.563930415165359",
+        "z_score": "1.327960877377527",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "104.94159893",
+        "right_price": "102.62410697",
+        "spread": "1.22007106926171",
+        "z_score": "1.0494196898533221",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "104.94159893",
+        "right_price": "102.62410697",
+        "spread": "1.22007106926171",
+        "z_score": "1.0494196898533221",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "104.9250608",
+        "right_price": "102.60845326",
+        "spread": "0.8981429849843323",
+        "z_score": "0.802822376668049",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "104.9250608",
+        "right_price": "102.60845326",
+        "spread": "0.8981429849843323",
+        "z_score": "0.802822376668049",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "104.87631108",
+        "right_price": "102.60120505",
+        "spread": "0.5988393757822621",
+        "z_score": "0.5726601731507894",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "104.87631108",
+        "right_price": "102.60120505",
+        "spread": "0.5988393757822621",
+        "z_score": "0.5726601731507894",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "104.77380766",
+        "right_price": "102.60288339",
+        "spread": "0.3064289340456696",
+        "z_score": "0.3246881976960471",
+        "zone": "0"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "104.77380766",
+        "right_price": "102.60288339",
+        "spread": "0.3064289340456696",
+        "z_score": "0.3246881976960471",
+        "zone": "0"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "104.58506213",
+        "right_price": "102.61389924",
+        "spread": "0.0019124261519323227",
+        "z_score": "0.0023444467079908183",
+        "zone": "0"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "104.58506213",
+        "right_price": "102.61389924",
+        "spread": "0.0019124261519323227",
+        "z_score": "0.0023444467079908183",
+        "zone": "0"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "104.2831947",
+        "right_price": "102.63454839",
+        "spread": "-0.3225930406871953",
+        "z_score": "-0.48112526717876636",
+        "zone": "-1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "104.2831947",
+        "right_price": "102.63454839",
+        "spread": "-0.3225930406871953",
+        "z_score": "-0.48112526717876636",
+        "zone": "-1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "103.86370109",
+        "right_price": "102.66500783",
+        "spread": "-0.6534078113443229",
+        "z_score": "-1.238424382917963",
+        "zone": "-1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "103.86370109",
+        "right_price": "102.66500783",
+        "spread": "-0.6534078113443229",
+        "z_score": "-1.238424382917963",
+        "zone": "-1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "103.35517483",
+        "right_price": "102.70533357",
+        "spread": "-0.9522824118627682",
+        "z_score": "-2.2547217483970945",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "103.35517483",
+        "right_price": "102.70533357",
+        "spread": "-0.9522824118627682",
+        "z_score": "-2.2547217483970945",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "102.81963766",
+        "right_price": "102.7554599",
+        "spread": "-1.1605960500354513",
+        "z_score": "-2.9409782623231817",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "102.81963766",
+        "right_price": "102.7554599",
+        "spread": "-1.1605960500354513",
+        "z_score": "-2.9409782623231817",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "102.34156214",
+        "right_price": "102.8152003",
+        "spread": "-1.2052479074804978",
+        "z_score": "-2.750271324515517",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "102.34156214",
+        "right_price": "102.8152003",
+        "spread": "-1.2052479074804978",
+        "z_score": "-2.750271324515517",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "102.00847476",
+        "right_price": "102.88424962",
+        "spread": "-0.9970250594790286",
+        "z_score": "-1.9915846811552604",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "102.00847476",
+        "right_price": "102.88424962",
+        "spread": "-0.9970250594790286",
+        "z_score": "-1.9915846811552604",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "101.88892639",
+        "right_price": "102.96218795",
+        "spread": "-0.43388159105893465",
+        "z_score": "-0.8050473631248952",
+        "zone": "-1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "101.88892639",
+        "right_price": "102.96218795",
+        "spread": "-0.43388159105893465",
+        "z_score": "-0.8050473631248952",
+        "zone": "-1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "102.01462922",
+        "right_price": "103.04848572",
+        "spread": "0.4811228885849914",
+        "z_score": "0.888315257613984",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "102.01462922",
+        "right_price": "103.04848572",
+        "spread": "0.4811228885849914",
+        "z_score": "0.888315257613984",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "102.37233621",
+        "right_price": "103.14251028",
+        "spread": "1.43766167625256",
+        "z_score": "2.6299539414116833",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "102.37233621",
+        "right_price": "103.14251028",
+        "spread": "1.43766167625256",
+        "z_score": "2.6299539414116833",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "102.90797514",
+        "right_price": "103.24353369",
+        "spread": "2.1184313286440783",
+        "z_score": "3.5046248776049524",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "102.90797514",
+        "right_price": "103.24353369",
+        "spread": "2.1184313286440783",
+        "z_score": "3.5046248776049524",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "103.54166002",
+        "right_price": "103.35074167",
+        "spread": "2.507980378024854",
+        "z_score": "3.5208222253714583",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "103.54166002",
+        "right_price": "103.35074167",
+        "spread": "2.507980378024854",
+        "z_score": "3.5208222253714583",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "104.18877444",
+        "right_price": "103.46324368",
+        "spread": "2.670782623096727",
+        "z_score": "3.175395818922386",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "104.18877444",
+        "right_price": "103.46324368",
+        "spread": "2.670782623096727",
+        "z_score": "3.175395818922386",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "104.78048995",
+        "right_price": "103.5800839",
+        "spread": "2.64156100245134",
+        "z_score": "2.735012304335359",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "104.78048995",
+        "right_price": "103.5800839",
+        "spread": "2.64156100245134",
+        "z_score": "2.735012304335359",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "105.27744539",
+        "right_price": "103.70025299",
+        "spread": "2.4509957621456238",
+        "z_score": "2.2914414219447847",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "105.27744539",
+        "right_price": "103.70025299",
+        "spread": "2.4509957621456238",
+        "z_score": "2.2914414219447847",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "105.67273496",
+        "right_price": "103.82270056",
+        "spread": "2.1428315016480326",
+        "z_score": "1.875381275807993",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "105.67273496",
+        "right_price": "103.82270056",
+        "spread": "2.1428315016480326",
+        "z_score": "1.875381275807993",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "105.9840094",
+        "right_price": "103.94634812",
+        "spread": "1.7683043640795546",
+        "z_score": "1.4978669902324073",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "105.9840094",
+        "right_price": "103.94634812",
+        "spread": "1.7683043640795546",
+        "z_score": "1.4978669902324073",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "106.23815135",
+        "right_price": "104.07010239",
+        "spread": "1.3716396719302395",
+        "z_score": "1.1597451404706496",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "106.23815135",
+        "right_price": "104.07010239",
+        "spread": "1.3716396719302395",
+        "z_score": "1.1597451404706496",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "106.45441462",
+        "right_price": "104.19286875",
+        "spread": "0.9773509318766003",
+        "z_score": "0.8501993415077701",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "106.45441462",
+        "right_price": "104.19286875",
+        "spread": "0.9773509318766003",
+        "z_score": "0.8501993415077701",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "106.63230591",
+        "right_price": "104.3135648",
+        "spread": "0.5855847227651338",
+        "z_score": "0.5414446919990965",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "106.63230591",
+        "right_price": "104.3135648",
+        "spread": "0.5855847227651338",
+        "z_score": "0.5414446919990965",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "106.74871692",
+        "right_price": "104.43113363",
+        "spread": "0.17754807383943216",
+        "z_score": "0.18118538484716737",
+        "zone": "0"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "106.74871692",
+        "right_price": "104.43113363",
+        "spread": "0.17754807383943216",
+        "z_score": "0.18118538484716737",
+        "zone": "0"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "106.76549324",
+        "right_price": "104.54455693",
+        "spread": "-0.2709139742283355",
+        "z_score": "-0.31847425791142486",
+        "zone": "0"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "106.76549324",
+        "right_price": "104.54455693",
+        "spread": "-0.2709139742283355",
+        "z_score": "-0.31847425791142486",
+        "zone": "0"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "106.64488926",
+        "right_price": "104.65286751",
+        "spread": "-0.7725334150034655",
+        "z_score": "-1.085915457487903",
+        "zone": "-1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "106.64488926",
+        "right_price": "104.65286751",
+        "spread": "-0.7725334150034655",
+        "z_score": "-1.085915457487903",
+        "zone": "-1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "106.36747855",
+        "right_price": "104.75516123",
+        "spread": "-1.3148180503278013",
+        "z_score": "-2.182568253461933",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "106.36747855",
+        "right_price": "104.75516123",
+        "spread": "-1.3148180503278013",
+        "z_score": "-2.182568253461933",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "105.94605474",
+        "right_price": "104.85060815",
+        "spread": "-1.8545427416245843",
+        "z_score": "-3.177654107523427",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "105.94605474",
+        "right_price": "104.85060815",
+        "spread": "-1.8545427416245843",
+        "z_score": "-3.177654107523427",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "105.43023287",
+        "right_price": "104.93846279",
+        "spread": "-2.323131982875168",
+        "z_score": "-3.4425632765648904",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "105.43023287",
+        "right_price": "104.93846279",
+        "spread": "-2.323131982875168",
+        "z_score": "-3.4425632765648904",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "104.89946481",
+        "right_price": "105.01807329",
+        "spread": "-2.6418933385540697",
+        "z_score": "-3.206435636257016",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "104.89946481",
+        "right_price": "105.01807329",
+        "spread": "-2.6418933385540697",
+        "z_score": "-3.206435636257016",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "104.44601456",
+        "right_price": "105.08888946",
+        "spread": "-2.742704443053725",
+        "z_score": "-2.825657639910952",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "104.44601456",
+        "right_price": "105.08888946",
+        "spread": "-2.742704443053725",
+        "z_score": "-2.825657639910952",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "104.15281719",
+        "right_price": "105.1504696",
+        "spread": "-2.5877995168911525",
+        "z_score": "-2.403229513929929",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "104.15281719",
+        "right_price": "105.1504696",
+        "spread": "-2.5877995168911525",
+        "z_score": "-2.403229513929929",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "104.07293295",
+        "right_price": "105.20248588",
+        "spread": "-2.1824061287991157",
+        "z_score": "-1.9428173478932826",
+        "zone": "-2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "104.07293295",
+        "right_price": "105.20248588",
+        "spread": "-2.1824061287991157",
+        "z_score": "-1.9428173478932826",
+        "zone": "-2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "104.21689902",
+        "right_price": "105.24472845",
+        "spread": "-1.5761272944589635",
+        "z_score": "-1.4248270910263687",
+        "zone": "-1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "104.21689902",
+        "right_price": "105.24472845",
+        "spread": "-1.5761272944589635",
+        "z_score": "-1.4248270910263687",
+        "zone": "-1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "104.55180309",
+        "right_price": "105.27710798",
+        "spread": "-0.8524482753491762",
+        "z_score": "-0.8241140255939055",
+        "zone": "-1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "104.55180309",
+        "right_price": "105.27710798",
+        "spread": "-0.8524482753491762",
+        "z_score": "-0.8241140255939055",
+        "zone": "-1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "105.01217342",
+        "right_price": "105.2996568",
+        "spread": "-0.10943666670022623",
+        "z_score": "-0.11792295443317588",
+        "zone": "0"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "105.01217342",
+        "right_price": "105.2996568",
+        "spread": "-0.10943666670022623",
+        "z_score": "-0.11792295443317588",
+        "zone": "0"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "105.51903686",
+        "right_price": "105.31252845",
+        "spread": "0.5626103394705808",
+        "z_score": "0.6894367720821994",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "105.51903686",
+        "right_price": "105.31252845",
+        "spread": "0.5626103394705808",
+        "z_score": "0.6894367720821994",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "106.00097829",
+        "right_price": "105.31599585",
+        "spread": "1.1000024711431564",
+        "z_score": "1.5042342522055536",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "106.00097829",
+        "right_price": "105.31599585",
+        "spread": "1.1000024711431564",
+        "z_score": "1.5042342522055536",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "106.41057037",
+        "right_price": "105.31044789",
+        "spread": "1.4757116842712463",
+        "z_score": "2.1105940979697517",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "106.41057037",
+        "right_price": "105.31044789",
+        "spread": "1.4757116842712463",
+        "z_score": "2.1105940979697517",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "106.73127092",
+        "right_price": "105.29638466",
+        "spread": "1.6983515733472814",
+        "z_score": "2.3485878471868635",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "106.73127092",
+        "right_price": "105.29638466",
+        "spread": "1.6983515733472814",
+        "z_score": "2.3485878471868635",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "106.97321114",
+        "right_price": "105.27441123",
+        "spread": "1.8014206147010725",
+        "z_score": "2.293071700553735",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "106.97321114",
+        "right_price": "105.27441123",
+        "spread": "1.8014206147010725",
+        "z_score": "2.293071700553735",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "107.16009352",
+        "right_price": "105.24523027",
+        "spread": "1.827229419882002",
+        "z_score": "2.1110637529216723",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "107.16009352",
+        "right_price": "105.24523027",
+        "spread": "1.827229419882002",
+        "z_score": "2.1110637529216723",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "107.31240329",
+        "right_price": "105.20963332",
+        "spread": "1.8114033115137431",
+        "z_score": "1.9095156082544444",
+        "zone": "2"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "107.31240329",
+        "right_price": "105.20963332",
+        "spread": "1.8114033115137431",
+        "z_score": "1.9095156082544444",
+        "zone": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "107.43330703",
+        "right_price": "105.16849105",
+        "spread": "1.7730859524144762",
+        "z_score": "1.7273564957267955",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "107.43330703",
+        "right_price": "105.16849105",
+        "spread": "1.7730859524144762",
+        "z_score": "1.7273564957267955",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "107.50258112",
+        "right_price": "105.12274252",
+        "spread": "1.7126625050188977",
+        "z_score": "1.5650724010147634",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "left_price": "107.50258112",
+        "right_price": "105.12274252",
+        "spread": "1.7126625050188977",
+        "z_score": "1.5650724010147634",
+        "zone": "1"
+      },
+      "next_action": null,
+      "next_features": {
+        "left_price": "107.48103561",
+        "right_price": "105.07338361",
+        "spread": "1.612197801640697",
+        "z_score": "1.401466041329213",
+        "zone": "1"
+      },
+      "reward": null,
+      "target": null,
+      "terminal": true
+    }
+  ],
+  "seed": 23
+}

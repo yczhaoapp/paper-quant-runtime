@@ -1,0 +1,65 @@
+name: Verify
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  host:
+    name: Host ${{ matrix.os }} Python ${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            python: "3.12"
+          - os: ubuntu-latest
+            python: "3.13"
+          - os: macos-latest
+            python: "3.13"
+          - os: windows-latest
+            python: "3.13"
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python }}
+      - uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
+        with:
+          version: "0.12.18"
+      - name: Install locked dependencies
+        run: uv sync --locked --extra dev
+      - name: Unit and integration tests
+        run: uv run --no-sync pytest -q -p no:cacheprovider
+      - name: Lint
+        run: uv run --no-sync ruff check .
+      - name: Type check
+        run: uv run --no-sync mypy src/paperquant
+
+  strict:
+    name: Strict container and receipts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
+        with:
+          version: "0.12.18"
+      - name: Install locked dependencies
+        run: uv sync --locked --extra dev
+      - name: Build and verify strict worker
+        run: uv run --no-sync python scripts/verify_strict.py --require-clean --output runs/strict-verification
+      - name: Preserve attempt receipts and logs
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: strict-verification-${{ github.sha }}
+          path: runs/strict-verification
+          if-no-files-found: error

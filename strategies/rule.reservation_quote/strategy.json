@@ -1,0 +1,36 @@
+{
+  "class_name": "ReservationQuote",
+  "declaration": {
+    "actions": [
+      "none",
+      "prediction",
+      "submit_order"
+    ],
+    "contract_version": "1.0",
+    "data": {
+      "fields": [
+        "ask_price",
+        "ask_price_2",
+        "ask_size",
+        "ask_size_2",
+        "bid_price",
+        "bid_price_2",
+        "bid_size",
+        "bid_size_2",
+        "price"
+      ],
+      "granularity": "tick",
+      "minimum_events_per_symbol": 32,
+      "symbols": [
+        "DEMO"
+      ]
+    },
+    "kind": "rule",
+    "max_abs_position": "3",
+    "max_order_quantity": "1",
+    "source": "https://math.nyu.edu/inmemoriam/avellaneda/HighFrequencyTrading.pdf",
+    "strategy_id": "rule.reservation_quote",
+    "training_required": false
+  },
+  "source_sha256": "97343aeea07fa1ef37d43e3764a9ea7336f0637b5ab4f798ec55f2ebbd89339d"
+}

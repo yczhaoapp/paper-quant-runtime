@@ -1,0 +1,57 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "actions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Actions",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "granularity": {
+      "enum": [
+        "tick",
+        "minute",
+        "day"
+      ],
+      "title": "Granularity",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "rule",
+        "supervised",
+        "reinforcement"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "strategy_id": {
+      "title": "Strategy Id",
+      "type": "string"
+    },
+    "symbols": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Symbols",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "training_required": {
+      "title": "Training Required",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "strategy_id",
+    "kind",
+    "granularity",
+    "training_required",
+    "symbols",
+    "actions"
+  ],
+  "title": "ExpectedStrategy",
+  "type": "object"
+}

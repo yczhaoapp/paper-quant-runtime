@@ -1,0 +1,21 @@
+{
+  "content_sha256": "28cbf3bbf7a66eb8ff89c504c91dba14c0b47149b6fd56b76c323c64e4045a10",
+  "contract_version": "1.0",
+  "dataset_id": "fixture.synthetic-l2-book",
+  "event_count": 32,
+  "fields": [
+    "ask_price",
+    "ask_price_2",
+    "ask_size",
+    "ask_size_2",
+    "bid_price",
+    "bid_price_2",
+    "bid_size",
+    "bid_size_2",
+    "price"
+  ],
+  "granularity": "tick",
+  "symbols": [
+    "DEMO"
+  ]
+}

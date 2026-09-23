@@ -1,0 +1,23 @@
+{
+  "strategy_id": "rule.time_sliced_execution",
+  "source": {
+    "title": "A Modular Framework for Reinforcement Learning Optimal Execution",
+    "authors": ["Fernando de Meer Pardo", "Christoph Auth", "Florin Dascalu"],
+    "url": "https://arxiv.org/pdf/2208.06244v1",
+    "version": "arXiv:2208.06244v1"
+  },
+  "claims": [
+    {"locator": "Section 3.3, PDF pages 11-12", "statement": "The TWAP benchmark partitions an execution interval into buckets and distributes order submission timestamps evenly over bucket duration.", "implementation": "TimeSlicedExecution.decide and TimeSlicedExecution.child_quantity"},
+    {"locator": "Section 2.5, PDF page 7", "statement": "A TWAP algorithm may decide its child-order schedule and volumes in advance.", "implementation": "TimeSlicedExecution.__init__"}
+  ],
+  "oracle": "tests/test_time_sliced_paper.py",
+  "adaptations": [
+    "This package implements only the deterministic TWAP benchmark schedule, not the paper's reinforcement-learning agent or its improvement over the benchmark.",
+    "The public AAPL daily bars are a runtime proxy for the paper's intraday BTC order-book snapshots. Each trading bar is treated as one equal scheduling slot; holiday and overnight clock time is excluded.",
+    "The runtime's submit_order action is a next-bar market order. The paper's limit-order queue and market cleanup at bucket boundaries, LOB fill model, slippage and experimental rewards are not reproduced.",
+    "A parent buy of 12 shares across 12 slots is a declared local scenario, not the paper's 100 BTC five-minute experiment."
+  ],
+  "algorithm_fidelity": "equal_slot_twap_schedule_only",
+  "data_fidelity": "public_market_proxy",
+  "experimental_fidelity": "not_reproduced"
+}

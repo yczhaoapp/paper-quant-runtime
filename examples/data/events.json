@@ -1,0 +1,142 @@
+[
+  {
+    "available_time": "2026-01-02T09:30:00+00:00",
+    "bar_open_time": "2026-01-02T09:29:30+00:00",
+    "event_id": "demo-00",
+    "event_time": "2026-01-02T09:30:00+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "close": "100",
+      "high": "101",
+      "low": "99",
+      "open": "100",
+      "volume": "100"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:31:00+00:00",
+    "bar_open_time": "2026-01-02T09:30:30+00:00",
+    "event_id": "demo-01",
+    "event_time": "2026-01-02T09:31:00+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "close": "101",
+      "high": "102",
+      "low": "100",
+      "open": "101",
+      "volume": "101"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:32:00+00:00",
+    "bar_open_time": "2026-01-02T09:31:30+00:00",
+    "event_id": "demo-02",
+    "event_time": "2026-01-02T09:32:00+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "close": "102",
+      "high": "103",
+      "low": "101",
+      "open": "102",
+      "volume": "102"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:33:00+00:00",
+    "bar_open_time": "2026-01-02T09:32:30+00:00",
+    "event_id": "demo-03",
+    "event_time": "2026-01-02T09:33:00+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "close": "104",
+      "high": "105",
+      "low": "103",
+      "open": "104",
+      "volume": "103"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:34:00+00:00",
+    "bar_open_time": "2026-01-02T09:33:30+00:00",
+    "event_id": "demo-04",
+    "event_time": "2026-01-02T09:34:00+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "close": "103",
+      "high": "104",
+      "low": "102",
+      "open": "103",
+      "volume": "104"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:35:00+00:00",
+    "bar_open_time": "2026-01-02T09:34:30+00:00",
+    "event_id": "demo-05",
+    "event_time": "2026-01-02T09:35:00+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "close": "101",
+      "high": "102",
+      "low": "100",
+      "open": "101",
+      "volume": "105"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:36:00+00:00",
+    "bar_open_time": "2026-01-02T09:35:30+00:00",
+    "event_id": "demo-06",
+    "event_time": "2026-01-02T09:36:00+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "close": "100",
+      "high": "101",
+      "low": "99",
+      "open": "100",
+      "volume": "106"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:37:00+00:00",
+    "bar_open_time": "2026-01-02T09:36:30+00:00",
+    "event_id": "demo-07",
+    "event_time": "2026-01-02T09:37:00+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "close": "102",
+      "high": "103",
+      "low": "101",
+      "open": "102",
+      "volume": "107"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:38:00+00:00",
+    "bar_open_time": "2026-01-02T09:37:30+00:00",
+    "event_id": "demo-08",
+    "event_time": "2026-01-02T09:38:00+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "close": "105",
+      "high": "106",
+      "low": "104",
+      "open": "105",
+      "volume": "108"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:39:00+00:00",
+    "bar_open_time": "2026-01-02T09:38:30+00:00",
+    "event_id": "demo-09",
+    "event_time": "2026-01-02T09:39:00+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "close": "106",
+      "high": "107",
+      "low": "105",
+      "open": "106",
+      "volume": "109"
+    }
+  }
+]

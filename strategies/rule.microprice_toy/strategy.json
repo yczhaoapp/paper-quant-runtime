@@ -1,0 +1,32 @@
+{
+  "class_name": "WeightedMicropriceToy",
+  "declaration": {
+    "actions": [
+      "none",
+      "prediction",
+      "target_position"
+    ],
+    "contract_version": "1.0",
+    "data": {
+      "fields": [
+        "ask_price",
+        "ask_size",
+        "bid_price",
+        "bid_size",
+        "price"
+      ],
+      "granularity": "tick",
+      "minimum_events_per_symbol": 2,
+      "symbols": [
+        "DEMO"
+      ]
+    },
+    "kind": "rule",
+    "max_abs_position": "1",
+    "max_order_quantity": null,
+    "source": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2970694",
+    "strategy_id": "rule.microprice_toy",
+    "training_required": false
+  },
+  "source_sha256": "900f70e095e4a462e06ec79b2c0c0b46f26ee8f75ebb74b372ebe99bc5c62a49"
+}

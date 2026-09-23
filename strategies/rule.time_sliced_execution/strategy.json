@@ -1,0 +1,28 @@
+{
+  "class_name": "TimeSlicedExecution",
+  "declaration": {
+    "actions": [
+      "none",
+      "submit_order"
+    ],
+    "contract_version": "1.0",
+    "data": {
+      "fields": [
+        "close",
+        "open"
+      ],
+      "granularity": "day",
+      "minimum_events_per_symbol": 13,
+      "symbols": [
+        "DEMO"
+      ]
+    },
+    "kind": "rule",
+    "max_abs_position": "12",
+    "max_order_quantity": "12",
+    "source": "https://arxiv.org/pdf/2208.06244v1",
+    "strategy_id": "rule.time_sliced_execution",
+    "training_required": false
+  },
+  "source_sha256": "b227d3f49bdc31b4946db1b910a813f383a757b2f1edadeae3f7f6270fb83459"
+}

@@ -1,0 +1,17 @@
+{
+  "content_sha256": "4b8327c1dd5d533a5d5709b3cfe513ac472348ffbca66376a253bcc9406b710b",
+  "contract_version": "1.0",
+  "dataset_id": "public.plotly-aapl.0c447c47b757",
+  "event_count": 506,
+  "fields": [
+    "close",
+    "high",
+    "low",
+    "open",
+    "volume"
+  ],
+  "granularity": "day",
+  "symbols": [
+    "AAPL"
+  ]
+}

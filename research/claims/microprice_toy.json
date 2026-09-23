@@ -1,0 +1,22 @@
+{
+  "strategy_id": "rule.microprice_toy",
+  "source": {
+    "title": "The Micro-Price: A High Frequency Estimator of Future Prices",
+    "authors": ["Sasha Stoikov"],
+    "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2970694",
+    "companion_slides": "https://www.ma.imperial.ac.uk/~ajacquie/Gatheral60/Slides/Gatheral60%20-%20Stoikov.pdf",
+    "version": "SSRN abstract 2970694 and companion slides"
+  },
+  "claims": [
+    {"locator": "Companion slides, PDF pages 5 and 14", "statement": "The weighted mid-price equals I times the best ask plus (1-I) times the best bid, where I is best bid size divided by total best-quote size. Under the stated Brownian-imbalance toy model, the micro-price equals this weighted mid-price.", "implementation": "WeightedMicropriceToy.fair_price"}
+  ],
+  "oracle": "tests/test_microprice_toy_paper.py",
+  "adaptations": [
+    "The implementation is confined to the toy model's weighted-mid equivalence. It does not estimate the paper's full Markov-chain distant-future micro-price or reproduce the empirical price-prediction comparison.",
+    "The paper defines a fair-price estimator, not a trading rule. Mapping that estimate versus the last trade price to unit target holdings is a separate runtime demonstration.",
+    "Synthetic L1 quote/trade events exercise the contract; no source-market order-book history or original experiment is claimed."
+  ],
+  "algorithm_fidelity": "weighted_mid_formula_in_explicit_toy_case",
+  "data_fidelity": "synthetic_l1_fixture",
+  "experimental_fidelity": "not_reproduced"
+}

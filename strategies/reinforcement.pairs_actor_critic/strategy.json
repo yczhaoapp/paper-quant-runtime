@@ -1,0 +1,33 @@
+{
+  "class_name": "PairsActorCritic",
+  "declaration": {
+    "actions": [
+      "none",
+      "prediction",
+      "target_position"
+    ],
+    "contract_version": "1.0",
+    "data": {
+      "fields": [
+        "close",
+        "high",
+        "low",
+        "open",
+        "volume"
+      ],
+      "granularity": "day",
+      "minimum_events_per_symbol": 22,
+      "symbols": [
+        "ALPHA",
+        "BETA"
+      ]
+    },
+    "kind": "reinforcement",
+    "max_abs_position": "10000",
+    "max_order_quantity": null,
+    "source": "https://arxiv.org/pdf/2407.16103",
+    "strategy_id": "reinforcement.pairs_actor_critic",
+    "training_required": true
+  },
+  "source_sha256": "296f4832b0139f7201d10a126a938a4d4741996ea92e1b2d5a919a70dea96852"
+}

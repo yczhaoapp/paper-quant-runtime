@@ -1,0 +1,28 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "allow_day_aggregation": {
+      "default": false,
+      "title": "Allow Day Aggregation",
+      "type": "boolean"
+    },
+    "sandbox": {
+      "default": "development",
+      "enum": [
+        "development",
+        "strict"
+      ],
+      "title": "Sandbox",
+      "type": "string"
+    },
+    "symbol_map": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Symbol Map",
+      "type": "object"
+    }
+  },
+  "title": "RunPolicy",
+  "type": "object"
+}

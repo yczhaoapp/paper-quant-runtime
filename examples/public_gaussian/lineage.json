@@ -1,0 +1,21 @@
+{
+  "evaluation_rows": [
+    321,
+    505
+  ],
+  "evaluation_sha256": "c074d9723db74986d8f92bca3124eec57023ebedfbb0991809ce106b6367f1d0",
+  "first_evaluation_open_time": "2016-05-25T09:30:00-04:00",
+  "label_rule": "next close > current close",
+  "last_label_available_time": "2016-05-24T16:00:00-04:00",
+  "source_event_sha256": "4b8327c1dd5d533a5d5709b3cfe513ac472348ffbca66376a253bcc9406b710b",
+  "source_file_sha256": "24c7604edfd5afe862ddb9f9535e2fd7351f43711bfc442bca52055e15e37bcd",
+  "train_feature_rows": [
+    0,
+    319
+  ],
+  "train_label_rows": [
+    1,
+    320
+  ],
+  "training_sha256": "f1f90de416dbf4b3f9f2206f198a9444940464bd5d1eb3524c79c1653d8da11b"
+}

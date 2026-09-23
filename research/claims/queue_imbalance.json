@@ -1,0 +1,22 @@
+{
+  "strategy_id": "supervised.queue_imbalance",
+  "source": {
+    "title": "Queue Imbalance as a One-Tick-Ahead Price Predictor in a Limit Order Book",
+    "authors": ["Martin D. Gould", "Julius Bonart"],
+    "url": "https://arxiv.org/pdf/1512.03492",
+    "version": "arXiv:1512.03492"
+  },
+  "claims": [
+    {"locator": "Section 3.3, PDF page 7, equation (7)", "statement": "Queue imbalance is normalized best-bid size less best-ask size.", "implementation": "QueueImbalanceLogistic._imbalance"},
+    {"locator": "Section 5.3, PDF page 13, equation (17)", "statement": "The next-up probability is a logistic function of imbalance with two fitted coefficients.", "implementation": "QueueImbalanceLogistic.train, QueueImbalanceLogistic.decide"}
+  ],
+  "oracle": "tests/test_queue_imbalance_paper.py",
+  "adaptations": [
+    "A deterministic numerical gradient optimizer replaces the paper's unspecified fitting software; the model family and likelihood objective are retained.",
+    "The paper's probability forecast is also converted into a unit target position for contract backtesting; this trading action is not claimed as a paper result.",
+    "The local order-book fixture and labels are synthetic; the Nasdaq 2014 empirical study is not reproduced."
+  ],
+  "algorithm_fidelity": "logistic_model_and_objective_with_declared_optimizer_adaptation",
+  "data_fidelity": "synthetic_fixture",
+  "experimental_fidelity": "not_reproduced"
+}

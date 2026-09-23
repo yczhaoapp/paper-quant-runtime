@@ -1,0 +1,16 @@
+{
+  "name": "Plotly example AAPL daily OHLCV",
+  "repository": "https://github.com/plotly/datasets",
+  "commit": "0c447c47b757ad74edecab31f0d72f849d2e67c2",
+  "file": "finance-charts-apple.csv",
+  "url": "https://github.com/plotly/datasets/blob/0c447c47b757ad74edecab31f0d72f849d2e67c2/finance-charts-apple.csv",
+  "sha256": "24c7604edfd5afe862ddb9f9535e2fd7351f43711bfc442bca52055e15e37bcd",
+  "rows": 506,
+  "first_date": "2015-02-17",
+  "last_date": "2017-02-16",
+  "repository_license": "MIT; PLOTLY-LICENSE.txt is the license at the pinned commit",
+  "market_data_origin": "not independently established by the repository",
+  "time_assumption": "Date is mapped to 09:30 and 16:00 America/New_York; source has no intraday timestamps",
+  "price_basis": "raw OHLC columns; adjusted and precomputed indicator columns excluded",
+  "paper_relationship": "public execution proxy, not the source paper's original market sample"
+}

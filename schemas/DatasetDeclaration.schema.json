@@ -1,0 +1,65 @@
+{
+  "$defs": {
+    "Granularity": {
+      "enum": [
+        "tick",
+        "minute",
+        "day"
+      ],
+      "title": "Granularity",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "content_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Content Sha256",
+      "type": "string"
+    },
+    "contract_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Contract Version",
+      "type": "string"
+    },
+    "dataset_id": {
+      "title": "Dataset Id",
+      "type": "string"
+    },
+    "event_count": {
+      "minimum": 1,
+      "title": "Event Count",
+      "type": "integer"
+    },
+    "fields": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Fields",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "granularity": {
+      "$ref": "#/$defs/Granularity"
+    },
+    "symbols": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Symbols",
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "dataset_id",
+    "granularity",
+    "fields",
+    "symbols",
+    "event_count",
+    "content_sha256"
+  ],
+  "title": "DatasetDeclaration",
+  "type": "object"
+}

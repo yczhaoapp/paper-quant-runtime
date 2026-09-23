@@ -1,0 +1,114 @@
+{
+  "dataset_id": "fixture.synthetic-l1-queues",
+  "samples": [
+    {
+      "action": 1,
+      "features": {
+        "ask_size": "25",
+        "bid_size": "75",
+        "inventory": "-1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "2",
+      "target": null,
+      "terminal": true
+    },
+    {
+      "action": 1,
+      "features": {
+        "ask_size": "25",
+        "bid_size": "75",
+        "inventory": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "2",
+      "target": null,
+      "terminal": true
+    },
+    {
+      "action": 1,
+      "features": {
+        "ask_size": "25",
+        "bid_size": "75",
+        "inventory": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "2",
+      "target": null,
+      "terminal": true
+    },
+    {
+      "action": -1,
+      "features": {
+        "ask_size": "75",
+        "bid_size": "25",
+        "inventory": "-1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "2",
+      "target": null,
+      "terminal": true
+    },
+    {
+      "action": -1,
+      "features": {
+        "ask_size": "75",
+        "bid_size": "25",
+        "inventory": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "2",
+      "target": null,
+      "terminal": true
+    },
+    {
+      "action": -1,
+      "features": {
+        "ask_size": "75",
+        "bid_size": "25",
+        "inventory": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "2",
+      "target": null,
+      "terminal": true
+    },
+    {
+      "action": 1,
+      "features": {
+        "ask_size": "25",
+        "bid_size": "75",
+        "inventory": "0"
+      },
+      "next_action": 1,
+      "next_features": {
+        "ask_size": "25",
+        "bid_size": "75",
+        "inventory": "1"
+      },
+      "reward": "1",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "ask_size": "25",
+        "bid_size": "75",
+        "inventory": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "2",
+      "target": null,
+      "terminal": true
+    }
+  ],
+  "seed": 13
+}

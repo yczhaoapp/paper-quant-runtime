@@ -1,0 +1,32 @@
+{
+  "class_name": "RidgeThreeDayPrice",
+  "declaration": {
+    "actions": [
+      "none",
+      "prediction",
+      "target_position"
+    ],
+    "contract_version": "1.0",
+    "data": {
+      "fields": [
+        "close",
+        "high",
+        "low",
+        "open",
+        "volume"
+      ],
+      "granularity": "day",
+      "minimum_events_per_symbol": 4,
+      "symbols": [
+        "DEMO"
+      ]
+    },
+    "kind": "supervised",
+    "max_abs_position": "1",
+    "max_order_quantity": null,
+    "source": "https://arxiv.org/pdf/2310.09903v5",
+    "strategy_id": "supervised.ridge_three_day_price",
+    "training_required": true
+  },
+  "source_sha256": "60359adeb0b5eff3d47fb75b78d0dee807eeaae8c28a23fa793ea058bb169ab2"
+}

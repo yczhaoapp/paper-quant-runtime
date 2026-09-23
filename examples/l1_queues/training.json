@@ -1,0 +1,246 @@
+{
+  "dataset_id": "fixture.synthetic-l1-queues",
+  "samples": [
+    {
+      "action": null,
+      "features": {
+        "ask_size": "80",
+        "bid_size": "20"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "ask_size": "78",
+        "bid_size": "23"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "ask_size": "76",
+        "bid_size": "26"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "ask_size": "74",
+        "bid_size": "29"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "ask_size": "72",
+        "bid_size": "32"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "ask_size": "70",
+        "bid_size": "35"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "ask_size": "68",
+        "bid_size": "38"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "ask_size": "66",
+        "bid_size": "41"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "ask_size": "64",
+        "bid_size": "44"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "ask_size": "62",
+        "bid_size": "47"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "ask_size": "60",
+        "bid_size": "50"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "ask_size": "58",
+        "bid_size": "53"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "ask_size": "56",
+        "bid_size": "56"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "ask_size": "54",
+        "bid_size": "59"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "1",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "ask_size": "52",
+        "bid_size": "62"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "1",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "ask_size": "50",
+        "bid_size": "65"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "1",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "ask_size": "48",
+        "bid_size": "68"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "1",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "ask_size": "46",
+        "bid_size": "71"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "1",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "ask_size": "44",
+        "bid_size": "74"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "1",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "ask_size": "42",
+        "bid_size": "77"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "1",
+      "terminal": false
+    }
+  ],
+  "seed": 7
+}

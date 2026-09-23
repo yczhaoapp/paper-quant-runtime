@@ -1,0 +1,22 @@
+{
+  "strategy_id": "rule.moving_average_crossover",
+  "source": {
+    "title": "Profitability of simple technical trading rules of Chinese stock exchange indexes",
+    "authors": ["Hong Zhu", "Zhi-Qiang Jiang", "Sai-Ping Li", "Wei-Xing Zhou"],
+    "url": "https://arxiv.org/pdf/1504.04254",
+    "version": "arXiv:1504.04254v1"
+  },
+  "claims": [
+    {"locator": "Section 2.1, PDF page 3, equation (1)", "statement": "Moving average is the arithmetic mean of the n most recent prices.", "implementation": "MovingAverageCrossover.decide: short_mean, long_mean"},
+    {"locator": "Section 2.1, PDF page 3, equations (2)-(4)", "statement": "The variable-length moving-average position is long above the band, short below the band, flat inside it.", "implementation": "MovingAverageCrossover.decide: desired"}
+  ],
+  "chosen_variant": "VMA with n_short=2, n_long=20, band=0",
+  "oracle": "tests/test_moving_average_paper.py",
+  "adaptations": [
+    "Uses a deterministic synthetic fixture and a separately pinned public AAPL daily OHLCV proxy; the original Shanghai and Shenzhen index sample and performance statistics are not reproduced.",
+    "The reference engine submits a target position at signal availability and fills at the next event open, rather than asserting the paper's execution-price convention."
+  ],
+  "algorithm_fidelity": "paper_formula_with_declared_execution_adaptation",
+  "data_fidelity": "synthetic_fixture_plus_public_market_proxy",
+  "experimental_fidelity": "not_reproduced"
+}

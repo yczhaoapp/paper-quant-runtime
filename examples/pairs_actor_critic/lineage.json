@@ -1,0 +1,19 @@
+{
+  "evaluation_days": [
+    140,
+    239
+  ],
+  "evaluation_sha256": "9a2bafc4de137bb35ae4772f9c7daef00629abb383e0e21b6467881ca1b4745d",
+  "first_evaluation_open_time": "2025-05-21T09:00:00+00:00",
+  "last_training_successor_available_time": "2025-05-20T16:00:00+00:00",
+  "source": "deterministic synthetic, script-generated pair; no live market claim",
+  "train_state_days": [
+    20,
+    138
+  ],
+  "train_successor_days": [
+    21,
+    139
+  ],
+  "training_sha256": "e29f50d695ffa25bd3a487b187872a44bf02aad64928d8d3b148550f4ed23d86"
+}

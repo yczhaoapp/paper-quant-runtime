@@ -1,0 +1,17 @@
+{
+  "content_sha256": "245a0652482c1563d586a3b0e8bcd78ef79118532801a3fdc263778b790455a3",
+  "contract_version": "1.0",
+  "dataset_id": "fixture.synthetic-bandit-l1",
+  "event_count": 40,
+  "fields": [
+    "ask_price",
+    "ask_size",
+    "bid_price",
+    "bid_size",
+    "price"
+  ],
+  "granularity": "tick",
+  "symbols": [
+    "DEMO"
+  ]
+}

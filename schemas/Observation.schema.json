@@ -1,0 +1,233 @@
+{
+  "$defs": {
+    "ObservedAction": {
+      "additionalProperties": false,
+      "properties": {
+        "event_id": {
+          "title": "Event Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "none",
+            "prediction",
+            "target_position",
+            "submit_order"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "quantity": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Quantity"
+        },
+        "side": {
+          "anyOf": [
+            {
+              "enum": [
+                "buy",
+                "sell"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Side"
+        },
+        "symbol": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Symbol"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        }
+      },
+      "required": [
+        "event_id",
+        "kind"
+      ],
+      "title": "ObservedAction",
+      "type": "object"
+    },
+    "ObservedFill": {
+      "additionalProperties": false,
+      "properties": {
+        "event_time": {
+          "title": "Event Time",
+          "type": "string"
+        },
+        "fee": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Fee"
+        },
+        "price": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Price"
+        },
+        "quantity": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Quantity"
+        },
+        "side": {
+          "enum": [
+            "buy",
+            "sell"
+          ],
+          "title": "Side",
+          "type": "string"
+        },
+        "symbol": {
+          "title": "Symbol",
+          "type": "string"
+        }
+      },
+      "required": [
+        "event_time",
+        "symbol",
+        "side",
+        "quantity",
+        "price",
+        "fee"
+      ],
+      "title": "ObservedFill",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "actions": {
+      "items": {
+        "$ref": "#/$defs/ObservedAction"
+      },
+      "title": "Actions",
+      "type": "array"
+    },
+    "effective_events_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Effective Events Sha256",
+      "type": "string"
+    },
+    "execution_profile_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Execution Profile Sha256",
+      "type": "string"
+    },
+    "fills": {
+      "items": {
+        "$ref": "#/$defs/ObservedFill"
+      },
+      "title": "Fills",
+      "type": "array"
+    },
+    "final_equity": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        }
+      ],
+      "title": "Final Equity"
+    },
+    "initial_cash": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        }
+      ],
+      "title": "Initial Cash"
+    },
+    "method_id": {
+      "title": "Method Id",
+      "type": "string"
+    },
+    "scenario_id": {
+      "title": "Scenario Id",
+      "type": "string"
+    },
+    "source_events_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Source Events Sha256",
+      "type": "string"
+    }
+  },
+  "required": [
+    "scenario_id",
+    "method_id",
+    "source_events_sha256",
+    "effective_events_sha256",
+    "execution_profile_sha256",
+    "initial_cash",
+    "final_equity",
+    "actions",
+    "fills"
+  ],
+  "title": "Observation",
+  "type": "object"
+}

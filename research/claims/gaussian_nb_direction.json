@@ -1,0 +1,23 @@
+{
+  "strategy_id": "supervised.gaussian_nb_direction",
+  "source": {
+    "title": "Combining Machine Learning Classifiers for Stock Trading with Effective Feature Extraction",
+    "authors": ["A. K. M. Amanat Ullah", "Fahim Imtiaz", "Miftah Uddin Md Ihsan", "Md. Golam Rabiul Alam", "Mahbub Majumdar"],
+    "url": "https://arxiv.org/pdf/2107.13148v3",
+    "version": "arXiv:2107.13148v3"
+  },
+  "claims": [
+    {"locator": "Abstract, PDF page 1; Section 5.2, PDF page 25", "statement": "Gaussian Naive Bayes is one component of a four-classifier daily trading ensemble.", "implementation": "GaussianNBDirection.train and decide implement that individual classifier only"},
+    {"locator": "Appendix B, PDF page 52, equations (22)-(23)", "statement": "The Naive Bayes class posterior combines a class prior and class-conditional feature factors under conditional independence.", "implementation": "GaussianNBDirection.train computes class priors, means and variances; decide computes log Gaussian class scores and posterior"}
+  ],
+  "chosen_variant": "Single Gaussian Naive Bayes component, next-day direction label",
+  "oracle": "tests/test_gaussian_nb_paper.py",
+  "adaptations": [
+    "This is one explicitly identified classifier from the paper, not the paper's weighted four-model ensemble, dynamic 25-of-148 feature selection or ANOVA stage.",
+    "Four engineered current-bar OHLCV features replace the original multi-timeframe feature universe; the classifier fits once on 320 chronological AAPL proxy rows and evaluates after the last training label is known.",
+    "The public AAPL source is not the paper's 1500-stock 2011–2019 universe and paper returns or accuracy are not claimed."
+  ],
+  "algorithm_fidelity": "gaussian_naive_bayes_component_formula",
+  "data_fidelity": "public_market_proxy",
+  "experimental_fidelity": "not_reproduced"
+}

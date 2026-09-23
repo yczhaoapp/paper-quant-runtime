@@ -1,0 +1,29 @@
+{
+  "class_name": "DoubleQInventory",
+  "declaration": {
+    "actions": [
+      "none",
+      "target_position"
+    ],
+    "contract_version": "1.0",
+    "data": {
+      "fields": [
+        "ask_size",
+        "bid_size",
+        "price"
+      ],
+      "granularity": "tick",
+      "minimum_events_per_symbol": 2,
+      "symbols": [
+        "DEMO"
+      ]
+    },
+    "kind": "reinforcement",
+    "max_abs_position": "1",
+    "max_order_quantity": null,
+    "source": "https://arxiv.org/pdf/1804.04216",
+    "strategy_id": "reinforcement.double_q_market_making",
+    "training_required": true
+  },
+  "source_sha256": "94e0e1ad39c9c18321cc622dc4afdcb49d2068bc7f93bddfa682c66c90fb0bce"
+}

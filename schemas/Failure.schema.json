@@ -1,0 +1,74 @@
+{
+  "$defs": {
+    "ErrorCode": {
+      "enum": [
+        "SCHEMA_VERSION",
+        "DATA_FIELD_MISSING",
+        "TIMEFRAME_MISMATCH",
+        "SYMBOL_MAPPING_FAILED",
+        "ENGINE_UNSUPPORTED",
+        "INPUT_INVALID",
+        "ACTION_INVALID",
+        "ORDER_REJECTED",
+        "MODEL_MISSING",
+        "MODEL_CORRUPT",
+        "TRAINING_FAILED",
+        "BACKTEST_FAILED",
+        "SANDBOX_UNAVAILABLE"
+      ],
+      "title": "ErrorCode",
+      "type": "string"
+    },
+    "Stage": {
+      "enum": [
+        "compile",
+        "input",
+        "train",
+        "load",
+        "infer",
+        "backtest",
+        "report"
+      ],
+      "title": "Stage",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "code": {
+      "$ref": "#/$defs/ErrorCode"
+    },
+    "details": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Details",
+      "type": "object"
+    },
+    "fallback_used": {
+      "const": false,
+      "default": false,
+      "title": "Fallback Used",
+      "type": "boolean"
+    },
+    "message": {
+      "title": "Message",
+      "type": "string"
+    },
+    "run_id": {
+      "title": "Run Id",
+      "type": "string"
+    },
+    "stage": {
+      "$ref": "#/$defs/Stage"
+    }
+  },
+  "required": [
+    "run_id",
+    "stage",
+    "code",
+    "message"
+  ],
+  "title": "Failure",
+  "type": "object"
+}

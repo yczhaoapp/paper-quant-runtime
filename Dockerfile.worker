@@ -1,0 +1,9 @@
+FROM python:3.13-slim-bookworm@sha256:2325bb286ec344af3e5898cc224b5844e2707ac6e26b1632516fd3edc84a5e26
+
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+COPY requirements-worker.txt /tmp/requirements-worker.txt
+RUN python -m pip install --no-cache-dir --no-deps -r /tmp/requirements-worker.txt \
+    && rm /tmp/requirements-worker.txt
+COPY src/paperquant /usr/local/lib/python3.13/site-packages/paperquant
+USER 65532:65532
+ENTRYPOINT ["python", "-I", "-B", "-m", "paperquant.worker"]

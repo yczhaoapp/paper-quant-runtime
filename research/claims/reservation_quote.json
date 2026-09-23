@@ -1,0 +1,23 @@
+{
+  "strategy_id": "rule.reservation_quote",
+  "source": {
+    "title": "High-frequency trading in a limit order book",
+    "authors": ["Marco Avellaneda", "Sasha Stoikov"],
+    "url": "https://math.nyu.edu/inmemoriam/avellaneda/HighFrequencyTrading.pdf",
+    "version": "Quantitative Finance 8(3), 2008"
+  },
+  "claims": [
+    {"locator": "Equation (29), PDF page 5", "statement": "Finite-horizon reservation price equals midpoint minus inventory times risk aversion, price variance and remaining time.", "implementation": "ReservationQuote.quotes reservation"},
+    {"locator": "Equation (30), PDF page 5", "statement": "The approximate total quote spread combines the inventory-risk horizon term and twice the exponential-arrival logarithmic term divided by risk aversion.", "implementation": "ReservationQuote.quotes spread"}
+  ],
+  "oracle": "tests/test_reservation_quote_paper.py",
+  "adaptations": [
+    "Risk aversion, volatility and arrival-decay constants are fixed before each run rather than calibrated from original order-arrival observations.",
+    "The 32-event two-level book is synthetic; second-level depth validates L2 field handling but does not change the paper's best-quote midpoint formula.",
+    "The reference engine accepts each limit quote for only the next event and fills it at the next best bid/ask if marketable. It does not model standing queue priority, cancellation/replacement, partial fills, Poisson arrivals or the original simulation's P&L distribution.",
+    "One event slot represents a fixed fraction of the finite horizon; it is not calibrated clock time from the paper's original data."
+  ],
+  "algorithm_fidelity": "paper_equations_29_30_exact_with_declared_fixed_parameters",
+  "data_fidelity": "synthetic_l2_fixture",
+  "experimental_fidelity": "not_reproduced"
+}

@@ -1,0 +1,144 @@
+{
+  "$defs": {
+    "DataNeed": {
+      "additionalProperties": false,
+      "properties": {
+        "fields": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Fields",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "granularity": {
+          "$ref": "#/$defs/Granularity"
+        },
+        "minimum_events_per_symbol": {
+          "default": 1,
+          "minimum": 1,
+          "title": "Minimum Events Per Symbol",
+          "type": "integer"
+        },
+        "symbols": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Symbols",
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "granularity",
+        "fields",
+        "symbols"
+      ],
+      "title": "DataNeed",
+      "type": "object"
+    },
+    "Granularity": {
+      "enum": [
+        "tick",
+        "minute",
+        "day"
+      ],
+      "title": "Granularity",
+      "type": "string"
+    },
+    "StrategyKind": {
+      "enum": [
+        "rule",
+        "supervised",
+        "reinforcement"
+      ],
+      "title": "StrategyKind",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "actions": {
+      "items": {
+        "enum": [
+          "none",
+          "prediction",
+          "target_position",
+          "submit_order"
+        ],
+        "type": "string"
+      },
+      "title": "Actions",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "contract_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Contract Version",
+      "type": "string"
+    },
+    "data": {
+      "$ref": "#/$defs/DataNeed"
+    },
+    "kind": {
+      "$ref": "#/$defs/StrategyKind"
+    },
+    "max_abs_position": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0.0,
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Max Abs Position"
+    },
+    "max_order_quantity": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0.0,
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Max Order Quantity"
+    },
+    "source": {
+      "title": "Source",
+      "type": "string"
+    },
+    "strategy_id": {
+      "title": "Strategy Id",
+      "type": "string"
+    },
+    "training_required": {
+      "title": "Training Required",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "strategy_id",
+    "kind",
+    "data",
+    "actions",
+    "training_required",
+    "source"
+  ],
+  "title": "StrategyDeclaration",
+  "type": "object"
+}

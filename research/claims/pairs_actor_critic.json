@@ -1,0 +1,25 @@
+{
+  "strategy_id": "reinforcement.pairs_actor_critic",
+  "source": {
+    "title": "Reinforcement Learning Pair Trading: A Dynamic Scaling Approach",
+    "authors": ["Hongshen Yang", "Avinash Malik"],
+    "url": "https://arxiv.org/pdf/2407.16103",
+    "version": "Journal of Risk and Financial Management 17 (2024), 555"
+  },
+  "claims": [
+    {"locator": "Section 4.2, equations (7)–(8), PDF page 7", "statement": "Pair spread is a regression residual normalized by a rolling-window z-score.", "implementation": "PairsActorCritic.observation computes a causal preceding-window OLS fit, current residual, and z-score"},
+    {"locator": "Sections 4.4.1 and 4.5, PDF pages 8–9", "statement": "The state includes position, spread, and zone; RL1 takes three discrete actions for long-short, close, and short-long pair positions.", "implementation": "PairsActorCritic._state and ACTIONS, with paired TargetPosition actions in decide"},
+    {"locator": "Section 5.1.2, PDF page 12", "statement": "A2C is one of the algorithms tested for RL1 pair trading.", "implementation": "PairsActorCritic.train uses a softmax on-policy actor, one-step advantage, and TD critic"}
+  ],
+  "chosen_variant": "Reduced RL1: discrete on-policy A2C with linear softmax and value function, two-asset daily pair",
+  "oracle": "tests/test_pairs_actor_critic_paper.py",
+  "adaptations": [
+    "The source experiments use BTC-EUR/BTC-GBP minute data, a 900-interval window, 1.8/0.4 thresholds, pair selection with correlation/cointegration, and Stable-Baselines3 neural policies. The fixture instead uses a preselected synthetic daily pair, a 20-event rolling window, the paper's 1.8/0.4 zones, and a linear actor/critic.",
+    "Training rewards mark the two equally sized legs to the next close and charge 0.02% proportional to pair turnover. This is an explicit executable surrogate for the paper's realized-profit reward and transaction cost. No original return or performance result is claimed.",
+    "The paper's RL2 continuous dynamic scaling is not implemented here; the selected RL1 branch uses fixed gross 100% pair notional and three discrete directions. Training samples provide observed price transitions, while actions are sampled on-policy during fitting.",
+    "Two target legs fill separately at each symbol's next daily open in the reference engine; execution is not atomic and is not the source paper's crypto exchange environment."
+  ],
+  "algorithm_fidelity": "reduced_discrete_a2c_method_with_independent_update_oracle",
+  "data_fidelity": "synthetic_pair_fixture",
+  "experimental_fidelity": "not_reproduced"
+}

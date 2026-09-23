@@ -1,0 +1,52 @@
+{
+  "$defs": {
+    "Granularity": {
+      "enum": [
+        "tick",
+        "minute",
+        "day"
+      ],
+      "title": "Granularity",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "actions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Actions",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "data_fields": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Data Fields",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "engine_id": {
+      "title": "Engine Id",
+      "type": "string"
+    },
+    "granularities": {
+      "items": {
+        "$ref": "#/$defs/Granularity"
+      },
+      "title": "Granularities",
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "engine_id",
+    "granularities",
+    "data_fields",
+    "actions"
+  ],
+  "title": "EngineCapability",
+  "type": "object"
+}

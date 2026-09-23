@@ -1,0 +1,29 @@
+{
+  "class_name": "DistancePair",
+  "declaration": {
+    "actions": [
+      "none",
+      "target_position"
+    ],
+    "contract_version": "1.0",
+    "data": {
+      "fields": [
+        "close"
+      ],
+      "granularity": "day",
+      "minimum_events_per_symbol": 378,
+      "symbols": [
+        "ALPHA",
+        "BETA",
+        "GAMMA"
+      ]
+    },
+    "kind": "rule",
+    "max_abs_position": "5",
+    "max_order_quantity": null,
+    "source": "https://repec.som.yale.edu/icfpub/publications/2573.pdf",
+    "strategy_id": "rule.pairs_distance",
+    "training_required": false
+  },
+  "source_sha256": "e01afc561e29b43f823c97390a47bee022ca3e23576609bc21931c5e6e71886a"
+}

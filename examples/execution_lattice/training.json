@@ -1,0 +1,5709 @@
+{
+  "dataset_id": "fixture.synthetic-execution-lattice",
+  "samples": [
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0",
+      "target": null,
+      "terminal": true
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0",
+      "target": null,
+      "terminal": true
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0",
+      "target": null,
+      "terminal": true
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.25",
+      "target": null,
+      "terminal": true
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.05",
+      "target": null,
+      "terminal": true
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.15",
+      "target": null,
+      "terminal": true
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.6",
+      "target": null,
+      "terminal": true
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.2",
+      "target": null,
+      "terminal": true
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.2",
+      "target": null,
+      "terminal": true
+    },
+    {
+      "action": 3,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-1.05",
+      "target": null,
+      "terminal": true
+    },
+    {
+      "action": 3,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.45",
+      "target": null,
+      "terminal": true
+    },
+    {
+      "action": 3,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.15",
+      "target": null,
+      "terminal": true
+    },
+    {
+      "action": 4,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-1.6",
+      "target": null,
+      "terminal": true
+    },
+    {
+      "action": 4,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "-0.8",
+      "target": null,
+      "terminal": true
+    },
+    {
+      "action": 4,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": "0.0",
+      "target": null,
+      "terminal": true
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "1"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "1"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "1"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "1"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "1"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "1"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "1"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "1"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "1"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "1"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "1"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "1"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "1"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "1"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "1"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "1"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "1"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "1"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "1"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "2"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "2"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "2"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "2"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "2"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "0",
+        "time_remaining": "3"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "1",
+        "time_remaining": "3"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "reward": "-0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "reward": "-0.25",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "-0.6",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "reward": "-0.05",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "-0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 0,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "3"
+      },
+      "reward": "0",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 1,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "3",
+        "time_remaining": "3"
+      },
+      "reward": "0.15",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "-1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "0",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    },
+    {
+      "action": 2,
+      "features": {
+        "pressure": "1",
+        "remaining": "4",
+        "time_remaining": "4"
+      },
+      "next_action": null,
+      "next_features": {
+        "pressure": "1",
+        "remaining": "2",
+        "time_remaining": "3"
+      },
+      "reward": "0.2",
+      "target": null,
+      "terminal": false
+    }
+  ],
+  "seed": 0
+}

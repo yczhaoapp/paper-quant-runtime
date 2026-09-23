@@ -1,0 +1,17 @@
+{
+  "content_sha256": "02b8135a09c76f9eef4db1be8737aafeb30577d0085b6f65e1d30e00d042b54b",
+  "contract_version": "1.0",
+  "dataset_id": "fixture.synthetic-l1-queues",
+  "event_count": 30,
+  "fields": [
+    "ask_price",
+    "ask_size",
+    "bid_price",
+    "bid_size",
+    "price"
+  ],
+  "granularity": "tick",
+  "symbols": [
+    "DEMO"
+  ]
+}

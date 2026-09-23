@@ -1,0 +1,24 @@
+{
+  "strategy_id": "supervised.random_forest_operations",
+  "source": {
+    "title": "Evaluation of a Supervised Learning Approach for Stock Market Operations",
+    "authors": ["Marcelo S. Lauretto", "Bárbara B. C. Silva", "Pablo M. Andrade"],
+    "url": "https://arxiv.org/pdf/1301.4944v1",
+    "version": "arXiv:1301.4944v1"
+  },
+  "claims": [
+    {"locator": "Section 2.1, PDF page 2", "statement": "Each random-forest tree is trained on a bootstrap resample, considers random features at each node, and votes on the class.", "implementation": "RandomForestOperations.train, _grow and decide"},
+    {"locator": "Section 2.3, PDF pages 3–4", "statement": "Training labels are buy-sell, sell-buy and no-operation classes based on gain, loss and duration conditions.", "implementation": "scripts/build_public_forest.py: operation_label; RandomForestOperations.decide: operation entry and exit"},
+    {"locator": "Section 2.4, PDF page 4", "statement": "The evaluation procedure trains only on prior observations.", "implementation": "scripts/build_public_forest.py: training feature rows 0–315, latest label row 320, evaluation from row 321"}
+  ],
+  "chosen_variant": "15 bootstrap trees, depth at most 4, two random features per node, fixed 3%/1.5%/5-session operation rule",
+  "oracle": "tests/test_random_forest_operations_paper.py",
+  "adaptations": [
+    "The source uses 22 technical indicators, 68 Ibovespa stocks and a tuned grid of stop/duration parameters. This component uses three current-bar OHLCV features, one public AAPL proxy, fixed reduced parameters and a chronological holdout.",
+    "The source assumes 1% trade cost and a rental fee for shorts. This sample's labels ignore those costs, and the reference engine fills on the next opening rather than the labeling close; paper returns are not reproduced.",
+    "Tree depth and leaf size are bounded for this compact runtime example instead of growing unpruned full trees. The forest still bootstraps examples, subsamples node features and votes among all three operation classes."
+  ],
+  "algorithm_fidelity": "bootstrap_random_feature_forest_and_three_operation_classes_with_reduced_tree_depth",
+  "data_fidelity": "public_market_proxy",
+  "experimental_fidelity": "not_reproduced"
+}

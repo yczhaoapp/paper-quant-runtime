@@ -1,0 +1,41 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "input_sha256": {
+      "title": "Input Sha256",
+      "type": "string"
+    },
+    "lossy": {
+      "title": "Lossy",
+      "type": "boolean"
+    },
+    "output_sha256": {
+      "title": "Output Sha256",
+      "type": "string"
+    },
+    "parameters": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Parameters",
+      "type": "object"
+    },
+    "transformation": {
+      "enum": [
+        "symbol_map",
+        "minute_to_day"
+      ],
+      "title": "Transformation",
+      "type": "string"
+    }
+  },
+  "required": [
+    "transformation",
+    "input_sha256",
+    "output_sha256",
+    "parameters",
+    "lossy"
+  ],
+  "title": "Conversion",
+  "type": "object"
+}

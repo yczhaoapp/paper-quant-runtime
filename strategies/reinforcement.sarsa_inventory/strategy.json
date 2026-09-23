@@ -1,0 +1,29 @@
+{
+  "declaration": {
+    "contract_version": "1.0",
+    "strategy_id": "reinforcement.sarsa_inventory",
+    "kind": "reinforcement",
+    "data": {
+      "granularity": "tick",
+      "fields": [
+        "price",
+        "bid_size",
+        "ask_size"
+      ],
+      "symbols": [
+        "DEMO"
+      ],
+      "minimum_events_per_symbol": 2
+    },
+    "actions": [
+      "target_position",
+      "none"
+    ],
+    "training_required": true,
+    "source": "https://arxiv.org/pdf/1804.04216",
+    "max_abs_position": "1",
+    "max_order_quantity": null
+  },
+  "class_name": "InventorySarsa",
+  "source_sha256": "5838b82af6b888bb3c723d69d1ac038387150aa7a2d723bfb8628e80347f7fb4"
+}

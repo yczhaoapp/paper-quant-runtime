@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "cases": [
+    {"strategy": "rule.moving_average_crossover", "fixture": "daily_vma"},
+    {"strategy": "rule.channel_breakout", "fixture": "daily_vma"},
+    {"strategy": "rule.time_sliced_execution", "fixture": "public_aapl", "policy": "policy.json"},
+    {"strategy": "rule.microprice_toy", "fixture": "l1_queues"},
+    {"strategy": "rule.reservation_quote", "fixture": "l2_book"},
+    {"strategy": "rule.pairs_distance", "fixture": "three_stock_pairs"},
+    {"strategy": "supervised.queue_imbalance", "fixture": "l1_queues", "training": "training.json"},
+    {"strategy": "supervised.logistic_direction", "fixture": "public_direction", "training": "training.json", "policy": "policy.json"},
+    {"strategy": "supervised.ridge_three_day_price", "fixture": "public_ridge", "training": "training.json", "policy": "policy.json"},
+    {"strategy": "supervised.gaussian_nb_direction", "fixture": "public_gaussian", "training": "training.json", "policy": "policy.json"},
+    {"strategy": "supervised.cross_sectional_rank", "fixture": "cross_sectional_rank", "training": "training.json", "policy": "policy.json"},
+    {"strategy": "supervised.random_forest_operations", "fixture": "public_forest", "training": "training.json", "policy": "policy.json"},
+    {"strategy": "reinforcement.sarsa_inventory", "fixture": "l1_queues", "training": "sarsa_training.json"},
+    {"strategy": "reinforcement.double_q_market_making", "fixture": "l1_queues", "training": "sarsa_training.json"},
+    {"strategy": "reinforcement.execution_value_learning", "fixture": "execution_lattice", "training": "training.json"},
+    {"strategy": "reinforcement.risk_averse_bandit", "fixture": "bandit_l1", "training": "training.json"},
+    {"strategy": "reinforcement.actor_critic_allocation", "fixture": "public_actor_critic", "training": "training.json", "policy": "policy.json"},
+    {"strategy": "reinforcement.pairs_actor_critic", "fixture": "pairs_actor_critic", "training": "training.json"}
+  ]
+}

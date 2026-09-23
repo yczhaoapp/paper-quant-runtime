@@ -1,0 +1,22 @@
+{
+  "strategy_id": "reinforcement.sarsa_inventory",
+  "source": {
+    "title": "Market Making via Reinforcement Learning",
+    "authors": ["Thomas Spooner", "John Fearnley", "Rahul Savani", "Andreas Koukorinis"],
+    "url": "https://arxiv.org/pdf/1804.04216",
+    "version": "arXiv:1804.04216"
+  },
+  "claims": [
+    {"locator": "Section 4.4, PDF page 4", "statement": "The study evaluates SARSA as an on-policy temporal-difference learner for market making.", "implementation": "InventorySarsa.train"},
+    {"locator": "Section 5.2, PDF page 6", "statement": "The basic agent represents inventory in its agent state and evaluates one-step SARSA.", "implementation": "InventorySarsa._state, InventorySarsa.decide"}
+  ],
+  "oracle": "tests/test_sarsa_paper.py",
+  "adaptations": [
+    "This is a tabular one-step SARSA runtime adaptation. The paper's primary agent uses tile coding, quote-distance actions, market-making reward and sometimes eligibility traces; those mechanisms are not reproduced here.",
+    "Actions are unit target inventories filled by the reference engine on the next tick, not limit quotes with an order-book matching simulator.",
+    "Training transitions and evaluation ticks are synthetic and do not reproduce the paper's equity experiments."
+  ],
+  "algorithm_fidelity": "one_step_sarsa_update_only",
+  "data_fidelity": "synthetic_fixture",
+  "experimental_fidelity": "not_reproduced"
+}

@@ -1,0 +1,31 @@
+{
+  "class_name": "ActorCriticAllocation",
+  "declaration": {
+    "actions": [
+      "prediction",
+      "target_position"
+    ],
+    "contract_version": "1.0",
+    "data": {
+      "fields": [
+        "close",
+        "high",
+        "low",
+        "open",
+        "volume"
+      ],
+      "granularity": "day",
+      "minimum_events_per_symbol": 2,
+      "symbols": [
+        "DEMO"
+      ]
+    },
+    "kind": "reinforcement",
+    "max_abs_position": "10000",
+    "max_order_quantity": null,
+    "source": "https://arxiv.org/pdf/1911.11880v2",
+    "strategy_id": "reinforcement.actor_critic_allocation",
+    "training_required": true
+  },
+  "source_sha256": "f9e07b93048ee549cc7a969ef80bd2b32404e65f2d7954e57effc40495572a65"
+}

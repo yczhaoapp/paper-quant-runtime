@@ -1,0 +1,18 @@
+{
+  "content_sha256": "c946645f908076f0ca5442a800877db0a11cb56d1ab0ab3bcda427883806816e",
+  "contract_version": "1.0",
+  "dataset_id": "fixture.synthetic-execution-lattice",
+  "event_count": 20,
+  "fields": [
+    "ask_price",
+    "ask_size",
+    "bid_price",
+    "bid_size",
+    "price",
+    "time_remaining"
+  ],
+  "granularity": "tick",
+  "symbols": [
+    "DEMO"
+  ]
+}

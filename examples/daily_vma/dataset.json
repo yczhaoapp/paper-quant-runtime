@@ -1,0 +1,17 @@
+{
+  "content_sha256": "bd543466cabdd39051782c525fefe8c499da77bdd5fd0c55e66e9e9f810d76e5",
+  "contract_version": "1.0",
+  "dataset_id": "fixture.synthetic-daily-vma",
+  "event_count": 65,
+  "fields": [
+    "close",
+    "high",
+    "low",
+    "open",
+    "volume"
+  ],
+  "granularity": "day",
+  "symbols": [
+    "DEMO"
+  ]
+}

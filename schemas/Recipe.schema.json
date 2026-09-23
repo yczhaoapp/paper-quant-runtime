@@ -1,0 +1,186 @@
+{
+  "$defs": {
+    "Anchor": {
+      "additionalProperties": false,
+      "properties": {
+        "claim_index": {
+          "minimum": 0,
+          "title": "Claim Index",
+          "type": "integer"
+        },
+        "page": {
+          "minimum": 1,
+          "title": "Page",
+          "type": "integer"
+        },
+        "text": {
+          "minLength": 4,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "page",
+        "text",
+        "claim_index"
+      ],
+      "title": "Anchor",
+      "type": "object"
+    },
+    "ExpectedStrategy": {
+      "additionalProperties": false,
+      "properties": {
+        "actions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Actions",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "granularity": {
+          "enum": [
+            "tick",
+            "minute",
+            "day"
+          ],
+          "title": "Granularity",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "rule",
+            "supervised",
+            "reinforcement"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "strategy_id": {
+          "title": "Strategy Id",
+          "type": "string"
+        },
+        "symbols": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Symbols",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "training_required": {
+          "title": "Training Required",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "strategy_id",
+        "kind",
+        "granularity",
+        "training_required",
+        "symbols",
+        "actions"
+      ],
+      "title": "ExpectedStrategy",
+      "type": "object"
+    },
+    "Source": {
+      "additionalProperties": false,
+      "properties": {
+        "file": {
+          "title": "File",
+          "type": "string"
+        },
+        "format": {
+          "enum": [
+            "pdf",
+            "html",
+            "tex"
+          ],
+          "title": "Format",
+          "type": "string"
+        },
+        "license": {
+          "title": "License",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "url": {
+          "pattern": "^https://",
+          "title": "Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "url",
+        "file",
+        "format",
+        "sha256",
+        "license"
+      ],
+      "title": "Source",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "anchors": {
+      "items": {
+        "$ref": "#/$defs/Anchor"
+      },
+      "minItems": 1,
+      "title": "Anchors",
+      "type": "array"
+    },
+    "claim_file": {
+      "title": "Claim File",
+      "type": "string"
+    },
+    "expected": {
+      "$ref": "#/$defs/ExpectedStrategy"
+    },
+    "package": {
+      "title": "Package",
+      "type": "string"
+    },
+    "package_source_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Package Source Sha256",
+      "type": "string"
+    },
+    "review_note": {
+      "minLength": 16,
+      "title": "Review Note",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source": {
+      "$ref": "#/$defs/Source"
+    }
+  },
+  "required": [
+    "source",
+    "package",
+    "package_source_sha256",
+    "claim_file",
+    "expected",
+    "anchors",
+    "review_note"
+  ],
+  "title": "Recipe",
+  "type": "object"
+}

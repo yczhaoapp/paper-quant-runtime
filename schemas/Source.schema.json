@@ -1,0 +1,46 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "file": {
+      "title": "File",
+      "type": "string"
+    },
+    "format": {
+      "enum": [
+        "pdf",
+        "html",
+        "tex"
+      ],
+      "title": "Format",
+      "type": "string"
+    },
+    "license": {
+      "title": "License",
+      "type": "string"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Sha256",
+      "type": "string"
+    },
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "url": {
+      "pattern": "^https://",
+      "title": "Url",
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "url",
+    "file",
+    "format",
+    "sha256",
+    "license"
+  ],
+  "title": "Source",
+  "type": "object"
+}

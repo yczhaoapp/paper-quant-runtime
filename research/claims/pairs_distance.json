@@ -1,0 +1,25 @@
+{
+  "strategy_id": "rule.pairs_distance",
+  "source": {
+    "title": "Pairs Trading: Performance of a Relative Value Arbitrage Rule",
+    "authors": ["Evan Gatev", "William N. Goetzmann", "K. Geert Rouwenhorst"],
+    "url": "https://repec.som.yale.edu/icfpub/publications/2573.pdf",
+    "version": "February 2006 author version"
+  },
+  "claims": [
+    {"locator": "Section 2.1, PDF page 10", "statement": "Rank formation-period pairs by summed squared distance of normalized prices.", "implementation": "DistancePair._select_pair: normalized and distances"},
+    {"locator": "Section 2.2, PDF pages 11–12", "statement": "Open on a spread exceeding two formation standard deviations and unwind at the next price crossing.", "implementation": "DistancePair.decide: spread, sigma and crossed"},
+    {"locator": "Section 2, PDF page 10", "statement": "Separate a twelve-month formation period from a six-month trading period.", "implementation": "DistancePair.FORMATION and DistancePair.TRADING, represented by 252 and 126 sessions"}
+  ],
+  "chosen_variant": "One closest pair from three symbols, 252 formation sessions and 126 trading sessions",
+  "oracle": "tests/test_pairs_distance_paper.py",
+  "adaptations": [
+    "The source experiment selects several pairs from CRSP dividend-reinvested total-return histories; this sample selects one pair from three synthetic close series without dividends.",
+    "The paper reports one-dollar long and one-dollar short legs. This engine fixes each leg at 100 units of quote currency using signal-close prices and fills at next opening; later returns and corporate actions do not reproduce the paper's return accounting.",
+    "Orders for both legs are submitted together but fill independently on each symbol's next event; this engine does not guarantee atomic pair execution.",
+    "A final exit is signaled one session before the end of the trading interval to permit next-open execution. Delisting, staggered monthly portfolios and the original market results are outside this implementation."
+  ],
+  "algorithm_fidelity": "formation_distance_and_two_sigma_crossing_with_declared_execution_adaptation",
+  "data_fidelity": "synthetic_three_symbol_fixture",
+  "experimental_fidelity": "not_reproduced"
+}

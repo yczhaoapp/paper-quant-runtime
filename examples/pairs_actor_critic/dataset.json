@@ -1,0 +1,18 @@
+{
+  "content_sha256": "9a2bafc4de137bb35ae4772f9c7daef00629abb383e0e21b6467881ca1b4745d",
+  "contract_version": "1.0",
+  "dataset_id": "fixture.synthetic-pair-a2c-holdout",
+  "event_count": 200,
+  "fields": [
+    "close",
+    "high",
+    "low",
+    "open",
+    "volume"
+  ],
+  "granularity": "day",
+  "symbols": [
+    "ALPHA",
+    "BETA"
+  ]
+}

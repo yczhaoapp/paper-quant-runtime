@@ -1,0 +1,17 @@
+{
+  "content_sha256": "c074d9723db74986d8f92bca3124eec57023ebedfbb0991809ce106b6367f1d0",
+  "contract_version": "1.0",
+  "dataset_id": "public.plotly-aapl.0c447c47b757.forest-operations-holdout",
+  "event_count": 185,
+  "fields": [
+    "close",
+    "high",
+    "low",
+    "open",
+    "volume"
+  ],
+  "granularity": "day",
+  "symbols": [
+    "AAPL"
+  ]
+}

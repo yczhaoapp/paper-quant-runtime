@@ -1,0 +1,27 @@
+{
+  "declaration": {
+    "contract_version": "1.0",
+    "strategy_id": "rule.moving_average_crossover",
+    "kind": "rule",
+    "data": {
+      "granularity": "day",
+      "fields": [
+        "close"
+      ],
+      "symbols": [
+        "DEMO"
+      ],
+      "minimum_events_per_symbol": 20
+    },
+    "actions": [
+      "target_position",
+      "none"
+    ],
+    "training_required": false,
+    "source": "https://arxiv.org/pdf/1504.04254",
+    "max_abs_position": "1",
+    "max_order_quantity": null
+  },
+  "class_name": "MovingAverageCrossover",
+  "source_sha256": "ffdf872bcd9c0d4bb0f8aa5f28e47a0094ac5a9b194404288954290e127431ff"
+}

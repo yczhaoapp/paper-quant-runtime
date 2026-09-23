@@ -1,0 +1,883 @@
+{
+  "$defs": {
+    "AccountSnapshot": {
+      "additionalProperties": false,
+      "properties": {
+        "cash": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Cash"
+        },
+        "equity": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Equity"
+        },
+        "open_order_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Open Order Ids",
+          "type": "array"
+        },
+        "positions": {
+          "items": {
+            "$ref": "#/$defs/Position"
+          },
+          "title": "Positions",
+          "type": "array"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "title": "Timestamp",
+          "type": "string"
+        }
+      },
+      "required": [
+        "timestamp",
+        "cash",
+        "equity",
+        "positions",
+        "open_order_ids"
+      ],
+      "title": "AccountSnapshot",
+      "type": "object"
+    },
+    "Artifact": {
+      "additionalProperties": false,
+      "properties": {
+        "content_sha256": {
+          "title": "Content Sha256",
+          "type": "string"
+        },
+        "format": {
+          "title": "Format",
+          "type": "string"
+        },
+        "relative_path": {
+          "title": "Relative Path",
+          "type": "string"
+        },
+        "strategy_id": {
+          "title": "Strategy Id",
+          "type": "string"
+        },
+        "training_sha256": {
+          "title": "Training Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "strategy_id",
+        "training_sha256",
+        "content_sha256",
+        "format",
+        "relative_path"
+      ],
+      "title": "Artifact",
+      "type": "object"
+    },
+    "Conversion": {
+      "additionalProperties": false,
+      "properties": {
+        "input_sha256": {
+          "title": "Input Sha256",
+          "type": "string"
+        },
+        "lossy": {
+          "title": "Lossy",
+          "type": "boolean"
+        },
+        "output_sha256": {
+          "title": "Output Sha256",
+          "type": "string"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Parameters",
+          "type": "object"
+        },
+        "transformation": {
+          "enum": [
+            "symbol_map",
+            "minute_to_day"
+          ],
+          "title": "Transformation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "transformation",
+        "input_sha256",
+        "output_sha256",
+        "parameters",
+        "lossy"
+      ],
+      "title": "Conversion",
+      "type": "object"
+    },
+    "Decision": {
+      "additionalProperties": false,
+      "properties": {
+        "actions": {
+          "items": {
+            "discriminator": {
+              "mapping": {
+                "none": "#/$defs/NoOp",
+                "prediction": "#/$defs/Prediction",
+                "submit_order": "#/$defs/SubmitOrder",
+                "target_position": "#/$defs/TargetPosition"
+              },
+              "propertyName": "kind"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/$defs/NoOp"
+              },
+              {
+                "$ref": "#/$defs/Prediction"
+              },
+              {
+                "$ref": "#/$defs/TargetPosition"
+              },
+              {
+                "$ref": "#/$defs/SubmitOrder"
+              }
+            ]
+          },
+          "title": "Actions",
+          "type": "array"
+        },
+        "event_id": {
+          "title": "Event Id",
+          "type": "string"
+        },
+        "event_time": {
+          "format": "date-time",
+          "title": "Event Time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "event_id",
+        "event_time",
+        "actions"
+      ],
+      "title": "Decision",
+      "type": "object"
+    },
+    "EngineCapability": {
+      "additionalProperties": false,
+      "properties": {
+        "actions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Actions",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "data_fields": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Data Fields",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "engine_id": {
+          "title": "Engine Id",
+          "type": "string"
+        },
+        "granularities": {
+          "items": {
+            "$ref": "#/$defs/Granularity"
+          },
+          "title": "Granularities",
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "engine_id",
+        "granularities",
+        "data_fields",
+        "actions"
+      ],
+      "title": "EngineCapability",
+      "type": "object"
+    },
+    "ExecutionPlan": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_actions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Allowed Actions",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "conversions": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Conversion"
+          },
+          "title": "Conversions",
+          "type": "array"
+        },
+        "dataset_id": {
+          "title": "Dataset Id",
+          "type": "string"
+        },
+        "dataset_sha256": {
+          "title": "Dataset Sha256",
+          "type": "string"
+        },
+        "declaration_sha256": {
+          "title": "Declaration Sha256",
+          "type": "string"
+        },
+        "effective_events_sha256": {
+          "title": "Effective Events Sha256",
+          "type": "string"
+        },
+        "engine_capability": {
+          "$ref": "#/$defs/EngineCapability"
+        },
+        "engine_id": {
+          "title": "Engine Id",
+          "type": "string"
+        },
+        "engine_sha256": {
+          "title": "Engine Sha256",
+          "type": "string"
+        },
+        "granularity": {
+          "$ref": "#/$defs/Granularity"
+        },
+        "max_abs_position": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Max Abs Position"
+        },
+        "max_order_quantity": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Max Order Quantity"
+        },
+        "policy_sha256": {
+          "title": "Policy Sha256",
+          "type": "string"
+        },
+        "required_fields": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Required Fields",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "run_id": {
+          "title": "Run Id",
+          "type": "string"
+        },
+        "sandbox": {
+          "enum": [
+            "development",
+            "strict"
+          ],
+          "title": "Sandbox",
+          "type": "string"
+        },
+        "strategy_id": {
+          "title": "Strategy Id",
+          "type": "string"
+        },
+        "symbols": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Symbols",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "training_sha256": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Training Sha256"
+        }
+      },
+      "required": [
+        "run_id",
+        "strategy_id",
+        "dataset_id",
+        "engine_id",
+        "sandbox",
+        "granularity",
+        "symbols",
+        "required_fields",
+        "allowed_actions",
+        "max_abs_position",
+        "max_order_quantity",
+        "declaration_sha256",
+        "dataset_sha256",
+        "effective_events_sha256",
+        "training_sha256",
+        "engine_capability",
+        "engine_sha256",
+        "policy_sha256"
+      ],
+      "title": "ExecutionPlan",
+      "type": "object"
+    },
+    "Fill": {
+      "additionalProperties": false,
+      "properties": {
+        "fee": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Fee"
+        },
+        "order_id": {
+          "title": "Order Id",
+          "type": "string"
+        },
+        "price": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Price"
+        },
+        "quantity": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Quantity"
+        },
+        "side": {
+          "enum": [
+            "buy",
+            "sell"
+          ],
+          "title": "Side",
+          "type": "string"
+        },
+        "symbol": {
+          "title": "Symbol",
+          "type": "string"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "title": "Timestamp",
+          "type": "string"
+        }
+      },
+      "required": [
+        "order_id",
+        "symbol",
+        "side",
+        "quantity",
+        "price",
+        "fee",
+        "timestamp"
+      ],
+      "title": "Fill",
+      "type": "object"
+    },
+    "Granularity": {
+      "enum": [
+        "tick",
+        "minute",
+        "day"
+      ],
+      "title": "Granularity",
+      "type": "string"
+    },
+    "NoOp": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "none",
+          "default": "none",
+          "title": "Kind",
+          "type": "string"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "reason"
+      ],
+      "title": "NoOp",
+      "type": "object"
+    },
+    "OrderEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "order_id": {
+          "title": "Order Id",
+          "type": "string"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "accepted",
+            "filled",
+            "rejected",
+            "expired"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "symbol": {
+          "title": "Symbol",
+          "type": "string"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "title": "Timestamp",
+          "type": "string"
+        }
+      },
+      "required": [
+        "order_id",
+        "symbol",
+        "timestamp",
+        "status",
+        "reason"
+      ],
+      "title": "OrderEvent",
+      "type": "object"
+    },
+    "Position": {
+      "additionalProperties": false,
+      "properties": {
+        "average_price": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Average Price"
+        },
+        "quantity": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Quantity"
+        },
+        "realized_pnl": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Realized Pnl"
+        },
+        "symbol": {
+          "title": "Symbol",
+          "type": "string"
+        },
+        "unrealized_pnl": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Unrealized Pnl"
+        }
+      },
+      "required": [
+        "symbol",
+        "quantity",
+        "average_price",
+        "realized_pnl",
+        "unrealized_pnl"
+      ],
+      "title": "Position",
+      "type": "object"
+    },
+    "Prediction": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "prediction",
+          "default": "prediction",
+          "title": "Kind",
+          "type": "string"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "symbol": {
+          "title": "Symbol",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "symbol",
+        "value",
+        "reason"
+      ],
+      "title": "Prediction",
+      "type": "object"
+    },
+    "SubmitOrder": {
+      "additionalProperties": false,
+      "properties": {
+        "client_order_id": {
+          "title": "Client Order Id",
+          "type": "string"
+        },
+        "kind": {
+          "const": "submit_order",
+          "default": "submit_order",
+          "title": "Kind",
+          "type": "string"
+        },
+        "limit_price": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Limit Price"
+        },
+        "quantity": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Quantity"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "side": {
+          "enum": [
+            "buy",
+            "sell"
+          ],
+          "title": "Side",
+          "type": "string"
+        },
+        "symbol": {
+          "title": "Symbol",
+          "type": "string"
+        }
+      },
+      "required": [
+        "client_order_id",
+        "symbol",
+        "side",
+        "quantity",
+        "reason"
+      ],
+      "title": "SubmitOrder",
+      "type": "object"
+    },
+    "TargetPosition": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "target_position",
+          "default": "target_position",
+          "title": "Kind",
+          "type": "string"
+        },
+        "quantity": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Quantity"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "symbol": {
+          "title": "Symbol",
+          "type": "string"
+        }
+      },
+      "required": [
+        "symbol",
+        "quantity",
+        "reason"
+      ],
+      "title": "TargetPosition",
+      "type": "object"
+    },
+    "WorkerReceipt": {
+      "additionalProperties": false,
+      "properties": {
+        "container_id": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Container Id",
+          "type": "string"
+        },
+        "controls": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Controls",
+          "type": "array"
+        },
+        "image_id": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Image Id",
+          "type": "string"
+        },
+        "protocol_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Protocol Version",
+          "type": "string"
+        },
+        "source_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Source Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "image_id",
+        "container_id",
+        "source_sha256",
+        "controls"
+      ],
+      "title": "WorkerReceipt",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "accounts": {
+      "items": {
+        "$ref": "#/$defs/AccountSnapshot"
+      },
+      "title": "Accounts",
+      "type": "array"
+    },
+    "artifact": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Artifact"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "decisions": {
+      "items": {
+        "$ref": "#/$defs/Decision"
+      },
+      "title": "Decisions",
+      "type": "array"
+    },
+    "effective_events_sha256": {
+      "title": "Effective Events Sha256",
+      "type": "string"
+    },
+    "fills": {
+      "items": {
+        "$ref": "#/$defs/Fill"
+      },
+      "title": "Fills",
+      "type": "array"
+    },
+    "final_equity": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        }
+      ],
+      "title": "Final Equity"
+    },
+    "logs": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Logs",
+      "type": "array"
+    },
+    "orders": {
+      "items": {
+        "$ref": "#/$defs/OrderEvent"
+      },
+      "title": "Orders",
+      "type": "array"
+    },
+    "plan": {
+      "$ref": "#/$defs/ExecutionPlan"
+    },
+    "run_id": {
+      "title": "Run Id",
+      "type": "string"
+    },
+    "source_events_sha256": {
+      "title": "Source Events Sha256",
+      "type": "string"
+    },
+    "status": {
+      "const": "succeeded",
+      "default": "succeeded",
+      "title": "Status",
+      "type": "string"
+    },
+    "worker_receipt": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/WorkerReceipt"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "run_id",
+    "plan",
+    "artifact",
+    "source_events_sha256",
+    "effective_events_sha256",
+    "decisions",
+    "orders",
+    "fills",
+    "accounts",
+    "final_equity",
+    "logs"
+  ],
+  "title": "RunReport",
+  "type": "object"
+}

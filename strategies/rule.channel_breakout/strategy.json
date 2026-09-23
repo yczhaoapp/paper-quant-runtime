@@ -1,0 +1,27 @@
+{
+  "class_name": "ChannelBreakout",
+  "declaration": {
+    "actions": [
+      "none",
+      "target_position"
+    ],
+    "contract_version": "1.0",
+    "data": {
+      "fields": [
+        "close"
+      ],
+      "granularity": "day",
+      "minimum_events_per_symbol": 51,
+      "symbols": [
+        "DEMO"
+      ]
+    },
+    "kind": "rule",
+    "max_abs_position": "1",
+    "max_order_quantity": null,
+    "source": "https://arxiv.org/pdf/1504.04254",
+    "strategy_id": "rule.channel_breakout",
+    "training_required": false
+  },
+  "source_sha256": "59faea398cc2f97294bf6d25d731cfb995c2fda9f36c4547cef1c2dd5ad73811"
+}

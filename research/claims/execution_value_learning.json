@@ -1,0 +1,24 @@
+{
+  "strategy_id": "reinforcement.execution_value_learning",
+  "source": {
+    "title": "Reinforcement Learning for Optimized Trade Execution",
+    "authors": ["Yuriy Nevmyvaka", "Yi Feng", "Michael Kearns"],
+    "url": "https://www.cis.upenn.edu/~mkearns/papers/rlexec.pdf",
+    "version": "ICML 2006 author-hosted PDF"
+  },
+  "claims": [
+    {"locator": "Section 3, PDF page 3", "statement": "The private state includes elapsed time and remaining inventory; public market variables are separate.", "implementation": "ExecutionValueLearning._state, _pressure and decide"},
+    {"locator": "Section 3, PDF pages 3–4, cost update and pseudocode", "statement": "Training moves backward through the finite horizon and averages immediate payoff plus optimal next-state value for each state-action.", "implementation": "ExecutionValueLearning.train: ascending remaining-time lattice and incremental observed mean"},
+    {"locator": "Section 3, PDF page 3", "statement": "When the horizon expires, remaining inventory must be executed.", "implementation": "ExecutionValueLearning._actions: time-one action equals all remaining units"}
+  ],
+  "chosen_variant": "Four decision intervals, four-unit buy program and empirical finite-horizon value table",
+  "oracle": "tests/test_execution_value_learning_paper.py",
+  "adaptations": [
+    "The paper's action is a limit-price revision for all remaining shares, with queue priority, partial fills and mandatory terminal market execution. Here an action is the number of whole units to buy with a next-tick market target; no standing limit orders or queue model are claimed.",
+    "The training lattice uses synthetic rewards and three pressure states. It covers all private states and actions but does not use NASDAQ INET order-flow records, original cost normalization or market-impact simulation.",
+    "Each five-tick demonstration episode resets the target position for the next buy program. The reset is an adapter device, not part of the paper's execution objective."
+  ],
+  "algorithm_fidelity": "finite_horizon_backward_empirical_value_update_with_action_space_adaptation",
+  "data_fidelity": "synthetic_transition_lattice_and_ticks",
+  "experimental_fidelity": "not_reproduced"
+}

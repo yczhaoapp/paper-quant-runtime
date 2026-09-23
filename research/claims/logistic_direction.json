@@ -1,0 +1,24 @@
+{
+  "strategy_id": "supervised.logistic_direction",
+  "source": {
+    "title": "Stock Market Directional Bias Prediction Using ML Algorithms",
+    "authors": ["Ryan Chipwanya"],
+    "url": "https://arxiv.org/pdf/2310.16855",
+    "version": "arXiv:2310.16855v1"
+  },
+  "claims": [
+    {"locator": "Section II, PDF page 2", "statement": "The target compares today's close with the following day's close; OHLCV are market features.", "implementation": "scripts/build_public_direction.py: TrainingSample construction"},
+    {"locator": "Table I, PDF page 3", "statement": "Logistic regression uses sigmoid, entropy and gradient descent with alpha 0.01 for 1000 epochs.", "implementation": "DailyDirectionLogistic.train and DailyDirectionLogistic._sigmoid"}
+  ],
+  "oracle": "tests/test_logistic_direction_paper.py",
+  "adaptations": [
+    "The paper's Japanese equity data and reported classification accuracy are not reproduced; a pinned public AAPL daily OHLCV sample is used as an execution proxy.",
+    "Five raw OHLCV inputs are standardized using training-only means and standard deviations because feature scaling details are not given in the paper.",
+    "Persisted coefficients and scaling values are rounded to 12 decimal places, and published probabilities to 8, to make model bytes and actions reproducible across host and strict container math libraries.",
+    "Training labels use rows 1-320 and backtest input starts at row 321, after the final training label is available.",
+    "The paper forecasts direction; converting probabilities above/below 0.5 to unit target positions and next-open fills is a runtime adaptation, not a claimed paper trading rule."
+  ],
+  "algorithm_fidelity": "paper_model_family_gradient_settings_and_features_with_declared_scaling_adaptation",
+  "data_fidelity": "public_market_proxy_with_chronological_holdout",
+  "experimental_fidelity": "not_reproduced"
+}

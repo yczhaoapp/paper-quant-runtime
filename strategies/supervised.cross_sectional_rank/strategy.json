@@ -1,0 +1,33 @@
+{
+  "class_name": "CrossSectionalRank",
+  "declaration": {
+    "actions": [
+      "none",
+      "prediction",
+      "target_position"
+    ],
+    "contract_version": "1.0",
+    "data": {
+      "fields": [
+        "close",
+        "liquidity",
+        "open",
+        "signal"
+      ],
+      "granularity": "day",
+      "minimum_events_per_symbol": 2,
+      "symbols": [
+        "ALPHA",
+        "BETA",
+        "GAMMA"
+      ]
+    },
+    "kind": "supervised",
+    "max_abs_position": "1",
+    "max_order_quantity": null,
+    "source": "https://dachxiu.chicagobooth.edu/download/ML.pdf",
+    "strategy_id": "supervised.cross_sectional_rank",
+    "training_required": true
+  },
+  "source_sha256": "4fd97bcb737e325280b270a4c9fb33c9e720efaf24b14b36fd1a809f60ab9038"
+}

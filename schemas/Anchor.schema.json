@@ -1,0 +1,27 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "claim_index": {
+      "minimum": 0,
+      "title": "Claim Index",
+      "type": "integer"
+    },
+    "page": {
+      "minimum": 1,
+      "title": "Page",
+      "type": "integer"
+    },
+    "text": {
+      "minLength": 4,
+      "title": "Text",
+      "type": "string"
+    }
+  },
+  "required": [
+    "page",
+    "text",
+    "claim_index"
+  ],
+  "title": "Anchor",
+  "type": "object"
+}

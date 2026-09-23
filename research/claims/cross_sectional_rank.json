@@ -1,0 +1,23 @@
+{
+  "strategy_id": "supervised.cross_sectional_rank",
+  "source": {
+    "title": "Empirical Asset Pricing via Machine Learning",
+    "authors": ["Shihao Gu", "Bryan Kelly", "Dacheng Xiu"],
+    "url": "https://dachxiu.chicagobooth.edu/download/ML.pdf",
+    "version": "Review of Financial Studies 33(5), author-hosted PDF"
+  },
+  "claims": [
+    {"locator": "Section 2.3, equation (8), PDF page 12", "statement": "Elastic net combines absolute-value and squared-coefficient penalties.", "implementation": "CrossSectionalRank.train: soft-threshold coordinate update with fixed L1/L2 shares"},
+    {"locator": "Figure 9 caption, PDF page 46", "statement": "Forecast-sorted portfolios take long high-prediction stocks and short low-prediction stocks.", "implementation": "CrossSectionalRank.decide: rank complete daily cross-section and target high/low symbols"}
+  ],
+  "chosen_variant": "Two-characteristic elastic net and top-one/bottom-one rank on three symbols",
+  "oracle": "tests/test_cross_sectional_rank_paper.py",
+  "adaptations": [
+    "The source uses a large equity universe, many firm characteristics, monthly returns, validation-selected hyperparameters and multiple model families; this sample fixes two synthetic characteristics, three symbols, daily returns and one declared penalty.",
+    "The implementation uses coordinate descent for the same elastic-net objective instead of the paper's accelerated proximal gradient solver. It does not implement Huber loss or report paper performance.",
+    "The reference engine emits paired target positions after all three daily closes and fills each symbol separately at its next opening; it does not guarantee atomic portfolio rebalancing."
+  ],
+  "algorithm_fidelity": "elastic_net_objective_and_forecast_ranking_with_solver_adaptation",
+  "data_fidelity": "synthetic_three_symbol_panel",
+  "experimental_fidelity": "not_reproduced"
+}

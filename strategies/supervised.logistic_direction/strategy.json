@@ -1,0 +1,32 @@
+{
+  "class_name": "DailyDirectionLogistic",
+  "declaration": {
+    "actions": [
+      "none",
+      "prediction",
+      "target_position"
+    ],
+    "contract_version": "1.0",
+    "data": {
+      "fields": [
+        "close",
+        "high",
+        "low",
+        "open",
+        "volume"
+      ],
+      "granularity": "day",
+      "minimum_events_per_symbol": 2,
+      "symbols": [
+        "DEMO"
+      ]
+    },
+    "kind": "supervised",
+    "max_abs_position": "1",
+    "max_order_quantity": null,
+    "source": "https://arxiv.org/pdf/2310.16855",
+    "strategy_id": "supervised.logistic_direction",
+    "training_required": true
+  },
+  "source_sha256": "36775edde2aafb1827dbef4121999b668f8f063b59a8352ef757e350bf12a08e"
+}

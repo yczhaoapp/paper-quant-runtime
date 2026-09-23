@@ -1,0 +1,4326 @@
+{
+  "dataset_id": "fixture.synthetic-cross-sectional-holdout",
+  "samples": [
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "-1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.007",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.001250",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "-0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.000750",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "-0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.002550",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "-0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.003050",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.0008",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.00590",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.003",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "-0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.00350",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0024",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.005450",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.000950",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.001650",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "-0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.00285",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.005",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "-0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.00665",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.0056",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "-0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0033",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.0018",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "-0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0070999999999999999999999996",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.005150000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.006250000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.001350000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "-0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0031500000000000000000000004",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "-0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0024500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.005800000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.000900000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "-0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.001500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "-1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0074000000000000000000000004",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "-0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0023000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.001550000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "-0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.001050000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0022500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "-0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0027500000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.005500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.006200000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.001700000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0031999999999999999999999999",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "-0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0021000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "-1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0070000000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.001250000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.006350000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "-0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0025500000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "-0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0030500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "-0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0063500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.005900000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0030000000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002100000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0023999999999999999999999999",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.005450000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "-1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0062000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.001650000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "-0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0028499999999999999999999999",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "-0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002250000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "-0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0066499999999999999999999995",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.005600000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002300000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.001800000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "-0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0070999999999999999999999997",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0020000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.006250000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.001350000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002450000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "-0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0024500000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.005800000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "-0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0062500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "-0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.001500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0018000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "-0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0023000000000000000000000005",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.001550000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.006650000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0022499999999999999999999995",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "-0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0027499999999999999999999997",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "-0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0016500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.006200000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.001700000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002400000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "-0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0021000000000000000000000004",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "-1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0070000000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "-0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0059000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.006350000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "-0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0025499999999999999999999997",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002550000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "-0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0063500000000000000000000003",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.005900000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.007000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002100000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0023999999999999999999999995",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "-0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0017000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "-1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0062000000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.001650000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002750000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "-0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002250000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "-0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0066500000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "-0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0015500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002300000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.001800000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0015000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0020000000000000000000000003",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.006250000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "-1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0058000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002450000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "-0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0024499999999999999999999996",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "-0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0013500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "-0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0062499999999999999999999997",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.007100000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0017999999999999999999999999",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "-0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0023000000000000000000000005",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0056000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.006650000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0022500000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002850000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "-0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0016499999999999999999999999",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.006200000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "-0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0054500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002400000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "-0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0020999999999999999999999999",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "-0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0058999999999999999999999999",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.006350000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003050000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002550000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "-0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0063500000000000000000000003",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "-0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0012500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.007000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002100000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003200000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "-0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0017000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "-1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0061999999999999999999999998",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "-0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0055000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002750000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "-0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002250000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0010500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "-0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0015500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002300000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.007400000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0015000000000000000000000004",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0020000000000000000000000004",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "-0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0009000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "-1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0057999999999999999999999997",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002450000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003150000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "-0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0013500000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "-0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0062499999999999999999999998",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "-0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0051500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.007100000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0017999999999999999999999996",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003300000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0056000000000000000000000003",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.006650000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "-1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0050000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002850000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "-0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0016500000000000000000000004",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "-0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0009500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "-0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0054500000000000000000000002",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002400000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "-0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0059000000000000000000000002",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0008000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003050000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002550000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0007500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "-0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0012500000000000000000000003",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.007000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "-0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0050500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003200000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "-0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0017000000000000000000000003",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0006000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "-0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0055000000000000000000000003",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002750000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.007850000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0010500000000000000000000003",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "-0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0015499999999999999999999996",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "-0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0048500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.007400000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0015000000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003600000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "-0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0008999999999999999999999999",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "-1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0057999999999999999999999999",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "-0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0047000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003150000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "-0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0013499999999999999999999996",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003750000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "-0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0051500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.007100000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003800000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003300000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0056000000000000000000000003",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "-0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0005000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "-1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0049999999999999999999999995",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.002850000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003950000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "-0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0009500000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "-0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0054499999999999999999999996",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "-0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0047500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0003000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0007999999999999999999999999",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003050000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "-1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0046000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0007499999999999999999999996",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "-0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0012499999999999999999999999",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "-0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0001500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "-0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0050499999999999999999999997",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003200000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003900000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0006000000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "-0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0054999999999999999999999999",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0044000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.007850000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0010500000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.004050000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "-0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0048500000000000000000000002",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.007400000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "-0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0042500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003600000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "-0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0009000000000000000000000004",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0002000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "-0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0047000000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003150000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.004250000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003750000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "-0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0051500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "-0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0000500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003800000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003300000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "-0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0004999999999999999999999999",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "-1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0050000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "-0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0043000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003950000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "-0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0009500000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.000150000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "-0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0047500000000000000000000002",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.008600000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0003000000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0008000000000000000000000004",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "-0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0041000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "-1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0046000000000000000000000003",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0007500000000000000000000004",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.004350000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "-0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0001500000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "-0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0050499999999999999999999998",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "-0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0039500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003900000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0006000000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.004500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0044000000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.007850000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "-1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0082000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.004050000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "-0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0048499999999999999999999999",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "-0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.000250000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "-0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0042500000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003600000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.004700000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0002000000000000000000000003",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "-0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0047000000000000000000000002",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0040000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.004250000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003750000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.000450000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "-0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0000499999999999999999999998",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003800000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "-0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0038500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "-0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0005000000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.000600000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "-0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0043000000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003950000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.004650000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.000150000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "-0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0047500000000000000000000002",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "-0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0036500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.008600000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0003000000000000000000000003",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.004800000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "-0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0040999999999999999999999996",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "-1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0045999999999999999999999996",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "-0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0035000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.004350000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "-0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0001499999999999999999999998",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.000550000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "-0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0039500000000000000000000003",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.003900000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.005000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.004500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0044000000000000000000000004",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "-0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.000700000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "-1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0081999999999999999999999999",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.004050000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.000750000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "-0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.000250000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "-0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0042500000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "-0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0035500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.004700000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0002000000000000000000000002",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.000900000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0040000000000000000000000004",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.004250000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "-1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0034000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.000450000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "-0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0000499999999999999999999998",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "-0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0033500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "-0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0038500000000000000000000005",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.005100000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.000600000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "-0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0043000000000000000000000002",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0032000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.004650000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.000150000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.005250000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "-0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0036499999999999999999999998",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.008600000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "-0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0074500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.004800000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "-0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0041000000000000000000000004",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.001000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "-0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0035000000000000000000000002",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.004350000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.005450000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.000550000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "-0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0039500000000000000000000004",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "-0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0032500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.005000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.004500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.001200000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "-0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.000700000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "-1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0082000000000000000000000004",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "-0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0031000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.000750000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "-0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.000250000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.001350000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "-0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0035499999999999999999999998",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.6",
+        "signal": "0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.004700000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.005400000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.000900000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-1",
+        "signal": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0039999999999999999999999999",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "-0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0029000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "-1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0034000000000000000000000003",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.4",
+        "signal": "0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.000450000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.005550000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "-0.125"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0033500000000000000000000001",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.2",
+        "signal": "-0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0038499999999999999999999997",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "-0.625"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0027500000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "0.75"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.005100000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.8",
+        "signal": "0"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.000600000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.6",
+        "signal": "0.25"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.001300000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0.4",
+        "signal": "-0.5"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0032000000000000000000000003",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.8",
+        "signal": "0.875"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.004650000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "0",
+        "signal": "-1"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0070000000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "1",
+        "signal": "0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "0.005250000000000000000000000",
+      "terminal": false
+    },
+    {
+      "action": null,
+      "features": {
+        "liquidity": "-0.2",
+        "signal": "-0.375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "target": "-0.0036500000000000000000000004",
+      "terminal": false
+    }
+  ],
+  "seed": 0
+}

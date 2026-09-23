@@ -1,0 +1,546 @@
+[
+  {
+    "available_time": "2026-01-02T09:30:00+00:00",
+    "event_id": "l2-000",
+    "event_time": "2026-01-02T09:30:00+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "100.01",
+      "ask_price_2": "100.02",
+      "ask_size": "11",
+      "ask_size_2": "20",
+      "bid_price": "99.99",
+      "bid_price_2": "99.98",
+      "bid_size": "12",
+      "bid_size_2": "21",
+      "price": "100"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:01+00:00",
+    "event_id": "l2-001",
+    "event_time": "2026-01-02T09:30:01+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "101.41",
+      "ask_price_2": "101.42",
+      "ask_size": "12",
+      "ask_size_2": "21",
+      "bid_price": "101.39",
+      "bid_price_2": "101.38",
+      "bid_size": "13",
+      "bid_size_2": "22",
+      "price": "101.4"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:02+00:00",
+    "event_id": "l2-002",
+    "event_time": "2026-01-02T09:30:02+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "100.01",
+      "ask_price_2": "100.02",
+      "ask_size": "13",
+      "ask_size_2": "22",
+      "bid_price": "99.99",
+      "bid_price_2": "99.98",
+      "bid_size": "14",
+      "bid_size_2": "23",
+      "price": "100"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:03+00:00",
+    "event_id": "l2-003",
+    "event_time": "2026-01-02T09:30:03+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "98.61",
+      "ask_price_2": "98.62",
+      "ask_size": "14",
+      "ask_size_2": "23",
+      "bid_price": "98.59",
+      "bid_price_2": "98.58",
+      "bid_size": "15",
+      "bid_size_2": "21",
+      "price": "98.6"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:04+00:00",
+    "event_id": "l2-004",
+    "event_time": "2026-01-02T09:30:04+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "100.01",
+      "ask_price_2": "100.02",
+      "ask_size": "15",
+      "ask_size_2": "20",
+      "bid_price": "99.99",
+      "bid_price_2": "99.98",
+      "bid_size": "16",
+      "bid_size_2": "22",
+      "price": "100"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:05+00:00",
+    "event_id": "l2-005",
+    "event_time": "2026-01-02T09:30:05+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "101.41",
+      "ask_price_2": "101.42",
+      "ask_size": "11",
+      "ask_size_2": "21",
+      "bid_price": "101.39",
+      "bid_price_2": "101.38",
+      "bid_size": "17",
+      "bid_size_2": "23",
+      "price": "101.4"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:06+00:00",
+    "event_id": "l2-006",
+    "event_time": "2026-01-02T09:30:06+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "100.01",
+      "ask_price_2": "100.02",
+      "ask_size": "12",
+      "ask_size_2": "22",
+      "bid_price": "99.99",
+      "bid_price_2": "99.98",
+      "bid_size": "18",
+      "bid_size_2": "21",
+      "price": "100"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:07+00:00",
+    "event_id": "l2-007",
+    "event_time": "2026-01-02T09:30:07+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "98.61",
+      "ask_price_2": "98.62",
+      "ask_size": "13",
+      "ask_size_2": "23",
+      "bid_price": "98.59",
+      "bid_price_2": "98.58",
+      "bid_size": "12",
+      "bid_size_2": "22",
+      "price": "98.6"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:08+00:00",
+    "event_id": "l2-008",
+    "event_time": "2026-01-02T09:30:08+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "100.01",
+      "ask_price_2": "100.02",
+      "ask_size": "14",
+      "ask_size_2": "20",
+      "bid_price": "99.99",
+      "bid_price_2": "99.98",
+      "bid_size": "13",
+      "bid_size_2": "23",
+      "price": "100"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:09+00:00",
+    "event_id": "l2-009",
+    "event_time": "2026-01-02T09:30:09+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "101.41",
+      "ask_price_2": "101.42",
+      "ask_size": "15",
+      "ask_size_2": "21",
+      "bid_price": "101.39",
+      "bid_price_2": "101.38",
+      "bid_size": "14",
+      "bid_size_2": "21",
+      "price": "101.4"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:10+00:00",
+    "event_id": "l2-010",
+    "event_time": "2026-01-02T09:30:10+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "100.01",
+      "ask_price_2": "100.02",
+      "ask_size": "11",
+      "ask_size_2": "22",
+      "bid_price": "99.99",
+      "bid_price_2": "99.98",
+      "bid_size": "15",
+      "bid_size_2": "22",
+      "price": "100"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:11+00:00",
+    "event_id": "l2-011",
+    "event_time": "2026-01-02T09:30:11+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "98.61",
+      "ask_price_2": "98.62",
+      "ask_size": "12",
+      "ask_size_2": "23",
+      "bid_price": "98.59",
+      "bid_price_2": "98.58",
+      "bid_size": "16",
+      "bid_size_2": "23",
+      "price": "98.6"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:12+00:00",
+    "event_id": "l2-012",
+    "event_time": "2026-01-02T09:30:12+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "100.01",
+      "ask_price_2": "100.02",
+      "ask_size": "13",
+      "ask_size_2": "20",
+      "bid_price": "99.99",
+      "bid_price_2": "99.98",
+      "bid_size": "17",
+      "bid_size_2": "21",
+      "price": "100"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:13+00:00",
+    "event_id": "l2-013",
+    "event_time": "2026-01-02T09:30:13+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "101.41",
+      "ask_price_2": "101.42",
+      "ask_size": "14",
+      "ask_size_2": "21",
+      "bid_price": "101.39",
+      "bid_price_2": "101.38",
+      "bid_size": "18",
+      "bid_size_2": "22",
+      "price": "101.4"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:14+00:00",
+    "event_id": "l2-014",
+    "event_time": "2026-01-02T09:30:14+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "100.01",
+      "ask_price_2": "100.02",
+      "ask_size": "15",
+      "ask_size_2": "22",
+      "bid_price": "99.99",
+      "bid_price_2": "99.98",
+      "bid_size": "12",
+      "bid_size_2": "23",
+      "price": "100"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:15+00:00",
+    "event_id": "l2-015",
+    "event_time": "2026-01-02T09:30:15+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "98.61",
+      "ask_price_2": "98.62",
+      "ask_size": "11",
+      "ask_size_2": "23",
+      "bid_price": "98.59",
+      "bid_price_2": "98.58",
+      "bid_size": "13",
+      "bid_size_2": "21",
+      "price": "98.6"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:16+00:00",
+    "event_id": "l2-016",
+    "event_time": "2026-01-02T09:30:16+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "100.01",
+      "ask_price_2": "100.02",
+      "ask_size": "12",
+      "ask_size_2": "20",
+      "bid_price": "99.99",
+      "bid_price_2": "99.98",
+      "bid_size": "14",
+      "bid_size_2": "22",
+      "price": "100"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:17+00:00",
+    "event_id": "l2-017",
+    "event_time": "2026-01-02T09:30:17+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "101.41",
+      "ask_price_2": "101.42",
+      "ask_size": "13",
+      "ask_size_2": "21",
+      "bid_price": "101.39",
+      "bid_price_2": "101.38",
+      "bid_size": "15",
+      "bid_size_2": "23",
+      "price": "101.4"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:18+00:00",
+    "event_id": "l2-018",
+    "event_time": "2026-01-02T09:30:18+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "100.01",
+      "ask_price_2": "100.02",
+      "ask_size": "14",
+      "ask_size_2": "22",
+      "bid_price": "99.99",
+      "bid_price_2": "99.98",
+      "bid_size": "16",
+      "bid_size_2": "21",
+      "price": "100"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:19+00:00",
+    "event_id": "l2-019",
+    "event_time": "2026-01-02T09:30:19+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "98.61",
+      "ask_price_2": "98.62",
+      "ask_size": "15",
+      "ask_size_2": "23",
+      "bid_price": "98.59",
+      "bid_price_2": "98.58",
+      "bid_size": "17",
+      "bid_size_2": "22",
+      "price": "98.6"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:20+00:00",
+    "event_id": "l2-020",
+    "event_time": "2026-01-02T09:30:20+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "100.01",
+      "ask_price_2": "100.02",
+      "ask_size": "11",
+      "ask_size_2": "20",
+      "bid_price": "99.99",
+      "bid_price_2": "99.98",
+      "bid_size": "18",
+      "bid_size_2": "23",
+      "price": "100"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:21+00:00",
+    "event_id": "l2-021",
+    "event_time": "2026-01-02T09:30:21+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "101.41",
+      "ask_price_2": "101.42",
+      "ask_size": "12",
+      "ask_size_2": "21",
+      "bid_price": "101.39",
+      "bid_price_2": "101.38",
+      "bid_size": "12",
+      "bid_size_2": "21",
+      "price": "101.4"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:22+00:00",
+    "event_id": "l2-022",
+    "event_time": "2026-01-02T09:30:22+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "100.01",
+      "ask_price_2": "100.02",
+      "ask_size": "13",
+      "ask_size_2": "22",
+      "bid_price": "99.99",
+      "bid_price_2": "99.98",
+      "bid_size": "13",
+      "bid_size_2": "22",
+      "price": "100"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:23+00:00",
+    "event_id": "l2-023",
+    "event_time": "2026-01-02T09:30:23+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "98.61",
+      "ask_price_2": "98.62",
+      "ask_size": "14",
+      "ask_size_2": "23",
+      "bid_price": "98.59",
+      "bid_price_2": "98.58",
+      "bid_size": "14",
+      "bid_size_2": "23",
+      "price": "98.6"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:24+00:00",
+    "event_id": "l2-024",
+    "event_time": "2026-01-02T09:30:24+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "100.01",
+      "ask_price_2": "100.02",
+      "ask_size": "15",
+      "ask_size_2": "20",
+      "bid_price": "99.99",
+      "bid_price_2": "99.98",
+      "bid_size": "15",
+      "bid_size_2": "21",
+      "price": "100"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:25+00:00",
+    "event_id": "l2-025",
+    "event_time": "2026-01-02T09:30:25+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "101.41",
+      "ask_price_2": "101.42",
+      "ask_size": "11",
+      "ask_size_2": "21",
+      "bid_price": "101.39",
+      "bid_price_2": "101.38",
+      "bid_size": "16",
+      "bid_size_2": "22",
+      "price": "101.4"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:26+00:00",
+    "event_id": "l2-026",
+    "event_time": "2026-01-02T09:30:26+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "100.01",
+      "ask_price_2": "100.02",
+      "ask_size": "12",
+      "ask_size_2": "22",
+      "bid_price": "99.99",
+      "bid_price_2": "99.98",
+      "bid_size": "17",
+      "bid_size_2": "23",
+      "price": "100"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:27+00:00",
+    "event_id": "l2-027",
+    "event_time": "2026-01-02T09:30:27+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "98.61",
+      "ask_price_2": "98.62",
+      "ask_size": "13",
+      "ask_size_2": "23",
+      "bid_price": "98.59",
+      "bid_price_2": "98.58",
+      "bid_size": "18",
+      "bid_size_2": "21",
+      "price": "98.6"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:28+00:00",
+    "event_id": "l2-028",
+    "event_time": "2026-01-02T09:30:28+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "100.01",
+      "ask_price_2": "100.02",
+      "ask_size": "14",
+      "ask_size_2": "20",
+      "bid_price": "99.99",
+      "bid_price_2": "99.98",
+      "bid_size": "12",
+      "bid_size_2": "22",
+      "price": "100"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:29+00:00",
+    "event_id": "l2-029",
+    "event_time": "2026-01-02T09:30:29+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "101.41",
+      "ask_price_2": "101.42",
+      "ask_size": "15",
+      "ask_size_2": "21",
+      "bid_price": "101.39",
+      "bid_price_2": "101.38",
+      "bid_size": "13",
+      "bid_size_2": "23",
+      "price": "101.4"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:30+00:00",
+    "event_id": "l2-030",
+    "event_time": "2026-01-02T09:30:30+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "100.01",
+      "ask_price_2": "100.02",
+      "ask_size": "11",
+      "ask_size_2": "22",
+      "bid_price": "99.99",
+      "bid_price_2": "99.98",
+      "bid_size": "14",
+      "bid_size_2": "21",
+      "price": "100"
+    }
+  },
+  {
+    "available_time": "2026-01-02T09:30:31+00:00",
+    "event_id": "l2-031",
+    "event_time": "2026-01-02T09:30:31+00:00",
+    "symbol": "DEMO",
+    "values": {
+      "ask_price": "98.61",
+      "ask_price_2": "98.62",
+      "ask_size": "12",
+      "ask_size_2": "23",
+      "bid_price": "98.59",
+      "bid_price_2": "98.58",
+      "bid_size": "15",
+      "bid_size_2": "22",
+      "price": "98.6"
+    }
+  }
+]

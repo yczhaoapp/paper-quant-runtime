@@ -1,0 +1,24 @@
+{
+  "strategy_id": "reinforcement.risk_averse_bandit",
+  "source": {
+    "title": "Risk-averse Contextual Multi-armed Bandit Problem with Linear Payoffs",
+    "authors": ["Yifan Lin", "Yuhao Wang", "Enlu Zhou"],
+    "url": "https://arxiv.org/pdf/2206.12463v1",
+    "version": "arXiv:2206.12463v1"
+  },
+  "claims": [
+    {"locator": "Section 3.2, Proposition 1, PDF pages 5–6", "statement": "For disjoint arms under a Gaussian likelihood, update normal-gamma A, b, C and D posterior parameters after observed rewards.", "implementation": "RiskAverseBandit._update implements the scalar d=1 specialization; train and decide call it"},
+    {"locator": "Section 3.2, Algorithm 2, PDF page 6", "statement": "Sample an arm's precision and mean, then maximize sampled contextual mean minus risk tolerance times sampled variance.", "implementation": "RiskAverseBandit._sample_scores and decide"},
+    {"locator": "Introduction, PDF pages 1–2", "statement": "The contextual bandit learns from rewards of selected arms over successive rounds.", "implementation": "RiskAverseBandit.decide updates the held arm's posterior from the next observed mid-price interval"}
+  ],
+  "chosen_variant": "One-dimensional queue-imbalance context, three disjoint target-position arms and online normal-gamma updates",
+  "oracle": "tests/test_risk_averse_bandit_paper.py",
+  "adaptations": [
+    "The paper's portfolio-selection experiment has multidimensional arm-specific contexts and rewards; this runtime example uses one L1 imbalance context shared across three unit-position arms and synthetic rewards.",
+    "A decision fills on the next tick. Online reward is computed from the mid-price change over an interval in which the arm was actually held; it omits execution fees, financing, opportunity cost and a portfolio reward model.",
+    "The implementation uses the paper's exact scalar normal-gamma posterior update and sampled mean-variance criterion, but does not reproduce its regret bound or empirical portfolio results."
+  ],
+  "algorithm_fidelity": "scalar_normal_gamma_posterior_and_online_thompson_mean_variance",
+  "data_fidelity": "synthetic_l1_ticks_and_rewards",
+  "experimental_fidelity": "not_reproduced"
+}

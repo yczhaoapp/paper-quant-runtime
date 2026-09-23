@@ -1,0 +1,17 @@
+{
+  "content_sha256": "0d920079b666431dbeec7d2d8a9f7575760ad7ec9f8cd74989303fb1ee93e887",
+  "contract_version": "1.0",
+  "dataset_id": "example.minute-bars",
+  "event_count": 10,
+  "fields": [
+    "close",
+    "high",
+    "low",
+    "open",
+    "volume"
+  ],
+  "granularity": "minute",
+  "symbols": [
+    "DEMO"
+  ]
+}
