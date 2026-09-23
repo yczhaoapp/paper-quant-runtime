@@ -221,6 +221,11 @@ def compile_run(
         conversions.append(
             Conversion(
                 transformation="symbol_map",
+                reason="Strategy symbols differ from the declared dataset symbols",
+                policy_switch="symbol_map",
+                source_event_count=len(effective),
+                output_event_count=len(mapped),
+                affected_symbols=tuple(sorted(policy.symbol_map)),
                 input_sha256=fingerprint(effective),
                 output_sha256=fingerprint(mapped),
                 parameters=policy.symbol_map,
@@ -249,6 +254,11 @@ def compile_run(
         conversions.append(
             Conversion(
                 transformation="minute_to_day",
+                reason="Strategy requires daily bars while the dataset provides minute bars",
+                policy_switch="allow_day_aggregation",
+                source_event_count=len(effective),
+                output_event_count=len(aggregated),
+                affected_symbols=tuple(sorted({event.symbol for event in effective})),
                 input_sha256=fingerprint(effective),
                 output_sha256=fingerprint(aggregated),
                 parameters={"calendar": "UTC"},
@@ -283,6 +293,7 @@ def compile_run(
             dataset_id=dataset.dataset_id,
             engine_id=engine.engine_id,
             sandbox=policy.sandbox,
+            financing_mode=policy.financing_mode,
             granularity=strategy.data.granularity,
             symbols=strategy.data.symbols,
             required_fields=required_fields,
@@ -295,6 +306,7 @@ def compile_run(
             training_sha256=fingerprint(training) if training is not None else None,
             engine_capability=engine,
             engine_sha256=fingerprint(engine),
+            policy=policy,
             policy_sha256=fingerprint(policy),
             conversions=tuple(conversions),
         ),

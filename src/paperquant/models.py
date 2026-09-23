@@ -110,11 +110,18 @@ class EngineCapability(Model):
 class RunPolicy(Model):
     symbol_map: dict[str, str] = Field(default_factory=dict)
     allow_day_aggregation: bool = False
+    financing_mode: Literal["cash_only", "unbounded_margin"] = "cash_only"
     sandbox: Literal["development", "strict"] = "development"
 
 
 class Conversion(Model):
     transformation: Literal["symbol_map", "minute_to_day"]
+    reason: str
+    policy_switch: Literal["symbol_map", "allow_day_aggregation"]
+    can_disable: Literal[True] = True
+    source_event_count: int = Field(ge=1)
+    output_event_count: int = Field(ge=1)
+    affected_symbols: tuple[str, ...]
     input_sha256: str
     output_sha256: str
     parameters: dict[str, str]
@@ -127,6 +134,7 @@ class ExecutionPlan(Model):
     dataset_id: str
     engine_id: str
     sandbox: Literal["development", "strict"]
+    financing_mode: Literal["cash_only", "unbounded_margin"]
     granularity: Granularity
     symbols: frozenset[str]
     required_fields: frozenset[str]
@@ -139,6 +147,7 @@ class ExecutionPlan(Model):
     training_sha256: str | None
     engine_capability: EngineCapability
     engine_sha256: str
+    policy: RunPolicy
     policy_sha256: str
     conversions: tuple[Conversion, ...] = ()
 

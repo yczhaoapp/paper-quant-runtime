@@ -146,6 +146,10 @@ class ReferenceEngine:
             self._fail(
                 plan, Stage.INPUT, ErrorCode.INPUT_INVALID, "Effective events differ from plan"
             )
+        if (fingerprint(plan.policy) != plan.policy_sha256
+            or plan.financing_mode != plan.policy.financing_mode):
+            self._fail(plan, Stage.BACKTEST, ErrorCode.INPUT_INVALID,
+                       "Financing policy differs from bound plan")
         cash = self.initial_cash
         holdings: dict[str, _Holding] = {}
         marks: dict[str, Decimal] = {}
@@ -250,7 +254,15 @@ class ReferenceEngine:
                         order_id=intent.order_id,
                     )
                 fee = abs(signed) * execution_price * self.fee_rate
-                cash -= signed * execution_price + fee
+                next_cash = cash - signed * execution_price - fee
+                if plan.financing_mode == "cash_only" and next_cash < 0:
+                    self._fail(
+                        plan, Stage.BACKTEST, ErrorCode.ORDER_REJECTED,
+                        "Fill exceeds available cash under cash-only financing",
+                        order_id=intent.order_id, available_cash=str(cash),
+                        required_cash=str(signed * execution_price + fee),
+                    )
+                cash = next_cash
                 holdings[intent.symbol] = current.traded(signed, execution_price)
                 side: Literal["buy", "sell"] = "buy" if signed > 0 else "sell"
                 fills.append(

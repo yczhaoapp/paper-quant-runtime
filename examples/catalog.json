@@ -18,6 +18,6 @@
     {"strategy": "reinforcement.execution_value_learning", "fixture": "execution_lattice", "training": "training.json"},
     {"strategy": "reinforcement.risk_averse_bandit", "fixture": "bandit_l1", "training": "training.json"},
     {"strategy": "reinforcement.actor_critic_allocation", "fixture": "public_actor_critic", "training": "training.json", "policy": "policy.json"},
-    {"strategy": "reinforcement.pairs_actor_critic", "fixture": "pairs_actor_critic", "training": "training.json"}
+    {"strategy": "reinforcement.pairs_actor_critic", "fixture": "pairs_actor_critic", "training": "training.json", "policy": "policy.json"}
   ]
 }

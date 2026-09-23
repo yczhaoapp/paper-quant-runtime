@@ -49,6 +49,7 @@ def test_real_cc_by_pdf_is_bound_to_claims_and_executable_package(tmp_path: Path
         "--dataset", str(fixture / "dataset.json"),
         "--events", str(fixture / "events.json"),
         "--training", str(fixture / "training.json"),
+        "--policy", str(fixture / "policy.json"),
         "--output", str(tmp_path / "pair-run"),
     ]) == 0
     run = json.loads((tmp_path / "pair-run/report.json").read_text())

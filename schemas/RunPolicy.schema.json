@@ -6,6 +6,15 @@
       "title": "Allow Day Aggregation",
       "type": "boolean"
     },
+    "financing_mode": {
+      "default": "cash_only",
+      "enum": [
+        "cash_only",
+        "unbounded_margin"
+      ],
+      "title": "Financing Mode",
+      "type": "string"
+    },
     "sandbox": {
       "default": "development",
       "enum": [
