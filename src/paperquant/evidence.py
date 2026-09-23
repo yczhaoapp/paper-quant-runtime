@@ -7,6 +7,7 @@ import hashlib
 from pathlib import Path
 
 from paperquant.compiler import fingerprint
+from paperquant.market_semantics import validate_market_event
 from paperquant.models import RunBundle
 
 
@@ -38,6 +39,18 @@ def verify_bundle(bundle: RunBundle) -> None:
         "policy": fingerprint(plan.policy) == plan.policy_sha256,
         "final equity": bool(report.accounts) and report.final_equity == report.accounts[-1].equity,
     }
+    try:
+        for event in bundle.source_events:
+            validate_market_event(bundle.dataset_declaration, event)
+        checks["source market semantics"] = True
+    except ValueError:
+        checks["source market semantics"] = False
+    maximum_age = bundle.strategy_declaration.data.max_staleness_seconds
+    if maximum_age is not None:
+        checks["effective market staleness"] = all(
+            (event.available_time - event.event_time).total_seconds() <= maximum_age
+            for event in bundle.effective_events
+        )
     if (bundle.package_source is None) != (plan.package_source_sha256 is None):
         checks["package source presence"] = False
     elif bundle.package_source is not None:

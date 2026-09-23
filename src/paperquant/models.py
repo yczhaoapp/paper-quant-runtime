@@ -38,6 +38,13 @@ class Granularity(StrEnum):
     DAY = "day"
 
 
+class MarketKind(StrEnum):
+    BAR = "bar"
+    TRADE = "trade"
+    QUOTE_L1 = "quote_l1"
+    BOOK_L2 = "book_l2"
+
+
 class StrategyKind(StrEnum):
     RULE = "rule"
     SUPERVISED = "supervised"
@@ -90,6 +97,23 @@ class DataNeed(Model):
     fields: frozenset[str]
     symbols: frozenset[str]
     minimum_events_per_symbol: int = Field(default=1, ge=1)
+    market_kind: MarketKind | None = None
+    bar_seconds: int | None = Field(default=None, ge=1)
+    max_staleness_seconds: int | None = Field(default=None, ge=0)
+    minimum_book_depth: int | None = Field(default=None, ge=2)
+
+    @model_validator(mode="after")
+    def check_market_requirements(self) -> DataNeed:
+        if self.bar_seconds is not None and self.granularity != Granularity.MINUTE:
+            raise ValueError("bar_seconds applies only to minute bars")
+        if self.market_kind == MarketKind.BAR and self.granularity == Granularity.TICK:
+            raise ValueError("tick strategies cannot require bar payloads")
+        if self.market_kind in {MarketKind.TRADE, MarketKind.QUOTE_L1, MarketKind.BOOK_L2} \
+                and self.granularity != Granularity.TICK:
+            raise ValueError("trade and order-book payloads require tick granularity")
+        if self.minimum_book_depth is not None and self.market_kind != MarketKind.BOOK_L2:
+            raise ValueError("minimum_book_depth requires book_l2")
+        return self
 
 
 class StrategyDeclaration(Model):
@@ -123,6 +147,22 @@ class DatasetDeclaration(Model):
     session_timezone: str = "UTC"
     session_open: time | None = None
     session_close: time | None = None
+    market_kind: MarketKind | None = None
+    bar_seconds: int | None = Field(default=None, ge=1)
+    book_depth: int | None = Field(default=None, ge=2)
+
+    @model_validator(mode="after")
+    def check_market_declaration(self) -> DatasetDeclaration:
+        if self.bar_seconds is not None and self.granularity != Granularity.MINUTE:
+            raise ValueError("bar_seconds applies only to minute bars")
+        if self.book_depth is not None and self.market_kind != MarketKind.BOOK_L2:
+            raise ValueError("book_depth requires book_l2")
+        if self.market_kind == MarketKind.BAR and self.granularity == Granularity.TICK:
+            raise ValueError("tick datasets cannot contain bar payloads")
+        if self.market_kind in {MarketKind.TRADE, MarketKind.QUOTE_L1, MarketKind.BOOK_L2} \
+                and self.granularity != Granularity.TICK:
+            raise ValueError("trade and order-book payloads require tick granularity")
+        return self
 
 
 class EngineCapability(Model):
@@ -198,6 +238,8 @@ class MarketEvent(Model):
     event_time: datetime
     available_time: datetime
     bar_open_time: datetime | None = None
+    trade_id: str | None = None
+    aggressor_side: Literal["buy", "sell"] | None = None
     values: dict[str, Decimal]
 
     @model_validator(mode="after")
@@ -295,6 +337,17 @@ class TrainingSample(Model):
     action: int | None = None
     next_action: int | None = None
     terminal: bool = False
+    truncated: bool = False
+    episode_id: str | None = None
+    step: int | None = Field(default=None, ge=0)
+
+    @model_validator(mode="after")
+    def check_episode_marker(self) -> TrainingSample:
+        if self.terminal and self.truncated:
+            raise ValueError("a transition cannot be both terminated and truncated")
+        if (self.episode_id is None) != (self.step is None):
+            raise ValueError("episode_id and step must be declared together")
+        return self
 
 
 class TrainingRequest(Model):

@@ -1,6 +1,22 @@
 {
   "additionalProperties": false,
   "properties": {
+    "aggressor_side": {
+      "anyOf": [
+        {
+          "enum": [
+            "buy",
+            "sell"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Aggressor Side"
+    },
     "available_time": {
       "format": "date-time",
       "title": "Available Time",
@@ -31,6 +47,18 @@
     "symbol": {
       "title": "Symbol",
       "type": "string"
+    },
+    "trade_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Trade Id"
     },
     "values": {
       "additionalProperties": {

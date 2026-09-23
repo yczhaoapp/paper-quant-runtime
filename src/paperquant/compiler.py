@@ -10,9 +10,11 @@ from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 from pydantic import BaseModel
 
+from paperquant.market_semantics import market_depth, market_kind, validate_market_event
 from paperquant.models import (
     ContractFault,
     Conversion,
+    DataNeed,
     DatasetDeclaration,
     EngineCapability,
     EngineProfile,
@@ -24,14 +26,41 @@ from paperquant.models import (
     RunPolicy,
     Stage,
     StrategyDeclaration,
+    StrategyKind,
     TrainingRequest,
+    TrainingSample,
 )
 
 
 def canonical_document(value: Any) -> Any:
-    if isinstance(value, MarketEvent) and value.bar_open_time is None:
-        # Preserve the canonical tick payload when adding a bar-only field.
-        return canonical_document(value.model_dump(mode="python", exclude={"bar_open_time"}))
+    if isinstance(value, DataNeed):
+        new_optional = {"market_kind", "bar_seconds", "max_staleness_seconds",
+                        "minimum_book_depth"}
+        excluded = {name for name in new_optional if getattr(value, name) is None}
+        return canonical_document(value.model_dump(mode="python", exclude=excluded))
+    if isinstance(value, StrategyDeclaration):
+        document = value.model_dump(mode="python", exclude={"data"})
+        document["data"] = canonical_document(value.data)
+        return canonical_document(document)
+    if isinstance(value, DatasetDeclaration):
+        new_optional = {"market_kind", "bar_seconds", "book_depth"}
+        excluded_dataset = {name for name in new_optional if getattr(value, name) is None}
+        return canonical_document(value.model_dump(mode="python", exclude=excluded_dataset))
+    if isinstance(value, MarketEvent):
+        # Optional event metadata does not change the hash of existing tick fixtures.
+        return canonical_document(value.model_dump(mode="python", exclude_none=True))
+    if isinstance(value, TrainingSample):
+        # Preserve fixed training provenance when only optional episode fields are added.
+        excluded_sample: set[str] = set()
+        if value.episode_id is None:
+            excluded_sample.update({"episode_id", "step"})
+        if not value.truncated:
+            excluded_sample.add("truncated")
+        return canonical_document(value.model_dump(mode="python", exclude=excluded_sample))
+    if isinstance(value, TrainingRequest):
+        document = value.model_dump(mode="python", exclude={"samples"})
+        document["samples"] = [canonical_document(sample) for sample in value.samples]
+        return canonical_document(document)
     if isinstance(value, BaseModel):
         return canonical_document(value.model_dump(mode="python"))
     if isinstance(value, dict):
@@ -90,6 +119,12 @@ def _check_source(
         ids.add(event.event_id)
         if not dataset.fields <= event.values.keys():
             _reject(run_id, Stage.INPUT, ErrorCode.DATA_FIELD_MISSING, "Actual event lacks fields")
+        try:
+            validate_market_event(dataset, event)
+        except ValueError as exc:
+            _reject(run_id, Stage.INPUT, ErrorCode.INPUT_INVALID,
+                    "Market event violates declared field semantics",
+                    event_id=event.event_id, reason=str(exc))
         if dataset.granularity != Granularity.TICK:
             if event.bar_open_time is None:
                 _reject(run_id, Stage.INPUT, ErrorCode.INPUT_INVALID, "Bar open time is required")
@@ -102,9 +137,15 @@ def _check_source(
                     "Bar open precedes the prior signal availability",
                 )
             duration = (event.event_time - event.bar_open_time).total_seconds()
-            if dataset.granularity == Granularity.MINUTE and not 0 <= duration <= 60:
-                _reject(run_id, Stage.INPUT, ErrorCode.TIMEFRAME_MISMATCH,
-                        "Minute bar duration is outside one minute", event_id=event.event_id)
+            if dataset.granularity == Granularity.MINUTE:
+                if dataset.bar_seconds is not None:
+                    valid_duration = duration == dataset.bar_seconds
+                else:
+                    valid_duration = 0 < duration <= 60
+                if not valid_duration:
+                    _reject(run_id, Stage.INPUT, ErrorCode.TIMEFRAME_MISMATCH,
+                            "Minute bar duration differs from its declared interval",
+                            event_id=event.event_id)
             if dataset.granularity == Granularity.DAY:
                 if not 3600 <= duration <= 86400:
                     _reject(run_id, Stage.INPUT, ErrorCode.TIMEFRAME_MISMATCH,
@@ -208,6 +249,50 @@ def _check_effective_timing(run_id: str, events: tuple[MarketEvent, ...]) -> Non
         last_available[event.symbol] = event.available_time
 
 
+def _check_training_trajectory(
+    run_id: str, strategy: StrategyDeclaration, training: TrainingRequest | None,
+) -> None:
+    if training is None:
+        return
+    samples = training.samples
+    if strategy.kind != StrategyKind.REINFORCEMENT:
+        if any(sample.episode_id is not None or sample.truncated for sample in samples):
+            _reject(run_id, Stage.TRAIN, ErrorCode.TRAINING_FAILED,
+                    "Episode transitions are only valid for reinforcement training")
+        return
+    has_episodes = any(sample.episode_id is not None for sample in samples)
+    if not has_episodes:
+        if any(sample.truncated for sample in samples):
+            _reject(run_id, Stage.TRAIN, ErrorCode.TRAINING_FAILED,
+                    "Truncated transitions require explicit episode boundaries")
+        return
+    if any(sample.episode_id is None for sample in samples):
+        _reject(run_id, Stage.TRAIN, ErrorCode.TRAINING_FAILED,
+                "Training request mixes bounded and unbounded episodes")
+    completed: set[str] = set()
+    previous = None
+    for sample in samples:
+        episode = sample.episode_id
+        assert episode is not None and sample.step is not None
+        if previous is None or episode != previous.episode_id:
+            if previous is not None and not (previous.terminal or previous.truncated):
+                _reject(run_id, Stage.TRAIN, ErrorCode.TRAINING_FAILED,
+                        "Previous episode has no terminal or truncation boundary")
+            if episode in completed or sample.step != 0:
+                _reject(run_id, Stage.TRAIN, ErrorCode.TRAINING_FAILED,
+                        "Episode IDs must be contiguous and begin at step zero")
+            completed.add(episode)
+        else:
+            assert previous.step is not None
+            if previous.terminal or previous.truncated or sample.step != previous.step + 1:
+                _reject(run_id, Stage.TRAIN, ErrorCode.TRAINING_FAILED,
+                        "Episode transition follows a boundary or skips a step")
+        previous = sample
+    if previous is not None and not (previous.terminal or previous.truncated):
+        _reject(run_id, Stage.TRAIN, ErrorCode.TRAINING_FAILED,
+                "Final episode has no terminal or truncation boundary")
+
+
 def compile_run(
     *,
     run_id: str,
@@ -238,6 +323,7 @@ def compile_run(
             )
     elif training is not None:
         _reject(run_id, Stage.TRAIN, ErrorCode.TRAINING_FAILED, "Rule strategy cannot train")
+    _check_training_trajectory(run_id, strategy, training)
     if not strategy.actions <= engine.actions:
         _reject(
             run_id, Stage.COMPILE, ErrorCode.ENGINE_UNSUPPORTED, "Engine lacks declared actions"
@@ -257,6 +343,23 @@ def compile_run(
             "Dataset lacks fields",
             missing=missing,
         )
+    source_kind = market_kind(dataset)
+    if strategy.data.market_kind is not None and strategy.data.market_kind != source_kind:
+        _reject(run_id, Stage.COMPILE, ErrorCode.INPUT_INVALID,
+                "Dataset market kind differs from the strategy requirement",
+                required=strategy.data.market_kind, actual=source_kind)
+    if (strategy.data.minimum_book_depth is not None
+        and market_depth(dataset) < strategy.data.minimum_book_depth):
+        _reject(run_id, Stage.COMPILE, ErrorCode.DATA_FIELD_MISSING,
+                "Dataset order book is shallower than the strategy requires",
+                required=str(strategy.data.minimum_book_depth),
+                actual=str(market_depth(dataset)))
+    if (strategy.data.bar_seconds is not None
+        and dataset.bar_seconds != strategy.data.bar_seconds):
+        _reject(run_id, Stage.COMPILE, ErrorCode.TIMEFRAME_MISMATCH,
+                "Dataset bar interval differs from the strategy requirement",
+                required=str(strategy.data.bar_seconds),
+                actual=str(dataset.bar_seconds))
     execution_fields = engine.execution_fields.get(strategy.data.granularity,
                                                     frozenset())
 
@@ -324,6 +427,15 @@ def compile_run(
         )
 
     _check_effective_timing(run_id, effective)
+    if strategy.data.max_staleness_seconds is not None:
+        for event in effective:
+            staleness = (event.available_time - event.event_time).total_seconds()
+            if staleness > strategy.data.max_staleness_seconds:
+                _reject(run_id, Stage.INPUT, ErrorCode.INPUT_INVALID,
+                        "Market event exceeds the declared maximum staleness",
+                        event_id=event.event_id,
+                        seconds=str(staleness),
+                        maximum=str(strategy.data.max_staleness_seconds))
     if strategy.data.granularity != dataset.granularity:
         effective_declaration = DatasetDeclaration(
             dataset_id=dataset.dataset_id,

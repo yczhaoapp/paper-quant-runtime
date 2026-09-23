@@ -15,6 +15,18 @@
           "default": null,
           "title": "Action"
         },
+        "episode_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Episode Id"
+        },
         "features": {
           "additionalProperties": {
             "anyOf": [
@@ -81,6 +93,19 @@
           "default": null,
           "title": "Reward"
         },
+        "step": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Step"
+        },
         "target": {
           "anyOf": [
             {
@@ -100,6 +125,11 @@
         "terminal": {
           "default": false,
           "title": "Terminal",
+          "type": "boolean"
+        },
+        "truncated": {
+          "default": false,
+          "title": "Truncated",
           "type": "boolean"
         }
       },

@@ -38,6 +38,19 @@
           "type": "array",
           "uniqueItems": true
         },
+        "bar_seconds": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bar Seconds"
+        },
         "fields": {
           "items": {
             "type": "string"
@@ -63,6 +76,50 @@
           ],
           "title": "Kind",
           "type": "string"
+        },
+        "market_kind": {
+          "anyOf": [
+            {
+              "enum": [
+                "bar",
+                "trade",
+                "quote_l1",
+                "book_l2"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Market Kind"
+        },
+        "max_staleness_seconds": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max Staleness Seconds"
+        },
+        "minimum_book_depth": {
+          "anyOf": [
+            {
+              "minimum": 2,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Minimum Book Depth"
         },
         "strategy_id": {
           "title": "Strategy Id",
