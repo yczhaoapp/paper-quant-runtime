@@ -1,0 +1,12 @@
+{
+  "file": "chipwanya-2023.pdf",
+  "sha256": "ce5644b3dc03932fca64156631ddcb2ef3f2abab9a44ec6d8364f5c0ba2fe7c1",
+  "source_url": "https://arxiv.org/pdf/2310.16855",
+  "title": "Stock Market Directional Bias Prediction Using ML Algorithms",
+  "authors": ["Ryan Chipwanya"],
+  "license": "Creative Commons Attribution 4.0 International (CC BY 4.0)",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "license_evidence": "https://arxiv.org/abs/2310.16855",
+  "retrieved_at": "2026-09-24",
+  "note": "Unmodified author PDF from arXiv. The arXiv abstract links to CC BY 4.0; author, source, and license are retained."
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "source": {
+    "title": "A Modular Framework for Reinforcement Learning Optimal Execution",
+    "url": "https://arxiv.org/pdf/2208.06244v1",
+    "file": "../sources/pardo-2022.pdf",
+    "format": "pdf",
+    "sha256": "289db4306c3f73189511586bf128793f4eeaa3b6d36991508458c3062d83d838",
+    "license": "CC BY 4.0"
+  },
+  "package": "../../strategies/rule.time_sliced_execution",
+  "package_source_sha256": "b227d3f49bdc31b4946db1b910a813f383a757b2f1edadeae3f7f6270fb83459",
+  "claim_file": "../claims/time_sliced_execution.json",
+  "expected": {
+    "strategy_id": "rule.time_sliced_execution",
+    "kind": "rule",
+    "granularity": "day",
+    "training_required": false,
+    "symbols": ["DEMO"],
+    "actions": ["none", "submit_order"]
+  },
+  "anchors": [
+    {"page": 11, "text": "divides the execution interval into segments referred to as Buckets", "claim_index": 0},
+    {"page": 7, "text": "volume may be decided a priori", "claim_index": 1}
+  ],
+  "review_note": "Human review selects only the paper's pre-scheduled TWAP benchmark as a rule package. The daily AAPL proxy, market child orders, and next-open fills do not reproduce the original BTC order-book limit-order simulation or RL agent. Anchors establish source provenance, while the schedule oracle tests the reduced method."
+}

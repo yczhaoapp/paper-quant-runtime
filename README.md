@@ -39,7 +39,7 @@ uv run --no-sync pytest -q
 uv run --no-sync python scripts/verify_strict.py --require-clean --output runs/strict-verification
 ```
 
-该命令还会逐项执行 `examples/catalog.json` 中的 18 个策略，要求每项生成真实决策、成交、论文主张绑定、独立 oracle 测试路径，以及主机和严格 worker 的一致轨迹；并验证一个真实 PDF 的页级接入和策略绑定。逐项报告与 `acceptance.json` 位于本轮 `attempts/<attempt_id>/acceptance/`，主收据保存该验收文件的 SHA-256。只需查看主机运行时，也可执行 `uv run --no-sync python scripts/acceptance.py --output runs/acceptance-host`。
+该命令还会逐项执行 `examples/catalog.json` 中的 18 个策略，要求每项生成真实决策、成交、论文主张绑定、独立 oracle 测试路径，以及主机和严格 worker 的一致轨迹；并验证三篇真实 CC BY PDF 的页级接入和策略绑定。逐项报告与 `acceptance.json` 位于本轮 `attempts/<attempt_id>/acceptance/`，主收据保存该验收文件的 SHA-256。只需查看主机运行时，也可执行 `uv run --no-sync python scripts/acceptance.py --output runs/acceptance-host`。
 
 隔离边界、实际容器配置核查及已知限制见 [沙箱说明](docs/sandbox.md)。
 

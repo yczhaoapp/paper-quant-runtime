@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "source": {
+    "title": "Stock Market Directional Bias Prediction Using ML Algorithms",
+    "url": "https://arxiv.org/pdf/2310.16855",
+    "file": "../sources/chipwanya-2023.pdf",
+    "format": "pdf",
+    "sha256": "ce5644b3dc03932fca64156631ddcb2ef3f2abab9a44ec6d8364f5c0ba2fe7c1",
+    "license": "CC BY 4.0"
+  },
+  "package": "../../strategies/supervised.logistic_direction",
+  "package_source_sha256": "36775edde2aafb1827dbef4121999b668f8f063b59a8352ef757e350bf12a08e",
+  "claim_file": "../claims/logistic_direction.json",
+  "expected": {
+    "strategy_id": "supervised.logistic_direction",
+    "kind": "supervised",
+    "granularity": "day",
+    "training_required": true,
+    "symbols": ["DEMO"],
+    "actions": ["none", "prediction", "target_position"]
+  },
+  "anchors": [
+    {"page": 2, "text": "prices at the end of the current day to those of the following day", "claim_index": 0},
+    {"page": 3, "text": "Number of Training Epochs (epochs): 1000", "claim_index": 1}
+  ],
+  "review_note": "Human review maps the paper's directional label and logistic training settings to an AAPL proxy package. Text anchors verify the fixed paper; an independent oracle and chronological holdout verify selected code behavior, while the original Japanese data and reported accuracy remain unreproduced."
+}

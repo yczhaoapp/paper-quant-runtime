@@ -91,13 +91,18 @@ def main() -> int:
             raise ValueError("catalog, candidates and runnable packages differ")
         paper_checks = []
         recipe_paths = sorted((ROOT / "research/recipes").glob("*.json"))
-        if not recipe_paths:
-            raise ValueError("no real-paper intake recipe is available")
+        if len(recipe_paths) < 3:
+            raise ValueError("three real-paper intake recipes are required")
         for recipe_path in recipe_paths:
             checked = verify_recipe(recipe_path)
             if checked["strategy_id"] not in ids:
                 raise ValueError("paper recipe has no catalog strategy")
             paper_checks.append(checked)
+        if (len({check["source_sha256"] for check in paper_checks}) < 3
+            or len({check["strategy_id"] for check in paper_checks}) < 3
+            or {check["strategy_id"].split(".", 1)[0] for check in paper_checks}
+               != {"rule", "supervised", "reinforcement"}):
+            raise ValueError("real-paper cases must cover three distinct sources and families")
         records = []
         for entry in entries:
             strategy_id = entry["strategy"]
