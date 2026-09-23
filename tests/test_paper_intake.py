@@ -183,7 +183,8 @@ class ExternalSchedule:
 '''.replace("STRATEGY_ID", strategy_id).replace("SOURCE_URL", original["source"]["url"])
     source = source.replace("SLICES", str(slices)).replace(
         "CHILD_QUANTITY", str(parent_quantity // slices))
-    (package / "strategy.py").write_text(source, encoding="utf-8")
+    # Preserve the reviewed source bytes on every platform, including Windows.
+    (package / "strategy.py").write_bytes(source.encode("utf-8"))
     declaration = StrategyDeclaration.model_validate({
         "strategy_id": strategy_id, "kind": "rule",
         "data": {"granularity": "day", "fields": ["open", "close"],
@@ -220,7 +221,8 @@ class ExternalSchedule:
         (ROOT / "research/sources/pardo-2022.pdf").read_bytes())
     original["source"]["file"] = "paper.pdf"
     original["package"] = "package"
-    original["package_source_sha256"] = hashlib.sha256(source.encode()).hexdigest()
+    original["package_source_sha256"] = hashlib.sha256(
+        (package / "strategy.py").read_bytes()).hexdigest()
     original["claim_file"] = "claim.json"
     original["spec_file"] = "spec.json"
     original["spec_sha256"] = hashlib.sha256(spec_bytes).hexdigest()
