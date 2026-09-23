@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import ast
 import hashlib
 import io
 import json
@@ -43,6 +44,7 @@ class ExpectedStrategy(PaperModel):
     strategy_id: str
     kind: Literal["rule", "supervised", "reinforcement"]
     granularity: Literal["tick", "minute", "day"]
+    fields: frozenset[str]
     training_required: bool
     symbols: frozenset[str]
     actions: frozenset[str]
@@ -54,9 +56,30 @@ class Recipe(PaperModel):
     package: str
     package_source_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
     claim_file: str
+    spec_file: str
+    spec_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
     expected: ExpectedStrategy
     anchors: tuple[Anchor, ...] = Field(min_length=1)
     review_note: str = Field(min_length=16)
+
+
+class MethodStep(PaperModel):
+    role: Literal["data", "signal", "training", "inference", "execution", "reward"]
+    claim_index: int = Field(ge=0)
+    paper_rule: str = Field(min_length=12)
+    runtime_rule: str = Field(min_length=12)
+    implementation: str = Field(min_length=5)
+    oracle_node: str = Field(pattern=r"^tests/[^\s]+\.py::[^\s]+$")
+    adaptation: str = Field(min_length=12)
+
+
+class MethodSpec(PaperModel):
+    schema_version: Literal["1.0"] = "1.0"
+    strategy_id: str
+    source_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+    fields: frozenset[str]
+    steps: tuple[MethodStep, ...] = Field(min_length=1)
+    excluded_paper_components: tuple[str, ...] = Field(min_length=1)
 
 
 class _HTMLText(HTMLParser):
@@ -166,7 +189,7 @@ def verify_recipe(recipe_file: Path) -> dict[str, object]:
     else:
         pages = list(extract_text(raw, recipe.source.format))
     package_path = _resolve(recipe_file, recipe.package)
-    manifest, _ = inspect_package(recipe.expected.strategy_id, package_path)
+    manifest, strategy_source = inspect_package(recipe.expected.strategy_id, package_path)
     declaration = manifest.declaration
     if manifest.source_sha256 != recipe.package_source_sha256:
         raise ValueError("Strategy package source differs from reviewed recipe")
@@ -174,6 +197,7 @@ def verify_recipe(recipe_file: Path) -> dict[str, object]:
     if (declaration.strategy_id != expected.strategy_id
         or declaration.kind != expected.kind
         or declaration.data.granularity != expected.granularity
+        or declaration.data.fields != expected.fields
         or declaration.training_required != expected.training_required
         or declaration.data.symbols != expected.symbols
         or declaration.actions != expected.actions
@@ -184,6 +208,29 @@ def verify_recipe(recipe_file: Path) -> dict[str, object]:
     claim_source = claim.get("source", claim.get("trading_source"))
     if claim["strategy_id"] != expected.strategy_id or claim_source["url"] != recipe.source.url:
         raise ValueError("Paper claim does not identify the mapped strategy and source")
+    spec_path = _resolve(recipe_file, recipe.spec_file)
+    spec_bytes = spec_path.read_bytes()
+    spec_sha = hashlib.sha256(spec_bytes).hexdigest()
+    if spec_sha != recipe.spec_sha256:
+        raise ValueError("Reviewed method spec differs from its pinned digest")
+    spec = MethodSpec.model_validate_json(spec_bytes)
+    if (spec.strategy_id != expected.strategy_id or spec.source_sha256 != source_sha
+        or spec.fields != expected.fields
+        or {step.claim_index for step in spec.steps} != set(range(len(claim["claims"])))):
+        raise ValueError("Reviewed method spec does not cover the source and claims")
+    strategy_tree = ast.parse(strategy_source)
+    classes = {node.name: node for node in strategy_tree.body if isinstance(node, ast.ClassDef)}
+    for step in spec.steps:
+        if step.implementation.startswith("scripts/"):
+            if not (Path(__file__).resolve().parents[2] / step.implementation).is_file():
+                raise ValueError("Reviewed implementation script is absent")
+        else:
+            parts = step.implementation.split(".")
+            if len(parts) != 2 or parts[0] not in classes or not any(
+                isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
+                and node.name == parts[1] for node in classes[parts[0]].body
+            ):
+                raise ValueError("Reviewed implementation symbol is absent")
     evidence = []
     for anchor in recipe.anchors:
         if anchor.page > len(pages) or anchor.claim_index >= len(claim["claims"]):
@@ -202,6 +249,9 @@ def verify_recipe(recipe_file: Path) -> dict[str, object]:
         "page_count": len(pages),
         "package_source_sha256": manifest.source_sha256,
         "claim_sha256": hashlib.sha256(claim_path.read_bytes()).hexdigest(),
+        "method_spec_sha256": spec_sha,
+        "method_steps": len(spec.steps),
+        "method_oracle_nodes": tuple(step.oracle_node for step in spec.steps),
         "anchors": evidence,
         "review_note": recipe.review_note,
         "interpretation": "human-reviewed mapping; anchor checks do not prove semantic fidelity",

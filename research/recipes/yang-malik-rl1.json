@@ -11,10 +11,13 @@
   "package": "../../strategies/reinforcement.pairs_actor_critic",
   "package_source_sha256": "296f4832b0139f7201d10a126a938a4d4741996ea92e1b2d5a919a70dea96852",
   "claim_file": "../claims/pairs_actor_critic.json",
+  "spec_file": "../specs/pairs-actor-critic.json",
+  "spec_sha256": "f78380fe7babbfeb7f6a72b9150f68a8d210db7d782c2a56023bfd5111c9c651",
   "expected": {
     "strategy_id": "reinforcement.pairs_actor_critic",
     "kind": "reinforcement",
     "granularity": "day",
+    "fields": ["open", "high", "low", "close", "volume"],
     "training_required": true,
     "symbols": ["ALPHA", "BETA"],
     "actions": ["none", "prediction", "target_position"]

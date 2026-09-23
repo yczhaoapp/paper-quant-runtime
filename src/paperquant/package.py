@@ -101,12 +101,17 @@ def run_package(
     if fingerprint(actual_capability) != fingerprint(engine_capability):
         _fail(run_id, ErrorCode.ENGINE_UNSUPPORTED,
               "Advertised capability differs from the selected engine")
+    try:
+        actual_profile = engine.profile()
+    except Exception:
+        _fail(run_id, ErrorCode.ENGINE_UNSUPPORTED,
+              "Engine cannot declare its execution profile")
     compile_run(
         run_id=run_id,
         strategy=manifest.declaration,
         dataset=dataset,
         engine=engine_capability,
-        engine_profile=engine.profile(),
+        engine_profile=actual_profile,
         policy=policy,
         events=events,
         training=training,

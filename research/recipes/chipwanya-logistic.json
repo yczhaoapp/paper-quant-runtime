@@ -11,10 +11,13 @@
   "package": "../../strategies/supervised.logistic_direction",
   "package_source_sha256": "36775edde2aafb1827dbef4121999b668f8f063b59a8352ef757e350bf12a08e",
   "claim_file": "../claims/logistic_direction.json",
+  "spec_file": "../specs/logistic-direction.json",
+  "spec_sha256": "4ab55ba9f983768637532bef6a3c1ddc41e4aac3018ed9afe583040ad58480c7",
   "expected": {
     "strategy_id": "supervised.logistic_direction",
     "kind": "supervised",
     "granularity": "day",
+    "fields": ["open", "high", "low", "close", "volume"],
     "training_required": true,
     "symbols": ["DEMO"],
     "actions": ["none", "prediction", "target_position"]

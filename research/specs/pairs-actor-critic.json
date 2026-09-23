@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "strategy_id": "reinforcement.pairs_actor_critic",
+  "source_sha256": "9b30affe7f856c1add02ff4fb8bb7f3eac670e877a19bf3c91a18bbf4fc98eb3",
+  "fields": ["open", "high", "low", "close", "volume"],
+  "steps": [
+    {
+      "role": "data",
+      "claim_index": 0,
+      "paper_rule": "Construct a pair spread from rolling regression observations.",
+      "runtime_rule": "Use only completed history to fit the rolling pair relation and residual.",
+      "implementation": "PairsActorCritic.observation",
+      "oracle_node": "tests/test_pairs_actor_critic_paper.py::test_causal_rolling_regression_matches_independent_statistics",
+      "adaptation": "Synthetic daily equities and a short window replace the source's crypto data."
+    },
+    {
+      "role": "inference",
+      "claim_index": 1,
+      "paper_rule": "Use the RL1 discrete action space to choose pair positions.",
+      "runtime_rule": "Map three discrete decisions to two explicit target-position orders.",
+      "implementation": "PairsActorCritic.decide",
+      "oracle_node": "tests/test_pairs_actor_critic_paper.py::test_paper_binding_and_disjoint_chronology",
+      "adaptation": "Fixed paired notional replaces the paper's dynamic sizing branch."
+    },
+    {
+      "role": "training",
+      "claim_index": 2,
+      "paper_rule": "Update an actor and critic with the selected A2C method.",
+      "runtime_rule": "Train a linear actor and TD critic from the declared transition samples.",
+      "implementation": "PairsActorCritic.train",
+      "oracle_node": "tests/test_pairs_actor_critic_paper.py::test_discrete_a2c_updates_match_independent_reference[23]",
+      "adaptation": "A linear approximator replaces the paper's larger network and experiments."
+    }
+  ],
+  "excluded_paper_components": [
+    "The RL2 continuous sizing branch and original crypto experiments are not reproduced."
+  ]
+}

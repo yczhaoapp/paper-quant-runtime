@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "strategy_id": "supervised.logistic_direction",
+  "source_sha256": "ce5644b3dc03932fca64156631ddcb2ef3f2abab9a44ec6d8364f5c0ba2fe7c1",
+  "fields": ["open", "high", "low", "close", "volume"],
+  "steps": [
+    {
+      "role": "data",
+      "claim_index": 0,
+      "paper_rule": "Label direction by comparing today's close with the following close.",
+      "runtime_rule": "Build causal next-close labels before the evaluation interval starts.",
+      "implementation": "scripts/build_public_direction.py",
+      "oracle_node": "tests/test_logistic_direction_paper.py::test_training_labels_and_split_reconstruct_from_pinned_raw_market",
+      "adaptation": "Public AAPL bars stand in for the paper's original Japanese securities."
+    },
+    {
+      "role": "training",
+      "claim_index": 1,
+      "paper_rule": "Train a logistic direction classifier with one thousand epochs.",
+      "runtime_rule": "Fit the declared logistic parameters and persist their trained model bytes.",
+      "implementation": "DailyDirectionLogistic.train",
+      "oracle_node": "tests/test_logistic_direction_paper.py::test_training_is_label_sensitive_and_reduces_log_loss[3]",
+      "adaptation": "A selected model family and feature subset replace the paper's full comparison."
+    }
+  ],
+  "excluded_paper_components": [
+    "Original market sample, model comparison, and published accuracy are not reproduced."
+  ]
+}

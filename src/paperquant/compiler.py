@@ -242,6 +242,12 @@ def compile_run(
         _reject(
             run_id, Stage.COMPILE, ErrorCode.ENGINE_UNSUPPORTED, "Engine lacks declared actions"
         )
+    if (engine.max_symbols is not None and len(strategy.data.symbols) > engine.max_symbols):
+        _reject(run_id, Stage.COMPILE, ErrorCode.ENGINE_UNSUPPORTED,
+                "Engine cannot support the declared number of symbols")
+    if policy.financing_mode not in engine.financing_modes:
+        _reject(run_id, Stage.COMPILE, ErrorCode.ENGINE_UNSUPPORTED,
+                "Engine cannot support the declared financing mode")
     if not strategy.data.fields <= dataset.fields:
         missing = ",".join(sorted(strategy.data.fields - dataset.fields))
         _reject(

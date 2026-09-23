@@ -118,6 +118,22 @@
           "title": "Execution Fields",
           "type": "object"
         },
+        "financing_modes": {
+          "default": [
+            "cash_only",
+            "unbounded_margin"
+          ],
+          "items": {
+            "enum": [
+              "cash_only",
+              "unbounded_margin"
+            ],
+            "type": "string"
+          },
+          "title": "Financing Modes",
+          "type": "array",
+          "uniqueItems": true
+        },
         "granularities": {
           "items": {
             "$ref": "#/$defs/Granularity"
@@ -125,6 +141,19 @@
           "title": "Granularities",
           "type": "array",
           "uniqueItems": true
+        },
+        "max_symbols": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max Symbols"
         }
       },
       "required": [

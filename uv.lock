@@ -21,6 +21,14 @@ wheels = [
 ]
 
 [[package]]
+name = "backtrader"
+version = "1.9.78.123"
+source = { registry = "https://pypi.org/simple" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f3/ef/328c6ec332435f63b3e18febd263686b8ba07e990676a862cc8522ba38f5/backtrader-1.9.78.123-py2.py3-none-any.whl", hash = "sha256:9a07a516b0de9155539a35c56e9404d8711dd7020b3d37b30495e83e1b9d5dfd", size = 419517, upload-time = "2023-04-19T14:13:18.842Z" },
+]
+
+[[package]]
 name = "colorama"
 version = "0.4.6"
 source = { registry = "https://pypi.org/simple" }
@@ -163,14 +171,20 @@ dependencies = [
 
 [package.optional-dependencies]
 dev = [
+    { name = "backtrader" },
     { name = "jsonschema" },
     { name = "mypy" },
     { name = "pytest" },
     { name = "ruff" },
 ]
+engine-backtrader = [
+    { name = "backtrader" },
+]
 
 [package.metadata]
 requires-dist = [
+    { name = "backtrader", marker = "extra == 'dev'", specifier = "==1.9.78.123" },
+    { name = "backtrader", marker = "extra == 'engine-backtrader'", specifier = "==1.9.78.123" },
     { name = "jsonschema", marker = "extra == 'dev'", specifier = ">=4,<5" },
     { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.11,<2" },
     { name = "pydantic", specifier = ">=2.8,<3" },
@@ -179,7 +193,7 @@ requires-dist = [
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.6,<1" },
     { name = "tzdata", specifier = "==2026.4" },
 ]
-provides-extras = ["dev"]
+provides-extras = ["dev", "engine-backtrader"]
 
 [[package]]
 name = "pathspec"

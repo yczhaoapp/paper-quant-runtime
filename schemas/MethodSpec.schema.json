@@ -1,0 +1,113 @@
+{
+  "$defs": {
+    "MethodStep": {
+      "additionalProperties": false,
+      "properties": {
+        "adaptation": {
+          "minLength": 12,
+          "title": "Adaptation",
+          "type": "string"
+        },
+        "claim_index": {
+          "minimum": 0,
+          "title": "Claim Index",
+          "type": "integer"
+        },
+        "implementation": {
+          "minLength": 5,
+          "title": "Implementation",
+          "type": "string"
+        },
+        "oracle_node": {
+          "pattern": "^tests/[^\\s]+\\.py::[^\\s]+$",
+          "title": "Oracle Node",
+          "type": "string"
+        },
+        "paper_rule": {
+          "minLength": 12,
+          "title": "Paper Rule",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "data",
+            "signal",
+            "training",
+            "inference",
+            "execution",
+            "reward"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "runtime_rule": {
+          "minLength": 12,
+          "title": "Runtime Rule",
+          "type": "string"
+        }
+      },
+      "required": [
+        "role",
+        "claim_index",
+        "paper_rule",
+        "runtime_rule",
+        "implementation",
+        "oracle_node",
+        "adaptation"
+      ],
+      "title": "MethodStep",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "excluded_paper_components": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Excluded Paper Components",
+      "type": "array"
+    },
+    "fields": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Fields",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Source Sha256",
+      "type": "string"
+    },
+    "steps": {
+      "items": {
+        "$ref": "#/$defs/MethodStep"
+      },
+      "minItems": 1,
+      "title": "Steps",
+      "type": "array"
+    },
+    "strategy_id": {
+      "title": "Strategy Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "strategy_id",
+    "source_sha256",
+    "fields",
+    "steps",
+    "excluded_paper_components"
+  ],
+  "title": "MethodSpec",
+  "type": "object"
+}

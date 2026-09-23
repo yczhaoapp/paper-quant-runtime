@@ -17,13 +17,20 @@ from datetime import UTC, datetime
 from decimal import Decimal
 from pathlib import Path
 
+from paperquant.backtrader_engine import BacktraderEngine
 from paperquant.cli import main as cli
 from paperquant.engine import ReferenceEngine
 from paperquant.evidence import verify_bundle_file
-from paperquant.models import RunReport
+from paperquant.models import (
+    DatasetDeclaration,
+    MarketEvent,
+    RunPolicy,
+    RunReport,
+    TrainingRequest,
+)
 from paperquant.output import atomic_bytes
-from paperquant.package import inspect_package, replay_bundle
-from paperquant.papers import verify_recipe
+from paperquant.package import inspect_package, replay_bundle, run_package
+from paperquant.papers import MethodSpec, Recipe, verify_recipe
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_CASES = (
@@ -35,6 +42,17 @@ PUBLIC_CASES = (
     ("supervised.gaussian_nb_direction", "public_gaussian"),
     ("supervised.random_forest_operations", "public_forest"),
     ("reinforcement.actor_critic_allocation", "public_actor_critic"),
+)
+NATIVE_CASES = (
+    ("rule.moving_average_crossover", "public_aapl"),
+    ("supervised.logistic_direction", "public_direction"),
+    ("reinforcement.actor_critic_allocation", "public_actor_critic"),
+)
+EXTERNAL_PAPER_NODES = (
+    "tests/test_paper_intake.py::"
+    "test_unlisted_paper_package_enters_runtime_without_catalog_changes[12-3]",
+    "tests/test_paper_intake.py::"
+    "test_unlisted_paper_package_enters_runtime_without_catalog_changes[10-5]",
 )
 
 
@@ -80,13 +98,18 @@ def _check_implementation(claim: dict, strategy_id: str) -> None:
                 raise ValueError(f"{strategy_id} implementation script is absent: {script}")
 
 
-def _run_oracles(output: Path, bindings: dict[str, dict]) -> str:
+def _run_oracles(output: Path, bindings: dict[str, dict],
+                 *, retain_artifacts: bool = False) -> str:
+    output.mkdir(parents=True, exist_ok=True)
     nodes = [node for binding in bindings.values() for node in binding["node_ids"]]
     if not nodes or len(nodes) != len(set(nodes)):
         raise ValueError("oracle bindings contain no nodes or duplicate nodes")
     junit = output / "oracle-junit.xml"
+    command = [sys.executable, "-m", "pytest", "-q", *nodes, "--junitxml", str(junit)]
+    if retain_artifacts:
+        command.extend(["--basetemp", str(output / "case-artifacts")])
     completed = subprocess.run(
-        [sys.executable, "-m", "pytest", "-q", *nodes, "--junitxml", str(junit)],
+        command,
         cwd=ROOT, capture_output=True, text=True, timeout=300,
     )
     (output / "oracle-run.log").write_text(
@@ -106,7 +129,7 @@ def _run_oracles(output: Path, bindings: dict[str, dict]) -> str:
     return digest(junit)
 
 
-def _run_paper_case(recipe: Path, entry: dict, output: Path) -> str:
+def _run_paper_case(recipe: Path, entry: dict, output: Path, checked: dict) -> str:
     fixture = ROOT / "examples" / entry["fixture"]
     destination = output / "paper_cases" / entry["strategy"]
     policy = json.loads((fixture / entry["policy"]).read_text()) if "policy" in entry else {}
@@ -132,6 +155,7 @@ def _run_paper_case(recipe: Path, entry: dict, output: Path) -> str:
     standard = RunReport.model_validate_json(
         (output / entry["strategy"] / "host/run/report.json").read_bytes())
     if (receipt["status"] != "passed" or receipt["strategy_id"] != entry["strategy"]
+        or receipt["method_spec_sha256"] != checked["method_spec_sha256"]
         or receipt["bundle_sha256"] != digest(destination / "run/bundle.json")
         or (linked.decisions, linked.orders, linked.fills, linked.accounts)
            != (standard.decisions, standard.orders, standard.fills, standard.accounts)):
@@ -182,6 +206,64 @@ def _run_case(
     return report, digest(report_path)
 
 
+def _run_native_case(strategy_id: str, fixture_name: str, output: Path,
+                     mode: str) -> RunReport:
+    fixture = ROOT / "examples" / fixture_name
+    dataset = DatasetDeclaration.model_validate_json((fixture / "dataset.json").read_bytes())
+    events = tuple(MarketEvent.model_validate(item) for item in json.loads(
+        (fixture / "events.json").read_text()))
+    policy = RunPolicy.model_validate_json((fixture / "policy.json").read_bytes())
+    policy = policy.model_copy(update={"sandbox": "strict" if mode == "strict"
+                                else "development"})
+    training_path = fixture / "training.json"
+    training = (TrainingRequest.model_validate_json(training_path.read_bytes())
+                if training_path.is_file() else None)
+    engine = BacktraderEngine()
+    destination = output / strategy_id / mode
+    report = run_package(
+        run_id=f"native-{strategy_id}", package_dir=ROOT / "strategies" / strategy_id,
+        dataset=dataset, engine_capability=engine.capability(dataset.fields),
+        policy=policy, events=events, engine=engine, output=destination,
+        training=training,
+    )
+    verify_bundle_file(destination / "bundle.json")
+    replay_bundle(bundle_path=destination / "bundle.json",
+                  package_dir=ROOT / "strategies" / strategy_id,
+                  engine=BacktraderEngine())
+    if report.plan.engine_id != "paperquant.backtrader" or not report.fills:
+        raise ValueError(f"{strategy_id} native execution did not produce real fills")
+    return report
+
+
+def _check_native_differential(native: RunReport, reference: RunReport) -> None:
+    tolerance = Decimal("0.000001")
+    if native.decisions != reference.decisions or len(native.fills) != len(reference.fills):
+        raise ValueError("Native and reference decisions or fill counts differ")
+    for actual, expected in zip(native.fills, reference.fills, strict=True):
+        if ((actual.order_id, actual.symbol, actual.side, actual.timestamp)
+            != (expected.order_id, expected.symbol, expected.side, expected.timestamp)
+            or abs(actual.quantity - expected.quantity) > tolerance
+            or abs(actual.price - expected.price) > tolerance):
+            raise ValueError("Native and reference order execution differs")
+    for actual, expected in zip(native.accounts, reference.accounts, strict=True):
+        if (abs(actual.cash - expected.cash) > tolerance
+            or abs(actual.equity - expected.equity) > tolerance
+            or len(actual.positions) != len(expected.positions)):
+            raise ValueError("Native and reference account ledgers differ")
+        for native_position, reference_position in zip(
+            actual.positions, expected.positions, strict=True,
+        ):
+            if (native_position.symbol != reference_position.symbol
+                or abs(native_position.quantity - reference_position.quantity) > tolerance
+                or abs(native_position.average_price - reference_position.average_price)
+                   > tolerance
+                or abs(native_position.realized_pnl - reference_position.realized_pnl)
+                   > tolerance
+                or abs(native_position.unrealized_pnl - reference_position.unrealized_pnl)
+                   > tolerance):
+                raise ValueError("Native and reference position profits differ")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, required=True)
@@ -226,6 +308,14 @@ def main() -> int:
         bindings = json.loads((ROOT / "research/oracle_bindings.json").read_text())["bindings"]
         if set(bindings) != set(ids):
             raise ValueError("oracle bindings do not cover the declared catalog")
+        for recipe_path, checked in zip(recipe_paths, paper_checks, strict=True):
+            recipe = Recipe.model_validate_json(recipe_path.read_bytes())
+            spec = MethodSpec.model_validate_json(
+                (recipe_path.parent / recipe.spec_file).read_bytes())
+            bound_claim_nodes = bindings[checked["strategy_id"]]["claim_nodes"]
+            if any(step.oracle_node not in bound_claim_nodes[step.claim_index]
+                   for step in spec.steps):
+                raise ValueError("Reviewed method step is not bound to its claim oracle")
         for entry in entries:
             strategy_id = entry["strategy"]
             state["current_case"] = strategy_id
@@ -290,15 +380,52 @@ def main() -> int:
                     output / strategy_id / "strict/run/bundle.json")
             records.append(record)
         oracle_junit_sha256 = _run_oracles(output, bindings)
+        external_dir = output / "external_paper_oracles"
+        external_junit_sha256 = _run_oracles(
+            external_dir, {"external": {"node_ids": EXTERNAL_PAPER_NODES}},
+            retain_artifacts=True)
+        external_paper_cases = []
+        external_receipts = sorted(
+            (external_dir / "case-artifacts").rglob("paper-run.json"))
+        if len(external_receipts) != len(EXTERNAL_PAPER_NODES):
+            raise ValueError("Unlisted real-paper executions are missing")
+        for paper_receipt_path in external_receipts:
+            paper_receipt = json.loads(paper_receipt_path.read_text())
+            bundle_path = paper_receipt_path.parent / "bundle.json"
+            bundle = verify_bundle_file(bundle_path)
+            external_recipe_path = paper_receipt_path.parent.parent / "recipe.json"
+            external_recipe = Recipe.model_validate_json(external_recipe_path.read_bytes())
+            external_spec = MethodSpec.model_validate_json(
+                (external_recipe_path.parent / external_recipe.spec_file).read_bytes())
+            if (paper_receipt["status"] != "passed"
+                or not paper_receipt["strategy_id"].startswith("outside.catalog.")
+                or paper_receipt["source_sha256"] not in {
+                    check["source_sha256"] for check in paper_checks}
+                or paper_receipt["method_spec_sha256"] == ""
+                or any(step.oracle_node not in EXTERNAL_PAPER_NODES
+                       for step in external_spec.steps)
+                or paper_receipt["bundle_sha256"] != digest(bundle_path)
+                or not bundle.report.fills):
+                raise ValueError("Unlisted paper-run bundle or source evidence differs")
+            external_paper_cases.append({
+                "strategy_id": paper_receipt["strategy_id"],
+                "source_sha256": paper_receipt["source_sha256"],
+                "method_spec_sha256": paper_receipt["method_spec_sha256"],
+                "paper_run_sha256": digest(paper_receipt_path),
+                "bundle_sha256": digest(bundle_path),
+                "fill_count": len(bundle.report.fills),
+                "oracle_junit_sha256": external_junit_sha256,
+            })
         for checked, recipe_path in zip(paper_checks, recipe_paths, strict=True):
             entry = next(item for item in entries if item["strategy"] == checked["strategy_id"])
-            checked["paper_run_sha256"] = _run_paper_case(recipe_path, entry, output)
+            checked["paper_run_sha256"] = _run_paper_case(recipe_path, entry, output, checked)
             checked["oracle_junit_sha256"] = oracle_junit_sha256
         source_record = json.loads((ROOT / "data/public/SOURCE.json").read_text())
         raw_csv_sha256 = digest(ROOT / "data/public/finance-charts-apple.csv")
         if source_record["sha256"] != raw_csv_sha256:
             raise ValueError("public AAPL source bytes differ from their declared provenance")
         public_cases = []
+        public_reports: dict[str, RunReport] = {}
         for strategy_id, fixture_name in PUBLIC_CASES:
             fixture = ROOT / "examples" / fixture_name
             entry = {"strategy": strategy_id, "fixture": fixture_name,
@@ -309,6 +436,7 @@ def main() -> int:
                 entry=entry, output=output / "public_cases", mode="host",
                 expected_image_id=None,
             )
+            public_reports[strategy_id] = report
             lineage_path = fixture / "lineage.json"
             lineage_sha256 = None
             if lineage_path.is_file():
@@ -329,11 +457,70 @@ def main() -> int:
                                         / "host/run/bundle.json"),
                 "fill_count": len(report.fills),
             })
+        native_cases = []
+        for strategy_id, fixture_name in NATIVE_CASES:
+            native_root = output / "native_engine_cases"
+            native = _run_native_case(strategy_id, fixture_name, native_root, "host")
+            _check_native_differential(native, public_reports[strategy_id])
+            native_record = {
+                "strategy_id": strategy_id,
+                "engine_profile_sha256": native.plan.engine_profile_sha256,
+                "host_report_sha256": digest(native_root / strategy_id / "host/report.json"),
+                "host_bundle_sha256": digest(native_root / strategy_id / "host/bundle.json"),
+                "fill_count": len(native.fills),
+                "differential_tolerance": "0.000001",
+            }
+            if args.strict_image_id is not None:
+                strict_native = _run_native_case(
+                    strategy_id, fixture_name, native_root, "strict")
+                _check_native_differential(strict_native, public_reports[strategy_id])
+                if (strict_native.decisions != native.decisions
+                    or len(strict_native.fills) != len(native.fills)
+                    or strict_native.worker_receipt is None
+                    or strict_native.worker_receipt.image_id != args.strict_image_id):
+                    raise ValueError("Native-engine host and strict worker paths differ")
+                native_record["strict_report_sha256"] = digest(
+                    native_root / strategy_id / "strict/report.json")
+                native_record["strict_bundle_sha256"] = digest(
+                    native_root / strategy_id / "strict/bundle.json")
+            native_cases.append(native_record)
+        schedule_recipe = next(path for path in recipe_paths
+                               if Recipe.model_validate_json(path.read_bytes())
+                               .expected.strategy_id == "rule.time_sliced_execution")
+        schedule_fixture = ROOT / "examples/public_aapl"
+        native_paper_output = output / "paper_cases/native_time_sliced"
+        with contextlib.redirect_stdout(io.StringIO()) as paper_stdout:
+            exit_code = cli([
+                "paper-run", "--engine", "backtrader",
+                "--recipe", str(schedule_recipe),
+                "--dataset", str(schedule_fixture / "dataset.json"),
+                "--events", str(schedule_fixture / "events.json"),
+                "--policy", str(schedule_fixture / "policy.json"),
+                "--output", str(native_paper_output),
+            ])
+        if exit_code != 0:
+            raise ValueError("Native paper-to-strategy run failed: " + paper_stdout.getvalue())
+        native_paper = RunReport.model_validate_json(
+            (native_paper_output / "report.json").read_bytes())
+        _check_native_differential(
+            native_paper, public_reports["rule.time_sliced_execution"])
+        paper_receipt = json.loads((native_paper_output / "paper-run.json").read_text())
+        schedule_check = next(item for item in paper_checks
+                              if item["strategy_id"] == "rule.time_sliced_execution")
+        if (paper_receipt["method_spec_sha256"] != schedule_check["method_spec_sha256"]
+            or paper_receipt["bundle_sha256"]
+               != digest(native_paper_output / "bundle.json")):
+            raise ValueError("Native paper-run evidence is not bound to its reviewed spec")
+        schedule_check["native_paper_run_sha256"] = digest(
+            native_paper_output / "paper-run.json")
         state.pop("current_case", None)
         state.update({"status": "passed", "completed_at": datetime.now(UTC).isoformat(),
                       "count": len(records), "strict": args.strict_image_id is not None,
                       "cases": records, "paper_checks": paper_checks,
                       "public_data_cases": public_cases,
+                      "native_engine_cases": native_cases,
+                      "external_paper_cases": external_paper_cases,
+                      "external_paper_oracle_junit_sha256": external_junit_sha256,
                       "oracle_junit_sha256": oracle_junit_sha256})
         publish(receipt, state)
         print(json.dumps({"status": "passed", "count": len(records), "receipt": str(receipt)}))
