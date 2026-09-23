@@ -11,10 +11,13 @@
   "package": "../../strategies/rule.time_sliced_execution",
   "package_source_sha256": "b227d3f49bdc31b4946db1b910a813f383a757b2f1edadeae3f7f6270fb83459",
   "claim_file": "../claims/time_sliced_execution.json",
+  "spec_file": "../specs/time-sliced-execution.json",
+  "spec_sha256": "4aa0bf644913def747dc4ba21e5fae999535379ecb0a5e01960cc491b04d0fb6",
   "expected": {
     "strategy_id": "rule.time_sliced_execution",
     "kind": "rule",
     "granularity": "day",
+    "fields": ["open", "close"],
     "training_required": false,
     "symbols": ["DEMO"],
     "actions": ["none", "submit_order"]

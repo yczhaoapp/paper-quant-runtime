@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "strategy_id": "rule.time_sliced_execution",
+  "source_sha256": "289db4306c3f73189511586bf128793f4eeaa3b6d36991508458c3062d83d838",
+  "fields": ["open", "close"],
+  "steps": [
+    {
+      "role": "execution",
+      "claim_index": 0,
+      "paper_rule": "Partition a parent execution interval into scheduled buckets.",
+      "runtime_rule": "Issue one child order in each of twelve eligible daily observations.",
+      "implementation": "TimeSlicedExecution.decide",
+      "oracle_node": "tests/test_time_sliced_paper.py::test_random_parent_schedules_preserve_volume_and_terminal_silence[17]",
+      "adaptation": "Daily proxy bars replace the paper's intraday execution buckets."
+    },
+    {
+      "role": "execution",
+      "claim_index": 1,
+      "paper_rule": "Set the child-order volume schedule before observing future prices.",
+      "runtime_rule": "Divide twelve parent shares into twelve fixed one-share market children.",
+      "implementation": "TimeSlicedExecution.decide",
+      "oracle_node": "tests/test_time_sliced_paper.py::test_random_parent_schedules_preserve_volume_and_terminal_silence[71]",
+      "adaptation": "Market orders at the next opening bar replace the source's limit-order setting."
+    }
+  ],
+  "excluded_paper_components": [
+    "Order-book queue dynamics, limit-order revisions, and the RL agent are not reproduced."
+  ]
+}

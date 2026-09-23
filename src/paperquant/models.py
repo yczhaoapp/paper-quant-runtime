@@ -131,6 +131,9 @@ class EngineCapability(Model):
     data_fields: frozenset[str]
     actions: frozenset[str]
     execution_fields: dict[Granularity, frozenset[str]] = Field(default_factory=dict)
+    max_symbols: int | None = Field(default=None, ge=1)
+    financing_modes: frozenset[Literal["cash_only", "unbounded_margin"]] = frozenset({
+        "cash_only", "unbounded_margin"})
 
 
 class EngineProfile(Model):

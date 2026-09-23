@@ -38,6 +38,14 @@
           "type": "array",
           "uniqueItems": true
         },
+        "fields": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Fields",
+          "type": "array",
+          "uniqueItems": true
+        },
         "granularity": {
           "enum": [
             "tick",
@@ -77,6 +85,7 @@
         "strategy_id",
         "kind",
         "granularity",
+        "fields",
         "training_required",
         "symbols",
         "actions"
@@ -170,6 +179,15 @@
     },
     "source": {
       "$ref": "#/$defs/Source"
+    },
+    "spec_file": {
+      "title": "Spec File",
+      "type": "string"
+    },
+    "spec_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Spec Sha256",
+      "type": "string"
     }
   },
   "required": [
@@ -177,6 +195,8 @@
     "package",
     "package_source_sha256",
     "claim_file",
+    "spec_file",
+    "spec_sha256",
     "expected",
     "anchors",
     "review_note"

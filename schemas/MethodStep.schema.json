@@ -1,0 +1,58 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "adaptation": {
+      "minLength": 12,
+      "title": "Adaptation",
+      "type": "string"
+    },
+    "claim_index": {
+      "minimum": 0,
+      "title": "Claim Index",
+      "type": "integer"
+    },
+    "implementation": {
+      "minLength": 5,
+      "title": "Implementation",
+      "type": "string"
+    },
+    "oracle_node": {
+      "pattern": "^tests/[^\\s]+\\.py::[^\\s]+$",
+      "title": "Oracle Node",
+      "type": "string"
+    },
+    "paper_rule": {
+      "minLength": 12,
+      "title": "Paper Rule",
+      "type": "string"
+    },
+    "role": {
+      "enum": [
+        "data",
+        "signal",
+        "training",
+        "inference",
+        "execution",
+        "reward"
+      ],
+      "title": "Role",
+      "type": "string"
+    },
+    "runtime_rule": {
+      "minLength": 12,
+      "title": "Runtime Rule",
+      "type": "string"
+    }
+  },
+  "required": [
+    "role",
+    "claim_index",
+    "paper_rule",
+    "runtime_rule",
+    "implementation",
+    "oracle_node",
+    "adaptation"
+  ],
+  "title": "MethodStep",
+  "type": "object"
+}

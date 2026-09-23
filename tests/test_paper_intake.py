@@ -4,12 +4,15 @@ import hashlib
 import io
 import json
 import shutil
+from decimal import Decimal
 from pathlib import Path
 
 import pytest
 from pypdf import PdfWriter
 
 from paperquant.cli import main
+from paperquant.models import StrategyDeclaration
+from paperquant.package import write_manifest
 from paperquant.papers import extract_text, fetch_paper_source, verify_recipe
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -78,8 +81,11 @@ def _copy_recipe(tmp_path: Path) -> tuple[Path, dict]:
                     tmp_path / "strategy", ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
     (tmp_path / "claim.json").write_bytes(
         (ROOT / "research/claims/pairs_actor_critic.json").read_bytes())
+    (tmp_path / "spec.json").write_bytes(
+        (ROOT / "research/specs/pairs-actor-critic.json").read_bytes())
     original["package"] = "strategy"
     original["claim_file"] = "claim.json"
+    original["spec_file"] = "spec.json"
     path = tmp_path / "recipe.json"
     path.write_text(json.dumps(original), encoding="utf-8")
     return path, original
@@ -125,6 +131,123 @@ def test_changed_pdf_and_missing_anchor_fail_closed(tmp_path: Path) -> None:
     recipe_path.write_text(json.dumps(recipe), encoding="utf-8")
     with pytest.raises(ValueError, match="anchor missing"):
         verify_recipe(recipe_path)
+
+
+def test_changed_reviewed_method_spec_fails_closed(tmp_path: Path) -> None:
+    recipe_path, recipe = _copy_recipe(tmp_path)
+    spec_path = tmp_path / "spec.json"
+    changed = json.loads(spec_path.read_text())
+    changed["steps"][0]["implementation"] = "ImaginaryPaperStrategy.decide"
+    spec_path.write_text(json.dumps(changed), encoding="utf-8")
+    with pytest.raises(ValueError, match="pinned digest"):
+        verify_recipe(recipe_path)
+    recipe["spec_sha256"] = hashlib.sha256(spec_path.read_bytes()).hexdigest()
+    recipe_path.write_text(json.dumps(recipe), encoding="utf-8")
+    with pytest.raises(ValueError, match="implementation symbol"):
+        verify_recipe(recipe_path)
+
+
+@pytest.mark.parametrize(("parent_quantity", "slices"), [(12, 3), (10, 5)])
+def test_unlisted_paper_package_enters_runtime_without_catalog_changes(
+    parent_quantity: int, slices: int, tmp_path: Path,
+) -> None:
+    original = json.loads((ROOT / "research/recipes/pardo-time-sliced.json").read_text())
+    strategy_id = f"outside.catalog.paper_schedule_{parent_quantity}_{slices}"
+    package = tmp_path / "package"
+    package.mkdir()
+    source = '''\
+from decimal import Decimal
+from paperquant.strategy_api import (
+    DataNeed, Granularity, NoOp, StrategyDeclaration, StrategyKind, SubmitOrder,
+)
+class ExternalSchedule:
+    declaration = StrategyDeclaration(
+        strategy_id="STRATEGY_ID", kind=StrategyKind.RULE,
+        data=DataNeed(granularity=Granularity.DAY,
+                      fields=frozenset({"open", "close"}),
+                      symbols=frozenset({"DEMO"})),
+        actions=frozenset({"none", "submit_order"}), training_required=False,
+        source="SOURCE_URL",
+    )
+    def __init__(self):
+        self.index = 0
+    def decide(self, event, account):
+        del account
+        self.index += 1
+        if self.index > SLICES:
+            return (NoOp(reason="schedule complete"),)
+        return (SubmitOrder(client_order_id=f"child-{self.index}",
+                            symbol=event.symbol, side="buy",
+                            quantity=Decimal("CHILD_QUANTITY"),
+                            reason="reviewed advance schedule"),)
+'''.replace("STRATEGY_ID", strategy_id).replace("SOURCE_URL", original["source"]["url"])
+    source = source.replace("SLICES", str(slices)).replace(
+        "CHILD_QUANTITY", str(parent_quantity // slices))
+    # Preserve the reviewed source bytes on every platform, including Windows.
+    (package / "strategy.py").write_bytes(source.encode("utf-8"))
+    declaration = StrategyDeclaration.model_validate({
+        "strategy_id": strategy_id, "kind": "rule",
+        "data": {"granularity": "day", "fields": ["open", "close"],
+                 "symbols": ["DEMO"]},
+        "actions": ["none", "submit_order"], "training_required": False,
+        "source": original["source"]["url"],
+    })
+    write_manifest(package, declaration, "ExternalSchedule")
+    claim = {
+        "strategy_id": strategy_id,
+        "source": {"url": original["source"]["url"]},
+        "claims": [{"locator": "Section 3.3"}, {"locator": "Section 2.5"}],
+    }
+    (tmp_path / "claim.json").write_text(json.dumps(claim), encoding="utf-8")
+    spec = {
+        "schema_version": "1.0", "strategy_id": strategy_id,
+        "source_sha256": original["source"]["sha256"],
+        "fields": ["open", "close"],
+        "steps": [{
+            "role": "execution", "claim_index": index,
+            "paper_rule": "Choose an advance child-order schedule from the paper.",
+            "runtime_rule": f"Emit {slices} equal children totaling {parent_quantity} shares.",
+            "implementation": "ExternalSchedule.decide",
+            "oracle_node": ("tests/test_paper_intake.py::"
+                            "test_unlisted_paper_package_enters_runtime_without_catalog_changes"
+                            f"[{parent_quantity}-{slices}]"),
+            "adaptation": "Daily market orders replace intraday order-book child orders.",
+        } for index in (0, 1)],
+        "excluded_paper_components": ["The source's RL agent is outside this schedule case."],
+    }
+    spec_bytes = (json.dumps(spec, sort_keys=True) + "\n").encode()
+    (tmp_path / "spec.json").write_bytes(spec_bytes)
+    (tmp_path / "paper.pdf").write_bytes(
+        (ROOT / "research/sources/pardo-2022.pdf").read_bytes())
+    original["source"]["file"] = "paper.pdf"
+    original["package"] = "package"
+    original["package_source_sha256"] = hashlib.sha256(
+        (package / "strategy.py").read_bytes()).hexdigest()
+    original["claim_file"] = "claim.json"
+    original["spec_file"] = "spec.json"
+    original["spec_sha256"] = hashlib.sha256(spec_bytes).hexdigest()
+    original["expected"]["strategy_id"] = strategy_id
+    original["review_note"] = (
+        "Unlisted reviewed schedule uses a different parent quantity and number of children. "
+        "The real paper source stays fixed while the strategy package is generated externally.")
+    recipe_path = tmp_path / "recipe.json"
+    recipe_path.write_text(json.dumps(original), encoding="utf-8")
+    assert strategy_id not in (ROOT / "examples/catalog.json").read_text()
+    assert verify_recipe(recipe_path)["strategy_id"] == strategy_id
+    output = tmp_path / "run"
+    assert main([
+        "paper-run", "--recipe", str(recipe_path),
+        "--dataset", str(ROOT / "examples/public_aapl/dataset.json"),
+        "--events", str(ROOT / "examples/public_aapl/events.json"),
+        "--policy", str(ROOT / "examples/public_aapl/policy.json"),
+        "--output", str(output),
+    ]) == 0
+    report = json.loads((output / "report.json").read_text())
+    assert report["plan"]["strategy_id"] == strategy_id
+    assert len(report["fills"]) == slices
+    assert sum(Decimal(fill["quantity"]) for fill in report["fills"]) == parent_quantity
+    receipt = json.loads((output / "paper-run.json").read_text())
+    assert receipt["method_spec_sha256"] == original["spec_sha256"]
 
 
 def test_html_and_tex_text_adapters_are_explicitly_limited() -> None:
