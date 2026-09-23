@@ -11,9 +11,9 @@
 | 兼容转换 | 本地测试通过 | 映射、聚合显式授权并记录双向哈希；非法或不可逆转换结构化失败 |
 | 失败和报告 | 本地测试通过 | 全部指定错误场景输出机器可读失败；成功报告含真实订单、成交、账户、模型及日志 |
 | 沙箱 | 本地实现并实测 | 严格容器中无网络、只读根目录、非 root、资源限制；无法证明时失败；发布时保留同源码树回执 |
-| 独立复验 | 本地锁定和 CI 工作流已写，远程未验证 | 锁定依赖、一键主机与容器验证、全新环境构建、多平台 CI 和可下载证据 |
+| 独立复验 | 本地锁定和无缓存严格验证通过；远端结果逐提交核验 | 锁定依赖、一键主机与容器验证、全新环境构建、多平台 CI 和可下载证据 |
 
-下一阶段集中完成外部引擎扩展审查和跨平台 CI 的远程执行回执。`scripts/acceptance.py` 会检查 18 个包、研究绑定与独立 oracle 路径，并逐项发布主机报告；严格验收还会运行同一清单的容器报告并核对轨迹与模型哈希。当前严格容器的本地验证不代替最终发布验收。
+每次发布以该提交的 [跨平台 CI](https://github.com/yczhaoapp/paper-quant-runtime/actions/workflows/verify.yml) 与下载收据为准。`scripts/acceptance.py` 检查 18 个包、研究绑定与独立 oracle 路径，并逐项发布主机报告；严格验收运行同一清单的容器报告，核对轨迹与模型哈希。本地严格验证不代替远端发布验收。
 
 八条 D1 运行轨采用固定 Plotly 提交中的 AAPL 506 根日线，保留 CSV 原始字节、仓库许可证、哈希及数据来历的不确定性说明。它通过显式 `AAPL→DEMO` 映射分别运行 VMA(2,20,0)、TRB(50,0.01,C=10)、时间切片执行基准、次日方向 logistic、三日价格 Ridge，Gaussian Naive Bayes 次日方向分类器，三类操作随机森林，以及连续 Actor-Critic 的 AAPL—现金配置八种不同方法。四条监督样例都把最后训练标签限定在第 321 根日线收盘之前，自第 322 根开始独立回测；各自的 `lineage.json` 及测试逐行重建训练标签，核对最后标签可见时间早于首个回测开盘时间。随机森林使用未来五个收盘日的 3% 止盈、1.5% 止损条件构造三类操作标签，训练特征截至第 316 根日线、最后潜在标签截至第 321 根；它使用原文未采用的浅树和固定缩减参数，标签未扣除原文的手续费或融券成本。Gaussian NB 是其来源论文四分类器集成中的单一组件；四个当前日线 OHLCV 衍生特征代替原文的动态特征选择，不能宣称完整集成模型复现。Ridge 方法只用三日原始 OHLCV 窗口，不计作论文的 123 项指标和特征选择实验。时间切片样例只保留预先调度的 TWAP 基准思想，日线市价成交不等同于论文的 BTC 订单簿限价实验。八条运行轨共用同一来源文件，不能计作八份独立市场数据；Gaussian NB 与 logistic 也共用同一时间切分和二分类标签，但采用不同模型及特征。此数据是公开行情代理，不是所有论文的原实验数据；Plotly 仓库的 MIT 许可和原始市场数据的权利来源不能混为一谈。
 
@@ -21,4 +21,4 @@
 
 当前计数中有 `rule.moving_average_crossover`、`rule.channel_breakout`、`rule.time_sliced_execution`、`rule.microprice_toy`、`rule.reservation_quote`、`rule.pairs_distance`、`supervised.queue_imbalance`、`supervised.logistic_direction`、`supervised.ridge_three_day_price`、`supervised.gaussian_nb_direction`、`supervised.cross_sectional_rank`、`supervised.random_forest_operations`、`reinforcement.sarsa_inventory`、`reinforcement.double_q_market_making` 与 `reinforcement.execution_value_learning` 与 `reinforcement.risk_averse_bandit` 、`reinforcement.actor_critic_allocation` 与 `reinforcement.pairs_actor_critic`。六条规则分别实现 VMA(2,20,0)、TRB(50,0.01,C=10)、TWAP 等量切片基准、仅在布朗不平衡假设下成立的 L1 加权中间价特例、按第 29、30 式计算的库存相关 L2 限价报价，以及三标的形成期选对与两倍标准差配对交易；各有独立公式或调度 oracle 与统一运行轨。配对样例用 252/126 个交易日代表论文的十二/六个月，只选一对、只用合成收盘价，无股息重投；两条腿在引擎中分别于下一个标的事件成交，不保证原子执行。队列不平衡监督样例验证 L1 特征、二参数 logistic 训练与逐 tick 预测；日线监督样例验证公开 OHLCV 的时间切分、五特征 logistic、三日窗口 Ridge、四特征 Gaussian NB 与三类操作随机森林训练、标签敏感性、保存重载与回测；三标的横截面样例验证 Elastic Net 惩罚目标、形成后的收益标签与逐日预测排序，使用独立合成面板；强化学习样例分别验证实际下一动作 SARSA、双表选择/交叉估值 Double Q，以及剩余时间/库存状态的倒序经验价值更新与到期完成约束，以及一维风险厌恶 Bandit 的 normal-gamma 后验、Thompson 抽样和部署期在线更新，以及公开行情上的连续 Actor-Critic 组合权重策略梯度与 TD 价值更新，还验证离散 A2C 配对交易的滚动回归观察、三动作策略梯度、TD 价值更新和双腿目标订单。执行学习样例把论文的限价撤改单缩减为下一 tick 成交的子单数量动作，合成训练格点不等同于 NASDAQ 订单流。十八者都有成交的统一运行包及页级主张记录。Double Q 的双表更新符合原算法，但交易状态、动作、tile coding、资格迹、撮合环境和经验结果仍属方法适配；不能将算法级复现等同于交易论文实验复现。微观价格样例不声称完整 Markov 估计器；L2 做市样例不声称原论文的成交到达过程和结果。配对、横截面排序、队列不平衡、微观价格、L2 做市与部分强化学习的演示行情和训练样本仍是合成夹具。新配对 A2C 样例使用合成日线、线性策略和固定成对名义规模，仅属于 RL1 方法适配；不代表论文的加密货币分钟数据、RL2 连续投资规模或原实验绩效。`examples/basic_rule` 是接口教学样例，不列入 18 项论文策略计数。
 
-严格策略 worker 已在本地容器中完成三类策略的主机差分，并验证动态导入无法写入只读策略挂载。单次执行报告记录 worker 镜像和容器 ID；一键验收脚本使用本轮 attempt ID、源码哈希和日志哈希防止旧成功收据混入。此进展不替代最终的公开 CI、全新机器构建或 18 项完整验收。
+严格策略 worker 已在本地容器中完成三类策略的主机差分，并验证动态导入无法写入只读策略挂载。单次执行报告记录 worker 镜像和容器 ID；一键验收脚本使用本轮 attempt ID、源码哈希和日志哈希防止旧成功收据混入。公开 CI 对每个平台运行 18 项主机验收，并在 Linux 上完成无缓存严格构建与 18 项容器验收；实际是否通过，以对应提交的运行结果为准。

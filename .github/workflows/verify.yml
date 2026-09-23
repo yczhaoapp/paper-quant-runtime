@@ -40,6 +40,15 @@ jobs:
         run: uv run --no-sync ruff check .
       - name: Type check
         run: uv run --no-sync mypy src/paperquant
+      - name: Verify all eighteen strategy packages
+        run: uv run --no-sync python scripts/acceptance.py --output runs/host-acceptance
+      - name: Preserve host acceptance reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: host-acceptance-${{ matrix.os }}-py${{ matrix.python }}-${{ github.sha }}
+          path: runs/host-acceptance
+          if-no-files-found: warn
 
   strict:
     name: Strict container and receipts

@@ -87,9 +87,10 @@ def fetch_paper_source(url: str, expected_sha256: str, destination: Path) -> str
         raise ValueError("Paper fetch requires HTTPS and a pinned SHA-256")
     destination.parent.mkdir(parents=True, exist_ok=True)
     request = urllib.request.Request(url, headers={"User-Agent": "paperquant-paper-intake/1.0"})
-    with tempfile.NamedTemporaryFile(dir=destination.parent, prefix=".paper-", delete=False) as out:
-        temporary = Path(out.name)
-        try:
+    descriptor, name = tempfile.mkstemp(dir=destination.parent, prefix=".paper-")
+    temporary = Path(name)
+    try:
+        with os.fdopen(descriptor, "wb") as out:
             with urllib.request.urlopen(request, timeout=30) as source:
                 if not source.geturl().startswith("https://"):
                     raise ValueError("Paper fetch redirected outside HTTPS")
@@ -105,9 +106,9 @@ def fetch_paper_source(url: str, expected_sha256: str, destination: Path) -> str
                 raise ValueError("Fetched paper differs from pinned SHA-256")
             out.flush()
             os.fsync(out.fileno())
-            os.replace(temporary, destination)
-        finally:
-            temporary.unlink(missing_ok=True)
+        os.replace(temporary, destination)
+    finally:
+        temporary.unlink(missing_ok=True)
     return expected_sha256
 
 

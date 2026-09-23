@@ -3,7 +3,7 @@ from __future__ import annotations
 import hashlib
 import io
 import json
-import os
+import shutil
 from pathlib import Path
 
 import pytest
@@ -21,10 +21,12 @@ def _copy_recipe(tmp_path: Path) -> tuple[Path, dict]:
     paper_copy = tmp_path / "paper.pdf"
     paper_copy.write_bytes((ROOT / "research/sources/yang-malik-2024.pdf").read_bytes())
     original["source"]["file"] = "paper.pdf"
-    original["package"] = os.path.relpath(
-        ROOT / "strategies/reinforcement.pairs_actor_critic", tmp_path)
-    original["claim_file"] = os.path.relpath(
-        ROOT / "research/claims/pairs_actor_critic.json", tmp_path)
+    shutil.copytree(ROOT / "strategies/reinforcement.pairs_actor_critic",
+                    tmp_path / "strategy", ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
+    (tmp_path / "claim.json").write_bytes(
+        (ROOT / "research/claims/pairs_actor_critic.json").read_bytes())
+    original["package"] = "strategy"
+    original["claim_file"] = "claim.json"
     path = tmp_path / "recipe.json"
     path.write_text(json.dumps(original), encoding="utf-8")
     return path, original
@@ -112,8 +114,10 @@ def test_explicit_fetch_publishes_only_digest_verified_bytes(
     with pytest.raises(ValueError, match="differs"):
         fetch_paper_source("https://papers.example/article.pdf", "0" * 64, destination)
     assert destination.read_bytes() == b"earlier verified paper"
+    assert not list(tmp_path.glob(".paper-*"))
     digest = hashlib.sha256(content).hexdigest()
     assert fetch_paper_source("https://papers.example/article.pdf", digest, destination) == digest
     assert destination.read_bytes() == content
+    assert not list(tmp_path.glob(".paper-*"))
     with pytest.raises(ValueError, match="HTTPS"):
         fetch_paper_source("http://papers.example/article.pdf", digest, destination)
