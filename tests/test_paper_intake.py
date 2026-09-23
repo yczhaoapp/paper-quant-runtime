@@ -16,6 +16,43 @@ ROOT = Path(__file__).resolve().parents[1]
 RECIPE = ROOT / "research/recipes/yang-malik-rl1.json"
 
 
+@pytest.mark.parametrize(
+    ("recipe_file", "fixture_name", "package_name", "training_file", "pages"),
+    [
+        ("chipwanya-logistic.json", "public_direction", "supervised.logistic_direction",
+         "training.json", (2, 3)),
+        ("pardo-time-sliced.json", "public_aapl", "rule.time_sliced_execution",
+         None, (11, 7)),
+    ],
+)
+def test_additional_real_papers_bind_to_runnable_strategies(
+    recipe_file: str, fixture_name: str, package_name: str,
+    training_file: str | None, pages: tuple[int, ...], tmp_path: Path,
+) -> None:
+    recipe = ROOT / "research/recipes" / recipe_file
+    checked = verify_recipe(recipe)
+    assert checked["strategy_id"] == package_name
+    assert [anchor["page"] for anchor in checked["anchors"]] == list(pages)
+    source_file = json.loads(recipe.read_text())["source"]["file"]
+    source = (recipe.parent / source_file).resolve()
+    assert checked["source_sha256"] == hashlib.sha256(source.read_bytes()).hexdigest()
+    assert main(["paper-check", "--recipe", str(recipe),
+                 "--output", str(tmp_path / "paper-check")]) == 0
+    fixture = ROOT / "examples" / fixture_name
+    arguments = [
+        "run", "--package", str(ROOT / "strategies" / package_name),
+        "--dataset", str(fixture / "dataset.json"),
+        "--events", str(fixture / "events.json"),
+        "--policy", str(fixture / "policy.json"),
+        "--output", str(tmp_path / "run"),
+    ]
+    if training_file is not None:
+        arguments.extend(["--training", str(fixture / training_file)])
+    assert main(arguments) == 0
+    report = json.loads((tmp_path / "run/report.json").read_text())
+    assert report["status"] == "succeeded" and report["fills"]
+
+
 def _copy_recipe(tmp_path: Path) -> tuple[Path, dict]:
     original = json.loads(RECIPE.read_text())
     paper_copy = tmp_path / "paper.pdf"

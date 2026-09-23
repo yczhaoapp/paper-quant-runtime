@@ -1,0 +1,12 @@
+{
+  "file": "pardo-2022.pdf",
+  "sha256": "289db4306c3f73189511586bf128793f4eeaa3b6d36991508458c3062d83d838",
+  "source_url": "https://arxiv.org/pdf/2208.06244v1",
+  "title": "A Modular Framework for Reinforcement Learning Optimal Execution",
+  "authors": ["Fernando de Meer Pardo", "Christoph Auth", "Florin Dascalu"],
+  "license": "Creative Commons Attribution 4.0 International (CC BY 4.0)",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "license_evidence": "https://arxiv.org/abs/2208.06244",
+  "retrieved_at": "2026-09-24",
+  "note": "Unmodified author PDF from arXiv. The arXiv abstract links to CC BY 4.0; authors, source, and license are retained."
+}
