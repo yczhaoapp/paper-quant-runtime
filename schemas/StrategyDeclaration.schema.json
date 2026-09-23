@@ -3,6 +3,19 @@
     "DataNeed": {
       "additionalProperties": false,
       "properties": {
+        "bar_seconds": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bar Seconds"
+        },
         "fields": {
           "items": {
             "type": "string"
@@ -13,6 +26,43 @@
         },
         "granularity": {
           "$ref": "#/$defs/Granularity"
+        },
+        "market_kind": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MarketKind"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "max_staleness_seconds": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max Staleness Seconds"
+        },
+        "minimum_book_depth": {
+          "anyOf": [
+            {
+              "minimum": 2,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Minimum Book Depth"
         },
         "minimum_events_per_symbol": {
           "default": 1,
@@ -44,6 +94,16 @@
         "day"
       ],
       "title": "Granularity",
+      "type": "string"
+    },
+    "MarketKind": {
+      "enum": [
+        "bar",
+        "trade",
+        "quote_l1",
+        "book_l2"
+      ],
+      "title": "MarketKind",
       "type": "string"
     },
     "StrategyKind": {

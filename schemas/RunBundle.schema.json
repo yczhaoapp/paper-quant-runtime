@@ -175,6 +175,19 @@
     "DataNeed": {
       "additionalProperties": false,
       "properties": {
+        "bar_seconds": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bar Seconds"
+        },
         "fields": {
           "items": {
             "type": "string"
@@ -185,6 +198,43 @@
         },
         "granularity": {
           "$ref": "#/$defs/Granularity"
+        },
+        "market_kind": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MarketKind"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "max_staleness_seconds": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max Staleness Seconds"
+        },
+        "minimum_book_depth": {
+          "anyOf": [
+            {
+              "minimum": 2,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Minimum Book Depth"
         },
         "minimum_events_per_symbol": {
           "default": 1,
@@ -212,6 +262,32 @@
     "DatasetDeclaration": {
       "additionalProperties": false,
       "properties": {
+        "bar_seconds": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bar Seconds"
+        },
+        "book_depth": {
+          "anyOf": [
+            {
+              "minimum": 2,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Book Depth"
+        },
         "content_sha256": {
           "pattern": "^[0-9a-f]{64}$",
           "title": "Content Sha256",
@@ -242,6 +318,17 @@
         },
         "granularity": {
           "$ref": "#/$defs/Granularity"
+        },
+        "market_kind": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MarketKind"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "session_close": {
           "anyOf": [
@@ -734,6 +821,22 @@
     "MarketEvent": {
       "additionalProperties": false,
       "properties": {
+        "aggressor_side": {
+          "anyOf": [
+            {
+              "enum": [
+                "buy",
+                "sell"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Aggressor Side"
+        },
         "available_time": {
           "format": "date-time",
           "title": "Available Time",
@@ -765,6 +868,18 @@
           "title": "Symbol",
           "type": "string"
         },
+        "trade_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Trade Id"
+        },
         "values": {
           "additionalProperties": {
             "anyOf": [
@@ -790,6 +905,16 @@
       ],
       "title": "MarketEvent",
       "type": "object"
+    },
+    "MarketKind": {
+      "enum": [
+        "bar",
+        "trade",
+        "quote_l1",
+        "book_l2"
+      ],
+      "title": "MarketKind",
+      "type": "string"
     },
     "NoOp": {
       "additionalProperties": false,
@@ -1385,6 +1510,18 @@
           "default": null,
           "title": "Action"
         },
+        "episode_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Episode Id"
+        },
         "features": {
           "additionalProperties": {
             "anyOf": [
@@ -1451,6 +1588,19 @@
           "default": null,
           "title": "Reward"
         },
+        "step": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Step"
+        },
         "target": {
           "anyOf": [
             {
@@ -1470,6 +1620,11 @@
         "terminal": {
           "default": false,
           "title": "Terminal",
+          "type": "boolean"
+        },
+        "truncated": {
+          "default": false,
+          "title": "Truncated",
           "type": "boolean"
         }
       },

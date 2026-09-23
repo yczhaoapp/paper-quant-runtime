@@ -8,10 +8,46 @@
       ],
       "title": "Granularity",
       "type": "string"
+    },
+    "MarketKind": {
+      "enum": [
+        "bar",
+        "trade",
+        "quote_l1",
+        "book_l2"
+      ],
+      "title": "MarketKind",
+      "type": "string"
     }
   },
   "additionalProperties": false,
   "properties": {
+    "bar_seconds": {
+      "anyOf": [
+        {
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Bar Seconds"
+    },
+    "book_depth": {
+      "anyOf": [
+        {
+          "minimum": 2,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Book Depth"
+    },
     "content_sha256": {
       "pattern": "^[0-9a-f]{64}$",
       "title": "Content Sha256",
@@ -42,6 +78,17 @@
     },
     "granularity": {
       "$ref": "#/$defs/Granularity"
+    },
+    "market_kind": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/MarketKind"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
     },
     "session_close": {
       "anyOf": [

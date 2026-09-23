@@ -48,6 +48,10 @@ class ExpectedStrategy(PaperModel):
     training_required: bool
     symbols: frozenset[str]
     actions: frozenset[str]
+    market_kind: Literal["bar", "trade", "quote_l1", "book_l2"] | None = None
+    bar_seconds: int | None = Field(default=None, ge=1)
+    max_staleness_seconds: int | None = Field(default=None, ge=0)
+    minimum_book_depth: int | None = Field(default=None, ge=2)
 
 
 class Recipe(PaperModel):
@@ -201,6 +205,10 @@ def verify_recipe(recipe_file: Path) -> dict[str, object]:
         or declaration.training_required != expected.training_required
         or declaration.data.symbols != expected.symbols
         or declaration.actions != expected.actions
+        or declaration.data.market_kind != expected.market_kind
+        or declaration.data.bar_seconds != expected.bar_seconds
+        or declaration.data.max_staleness_seconds != expected.max_staleness_seconds
+        or declaration.data.minimum_book_depth != expected.minimum_book_depth
         or declaration.source != recipe.source.url):
         raise ValueError("Strategy declaration differs from the reviewed paper mapping")
     claim_path = _resolve(recipe_file, recipe.claim_file)
