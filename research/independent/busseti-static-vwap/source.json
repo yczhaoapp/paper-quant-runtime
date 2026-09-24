@@ -1,0 +1,12 @@
+{
+  "title": "Volume Weighted Average Price Optimal Execution",
+  "authors": ["Enzo Busseti", "Stephen Boyd"],
+  "url": "https://arxiv.org/pdf/1509.08503v1",
+  "sha256": "d5667ea0aa81ebefaf39f6185bdce5603a6205716e360b6cf3d4fd9e100191dc",
+  "format": "pdf",
+  "license": "arXiv non-exclusive distribution; source bytes are fetched into local cache, not committed",
+  "anchors": [
+    {"page": 6, "text": "We require that the executed volumes sum to the total order size"},
+    {"page": 8, "text": "Thus, an the optimal solution of (15)"}
+  ]
+}

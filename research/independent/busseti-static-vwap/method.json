@@ -1,0 +1,16 @@
+{
+  "strategy_id": "outside.catalog.busseti_static_vwap",
+  "paper_variant": "Section 3.1, equation (16), constant spread static solution",
+  "parent_quantity": "10",
+  "expected_volume_profile": ["1", "2", "3", "4"],
+  "symbol": "DEMO",
+  "granularity": "minute",
+  "bar_seconds": 60,
+  "data_fidelity": "synthetic one-minute bars and an illustrative expected-volume profile",
+  "algorithm_fidelity": "equation (16) static volume-share formula",
+  "experimental_fidelity": "not_reproduced",
+  "excluded_paper_components": [
+    "The dynamic stochastic-control policy and market-volume estimator are not implemented.",
+    "Original NYSE trade data, price impact, transaction-cost optimization, and reported performance are not reproduced."
+  ]
+}

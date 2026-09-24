@@ -1,0 +1,26 @@
+{
+  "strategy_id": "outside.catalog.busseti_static_vwap",
+  "source": {
+    "title": "Volume Weighted Average Price Optimal Execution",
+    "url": "https://arxiv.org/pdf/1509.08503v1"
+  },
+  "claims": [
+    {
+      "locator": "Section 2.3, PDF page 6, equation (12)",
+      "statement": "Child volumes sum to the parent order and have the same sign.",
+      "implementation": "StaticVolumeShare.decide"
+    },
+    {
+      "locator": "Section 3.1, PDF page 8, equation (16)",
+      "statement": "For the constant-spread static case, each child volume is parent volume times its expected market-volume share.",
+      "implementation": "StaticVolumeShare.decide"
+    }
+  ],
+  "adaptations": [
+    "A declared four-interval illustrative profile substitutes for an estimated intraday NYSE volume distribution.",
+    "The reference engine submits market children on synthetic one-minute bars and fills on the next open."
+  ],
+  "algorithm_fidelity": "paper_formula_with_declared_execution_adaptation",
+  "data_fidelity": "synthetic_minute_fixture",
+  "experimental_fidelity": "not_reproduced"
+}

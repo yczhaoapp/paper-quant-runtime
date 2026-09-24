@@ -4,6 +4,31 @@
 
 仓库内有三篇可离线重演的真实 CC BY 4.0 来源：[Yang 与 Malik 的配对 RL 论文](https://arxiv.org/pdf/2407.16103)、[Chipwanya 的方向分类论文](https://arxiv.org/pdf/2310.16855)和[de Meer Pardo 等人的执行框架论文](https://arxiv.org/pdf/2208.06244v1)。原 PDF、取得日期、许可证和 SHA-256 位于 `research/sources/`。对应 `research/recipes/*.json` 把页级文本锚点、人工审阅的策略边界、原文哈希和策略包源码哈希绑定；`tests/test_paper_intake.py` 核查三份原文并使对应策略完成运行。独立方法 oracle 分别见 `tests/test_pairs_actor_critic_paper.py`、`tests/test_logistic_direction_paper.py` 与 `tests/test_time_sliced_paper.py`。Yang 与 Malik 的案例使用合成日线、20 期窗口和线性 A2C；另外两个案例分别使用公开 AAPL 代理日线与简化的 TWAP 市价子单，均不宣称重现原论文市场或实验绩效。
 
+18 个策略目前对应 16 个不同的主要论文网址。`research/source-lock.json` 为这 16 个来源逐一固定获取地址、标题、PDF 字节 SHA-256 和本地位置；对未确认再分发许可的 13 份 PDF，`research/source-cache/` 是明确的本地准备目录，不进入 Git。先在主机上显式取得，再离线验证所有字节和首页标题：
+
+```bash
+uv run --no-sync python scripts/verify_paper_sources.py \
+  --fetch --output runs/paper-sources.json
+uv run --no-sync python scripts/verify_paper_sources.py \
+  --output runs/paper-sources-offline.json
+```
+
+来源锁定证明的是“取得了与研究声明匹配的可提取原文”，尚不等于 18 个策略都完成了页级方法核验。尤其 `reinforcement.double_q_market_making` 的环境来自 Spooner 等人的市场做市研究，而双表更新算法还需要 van Hasselt 原论文的独立锚定；将前者的 PDF 当成后者公式的证据是不正确的。目前三份正式 recipe 已完成页级、源码和运行绑定，其余 15 份仍需逐项补齐。未补齐前不得声称 18/18 深度论文复现。
+
+新增的[Busseti 与 Boyd VWAP 执行论文](https://arxiv.org/abs/1509.08503)不属于上述 16 个主要来源。`research/independent/busseti-static-vwap/` 固定 PDF 哈希、原文第 6、8 页锚点及人工审阅的静态常数价差公式输入。`scripts/build_busseti_case.py` 核验实际 PDF 后，根据审阅参数生成目录外策略包、方法 spec、recipe 和构建收据；随后 `paper-run` 核验论文到策略包绑定并执行回测。原论文的动态随机控制、原始 NYSE 数据和业绩没有复现。论文许可证未授权仓库再分发 PDF，因此该案例在主机上显式下载固定字节后执行：
+
+```bash
+uv run --no-sync python scripts/build_busseti_case.py \
+  --fetch --output runs/busseti-build
+uv run --no-sync python -m paperquant.cli paper-run \
+  --recipe runs/busseti-build/recipe.json \
+  --dataset examples/independent_busseti/dataset.json \
+  --events examples/independent_busseti/events.json \
+  --output runs/busseti-run
+```
+
+生成策略以原文式 (16) 的预期成交量份额拆单；五根明确标记的合成分钟线仅用于验证接口、订单和下一开盘成交。参数化独立 oracle 测试多种母单和成交量剖面，并检查总量守恒及完成后不再下单。这里的“从论文到代码”包括可执行的来源核验与结构化 spec 编译，但 spec 是人工审核的，不宣称机器已自主理解未知论文。
+
 ```bash
 uv run --no-sync python -m paperquant.cli paper-run \
   --recipe research/recipes/yang-malik-rl1.json \
@@ -20,4 +45,4 @@ uv run --no-sync python -m paperquant.cli paper-run \
 
 验收把每项人工主张的 spec 步骤、实际实现符号、固定策略源码、独立 pytest 节点和本轮 JUnit 绑定；同一项运行另产生包含原始行情、训练请求、模型与完整轨迹的可离线校验 bundle，并在不训练的全新实例中回放。PDF 页级锚点和 oracle 一起构成当前人工复现链路；它不表示系统已能从全文自动生成代码，或证明与原论文全部实验一致。`MethodSpec` 是经过审阅的输入和核验约束，不是假装由全文机器抽取得到的算法真值。
 
-本项目并不宣称对任意未知论文自动完成策略恢复，也不把三份 PDF 的文本锚点计作 18 份独立论文复现。其余 15 个策略有来源、实现边界与独立 oracle 绑定，但目前没有把其全文都作为离线原文件打包；目录中的 18 项计数是可运行且具有论文方法依据的策略计数。论文原实验数据和业绩没有在这里重现，具体差异以各 `research/claims/*.json` 为准。
+本项目并不宣称对任意未知论文自动完成策略恢复，也不把三份正式 recipe 的文本锚点计作 18 份独立论文复现。其余 15 个策略有来源、实现边界与独立 oracle 绑定；固定原文字节的工作已经开始，但逐项 recipe 和端到端验收尚未全部完成。目录中的 18 项计数是可运行且具有论文方法依据的策略计数。论文原实验数据和业绩没有在这里重现，具体差异以各 `research/claims/*.json` 为准。
