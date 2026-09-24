@@ -278,7 +278,10 @@ def verify_recipe(recipe_file: Path) -> dict[str, object]:
         if _normalized(anchor.text) not in _normalized(
             source_pages[anchor.source_index][anchor.page - 1]
         ):
-            raise ValueError(f"Paper anchor missing on page {anchor.page}")
+            raise ValueError(
+                f"Paper anchor missing on page {anchor.page}: "
+                f"{recipe_file.name}, source {anchor.source_index}, text {anchor.text!r}"
+            )
         evidence.append(
             {
                 "page": anchor.page,

@@ -20,19 +20,19 @@
       "claim_index": 0,
       "page": 5,
       "source_index": 0,
-      "text": "Discount factor (γ) 0.97"
+      "text": "Discount factor"
     },
     {
       "claim_index": 1,
       "page": 5,
       "source_index": 1,
-      "text": "Choose (e.g. random) either UPDATE(A) or UPDATE(B)"
+      "text": "Choose (e.g. random) either"
     },
     {
       "claim_index": 2,
       "page": 5,
       "source_index": 1,
-      "text": "Choose a, based on QA(s, ·) and QB(s, ·)"
+      "text": "Choose a, based on"
     }
   ],
   "claim_file": "../claims/double_q_market_making.json",

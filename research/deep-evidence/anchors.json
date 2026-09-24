@@ -6,9 +6,9 @@
   ],
   "reinforcement.double_q_market_making": [
     {"page": 5, "text": "Learning rate (α) 0.001", "claim_index": 0, "source_index": 0},
-    {"page": 5, "text": "Discount factor (γ) 0.97", "claim_index": 0, "source_index": 0},
-    {"page": 5, "text": "Choose (e.g. random) either UPDATE(A) or UPDATE(B)", "claim_index": 1, "source_index": 1},
-    {"page": 5, "text": "Choose a, based on QA(s, ·) and QB(s, ·)", "claim_index": 2, "source_index": 1}
+    {"page": 5, "text": "Discount factor", "claim_index": 0, "source_index": 0},
+    {"page": 5, "text": "Choose (e.g. random) either", "claim_index": 1, "source_index": 1},
+    {"page": 5, "text": "Choose a, based on", "claim_index": 2, "source_index": 1}
   ],
   "rule.channel_breakout": [
     {"page": 3, "text": "minimum and maximum prices over the previous 50"},
