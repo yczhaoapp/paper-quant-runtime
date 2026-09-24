@@ -328,5 +328,41 @@
     },
     "fixture": "independent_busseti"
   },
+  "public_supplement": {
+    "rule.channel_breakout": {
+      "files": {
+        "dataset": {
+          "path": "examples/public_aapl/dataset.json",
+          "sha256": "87dd3a7ced83d4e4e3c0758786b9c8ae6602094cbba6432b6085aaf6d1eca708"
+        },
+        "events": {
+          "path": "examples/public_aapl/events.json",
+          "sha256": "238c9c015483d097df88dee608b9234e4a57faf5e6c467705197ed3ea7857dc5"
+        },
+        "policy": {
+          "path": "examples/public_aapl/policy.json",
+          "sha256": "6bf8ed05df5aa622c5924ed11451a073ed74bf158192c953c6d3b1c0bfd71abc"
+        }
+      },
+      "fixture": "public_aapl"
+    },
+    "rule.moving_average_crossover": {
+      "files": {
+        "dataset": {
+          "path": "examples/public_aapl/dataset.json",
+          "sha256": "87dd3a7ced83d4e4e3c0758786b9c8ae6602094cbba6432b6085aaf6d1eca708"
+        },
+        "events": {
+          "path": "examples/public_aapl/events.json",
+          "sha256": "238c9c015483d097df88dee608b9234e4a57faf5e6c467705197ed3ea7857dc5"
+        },
+        "policy": {
+          "path": "examples/public_aapl/policy.json",
+          "sha256": "6bf8ed05df5aa622c5924ed11451a073ed74bf158192c953c6d3b1c0bfd71abc"
+        }
+      },
+      "fixture": "public_aapl"
+    }
+  },
   "schema_version": "1.0"
 }

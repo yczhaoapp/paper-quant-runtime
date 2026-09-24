@@ -21,9 +21,11 @@ from paperquant.evidence import verify_bundle_file
 from paperquant.models import RunReport
 from paperquant.output import atomic_bytes
 from paperquant.papers import MethodSpec, Recipe, fetch_paper_source, verify_recipe
-from scripts.acceptance import _run_oracles
+from scripts.acceptance import PUBLIC_CASES, _run_oracles
+from scripts.assurance_axes import validate_assurance
 from scripts.build_busseti_case import CACHE, REVIEW, build_case
 from scripts.verify_paper_sources import LOCK, verify_sources
+from scripts.verify_strict import _git_state, _source_sha256
 
 ROOT = Path(__file__).resolve().parents[1]
 INPUT_LOCK = ROOT / "research/deep-evidence/inputs.json"
@@ -87,6 +89,35 @@ def _check_independent_inputs() -> dict[str, Any]:
     return cast(dict[str, Any], locked["files"])
 
 
+def _check_public_supplement(entries: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
+    by_strategy = {entry["strategy"]: entry for entry in entries}
+    expected = {
+        strategy_id: fixture_name
+        for strategy_id, fixture_name in PUBLIC_CASES
+        if by_strategy[strategy_id]["fixture"] != fixture_name
+    }
+    locked = json.loads(INPUT_LOCK.read_text())["public_supplement"]
+    if set(locked) != set(expected):
+        raise ValueError("Public-data supplement must cover exactly the missing catalog runs")
+    for strategy_id, fixture_name in expected.items():
+        record = locked[strategy_id]
+        fixture = ROOT / "examples" / fixture_name
+        expected_files = {"dataset": "dataset.json", "events": "events.json",
+                          "policy": "policy.json"}
+        if (fixture / "training.json").is_file():
+            expected_files["training"] = "training.json"
+        if record["fixture"] != fixture_name or set(record["files"]) != set(expected_files):
+            raise ValueError(f"Public-data supplement files differ: {strategy_id}")
+        for kind, filename in expected_files.items():
+            path = fixture / filename
+            pinned = record["files"][kind]
+            if pinned["path"] != path.relative_to(ROOT).as_posix() or (
+                pinned["sha256"] != _digest(path)
+            ):
+                raise ValueError(f"Pinned public {kind} bytes differ: {strategy_id}")
+    return cast(dict[str, dict[str, Any]], locked)
+
+
 def _run_paper(
     recipe_path: Path, fixture: Path, entry: dict[str, Any], output: Path
 ) -> dict[str, Any]:
@@ -115,6 +146,7 @@ def _run_paper(
     checked = verify_recipe(recipe_path)
     if (
         report.status != "succeeded"
+        or report.plan.sandbox != "development"
         or not report.decisions
         or not report.fills
         or receipt["status"] != "passed"
@@ -132,6 +164,8 @@ def _run_paper(
         "recipe_sha256": _digest(recipe_path),
         "paper_run_sha256": _digest(output / "paper-run.json"),
         "bundle_sha256": _digest(output / "bundle.json"),
+        "source_events_sha256": report.source_events_sha256,
+        "training_sha256": report.plan.training_sha256,
         "fills": len(report.fills),
     }
 
@@ -149,6 +183,14 @@ def run_depth(output: Path, *, fetch: bool = False) -> dict[str, Any]:
     }
     _publish(receipt_path, state)
     try:
+        source_tree_sha256 = _source_sha256()
+        git_commit, git_clean = _git_state()
+        state.update({
+            "source_tree_sha256": source_tree_sha256,
+            "git_commit": git_commit,
+            "git_clean": git_clean,
+        })
+        _publish(receipt_path, state)
         source_records = verify_sources(fetch=fetch)
         primary = [record for record in source_records if record["role"] == "primary"]
         supporting = [record for record in source_records if record["role"] == "supporting"]
@@ -157,6 +199,11 @@ def run_depth(output: Path, *, fetch: bool = False) -> dict[str, Any]:
         catalog = json.loads((ROOT / "examples/catalog.json").read_text())
         entries = catalog["cases"]
         pinned_inputs = _check_inputs(entries)
+        public_supplement = _check_public_supplement(entries)
+        assurance = validate_assurance(
+            {entry["strategy"] for entry in entries},
+            {strategy_id for strategy_id, _ in PUBLIC_CASES},
+        )
         bindings = json.loads((ROOT / "research/oracle_bindings.json").read_text())["bindings"]
         recipes = sorted(
             (
@@ -200,6 +247,54 @@ def run_depth(output: Path, *, fetch: bool = False) -> dict[str, Any]:
             record["pinned_inputs"] = pinned_inputs[strategy_id]["files"]
             paper_runs.append(record)
         del state["current_case"]
+        run_by_strategy = {record["strategy_id"]: record for record in paper_runs}
+        source_record = json.loads((ROOT / "data/public/SOURCE.json").read_text())
+        source_csv_sha256 = _digest(ROOT / "data/public/finance-charts-apple.csv")
+        if source_record["sha256"] != source_csv_sha256:
+            raise ValueError("Public market source differs from its pinned raw CSV")
+        public_paper_runs = []
+        catalog_by_strategy = {entry["strategy"]: entry for entry in entries}
+        for strategy_id, fixture_name in PUBLIC_CASES:
+            fixture = ROOT / "examples" / fixture_name
+            if catalog_by_strategy[strategy_id]["fixture"] == fixture_name:
+                record = run_by_strategy[strategy_id]
+            else:
+                entry = {"policy": "policy.json"}
+                if (fixture / "training.json").is_file():
+                    entry["training"] = "training.json"
+                record = _run_paper(
+                    by_strategy[strategy_id],
+                    fixture,
+                    entry,
+                    attempt / "public_supplement" / strategy_id,
+                )
+                record["pinned_inputs"] = public_supplement[strategy_id]["files"]
+            lineage_path = fixture / "lineage.json"
+            lineage_sha256 = None
+            if lineage_path.is_file():
+                lineage = json.loads(lineage_path.read_text())
+                if (
+                    lineage["source_file_sha256"] != source_csv_sha256
+                    or lineage["evaluation_sha256"] != record["source_events_sha256"]
+                    or lineage["training_sha256"] != record["training_sha256"]
+                ):
+                    raise ValueError(f"Public-data lineage differs from paper run: {strategy_id}")
+                lineage_sha256 = _digest(lineage_path)
+            elif (fixture / "training.json").is_file():
+                raise ValueError(f"Public-data training lineage is absent: {strategy_id}")
+            public_paper_runs.append({
+                "strategy_id": strategy_id,
+                "fixture": fixture_name,
+                "raw_source_sha256": source_csv_sha256,
+                "lineage_sha256": lineage_sha256,
+                "paper_run_sha256": record["paper_run_sha256"],
+                "bundle_sha256": record["bundle_sha256"],
+                "source_events_sha256": record["source_events_sha256"],
+                "training_sha256": record["training_sha256"],
+                "pinned_inputs": record["pinned_inputs"],
+            })
+        if len(public_paper_runs) != assurance["data_counts"]["D1"]:
+            raise ValueError("D1 grades differ from actual public-paper runs")
         independent_source = json.loads((REVIEW / "source.json").read_text())
         independent_inputs = _check_independent_inputs()
         if independent_source["url"] in {record["canonical_url"] for record in source_records}:
@@ -219,6 +314,8 @@ def run_depth(output: Path, *, fetch: bool = False) -> dict[str, Any]:
             attempt / "independent" / "run",
         )
         independent["pinned_inputs"] = independent_inputs
+        if source_tree_sha256 != _source_sha256() or (git_commit, git_clean) != _git_state():
+            raise ValueError("Paper-depth source tree changed during this attempt")
         state.update(
             {
                 "status": "passed",
@@ -229,9 +326,18 @@ def run_depth(output: Path, *, fetch: bool = False) -> dict[str, Any]:
                 "independent_new_sources": 1,
                 "source_lock_sha256": _digest(LOCK),
                 "input_lock_sha256": _digest(INPUT_LOCK),
+                "assurance": {
+                    "reviewed": assurance,
+                    "runtime": {
+                        "level": "R1",
+                        "scope": "host paper intake for eighteen catalog cases and one new case",
+                        "attempt_id": attempt_id,
+                    },
+                },
                 "catalog_oracle_junit_sha256": catalog_junit_sha,
                 "independent_oracle_junit_sha256": independent_junit_sha,
                 "paper_runs": paper_runs,
+                "public_paper_runs": public_paper_runs,
                 "independent_build": build_receipt,
                 "independent_paper_run": independent,
             }

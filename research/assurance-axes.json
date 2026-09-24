@@ -1,0 +1,331 @@
+{
+  "assessment_kind": "human_reviewed_scope_not_semantic_proof",
+  "cases": {
+    "reinforcement.actor_critic_allocation": {
+      "claim_sha256": "e929de978603e40232204e88635270a23a36d0c0872fe2334e213809bdb4be93",
+      "core": {
+        "claim_indices": [
+          0,
+          1,
+          2
+        ],
+        "level": "A1",
+        "scope": "Continuous-weight policy gradient and TD critic are retained in a linear Gaussian surrogate instead of the source networks."
+      },
+      "data": "D1",
+      "experiment": "E0",
+      "strategy": {
+        "level": "A1",
+        "scope": "AAPL plus cash and reduced state features replace the multi-asset portfolio and trading-cost experiment."
+      }
+    },
+    "reinforcement.double_q_market_making": {
+      "claim_sha256": "6bf7e05db0a23f42efee37bfaff8b324b77224ce9e059b1aafb07bc2784af0e3",
+      "core": {
+        "claim_indices": [
+          1,
+          2
+        ],
+        "level": "A2",
+        "scope": "The separate van Hasselt source pins exact double-table selection, cross-evaluation and combined behavior action."
+      },
+      "data": "D0",
+      "experiment": "E0",
+      "strategy": {
+        "level": "A0",
+        "scope": "Spooner's quote actions, tile coding, eligibility traces, exchange simulator and reward are replaced by a target-position setting."
+      }
+    },
+    "reinforcement.execution_value_learning": {
+      "claim_sha256": "f2581e6517b887b2ba63144c1ed9f1d2a8f7f5acdb041cd3f9f6cb72fe6e5185",
+      "core": {
+        "claim_indices": [
+          0,
+          1,
+          2
+        ],
+        "level": "A1",
+        "scope": "Finite-horizon backward values and terminal completion are retained on a reduced action and reward lattice."
+      },
+      "data": "D0",
+      "experiment": "E0",
+      "strategy": {
+        "level": "A0",
+        "scope": "Whole-unit next-tick targets replace limit-price revisions, queue priority and source market-impact data."
+      }
+    },
+    "reinforcement.pairs_actor_critic": {
+      "claim_sha256": "5baa8c2a67afd1c5b3783a806c1f3d6b2c8abc5013eeba02d6131e98b7dc6efb",
+      "core": {
+        "claim_indices": [
+          0,
+          1,
+          2
+        ],
+        "level": "A1",
+        "scope": "Causal residual state, three RL1 actions and on-policy A2C are retained with a reduced linear model."
+      },
+      "data": "D0",
+      "experiment": "E0",
+      "strategy": {
+        "level": "A0",
+        "scope": "The preselected daily synthetic pair, surrogate reward, shortened window and non-atomic fills do not reproduce the source trading experiment."
+      }
+    },
+    "reinforcement.risk_averse_bandit": {
+      "claim_sha256": "f374656aa0ad4b6ac6279e3c5de05b500c53ce883d4c2b4ebbfac03c9cbc8cd7",
+      "core": {
+        "claim_indices": [
+          0,
+          1
+        ],
+        "level": "A2",
+        "scope": "The scalar normal-gamma posterior and sampled mean-minus-variance score have independent formula oracles."
+      },
+      "data": "D0",
+      "experiment": "E0",
+      "strategy": {
+        "level": "A1",
+        "scope": "Online selected-arm learning remains, with one synthetic L1 context and unit holdings replacing the portfolio experiment."
+      }
+    },
+    "reinforcement.sarsa_inventory": {
+      "claim_sha256": "824b1411af38110a9cb9004e0e94d86e4c713743dd33f39ab19e0cc4016060ae",
+      "core": {
+        "claim_indices": [
+          0,
+          1
+        ],
+        "level": "A1",
+        "scope": "A one-step on-policy SARSA update is checked, while source tile coding and eligibility traces are omitted."
+      },
+      "data": "D0",
+      "experiment": "E0",
+      "strategy": {
+        "level": "A0",
+        "scope": "Target inventory replaces quote-distance actions, market-making reward and original order-flow simulation."
+      }
+    },
+    "rule.channel_breakout": {
+      "claim_sha256": "3d643c3b6ba3a1f2d1b22e3ed497edad48a32101129f39bc546d6f91033adfb5",
+      "core": {
+        "claim_indices": [
+          0,
+          1
+        ],
+        "level": "A2",
+        "scope": "The 50-day breakout band and ten-session holding rule have direct mathematical oracles."
+      },
+      "data": "D1",
+      "experiment": "E0",
+      "strategy": {
+        "level": "A1",
+        "scope": "The trading signal is retained with a declared next-open fill and substitute AAPL market."
+      }
+    },
+    "rule.microprice_toy": {
+      "claim_sha256": "0a512820a93dd8ffdf7fb807d0a8b1cdd7e4b4a034b98152c72ed1779e86da2a",
+      "core": {
+        "claim_indices": [
+          0
+        ],
+        "level": "A2",
+        "scope": "The weighted-mid identity is checked in the paper's stated toy case."
+      },
+      "data": "D0",
+      "experiment": "E0",
+      "strategy": {
+        "level": "A0",
+        "scope": "The source defines a price estimator, while the target-position trading decision is added here."
+      }
+    },
+    "rule.moving_average_crossover": {
+      "claim_sha256": "93baa99f13d4e68b88b6d699f1f672b6c6e2038543e94183f8a8eecfba8c44be",
+      "core": {
+        "claim_indices": [
+          0,
+          1
+        ],
+        "level": "A2",
+        "scope": "The moving-average formula and VMA band position rule are checked directly."
+      },
+      "data": "D1",
+      "experiment": "E0",
+      "strategy": {
+        "level": "A1",
+        "scope": "The signal is retained, but public AAPL or illustrative bars and next-open fills replace the source market experiment."
+      }
+    },
+    "rule.pairs_distance": {
+      "claim_sha256": "9c958d4ff911a9957528fc75662d6a90a2ae6de08b00ee79208e814c3af7d688",
+      "core": {
+        "claim_indices": [
+          0,
+          1
+        ],
+        "level": "A2",
+        "scope": "Formation distance, two-standard-deviation entry and zero-crossing exit are independently checked."
+      },
+      "data": "D0",
+      "experiment": "E0",
+      "strategy": {
+        "level": "A1",
+        "scope": "One synthetic pair, approximate calendar windows, fixed notional legs and separate next-open fills replace the source portfolio experiment."
+      }
+    },
+    "rule.reservation_quote": {
+      "claim_sha256": "d3eb27af79aa1a9f76863092f23adadf6314bbcf6b0f77410912aa630da0fb5e",
+      "core": {
+        "claim_indices": [
+          0,
+          1
+        ],
+        "level": "A2",
+        "scope": "Reservation price and approximate spread use the paper's equations 29 and 30."
+      },
+      "data": "D0",
+      "experiment": "E0",
+      "strategy": {
+        "level": "A1",
+        "scope": "Two-sided quotes remain, but arrival calibration, standing queues, cancellations and original P&L simulation do not."
+      }
+    },
+    "rule.time_sliced_execution": {
+      "claim_sha256": "405ee6b04c24829203de2208f74196f7c10932b6bef702dcbf7aba4ba891f077",
+      "core": {
+        "claim_indices": [
+          0,
+          1
+        ],
+        "level": "A2",
+        "scope": "Only the paper's deterministic equal-slot TWAP benchmark schedule is reproduced."
+      },
+      "data": "D1",
+      "experiment": "E0",
+      "strategy": {
+        "level": "A0",
+        "scope": "The paper's learned limit-order execution agent and order-book matching are absent; daily market child orders are a runtime demonstration."
+      }
+    },
+    "supervised.cross_sectional_rank": {
+      "claim_sha256": "ee9226c95f95d9a0b8184f571c064df4f6ab6308a43db52eba2f84d8376176b9",
+      "core": {
+        "claim_indices": [
+          0,
+          1
+        ],
+        "level": "A2",
+        "scope": "Elastic-net objective and forecast ranking are checked independently of the chosen solver."
+      },
+      "data": "D0",
+      "experiment": "E0",
+      "strategy": {
+        "level": "A1",
+        "scope": "Long-short ranking remains, with a three-symbol daily synthetic panel instead of the source's monthly equity universe."
+      }
+    },
+    "supervised.gaussian_nb_direction": {
+      "claim_sha256": "2cafed28598f280a8c83d1f4d6aaa4412158dea5967b3203217aeb54461c13ec",
+      "core": {
+        "claim_indices": [
+          1
+        ],
+        "level": "A2",
+        "scope": "The Gaussian class-conditional posterior is checked for the selected classifier component."
+      },
+      "data": "D1",
+      "experiment": "E0",
+      "strategy": {
+        "level": "A0",
+        "scope": "The source's four-model ensemble and feature selection are absent; the single classifier is mapped to trades."
+      }
+    },
+    "supervised.logistic_direction": {
+      "claim_sha256": "a5845263dd4ba58536d338bc9dd882bb086f3f33d537e3d456334d232744732e",
+      "core": {
+        "claim_indices": [
+          0,
+          1
+        ],
+        "level": "A2",
+        "scope": "Direction labels, sigmoid, entropy objective and declared gradient settings are checked."
+      },
+      "data": "D1",
+      "experiment": "E0",
+      "strategy": {
+        "level": "A0",
+        "scope": "Training-only scaling and a probability-to-position trading rule supplement the paper's classifier."
+      }
+    },
+    "supervised.queue_imbalance": {
+      "claim_sha256": "017a6e75af897511449a1ad223416e28d258aa46abf71700717755fc5cd40cd4",
+      "core": {
+        "claim_indices": [
+          0,
+          1
+        ],
+        "level": "A2",
+        "scope": "Best-quote imbalance and the two-coefficient logistic probability model are checked."
+      },
+      "data": "D0",
+      "experiment": "E0",
+      "strategy": {
+        "level": "A0",
+        "scope": "The paper's forecast is converted into a target-position rule on synthetic order-book events."
+      }
+    },
+    "supervised.random_forest_operations": {
+      "claim_sha256": "ea81f12ead248887bea4aff811200cdde58414f26646c919fb6c07f396d39e2b",
+      "core": {
+        "claim_indices": [
+          0,
+          1,
+          2
+        ],
+        "level": "A1",
+        "scope": "Bootstrap trees, random feature selection and three operation classes are retained with reduced features and cost-free labels."
+      },
+      "data": "D1",
+      "experiment": "E0",
+      "strategy": {
+        "level": "A1",
+        "scope": "The three-class operation decision remains, but the source's universe, costs, indicators and tuned parameters are replaced."
+      }
+    },
+    "supervised.ridge_three_day_price": {
+      "claim_sha256": "2ca8722501c717b8aa521a21cbdbd9b2205d0e333ddde11e3e83ff997032fcf1",
+      "core": {
+        "claim_indices": [
+          1
+        ],
+        "level": "A2",
+        "scope": "The L2-penalized linear least-squares update is independently checked."
+      },
+      "data": "D1",
+      "experiment": "E0",
+      "strategy": {
+        "level": "A0",
+        "scope": "Raw three-day OHLCV replaces the paper's selected indicator universe, and forecast-to-position trading is added."
+      }
+    }
+  },
+  "independent": {
+    "core": {
+      "claim_indices": [
+        0
+      ],
+      "level": "A2",
+      "scope": "The reviewed static constant-spread solution of equation 16 is checked over several order sizes and volume profiles."
+    },
+    "data": "D0",
+    "experiment": "E0",
+    "reviewed_method_sha256": "4e633d1ce0d8fd17fea718eb2a3efb532953922ad19f1c5d5410aac774dc20c9",
+    "source_sha256": "d5667ea0aa81ebefaf39f6185bdce5603a6205716e360b6cf3d4fd9e100191dc",
+    "strategy": {
+      "level": "A0",
+      "scope": "Only the static schedule is built; the dynamic stochastic control policy, source market data and cost experiment are absent."
+    },
+    "strategy_id": "outside.catalog.busseti_static_vwap"
+  },
+  "schema_version": "1.0"
+}

@@ -36,6 +36,7 @@ SOURCE_FILES = (
     "uv.lock",
     "README.md",
 )
+ASSURANCE_MATRIX = ROOT / "research/assurance-axes.json"
 EXCLUDE_DIRS = {"__pycache__", ".pytest_cache", ".ruff_cache", ".mypy_cache",
                 "source-cache"}
 
@@ -207,6 +208,16 @@ def main() -> int:
                 ).hexdigest(),
             }
         )
+        if commit is not None and clean:
+            state["runtime_assurance"] = {
+                "level": "R2",
+                "scope": "eighteen catalog strategies through strict isolated worker",
+                "catalog_cases": acceptance["count"],
+                "attempt_id": attempt_id,
+                "assurance_matrix_sha256": hashlib.sha256(
+                    ASSURANCE_MATRIX.read_bytes()
+                ).hexdigest(),
+            }
         _write_json(receipt, state)
         print(json.dumps({"status": "passed", "receipt": str(receipt), "attempt_id": attempt_id}))
         return 0

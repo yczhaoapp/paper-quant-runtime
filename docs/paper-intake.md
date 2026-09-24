@@ -48,6 +48,8 @@ uv run --no-sync python -m scripts.accept_paper_depth \
 
 `paper-depth.json` 启动时立即改为本轮 `running`，任何失败都会发布 `failed`，每轮产物隔离在新 attempt 目录。通过收据包含 18 条 `paper-run` 的 recipe、原文、spec 与 bundle 哈希，16 个主要来源、1 个算法辅助来源、1 个全新论文来源以及本轮 oracle JUnit 哈希。增强验收要求网络只用于主机上显式取得尚未缓存的公开原文；验收和策略执行阶段均可离线。基础验收仍另有两套基于同一入库论文的目录外动态策略测试，它们证明目录外接入，但不能充当新论文来源。
 
+该收据还包含逐策略[四轴证据口径](evidence-axes.md)的矩阵哈希和汇总、八条公开 AAPL 的实际 `paper-run` 证据，以及本轮主机论文接入的 R1 范围。均线和突破的目录夹具为合成数据，因此另外运行固定公开行情补充案例；其余六条公开轨迹由目录论文运行直接验证。严格容器的 R2 只由 `verify_strict.py` 成功收据授予它实际执行的 18 个目录策略，不能沿用到尚未在容器内执行的全论文接入链路。
+
 新论文无需修改运行时核心。对公开 PDF、HTML、TeX 输入，`paperquant.papers.extract_text` 提供显式文本提取；PDF 保留物理页号，HTML 和 TeX 只给一个文本块。扫描版 PDF 没有可提取文字时会失败，不会假装已 OCR；HTML 不执行脚本，TeX 不展开复杂宏或证明公式语义。可用 `scripts/fetch_paper.py --url HTTPS_URL --sha256 EXPECTED_HASH --output FILE` 显式下载，只有哈希匹配才发布文件。默认验收不联网；要纳入离线验收，须按再分发许可把固定来源、人工 recipe、主张与独立策略包一同提供。
 
 验收把每项人工主张的 spec 步骤、实际实现符号、固定策略源码、独立 pytest 节点和本轮 JUnit 绑定；同一项运行另产生包含原始行情、训练请求、模型与完整轨迹的可离线校验 bundle，并在不训练的全新实例中回放。PDF 页级锚点和 oracle 一起构成当前人工复现链路；它不表示系统已能从全文自动生成代码，或证明与原论文全部实验一致。`MethodSpec` 是经过审阅的输入和核验约束，不是假装由全文机器抽取得到的算法真值。
