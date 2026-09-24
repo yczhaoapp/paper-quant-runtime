@@ -140,7 +140,10 @@
       "format": "pdf",
       "file": "research/source-cache/stoikov2017.pdf",
       "distribution": "not_asserted",
-      "retrieval_note": "Pinned third-party mirror of the 14-page Stoikov manuscript; SSRN denies automated byte retrieval. Original title and author require independent comparison."
+      "retrieval_note": "Pinned third-party mirror of the 14-page Stoikov manuscript because SSRN denies automated byte retrieval. The verifier checks the manuscript title and named author against its opening pages; the canonical record remains the SSRN abstract.",
+      "authors": [
+        "Sasha Stoikov"
+      ]
     },
     {
       "source_id": "gatev2006",
@@ -161,6 +164,19 @@
       "format": "pdf",
       "file": "research/source-cache/nevmyvaka2006.pdf",
       "distribution": "not_asserted"
+    }
+  ],
+  "supporting_sources": [
+    {
+      "source_id": "vanhasselt2010",
+      "title": "Double Q-learning",
+      "canonical_url": "https://proceedings.neurips.cc/paper_files/paper/2010/file/091d584fced301b442654dd8c23b3fc9-Paper.pdf",
+      "retrieval_url": "https://papers.neurips.cc/paper_files/paper/2010/file/091d584fced301b442654dd8c23b3fc9-Paper.pdf",
+      "sha256": "f94cf09e58b6392da4d81504cd6349ae432023f08dc040d11c1b6d23a9a4f542",
+      "format": "pdf",
+      "file": "research/source-cache/vanhasselt2010.pdf",
+      "distribution": "not_asserted",
+      "supports_strategy": "reinforcement.double_q_market_making"
     }
   ]
 }

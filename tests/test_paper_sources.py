@@ -16,6 +16,10 @@ def test_catalog_sources_are_pinned_individually() -> None:
     assert len(sources) == 16
     assert {source["canonical_url"] for source in sources} == _expected_claim_urls()
     assert all(len(source["sha256"]) == 64 for source in sources)
+    assert len(lock["supporting_sources"]) == 1
+    assert lock["supporting_sources"][0]["supports_strategy"] == (
+        "reinforcement.double_q_market_making"
+    )
 
 
 def test_source_paths_reject_escape_and_symlinks(tmp_path: Path, monkeypatch) -> None:
@@ -31,8 +35,11 @@ def test_source_paths_reject_escape_and_symlinks(tmp_path: Path, monkeypatch) ->
 
 def test_all_primary_pdfs_match_pins_when_cache_is_prepared() -> None:
     lock = json.loads(LOCK.read_text())
-    if any(not _resolve_file(source["file"]).is_file() for source in lock["sources"]):
+    if any(
+        not _resolve_file(source["file"]).is_file()
+        for source in [*lock["sources"], *lock["supporting_sources"]]
+    ):
         pytest.skip("Run explicit source preparation before the full offline byte check")
     checked = verify_sources()
-    assert len(checked) == 16
+    assert len(checked) == 17
     assert all(item["pages"] > 0 for item in checked)

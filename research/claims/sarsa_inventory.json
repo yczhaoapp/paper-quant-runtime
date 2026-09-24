@@ -8,7 +8,7 @@
   },
   "claims": [
     {"locator": "Section 4.4, PDF page 4", "statement": "The study evaluates SARSA as an on-policy temporal-difference learner for market making.", "implementation": "InventorySarsa.train"},
-    {"locator": "Section 5.2, PDF page 6", "statement": "The basic agent represents inventory in its agent state and evaluates one-step SARSA.", "implementation": "InventorySarsa._state, InventorySarsa.decide"}
+    {"locator": "Section 5.2, PDF page 5", "statement": "The basic agent represents inventory in its agent state and evaluates one-step SARSA.", "implementation": "InventorySarsa._state, InventorySarsa.decide"}
   ],
   "oracle": "tests/test_sarsa_paper.py",
   "adaptations": [

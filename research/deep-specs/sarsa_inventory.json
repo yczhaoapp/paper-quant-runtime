@@ -1,0 +1,36 @@
+{
+  "additional_source_sha256": [],
+  "excluded_paper_components": [
+    "This is a tabular one-step SARSA runtime adaptation. The paper's primary agent uses tile coding, quote-distance actions, market-making reward and sometimes eligibility traces; those mechanisms are not reproduced here.",
+    "Actions are unit target inventories filled by the reference engine on the next tick, not limit quotes with an order-book matching simulator.",
+    "Training transitions and evaluation ticks are synthetic and do not reproduce the paper's equity experiments."
+  ],
+  "fields": [
+    "ask_size",
+    "bid_size",
+    "price"
+  ],
+  "schema_version": "1.0",
+  "source_sha256": "1f653c9b625fa068f521660006194796a835da239b1da529f124841af9f82762",
+  "steps": [
+    {
+      "adaptation": "This is a tabular one-step SARSA runtime adaptation. The paper's primary agent uses tile coding, quote-distance actions, market-making reward and sometimes eligibility traces; those mechanisms are not reproduced here.",
+      "claim_index": 0,
+      "implementation": "InventorySarsa.train",
+      "oracle_node": "tests/test_sarsa_paper.py::test_sarsa_uses_actual_next_action_not_greedy_maximum[alpha0-gamma0-reward0]",
+      "paper_rule": "The study evaluates SARSA as an on-policy temporal-difference learner for market making.",
+      "role": "training",
+      "runtime_rule": "Update the current action value using the actual next behavior action, not a greedy maximum."
+    },
+    {
+      "adaptation": "This is a tabular one-step SARSA runtime adaptation. The paper's primary agent uses tile coding, quote-distance actions, market-making reward and sometimes eligibility traces; those mechanisms are not reproduced here.",
+      "claim_index": 1,
+      "implementation": "InventorySarsa._state",
+      "oracle_node": "tests/test_sarsa_paper.py::test_sarsa_uses_actual_next_action_not_greedy_maximum[alpha0-gamma0-reward0]",
+      "paper_rule": "The basic agent represents inventory in its agent state and evaluates one-step SARSA.",
+      "role": "data",
+      "runtime_rule": "Discretize inventory and declared market observations into the learner's runtime state."
+    }
+  ],
+  "strategy_id": "reinforcement.sarsa_inventory"
+}

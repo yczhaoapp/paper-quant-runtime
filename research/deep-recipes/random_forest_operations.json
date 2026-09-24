@@ -1,0 +1,56 @@
+{
+  "additional_sources": [],
+  "anchors": [
+    {
+      "claim_index": 0,
+      "page": 2,
+      "text": "For the random forest construction, each tree is induced"
+    },
+    {
+      "claim_index": 1,
+      "page": 3,
+      "text": "maximum expected gain"
+    },
+    {
+      "claim_index": 2,
+      "page": 4,
+      "text": "training set consists only of observations that occurred prior"
+    }
+  ],
+  "claim_file": "../claims/random_forest_operations.json",
+  "expected": {
+    "actions": [
+      "none",
+      "prediction",
+      "target_position"
+    ],
+    "fields": [
+      "close",
+      "high",
+      "low",
+      "open",
+      "volume"
+    ],
+    "granularity": "day",
+    "kind": "supervised",
+    "strategy_id": "supervised.random_forest_operations",
+    "symbols": [
+      "DEMO"
+    ],
+    "training_required": true
+  },
+  "package": "../../strategies/supervised.random_forest_operations",
+  "package_source_sha256": "f3abc82a1b5ae512f907a9d1608bb08ebf011556570e372ccc16c5f1d51adf2b",
+  "review_note": "Human-reviewed page anchors and declared method adaptations. Source text does not by itself prove algorithm or original-experiment fidelity; see the bound independent oracle and individual claim record.",
+  "schema_version": "1.0",
+  "source": {
+    "file": "../source-cache/lauretto2013.pdf",
+    "format": "pdf",
+    "license": "Redistribution not asserted; prepare hash-pinned local copy",
+    "sha256": "762191079b211fae64fc7ce0457d9bac1d373a3bd9eb8ebd9cb464787ad127d2",
+    "title": "Evaluation of a Supervised Learning Approach for Stock Market Operations",
+    "url": "https://arxiv.org/pdf/1301.4944v1"
+  },
+  "spec_file": "../deep-specs/random_forest_operations.json",
+  "spec_sha256": "cf2dba0cd6d18831cf8ec58bbc902eda2060c7294a96cd865df4861a70df2332"
+}

@@ -1,0 +1,47 @@
+{
+  "additional_source_sha256": [
+    "f94cf09e58b6392da4d81504cd6349ae432023f08dc040d11c1b6d23a9a4f542"
+  ],
+  "excluded_paper_components": [
+    "The exact tabular Double Q update is reproduced, including seeded random selection of which table to update, but Spooner et al.'s tile coding and eligibility traces are not.",
+    "The paper's limit-order quote action, exchange order-flow simulator, reward design and empirical market data are replaced with a disclosed L1 imbalance/inventory state and unit target-position adapter.",
+    "The synthetic transition fixture is used for deterministic lifecycle verification; no empirical PnL result is attributed to either paper."
+  ],
+  "fields": [
+    "ask_size",
+    "bid_size",
+    "price"
+  ],
+  "schema_version": "1.0",
+  "source_sha256": "1f653c9b625fa068f521660006194796a835da239b1da529f124841af9f82762",
+  "steps": [
+    {
+      "adaptation": "The paper's limit-order quote action, exchange order-flow simulator, reward design and empirical market data are replaced with a disclosed L1 imbalance/inventory state and unit target-position adapter.",
+      "claim_index": 0,
+      "implementation": "DoubleQInventory.__init__",
+      "oracle_node": "tests/test_double_q_paper.py::test_seeded_random_transitions_match_independent_double_bellman_oracle[2]",
+      "paper_rule": "Double Q-learning is evaluated as a market-making learner; default alpha is 0.001 and gamma is 0.97.",
+      "role": "training",
+      "runtime_rule": "Initialize two action-value tables with the declared learning and discount factors."
+    },
+    {
+      "adaptation": "The exact tabular Double Q update is reproduced, including seeded random selection of which table to update, but Spooner et al.'s tile coding and eligibility traces are not.",
+      "claim_index": 1,
+      "implementation": "DoubleQInventory.train",
+      "oracle_node": "tests/test_double_q_paper.py::test_double_q_selects_with_one_table_and_evaluates_with_other[alpha0-gamma0]",
+      "paper_rule": "One randomly selected table chooses the next action; the other table evaluates it during the update.",
+      "role": "training",
+      "runtime_rule": "Select one table for each update, choose the next action in it and evaluate with the other table."
+    },
+    {
+      "adaptation": "The paper's limit-order quote action, exchange order-flow simulator, reward design and empirical market data are replaced with a disclosed L1 imbalance/inventory state and unit target-position adapter.",
+      "claim_index": 2,
+      "implementation": "DoubleQInventory.decide",
+      "oracle_node": "tests/test_double_q_paper.py::test_behavior_action_uses_combined_tables_and_is_swap_invariant[3]",
+      "paper_rule": "The two action-value tables are combined when choosing a behavior action.",
+      "role": "inference",
+      "runtime_rule": "Choose the behavior action from the combined values of both learned tables."
+    }
+  ],
+  "strategy_id": "reinforcement.double_q_market_making"
+}

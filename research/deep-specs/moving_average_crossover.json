@@ -1,0 +1,33 @@
+{
+  "additional_source_sha256": [],
+  "excluded_paper_components": [
+    "Uses a deterministic synthetic fixture and a separately pinned public AAPL daily OHLCV proxy; the original Shanghai and Shenzhen index sample and performance statistics are not reproduced.",
+    "The reference engine submits a target position at signal availability and fills at the next event open, rather than asserting the paper's execution-price convention."
+  ],
+  "fields": [
+    "close"
+  ],
+  "schema_version": "1.0",
+  "source_sha256": "6908ca31e92e750881255742a99ffc3daf00ca2e9d0b0012652809d0f538b87a",
+  "steps": [
+    {
+      "adaptation": "Uses a deterministic synthetic fixture and a separately pinned public AAPL daily OHLCV proxy; the original Shanghai and Shenzhen index sample and performance statistics are not reproduced.",
+      "claim_index": 0,
+      "implementation": "MovingAverageCrossover.decide",
+      "oracle_node": "tests/test_moving_average_paper.py::test_paper_vma_signal_matches_independent_rolling_formula[2]",
+      "paper_rule": "Moving average is the arithmetic mean of the n most recent prices.",
+      "role": "signal",
+      "runtime_rule": "Calculate short and long arithmetic means from completed daily closing prices."
+    },
+    {
+      "adaptation": "Uses a deterministic synthetic fixture and a separately pinned public AAPL daily OHLCV proxy; the original Shanghai and Shenzhen index sample and performance statistics are not reproduced.",
+      "claim_index": 1,
+      "implementation": "MovingAverageCrossover.decide",
+      "oracle_node": "tests/test_moving_average_paper.py::test_paper_vma_signal_matches_independent_rolling_formula[2]",
+      "paper_rule": "The variable-length moving-average position is long above the band, short below the band, flat inside it.",
+      "role": "inference",
+      "runtime_rule": "Choose long, short or flat target inventory from the mean gap and declared band."
+    }
+  ],
+  "strategy_id": "rule.moving_average_crossover"
+}

@@ -1,0 +1,332 @@
+{
+  "cases": {
+    "reinforcement.actor_critic_allocation": {
+      "files": {
+        "dataset": {
+          "path": "examples/public_actor_critic/dataset.json",
+          "sha256": "8ba3d855a4dc8b9dd3cd15aecb8a976722a8011a0420b421a2bc7f5ffe519fa5"
+        },
+        "events": {
+          "path": "examples/public_actor_critic/events.json",
+          "sha256": "ffe8f990f74572803f06b5088c3a418f1789dc55b7dc7ddc286968e08fbbb6f6"
+        },
+        "policy": {
+          "path": "examples/public_actor_critic/policy.json",
+          "sha256": "f8bfcfaa4a5c31f3ef2b1e911197d5f17e2424f29dfbb5b009a932a8e06d651b"
+        },
+        "training": {
+          "path": "examples/public_actor_critic/training.json",
+          "sha256": "59871c7f09640e109f4d93a7d74ac35104e3723755166960b5e4bcd4ff70d260"
+        }
+      },
+      "fixture": "public_actor_critic"
+    },
+    "reinforcement.double_q_market_making": {
+      "files": {
+        "dataset": {
+          "path": "examples/l1_queues/dataset.json",
+          "sha256": "6a16fd76ef716c0e9e23abc915910c9fe315f58047eef1a5c04f5d48b46986ca"
+        },
+        "events": {
+          "path": "examples/l1_queues/events.json",
+          "sha256": "fcd5b84a8b16d2ca188118eba82fe0de90341176504a22cd3da4130d1da67a14"
+        },
+        "training": {
+          "path": "examples/l1_queues/sarsa_training.json",
+          "sha256": "2d50c01a4c82f4857a71ea429808eb2cf5f55c181340ae1cded4596738dede05"
+        }
+      },
+      "fixture": "l1_queues"
+    },
+    "reinforcement.execution_value_learning": {
+      "files": {
+        "dataset": {
+          "path": "examples/execution_lattice/dataset.json",
+          "sha256": "bbafb412f116650d453756f4070fad0a190cfebbfaade98d6b8b5aa719a9ce67"
+        },
+        "events": {
+          "path": "examples/execution_lattice/events.json",
+          "sha256": "ca4783695bdf57b2308a108e991b98bc1803320879eeef579e9d8557ce474e2f"
+        },
+        "training": {
+          "path": "examples/execution_lattice/training.json",
+          "sha256": "ffe0bc28b92843b591e99d47e3234a52424b390fc368bf4e9b0eaaf86357eac3"
+        }
+      },
+      "fixture": "execution_lattice"
+    },
+    "reinforcement.pairs_actor_critic": {
+      "files": {
+        "dataset": {
+          "path": "examples/pairs_actor_critic/dataset.json",
+          "sha256": "f70d3e50fb12423989284eef48b692b182a8bab9b99de5e2a4804c72f2308a65"
+        },
+        "events": {
+          "path": "examples/pairs_actor_critic/events.json",
+          "sha256": "c91b7e60037b758fa2594f9b81c9f081db5b7b41bb53a0b730ed1fb800ff23fe"
+        },
+        "policy": {
+          "path": "examples/pairs_actor_critic/policy.json",
+          "sha256": "7cc6af9031e29b931343136f093f15d07157d6f9b60c6c3abc9a31c89164da70"
+        },
+        "training": {
+          "path": "examples/pairs_actor_critic/training.json",
+          "sha256": "9cdf4c80339432eb9cedd349162395bafc1f3e44e29526c8ad7b3a7202763772"
+        }
+      },
+      "fixture": "pairs_actor_critic"
+    },
+    "reinforcement.risk_averse_bandit": {
+      "files": {
+        "dataset": {
+          "path": "examples/bandit_l1/dataset.json",
+          "sha256": "37a9f2cf10f8960ccbad716b92ac9d1b04735616d0aafe6b8fab2ee877bb18d1"
+        },
+        "events": {
+          "path": "examples/bandit_l1/events.json",
+          "sha256": "124c6f21a7b1e47d0c21e0f2086c27356527b6146aff0835f0ad64cc4132535d"
+        },
+        "training": {
+          "path": "examples/bandit_l1/training.json",
+          "sha256": "0d5db5cc673ac26d00fce9bef516abc3e33957a4e18493097d2169604c9f6ee7"
+        }
+      },
+      "fixture": "bandit_l1"
+    },
+    "reinforcement.sarsa_inventory": {
+      "files": {
+        "dataset": {
+          "path": "examples/l1_queues/dataset.json",
+          "sha256": "6a16fd76ef716c0e9e23abc915910c9fe315f58047eef1a5c04f5d48b46986ca"
+        },
+        "events": {
+          "path": "examples/l1_queues/events.json",
+          "sha256": "fcd5b84a8b16d2ca188118eba82fe0de90341176504a22cd3da4130d1da67a14"
+        },
+        "training": {
+          "path": "examples/l1_queues/sarsa_training.json",
+          "sha256": "2d50c01a4c82f4857a71ea429808eb2cf5f55c181340ae1cded4596738dede05"
+        }
+      },
+      "fixture": "l1_queues"
+    },
+    "rule.channel_breakout": {
+      "files": {
+        "dataset": {
+          "path": "examples/daily_vma/dataset.json",
+          "sha256": "fc29dfb1f522290cfc7619ad7ba3c7a3f1cd7ab6d4fbe602879a143fbf574e69"
+        },
+        "events": {
+          "path": "examples/daily_vma/events.json",
+          "sha256": "5cfc9aa97de05211b063da0a699c3558c9b0dbd0b6ba579deec8190154968f1d"
+        }
+      },
+      "fixture": "daily_vma"
+    },
+    "rule.microprice_toy": {
+      "files": {
+        "dataset": {
+          "path": "examples/l1_queues/dataset.json",
+          "sha256": "6a16fd76ef716c0e9e23abc915910c9fe315f58047eef1a5c04f5d48b46986ca"
+        },
+        "events": {
+          "path": "examples/l1_queues/events.json",
+          "sha256": "fcd5b84a8b16d2ca188118eba82fe0de90341176504a22cd3da4130d1da67a14"
+        }
+      },
+      "fixture": "l1_queues"
+    },
+    "rule.moving_average_crossover": {
+      "files": {
+        "dataset": {
+          "path": "examples/daily_vma/dataset.json",
+          "sha256": "fc29dfb1f522290cfc7619ad7ba3c7a3f1cd7ab6d4fbe602879a143fbf574e69"
+        },
+        "events": {
+          "path": "examples/daily_vma/events.json",
+          "sha256": "5cfc9aa97de05211b063da0a699c3558c9b0dbd0b6ba579deec8190154968f1d"
+        }
+      },
+      "fixture": "daily_vma"
+    },
+    "rule.pairs_distance": {
+      "files": {
+        "dataset": {
+          "path": "examples/three_stock_pairs/dataset.json",
+          "sha256": "d078ae36f59385a2727db189c6d27dd4da135c5d457affbc49609af4ef9c041a"
+        },
+        "events": {
+          "path": "examples/three_stock_pairs/events.json",
+          "sha256": "21f078192c53ab39e4efde396e9e4010a0c2b617ff5cabef6ed73dcf391102ad"
+        }
+      },
+      "fixture": "three_stock_pairs"
+    },
+    "rule.reservation_quote": {
+      "files": {
+        "dataset": {
+          "path": "examples/l2_book/dataset.json",
+          "sha256": "49745a6e7f15d74564a1c8b0df75c905bc5c641014313ecb3a0cd9fc4c68dbae"
+        },
+        "events": {
+          "path": "examples/l2_book/events.json",
+          "sha256": "5ccee27ef3052a85c2d5e298e237729b6ef6326f22f92a5e2dd442c824b50644"
+        }
+      },
+      "fixture": "l2_book"
+    },
+    "rule.time_sliced_execution": {
+      "files": {
+        "dataset": {
+          "path": "examples/public_aapl/dataset.json",
+          "sha256": "87dd3a7ced83d4e4e3c0758786b9c8ae6602094cbba6432b6085aaf6d1eca708"
+        },
+        "events": {
+          "path": "examples/public_aapl/events.json",
+          "sha256": "238c9c015483d097df88dee608b9234e4a57faf5e6c467705197ed3ea7857dc5"
+        },
+        "policy": {
+          "path": "examples/public_aapl/policy.json",
+          "sha256": "6bf8ed05df5aa622c5924ed11451a073ed74bf158192c953c6d3b1c0bfd71abc"
+        }
+      },
+      "fixture": "public_aapl"
+    },
+    "supervised.cross_sectional_rank": {
+      "files": {
+        "dataset": {
+          "path": "examples/cross_sectional_rank/dataset.json",
+          "sha256": "69494dd5cb41abefa9dbc485ae071d647d2420455911229ad8128c738d0de92f"
+        },
+        "events": {
+          "path": "examples/cross_sectional_rank/events.json",
+          "sha256": "8a8a7390035d5f4e292c1f82365890c440f87c159d66a4828abb84fc66839b46"
+        },
+        "policy": {
+          "path": "examples/cross_sectional_rank/policy.json",
+          "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+        },
+        "training": {
+          "path": "examples/cross_sectional_rank/training.json",
+          "sha256": "d54dc2871a2634808eaefe81e0c006ab41decda373bf406fb7c5c0e435c6146c"
+        }
+      },
+      "fixture": "cross_sectional_rank"
+    },
+    "supervised.gaussian_nb_direction": {
+      "files": {
+        "dataset": {
+          "path": "examples/public_gaussian/dataset.json",
+          "sha256": "60d7a609085f1dc0ba2cb299a37c9c6eee3df29683f69fdae80e5b2fef65903e"
+        },
+        "events": {
+          "path": "examples/public_gaussian/events.json",
+          "sha256": "ffe8f990f74572803f06b5088c3a418f1789dc55b7dc7ddc286968e08fbbb6f6"
+        },
+        "policy": {
+          "path": "examples/public_gaussian/policy.json",
+          "sha256": "f8bfcfaa4a5c31f3ef2b1e911197d5f17e2424f29dfbb5b009a932a8e06d651b"
+        },
+        "training": {
+          "path": "examples/public_gaussian/training.json",
+          "sha256": "44d0727a934f8a9eeb48aee5546306bf9bf56adaa6f999aab8eb6ade50d592b1"
+        }
+      },
+      "fixture": "public_gaussian"
+    },
+    "supervised.logistic_direction": {
+      "files": {
+        "dataset": {
+          "path": "examples/public_direction/dataset.json",
+          "sha256": "0b14597ce40f491573eff389fefe8574a55e03f41b3a345f95908f6263bd55e2"
+        },
+        "events": {
+          "path": "examples/public_direction/events.json",
+          "sha256": "ffe8f990f74572803f06b5088c3a418f1789dc55b7dc7ddc286968e08fbbb6f6"
+        },
+        "policy": {
+          "path": "examples/public_direction/policy.json",
+          "sha256": "6bf8ed05df5aa622c5924ed11451a073ed74bf158192c953c6d3b1c0bfd71abc"
+        },
+        "training": {
+          "path": "examples/public_direction/training.json",
+          "sha256": "f969558ca820eb6528f08b860f7bb74156cde66da96bb419467774d4b70c9090"
+        }
+      },
+      "fixture": "public_direction"
+    },
+    "supervised.queue_imbalance": {
+      "files": {
+        "dataset": {
+          "path": "examples/l1_queues/dataset.json",
+          "sha256": "6a16fd76ef716c0e9e23abc915910c9fe315f58047eef1a5c04f5d48b46986ca"
+        },
+        "events": {
+          "path": "examples/l1_queues/events.json",
+          "sha256": "fcd5b84a8b16d2ca188118eba82fe0de90341176504a22cd3da4130d1da67a14"
+        },
+        "training": {
+          "path": "examples/l1_queues/training.json",
+          "sha256": "6b6a2a71ed3883fd0dcb54765868d3a8f210a17bbcecb0189252d60bf8920c20"
+        }
+      },
+      "fixture": "l1_queues"
+    },
+    "supervised.random_forest_operations": {
+      "files": {
+        "dataset": {
+          "path": "examples/public_forest/dataset.json",
+          "sha256": "b5d9a23370a1021c0ee79b79fa0242b73d56d58b87cb36e10f6f613c84245154"
+        },
+        "events": {
+          "path": "examples/public_forest/events.json",
+          "sha256": "ffe8f990f74572803f06b5088c3a418f1789dc55b7dc7ddc286968e08fbbb6f6"
+        },
+        "policy": {
+          "path": "examples/public_forest/policy.json",
+          "sha256": "f8bfcfaa4a5c31f3ef2b1e911197d5f17e2424f29dfbb5b009a932a8e06d651b"
+        },
+        "training": {
+          "path": "examples/public_forest/training.json",
+          "sha256": "3a561b8b4d380c062adc14aec3a4291c8ef341fa1975fefb3138d45468dd8c61"
+        }
+      },
+      "fixture": "public_forest"
+    },
+    "supervised.ridge_three_day_price": {
+      "files": {
+        "dataset": {
+          "path": "examples/public_ridge/dataset.json",
+          "sha256": "8c9dbe628d3b0ecb57ad26438cc7e650627f2e0393b3dd27338586ffb73bc892"
+        },
+        "events": {
+          "path": "examples/public_ridge/events.json",
+          "sha256": "ffe8f990f74572803f06b5088c3a418f1789dc55b7dc7ddc286968e08fbbb6f6"
+        },
+        "policy": {
+          "path": "examples/public_ridge/policy.json",
+          "sha256": "f8bfcfaa4a5c31f3ef2b1e911197d5f17e2424f29dfbb5b009a932a8e06d651b"
+        },
+        "training": {
+          "path": "examples/public_ridge/training.json",
+          "sha256": "e3dd46fd5220a67b686114d20836d05cef115141f917a2b58d78775c59235915"
+        }
+      },
+      "fixture": "public_ridge"
+    }
+  },
+  "independent": {
+    "files": {
+      "dataset": {
+        "path": "examples/independent_busseti/dataset.json",
+        "sha256": "906eb1a1f0e09c89e8fb41c1b7f6e8c0440469afeb593aa64d9c3a67200e5062"
+      },
+      "events": {
+        "path": "examples/independent_busseti/events.json",
+        "sha256": "af6508d9de85fd39f4e368a48cf05d62909d57e92a6d5f1abe3b8b8bc541858d"
+      }
+    },
+    "fixture": "independent_busseti"
+  },
+  "schema_version": "1.0"
+}

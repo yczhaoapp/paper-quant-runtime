@@ -1,0 +1,58 @@
+{
+  "additional_sources": [],
+  "anchors": [
+    {
+      "claim_index": 0,
+      "page": 11,
+      "text": "minimizes the sum of squared deviations"
+    },
+    {
+      "claim_index": 1,
+      "page": 12,
+      "text": "more than two historical"
+    },
+    {
+      "claim_index": 1,
+      "page": 12,
+      "text": "close the position when the prices have reverted"
+    },
+    {
+      "claim_index": 2,
+      "page": 11,
+      "text": "a twelve-month period (formation period)"
+    }
+  ],
+  "claim_file": "../claims/pairs_distance.json",
+  "expected": {
+    "actions": [
+      "none",
+      "target_position"
+    ],
+    "fields": [
+      "close"
+    ],
+    "granularity": "day",
+    "kind": "rule",
+    "strategy_id": "rule.pairs_distance",
+    "symbols": [
+      "ALPHA",
+      "BETA",
+      "GAMMA"
+    ],
+    "training_required": false
+  },
+  "package": "../../strategies/rule.pairs_distance",
+  "package_source_sha256": "e01afc561e29b43f823c97390a47bee022ca3e23576609bc21931c5e6e71886a",
+  "review_note": "Human-reviewed page anchors and declared method adaptations. Source text does not by itself prove algorithm or original-experiment fidelity; see the bound independent oracle and individual claim record.",
+  "schema_version": "1.0",
+  "source": {
+    "file": "../source-cache/gatev2006.pdf",
+    "format": "pdf",
+    "license": "Redistribution not asserted; prepare hash-pinned local copy",
+    "sha256": "ab3cdc1acf6b603e5e9e5a9f6ae2bcf467519a0807d9d54716338367a11c03a2",
+    "title": "Pairs Trading: Performance of a Relative Value Arbitrage Rule",
+    "url": "https://repec.som.yale.edu/icfpub/publications/2573.pdf"
+  },
+  "spec_file": "../deep-specs/pairs_distance.json",
+  "spec_sha256": "ec12b008ca5dbd4e8162c67f4dd64e4aeda38f3b4e44afc2c0faeef47ae65149"
+}

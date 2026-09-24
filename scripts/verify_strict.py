@@ -36,7 +36,8 @@ SOURCE_FILES = (
     "uv.lock",
     "README.md",
 )
-EXCLUDE_DIRS = {"__pycache__", ".pytest_cache", ".ruff_cache", ".mypy_cache"}
+EXCLUDE_DIRS = {"__pycache__", ".pytest_cache", ".ruff_cache", ".mypy_cache",
+                "source-cache"}
 
 
 def _write_json(path: Path, value: dict[str, object]) -> None:

@@ -1,0 +1,57 @@
+{
+  "additional_sources": [],
+  "anchors": [
+    {
+      "claim_index": 0,
+      "page": 13,
+      "text": "We focus on the popular “elastic net” penalty"
+    },
+    {
+      "claim_index": 1,
+      "page": 44,
+      "text": "All stocks are sorted into deciles based on their predicted returns"
+    },
+    {
+      "claim_index": 1,
+      "page": 46,
+      "text": "cumulative performance for the long and short sides"
+    }
+  ],
+  "claim_file": "../claims/cross_sectional_rank.json",
+  "expected": {
+    "actions": [
+      "none",
+      "prediction",
+      "target_position"
+    ],
+    "fields": [
+      "close",
+      "liquidity",
+      "open",
+      "signal"
+    ],
+    "granularity": "day",
+    "kind": "supervised",
+    "strategy_id": "supervised.cross_sectional_rank",
+    "symbols": [
+      "ALPHA",
+      "BETA",
+      "GAMMA"
+    ],
+    "training_required": true
+  },
+  "package": "../../strategies/supervised.cross_sectional_rank",
+  "package_source_sha256": "4fd97bcb737e325280b270a4c9fb33c9e720efaf24b14b36fd1a809f60ab9038",
+  "review_note": "Human-reviewed page anchors and declared method adaptations. Source text does not by itself prove algorithm or original-experiment fidelity; see the bound independent oracle and individual claim record.",
+  "schema_version": "1.0",
+  "source": {
+    "file": "../source-cache/gu2019.pdf",
+    "format": "pdf",
+    "license": "Redistribution not asserted; prepare hash-pinned local copy",
+    "sha256": "05e4ef8a1c830c9f33a0f461f07c145f6e6be30fbd7996a09d0672de1413bd61",
+    "title": "Empirical Asset Pricing via Machine Learning",
+    "url": "https://dachxiu.chicagobooth.edu/download/ML.pdf"
+  },
+  "spec_file": "../deep-specs/cross_sectional_rank.json",
+  "spec_sha256": "73eb9f68ce958652b580e282ed8d496c562c7a07778e087103a7fec93053ec68"
+}

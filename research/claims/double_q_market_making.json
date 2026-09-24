@@ -15,7 +15,7 @@
   "claims": [
     {"locator": "Spooner et al., Section 4.4 and Table 2, PDF page 5", "statement": "Double Q-learning is evaluated as a market-making learner; default alpha is 0.001 and gamma is 0.97.", "implementation": "DoubleQInventory.__init__"},
     {"locator": "van Hasselt, Algorithm 1, PDF page 5", "statement": "One randomly selected table chooses the next action; the other table evaluates it during the update.", "implementation": "DoubleQInventory.train: selected, other, selected_action, continuation"},
-    {"locator": "van Hasselt, Section 3, PDF page 4", "statement": "The two action-value tables are combined when choosing a behavior action.", "implementation": "DoubleQInventory.decide: qa + qb"}
+    {"locator": "van Hasselt, Algorithm 1, PDF page 5", "statement": "The two action-value tables are combined when choosing a behavior action.", "implementation": "DoubleQInventory.decide: qa + qb"}
   ],
   "oracle": "tests/test_double_q_paper.py",
   "adaptations": [

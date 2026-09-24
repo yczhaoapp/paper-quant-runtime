@@ -5,6 +5,7 @@ import json
 import random
 from decimal import Decimal
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
@@ -141,6 +142,32 @@ def test_seeded_random_transitions_match_independent_double_bellman_oracle(seed:
     assert {key: Decimal(value) for key, value in model["qa"].items()} == tables[0]
     assert {key: Decimal(value) for key, value in model["qb"].items()} == tables[1]
     assert tables[0] != tables[1]
+
+
+@pytest.mark.parametrize("seed", [3, 17, 71])
+def test_behavior_action_uses_combined_tables_and_is_swap_invariant(seed: int) -> None:
+    generator = random.Random(seed)
+    event = SimpleNamespace(
+        symbol="DEMO",
+        values={"price": Decimal("100"), "bid_size": Decimal("75"),
+                "ask_size": Decimal("25")},
+    )
+    account = SimpleNamespace(positions=())
+    for _ in range(40):
+        qa = {f"1:0:{action}": Decimal(generator.randrange(-20, 21))
+              for action in ACTIONS}
+        qb = {f"1:0:{action}": Decimal(generator.randrange(-20, 21))
+              for action in ACTIONS}
+        expected = max(ACTIONS, key=lambda action: qa[f"1:0:{action}"] + qb[f"1:0:{action}"])
+        for left, right in ((qa, qb), (qb, qa)):
+            policy = learner(Decimal("0.2"), Decimal("0.8"))
+            policy.qa, policy.qb = left, right
+            action = policy.decide(event, account)[0]
+            if expected == 0:
+                assert action.kind == "none"
+            else:
+                assert action.kind == "target_position"
+                assert action.quantity == Decimal(expected)
 
 
 def test_double_q_lifecycle_and_artifact_binding(tmp_path: Path) -> None:

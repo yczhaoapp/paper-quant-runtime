@@ -61,6 +61,14 @@
   },
   "additionalProperties": false,
   "properties": {
+    "additional_source_sha256": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Additional Source Sha256",
+      "type": "array"
+    },
     "excluded_paper_components": {
       "items": {
         "type": "string"

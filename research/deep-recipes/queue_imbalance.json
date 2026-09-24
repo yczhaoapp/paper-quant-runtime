@@ -1,0 +1,51 @@
+{
+  "additional_sources": [],
+  "anchors": [
+    {
+      "claim_index": 0,
+      "page": 7,
+      "text": "denote the queue imbalance at time"
+    },
+    {
+      "claim_index": 1,
+      "page": 13,
+      "text": "we perform a logistic regression"
+    }
+  ],
+  "claim_file": "../claims/queue_imbalance.json",
+  "expected": {
+    "actions": [
+      "none",
+      "prediction",
+      "target_position"
+    ],
+    "fields": [
+      "ask_price",
+      "ask_size",
+      "bid_price",
+      "bid_size",
+      "price"
+    ],
+    "granularity": "tick",
+    "kind": "supervised",
+    "strategy_id": "supervised.queue_imbalance",
+    "symbols": [
+      "DEMO"
+    ],
+    "training_required": true
+  },
+  "package": "../../strategies/supervised.queue_imbalance",
+  "package_source_sha256": "bbae180778b9da9f84160891ae4a258a09b08047f6550a109e9e369a30ac3d93",
+  "review_note": "Human-reviewed page anchors and declared method adaptations. Source text does not by itself prove algorithm or original-experiment fidelity; see the bound independent oracle and individual claim record.",
+  "schema_version": "1.0",
+  "source": {
+    "file": "../source-cache/gould2015.pdf",
+    "format": "pdf",
+    "license": "Redistribution not asserted; prepare hash-pinned local copy",
+    "sha256": "a5051285adfe2d8a2d7f46a758486f357d556a46a964bc89b245de7e7a0bc338",
+    "title": "Queue Imbalance as a One-Tick-Ahead Price Predictor in a Limit Order Book",
+    "url": "https://arxiv.org/pdf/1512.03492"
+  },
+  "spec_file": "../deep-specs/queue_imbalance.json",
+  "spec_sha256": "d90df7981fb24ddc65d95cda4deec4e7c148917f0186a1485d6e045172222bee"
+}

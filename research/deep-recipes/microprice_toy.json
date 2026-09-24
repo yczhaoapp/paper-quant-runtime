@@ -1,0 +1,51 @@
+{
+  "additional_sources": [],
+  "anchors": [
+    {
+      "claim_index": 0,
+      "page": 2,
+      "text": "practitioners also pay close attention to the weighted mid-price"
+    },
+    {
+      "claim_index": 0,
+      "page": 6,
+      "text": "the micro-price coincides with the weighted mid price"
+    }
+  ],
+  "claim_file": "../claims/microprice_toy.json",
+  "expected": {
+    "actions": [
+      "none",
+      "prediction",
+      "target_position"
+    ],
+    "fields": [
+      "ask_price",
+      "ask_size",
+      "bid_price",
+      "bid_size",
+      "price"
+    ],
+    "granularity": "tick",
+    "kind": "rule",
+    "strategy_id": "rule.microprice_toy",
+    "symbols": [
+      "DEMO"
+    ],
+    "training_required": false
+  },
+  "package": "../../strategies/rule.microprice_toy",
+  "package_source_sha256": "900f70e095e4a462e06ec79b2c0c0b46f26ee8f75ebb74b372ebe99bc5c62a49",
+  "review_note": "Human-reviewed page anchors and declared method adaptations. Source text does not by itself prove algorithm or original-experiment fidelity; see the bound independent oracle and individual claim record.",
+  "schema_version": "1.0",
+  "source": {
+    "file": "../source-cache/stoikov2017.pdf",
+    "format": "pdf",
+    "license": "Redistribution not asserted; prepare hash-pinned local copy",
+    "sha256": "71d3b3c5ae5caa87721e8251373dd7675f9ae21deca4fcbbce09d0b62a1bea68",
+    "title": "The Micro-Price: A High Frequency Estimator of Future Prices",
+    "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2970694"
+  },
+  "spec_file": "../deep-specs/microprice_toy.json",
+  "spec_sha256": "873b0f19bb2747b3c2e0d668ee01ad0606570d070a9476e8071b1c3f89ef12a9"
+}

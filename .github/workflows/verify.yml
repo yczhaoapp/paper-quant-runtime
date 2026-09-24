@@ -72,3 +72,29 @@ jobs:
           name: strict-verification-${{ github.sha }}
           path: runs/strict-verification
           if-no-files-found: error
+
+  paper-depth:
+    name: Original-paper depth and independent intake
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
+        with:
+          version: "0.12.18"
+      - name: Install locked dependencies
+        run: uv sync --locked --extra dev
+      - name: Fetch hash-pinned papers and verify 18 plus independent case
+        run: uv run --no-sync python -m scripts.accept_paper_depth --fetch --output runs/paper-depth
+      - name: Preserve paper-depth receipts without redistributing source PDFs
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: paper-depth-${{ github.sha }}
+          path: |
+            runs/paper-depth
+            !runs/paper-depth/attempts/*/independent/build/paper.pdf
+          if-no-files-found: error

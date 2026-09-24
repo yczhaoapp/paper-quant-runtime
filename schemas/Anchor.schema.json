@@ -11,6 +11,12 @@
       "title": "Page",
       "type": "integer"
     },
+    "source_index": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Source Index",
+      "type": "integer"
+    },
     "text": {
       "minLength": 4,
       "title": "Text",

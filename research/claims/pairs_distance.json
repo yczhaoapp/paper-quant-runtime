@@ -7,9 +7,9 @@
     "version": "February 2006 author version"
   },
   "claims": [
-    {"locator": "Section 2.1, PDF page 10", "statement": "Rank formation-period pairs by summed squared distance of normalized prices.", "implementation": "DistancePair._select_pair: normalized and distances"},
+    {"locator": "Section 2.1, PDF page 11", "statement": "Rank formation-period pairs by summed squared distance of normalized prices.", "implementation": "DistancePair._select_pair: normalized and distances"},
     {"locator": "Section 2.2, PDF pages 11–12", "statement": "Open on a spread exceeding two formation standard deviations and unwind at the next price crossing.", "implementation": "DistancePair.decide: spread, sigma and crossed"},
-    {"locator": "Section 2, PDF page 10", "statement": "Separate a twelve-month formation period from a six-month trading period.", "implementation": "DistancePair.FORMATION and DistancePair.TRADING, represented by 252 and 126 sessions"}
+    {"locator": "Section 2, PDF page 11", "statement": "Separate a twelve-month formation period from a six-month trading period.", "implementation": "DistancePair.FORMATION and DistancePair.TRADING, represented by 252 and 126 sessions"}
   ],
   "chosen_variant": "One closest pair from three symbols, 252 formation sessions and 126 trading sessions",
   "oracle": "tests/test_pairs_distance_paper.py",

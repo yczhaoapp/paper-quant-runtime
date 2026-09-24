@@ -125,8 +125,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     paper_run.add_argument("--output", type=Path, required=True)
     paper_run.add_argument("--cash", type=Decimal, default=Decimal("100000"))
     paper_run.add_argument("--fee-rate", type=Decimal, default=Decimal("0"))
-    paper_run.add_argument("--engine", choices=("reference", "backtrader"),
-                           default="reference")
+    paper_run.add_argument("--engine", choices=("reference", "backtrader"), default="reference")
     bundle_check = commands.add_parser("verify-bundle")
     bundle_check.add_argument("--bundle", type=Path, required=True)
     replay = commands.add_parser("replay-bundle")
@@ -141,8 +140,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     execute.add_argument("--output", type=Path, required=True)
     execute.add_argument("--cash", type=Decimal, default=Decimal("100000"))
     execute.add_argument("--fee-rate", type=Decimal, default=Decimal("0"))
-    execute.add_argument("--engine", choices=("reference", "backtrader"),
-                         default="reference")
+    execute.add_argument("--engine", choices=("reference", "backtrader"), default="reference")
     observe = commands.add_parser("observe")
     observe.add_argument("--report", type=Path, required=True)
     observe.add_argument("--scenario", required=True)
@@ -174,10 +172,13 @@ def main(argv: Sequence[str] | None = None) -> int:
             if engine_id not in {"paperquant.reference", "paperquant.backtrader"}:
                 raise ValueError("Replay CLI does not support this engine ID")
             replay_bundle(
-                bundle_path=args.bundle, package_dir=args.package,
+                bundle_path=args.bundle,
+                package_dir=args.package,
                 engine=_selected_engine(
                     "backtrader" if engine_id == "paperquant.backtrader" else "reference",
-                    Decimal(settings["initial_cash"]), Decimal(settings["fee_rate"])),
+                    Decimal(settings["initial_cash"]),
+                    Decimal(settings["fee_rate"]),
+                ),
             )
         except (ContractFault, OSError, ValueError, KeyError, ValidationError) as exc:
             print(json.dumps({"status": "failed", "reason": str(exc)[:300]}), file=sys.stderr)
@@ -188,16 +189,23 @@ def main(argv: Sequence[str] | None = None) -> int:
         attempt = Attempt(args.output)
         try:
             checked = verify_recipe(args.recipe)
-            atomic_bytes(args.output / "report.json",
-                         (json.dumps(checked, indent=2, sort_keys=True) + "\n").encode())
+            atomic_bytes(
+                args.output / "report.json",
+                (json.dumps(checked, indent=2, sort_keys=True) + "\n").encode(),
+            )
         except Exception as exc:
             failure = Failure(
-                run_id="paper-check", stage=Stage.INPUT, code=ErrorCode.INPUT_INVALID,
+                run_id="paper-check",
+                stage=Stage.INPUT,
+                code=ErrorCode.INPUT_INVALID,
                 message="Paper source or reviewed recipe could not be verified",
                 details={"cause": type(exc).__name__, "reason": str(exc)},
             )
-            attempt.failed(run_id=failure.run_id, code=failure.code,
-                           failure=(failure.model_dump_json(indent=2) + "\n").encode())
+            attempt.failed(
+                run_id=failure.run_id,
+                code=failure.code,
+                failure=(failure.model_dump_json(indent=2) + "\n").encode(),
+            )
             print(failure.model_dump_json(), file=sys.stderr)
             return 2
         attempt.succeeded(run_id="paper-check")
@@ -211,45 +219,67 @@ def main(argv: Sequence[str] | None = None) -> int:
             package_dir = (args.recipe.resolve().parent / recipe.package).resolve(strict=True)
             events = TypeAdapter(tuple[MarketEvent, ...]).validate_python(_read_json(args.events))
             dataset = DatasetDeclaration.model_validate(_read_json(args.dataset))
-            training = (TrainingRequest.model_validate(_read_json(args.training))
-                        if args.training else None)
+            training = (
+                TrainingRequest.model_validate(_read_json(args.training)) if args.training else None
+            )
             policy = (
                 RunPolicy.model_validate(_read_json(args.policy)) if args.policy else RunPolicy()
             )
             engine = _selected_engine(args.engine, args.cash, args.fee_rate)
             report = run_package(
-                run_id=f"paper-{fingerprint(events)[:12]}", package_dir=package_dir,
-                dataset=dataset, engine_capability=engine.capability(dataset.fields),
-                policy=policy, events=events, engine=engine, output=args.output,
+                run_id=f"paper-{fingerprint(events)[:12]}",
+                package_dir=package_dir,
+                dataset=dataset,
+                engine_capability=engine.capability(dataset.fields),
+                policy=policy,
+                events=events,
+                engine=engine,
+                output=args.output,
                 training=training,
             )
-            replay_bundle(bundle_path=args.output / "bundle.json",
-                          package_dir=package_dir, engine=engine)
+            replay_bundle(
+                bundle_path=args.output / "bundle.json", package_dir=package_dir, engine=engine
+            )
             evidence = {
-                "status": "passed", "run_id": report.run_id,
+                "status": "passed",
+                "run_id": report.run_id,
                 "strategy_id": report.plan.strategy_id,
                 "recipe_sha256": hashlib.sha256(args.recipe.read_bytes()).hexdigest(),
                 "source_sha256": checked["source_sha256"],
+                "additional_source_sha256": checked["additional_source_sha256"],
                 "claim_sha256": checked["claim_sha256"],
                 "method_spec_sha256": checked["method_spec_sha256"],
                 "package_source_sha256": checked["package_source_sha256"],
                 "bundle_sha256": hashlib.sha256(
-                    (args.output / "bundle.json").read_bytes()).hexdigest(),
+                    (args.output / "bundle.json").read_bytes()
+                ).hexdigest(),
                 "report_sha256": hashlib.sha256(
-                    (args.output / "report.json").read_bytes()).hexdigest(),
+                    (args.output / "report.json").read_bytes()
+                ).hexdigest(),
             }
-            atomic_bytes(args.output / "paper-run.json",
-                         (json.dumps(evidence, indent=2, sort_keys=True) + "\n").encode())
+            atomic_bytes(
+                args.output / "paper-run.json",
+                (json.dumps(evidence, indent=2, sort_keys=True) + "\n").encode(),
+            )
             attempt.succeeded(run_id=report.run_id)
         except (ContractFault, ValidationError, ValueError, OSError, KeyError) as exc:
-            failure = exc.failure if isinstance(exc, ContractFault) else Failure(
-                run_id="paper-run", stage=Stage.INPUT, code=ErrorCode.INPUT_INVALID,
-                message="Paper source or linked runtime could not be verified",
-                details={"cause": type(exc).__name__, "reason": str(exc)[:200]},
+            failure = (
+                exc.failure
+                if isinstance(exc, ContractFault)
+                else Failure(
+                    run_id="paper-run",
+                    stage=Stage.INPUT,
+                    code=ErrorCode.INPUT_INVALID,
+                    message="Paper source or linked runtime could not be verified",
+                    details={"cause": type(exc).__name__, "reason": str(exc)[:200]},
+                )
             )
             (args.output / "paper-run.json").unlink(missing_ok=True)
-            attempt.failed(run_id=failure.run_id, code=failure.code,
-                           failure=(failure.model_dump_json(indent=2) + "\n").encode())
+            attempt.failed(
+                run_id=failure.run_id,
+                code=failure.code,
+                failure=(failure.model_dump_json(indent=2) + "\n").encode(),
+            )
             print(failure.model_dump_json(), file=sys.stderr)
             return 2
         print(json.dumps({"status": "passed", "receipt": str(args.output / "paper-run.json")}))

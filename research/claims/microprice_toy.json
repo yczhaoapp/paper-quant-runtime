@@ -4,11 +4,10 @@
     "title": "The Micro-Price: A High Frequency Estimator of Future Prices",
     "authors": ["Sasha Stoikov"],
     "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2970694",
-    "companion_slides": "https://www.ma.imperial.ac.uk/~ajacquie/Gatheral60/Slides/Gatheral60%20-%20Stoikov.pdf",
-    "version": "SSRN abstract 2970694 and companion slides"
+    "version": "SSRN manuscript dated 18 April 2018; pinned third-party PDF mirror"
   },
   "claims": [
-    {"locator": "Companion slides, PDF pages 5 and 14", "statement": "The weighted mid-price equals I times the best ask plus (1-I) times the best bid, where I is best bid size divided by total best-quote size. Under the stated Brownian-imbalance toy model, the micro-price equals this weighted mid-price.", "implementation": "WeightedMicropriceToy.fair_price"}
+    {"locator": "Manuscript PDF pages 2 and 6, equations (2)-(3) and Appendix B statement", "statement": "The weighted mid-price equals I times the best ask plus (1-I) times the best bid, where I is best bid size divided by total best-quote size. Under the stated Brownian-imbalance toy model, the micro-price equals this weighted mid-price.", "implementation": "WeightedMicropriceToy.fair_price"}
   ],
   "oracle": "tests/test_microprice_toy_paper.py",
   "adaptations": [

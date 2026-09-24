@@ -1,0 +1,55 @@
+{
+  "additional_sources": [],
+  "anchors": [
+    {
+      "claim_index": 0,
+      "page": 3,
+      "text": "which we refer to as private variables"
+    },
+    {
+      "claim_index": 1,
+      "page": 4,
+      "text": "update the expected cost associated with taking each action"
+    },
+    {
+      "claim_index": 2,
+      "page": 4,
+      "text": "forced to submit a market order for all unexecuted shares"
+    }
+  ],
+  "claim_file": "../claims/execution_value_learning.json",
+  "expected": {
+    "actions": [
+      "none",
+      "prediction",
+      "target_position"
+    ],
+    "fields": [
+      "ask_size",
+      "bid_size",
+      "price",
+      "time_remaining"
+    ],
+    "granularity": "tick",
+    "kind": "reinforcement",
+    "strategy_id": "reinforcement.execution_value_learning",
+    "symbols": [
+      "DEMO"
+    ],
+    "training_required": true
+  },
+  "package": "../../strategies/reinforcement.execution_value_learning",
+  "package_source_sha256": "5bfe516b4a2ba5b7fbf389a79a9d900ebd0c3af91bf83513567575b1fd1c5496",
+  "review_note": "Human-reviewed page anchors and declared method adaptations. Source text does not by itself prove algorithm or original-experiment fidelity; see the bound independent oracle and individual claim record.",
+  "schema_version": "1.0",
+  "source": {
+    "file": "../source-cache/nevmyvaka2006.pdf",
+    "format": "pdf",
+    "license": "Redistribution not asserted; prepare hash-pinned local copy",
+    "sha256": "3157e2d6ace0bb95ff8fb7215f1b2bb79e7c27f5434137bab4fdd2e9507dcae4",
+    "title": "Reinforcement Learning for Optimized Trade Execution",
+    "url": "https://www.cis.upenn.edu/~mkearns/papers/rlexec.pdf"
+  },
+  "spec_file": "../deep-specs/execution_value_learning.json",
+  "spec_sha256": "dc0d65b4f1e86520fef34b8c836de75cc01c5f84bd9c9bf3e0d8477d1fccd0ca"
+}

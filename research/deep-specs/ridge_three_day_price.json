@@ -1,0 +1,40 @@
+{
+  "additional_source_sha256": [],
+  "excluded_paper_components": [
+    "The paper investigates 123 technical indicators and feature selection. This example uses only the three-day raw OHLCV window, so it is a Ridge-method adaptation, not the paper's selected-feature experiment.",
+    "The source text says the target is a price three days ahead. This example uses the closing price exactly three trading bars after the end of each input window; the source does not fully specify every preprocessing detail.",
+    "The paper's thirteen-year AAPL sample, selected indicator list, model scores and experimental returns are not reproduced. A fixed 506-bar public AAPL sample provides a chronological proxy.",
+    "The L2 coefficient is fixed to 1.0 and features are standardized using training-only moments; the paper does not specify an exact matching coefficient for this reduced feature set.",
+    "Converting the predicted future close to a unit long or short target and next-open fills is a runtime adaptation, not a trading rule attributed to the paper."
+  ],
+  "fields": [
+    "close",
+    "high",
+    "low",
+    "open",
+    "volume"
+  ],
+  "schema_version": "1.0",
+  "source_sha256": "f2b1f92613d1db365206481427daec60cc491dfe3464d41890733aba18d523d5",
+  "steps": [
+    {
+      "adaptation": "The paper investigates 123 technical indicators and feature selection. This example uses only the three-day raw OHLCV window, so it is a Ridge-method adaptation, not the paper's selected-feature experiment.",
+      "claim_index": 0,
+      "implementation": "scripts/build_public_ridge.py",
+      "oracle_node": "tests/test_ridge_three_day_paper.py::test_public_ridge_lineage_reconstructs_every_window_and_label",
+      "paper_rule": "A three-day feature window is evaluated for stock-price prediction.",
+      "role": "data",
+      "runtime_rule": "Flatten three completed OHLCV days into one feature row and attach a later available target."
+    },
+    {
+      "adaptation": "The paper investigates 123 technical indicators and feature selection. This example uses only the three-day raw OHLCV window, so it is a Ridge-method adaptation, not the paper's selected-feature experiment.",
+      "claim_index": 1,
+      "implementation": "RidgeThreeDayPrice.train",
+      "oracle_node": "tests/test_ridge_three_day_paper.py::test_random_ridge_fit_satisfies_independent_normal_equations[3]",
+      "paper_rule": "Ridge is linear least squares with an L2 penalty.",
+      "role": "training",
+      "runtime_rule": "Solve a linear squared-error model with a declared L2 penalty and persist its coefficients."
+    }
+  ],
+  "strategy_id": "supervised.ridge_three_day_price"
+}

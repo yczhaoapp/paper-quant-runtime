@@ -1,0 +1,38 @@
+{
+  "additional_source_sha256": [],
+  "excluded_paper_components": [
+    "A deterministic numerical gradient optimizer replaces the paper's unspecified fitting software; the model family and likelihood objective are retained.",
+    "The paper's probability forecast is also converted into a unit target position for contract backtesting; this trading action is not claimed as a paper result.",
+    "The local order-book fixture and labels are synthetic; the Nasdaq 2014 empirical study is not reproduced."
+  ],
+  "fields": [
+    "ask_price",
+    "ask_size",
+    "bid_price",
+    "bid_size",
+    "price"
+  ],
+  "schema_version": "1.0",
+  "source_sha256": "a5051285adfe2d8a2d7f46a758486f357d556a46a964bc89b245de7e7a0bc338",
+  "steps": [
+    {
+      "adaptation": "A deterministic numerical gradient optimizer replaces the paper's unspecified fitting software; the model family and likelihood objective are retained.",
+      "claim_index": 0,
+      "implementation": "QueueImbalanceLogistic._imbalance",
+      "oracle_node": "tests/test_queue_imbalance_paper.py::test_tick_learning_package_trains_reload_predicts_and_trades",
+      "paper_rule": "Queue imbalance is normalized best-bid size less best-ask size.",
+      "role": "data",
+      "runtime_rule": "Compute best-bid-size minus best-ask-size divided by their sum on each L1 event."
+    },
+    {
+      "adaptation": "A deterministic numerical gradient optimizer replaces the paper's unspecified fitting software; the model family and likelihood objective are retained.",
+      "claim_index": 1,
+      "implementation": "QueueImbalanceLogistic.train",
+      "oracle_node": "tests/test_queue_imbalance_paper.py::test_randomized_training_improves_independent_log_likelihood[4]",
+      "paper_rule": "The next-up probability is a logistic function of imbalance with two fitted coefficients.",
+      "role": "training",
+      "runtime_rule": "Fit two logistic coefficients and map the observed imbalance to a next-up probability."
+    }
+  ],
+  "strategy_id": "supervised.queue_imbalance"
+}

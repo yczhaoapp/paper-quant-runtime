@@ -65,15 +65,23 @@ def verify_sources(*, fetch: bool = False) -> list[dict[str, object]]:
     lock = json.loads(lock_bytes)
     if lock.get("schema_version") != "1.0" or not isinstance(lock.get("sources"), list):
         raise ValueError("Paper source lock has an unsupported schema")
-    sources = lock["sources"]
+    primary = lock["sources"]
+    supporting = lock.get("supporting_sources", [])
+    if not isinstance(supporting, list):
+        raise ValueError("Supporting paper sources must be a list")
+    sources = [*primary, *supporting]
     ids = [source["source_id"] for source in sources]
     urls = [source["canonical_url"] for source in sources]
     if (
         len(ids) != len(set(ids))
         or len(urls) != len(set(urls))
-        or set(urls) != _expected_claim_urls()
+        or {source["canonical_url"] for source in primary} != _expected_claim_urls()
+        or any(
+            source.get("supports_strategy") != "reinforcement.double_q_market_making"
+            for source in supporting
+        )
     ):
-        raise ValueError("Paper source lock does not cover each catalog primary source")
+        raise ValueError("Paper source lock has incomplete or invalid source coverage")
     records: list[dict[str, object]] = []
     for source in sources:
         source_id = source["source_id"]
@@ -100,9 +108,13 @@ def verify_sources(*, fetch: bool = False) -> list[dict[str, object]]:
         opening_text = " ".join((page.extract_text() or "") for page in reader.pages[:2])
         if not opening_text.strip() or _words(source["title"]) not in _words(opening_text):
             raise ValueError(f"Paper title is absent from pinned PDF: {source_id}")
+        if any(_words(author) not in _words(opening_text)
+               for author in source.get("authors", [])):
+            raise ValueError(f"Paper author is absent from pinned PDF: {source_id}")
         records.append(
             {
                 "source_id": source_id,
+                "role": "primary" if source in primary else "supporting",
                 "canonical_url": source["canonical_url"],
                 "retrieval_url": retrieval_url,
                 "sha256": expected,
@@ -124,7 +136,8 @@ def main() -> int:
             "status": "passed",
             "source_lock_sha256": _sha256(LOCK.read_bytes()),
             "catalog_cases": 18,
-            "unique_primary_sources": len(records),
+            "unique_primary_sources": sum(record["role"] == "primary" for record in records),
+            "supporting_sources": sum(record["role"] == "supporting" for record in records),
             "sources": records,
         }
     except (KeyError, OSError, ValueError, TypeError) as exc:
