@@ -13,6 +13,7 @@ import pytest
 from paperquant.cli import main
 from paperquant.models import ErrorCode, Failure, Stage
 from paperquant.papers import PaperParseError, extract_text, verify_recipe
+from scripts.accept_paper_depth import _check_method_oracle_nodes
 from scripts.acceptance import _check_paper_run_scope, _run_oracles
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -170,3 +171,19 @@ def test_twap_schedule_locator_matches_the_original_section_heading() -> None:
     page = " ".join(pages[int(match[2]) - 1].split())
     assert f"{match[1]} The Execution Algo Class" in page
     assert "volume may be decided a priori" in page
+
+
+@pytest.mark.parametrize(("declared", "valid"), [
+    ("tests/test_oracle.py::test_formula", True),
+    ("tests/test_oracle.py::test_formula[3]", True),
+    ("tests/test_oracle.py::test_formula[99]", False),
+    ("tests/test_oracle.py::test_form", False),
+    ("tests/test_oracle.py::test_absent", False),
+])
+def test_method_validation_resolves_only_passed_pytest_nodes(declared: str, valid: bool) -> None:
+    passed = ("tests/test_oracle.py::test_formula[3]", "tests/test_oracle.py::test_formula[17]")
+    if valid:
+        _check_method_oracle_nodes((declared,), passed)
+    else:
+        with pytest.raises(ValueError, match="outside this passed attempt"):
+            _check_method_oracle_nodes((declared,), passed)

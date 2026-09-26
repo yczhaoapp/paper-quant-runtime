@@ -47,6 +47,13 @@ def _publish(path: Path, state: dict[str, Any]) -> None:
     atomic_bytes(path, (json.dumps(state, indent=2, sort_keys=True) + "\n").encode())
 
 
+def _check_method_oracle_nodes(declared: tuple[str, ...], passed: tuple[str, ...]) -> None:
+    # A pytest parent node selects its parametrized cases; a specific case must match exactly.
+    covered = set(passed) | {node.split("[", 1)[0] for node in passed}
+    if not declared or not set(declared) <= covered:
+        raise ValueError("Method spec refers to an oracle outside this passed attempt")
+
+
 def _check_inputs(entries: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
     lock = json.loads(INPUT_LOCK.read_text())
     cases = lock["cases"]
@@ -320,12 +327,12 @@ def run_depth(output: Path, *, fetch: bool = False) -> dict[str, Any]:
         independent_recipe = Recipe.model_validate_json((built / "recipe.json").read_bytes())
         independent_spec = MethodSpec.model_validate_json(
             (built / independent_recipe.spec_file).read_bytes())
-        if any(step.oracle_node not in INDEPENDENT_NODES for step in independent_spec.steps):
-            raise ValueError("Independent method spec refers to an oracle outside this attempt")
         independent_junit_sha = _run_oracles(
             attempt / "independent_oracles",
             {"independent": {"node_ids": INDEPENDENT_NODES}},
         )
+        _check_method_oracle_nodes(
+            tuple(step.oracle_node for step in independent_spec.steps), INDEPENDENT_NODES)
         independent = _run_paper(
             built / "recipe.json",
             ROOT / "examples/independent_busseti",
