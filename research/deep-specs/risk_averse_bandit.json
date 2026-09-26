@@ -1,0 +1,47 @@
+{
+  "additional_source_sha256": [],
+  "excluded_paper_components": [
+    "The paper's portfolio-selection experiment has multidimensional arm-specific contexts and rewards; this runtime example uses one L1 imbalance context shared across three unit-position arms and synthetic rewards.",
+    "A decision fills on the next tick. Online reward is computed from the mid-price change over an interval in which the arm was actually held; it omits execution fees, financing, opportunity cost and a portfolio reward model.",
+    "The implementation uses the paper's exact scalar normal-gamma posterior update and sampled mean-variance criterion, but does not reproduce its regret bound or empirical portfolio results."
+  ],
+  "fields": [
+    "ask_price",
+    "ask_size",
+    "bid_price",
+    "bid_size",
+    "price"
+  ],
+  "schema_version": "1.0",
+  "source_sha256": "3e538c2468d69e084a06f231d86254c0672e91d69f565e7418bf5fce45f665bf",
+  "steps": [
+    {
+      "adaptation": "The paper's portfolio-selection experiment has multidimensional arm-specific contexts and rewards; this runtime example uses one L1 imbalance context shared across three unit-position arms and synthetic rewards.",
+      "claim_index": 0,
+      "implementation": "RiskAverseBandit._update",
+      "oracle_node": "tests/test_risk_averse_bandit_paper.py::test_scalar_normal_gamma_updates_and_thompson_scores_match_reference[3]",
+      "paper_rule": "For disjoint arms under a Gaussian likelihood, update normal-gamma A, b, C and D posterior parameters after observed rewards.",
+      "role": "training",
+      "runtime_rule": "Update the selected arm's one-dimensional normal-gamma posterior from realized rewards."
+    },
+    {
+      "adaptation": "The paper's portfolio-selection experiment has multidimensional arm-specific contexts and rewards; this runtime example uses one L1 imbalance context shared across three unit-position arms and synthetic rewards.",
+      "claim_index": 1,
+      "implementation": "RiskAverseBandit._sample_scores",
+      "oracle_node": "tests/test_risk_averse_bandit_paper.py::test_risk_penalty_lowers_sampled_scores_with_same_random_draws",
+      "paper_rule": "Sample an arm's precision and mean, then maximize sampled contextual mean minus risk tolerance times sampled variance.",
+      "role": "inference",
+      "runtime_rule": "Sample precision and mean for each arm, then subtract the declared variance-risk penalty."
+    },
+    {
+      "adaptation": "A decision fills on the next tick. Online reward is computed from the mid-price change over an interval in which the arm was actually held; it omits execution fees, financing, opportunity cost and a portfolio reward model.",
+      "claim_index": 2,
+      "implementation": "RiskAverseBandit.decide",
+      "oracle_node": "tests/test_risk_averse_bandit_paper.py::test_online_update_uses_arm_held_during_observed_interval",
+      "paper_rule": "The contextual bandit learns from rewards of selected arms over successive rounds.",
+      "role": "reward",
+      "runtime_rule": "Observe the next price interval before updating only the arm actually held during that interval."
+    }
+  ],
+  "strategy_id": "reinforcement.risk_averse_bandit"
+}

@@ -8,7 +8,7 @@
   },
   "claims": [
     {"locator": "Section 3.3, PDF pages 11-12", "statement": "The TWAP benchmark partitions an execution interval into buckets and distributes order submission timestamps evenly over bucket duration.", "implementation": "TimeSlicedExecution.decide and TimeSlicedExecution.child_quantity"},
-    {"locator": "Section 2.5, PDF page 7", "statement": "A TWAP algorithm may decide its child-order schedule and volumes in advance.", "implementation": "TimeSlicedExecution.__init__"}
+    {"locator": "Section 2.4, PDF page 7", "statement": "A TWAP algorithm may decide its child-order schedule and volumes in advance.", "implementation": "TimeSlicedExecution.__init__"}
   ],
   "oracle": "tests/test_time_sliced_paper.py",
   "adaptations": [

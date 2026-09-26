@@ -35,4 +35,5 @@ def test_failed_new_attempt_invalidates_earlier_success_receipts(tmp_path: Path)
     assert receipt["status"] == "failed"
     assert receipt["phase"] == "build"
     assert receipt["attempt_id"] != "old"
+    assert "runtime_assurance" not in receipt
     assert not (output / "image.json").exists()

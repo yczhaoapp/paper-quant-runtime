@@ -30,9 +30,9 @@
       ]
     },
     "reinforcement.double_q_market_making": {
-      "claim_sha256": "72bc9bd7fcd02e5c726a30f6dd92d475c83b941b77bfd63da4219a2b47e91d88",
+      "claim_sha256": "6bf7e05db0a23f42efee37bfaff8b324b77224ce9e059b1aafb07bc2784af0e3",
       "source_sha256": "94e0e1ad39c9c18321cc622dc4afdcb49d2068bc7f93bddfa682c66c90fb0bce",
-      "oracle_sha256": "adcc9a28fcf21925dbd322476037fef6d90021c7b38910fb41fbabbde9fd6a48",
+      "oracle_sha256": "12b58cb49b73f546075bacc23ff2a81008ea74933c6b2cc226b00dc60e437ff2",
       "node_ids": [
         "tests/test_double_q_paper.py::test_double_q_selects_with_one_table_and_evaluates_with_other[alpha0-gamma0]",
         "tests/test_double_q_paper.py::test_double_q_selects_with_one_table_and_evaluates_with_other[alpha1-gamma1]",
@@ -40,7 +40,10 @@
         "tests/test_double_q_paper.py::test_seeded_random_transitions_match_independent_double_bellman_oracle[2]",
         "tests/test_double_q_paper.py::test_seeded_random_transitions_match_independent_double_bellman_oracle[19]",
         "tests/test_double_q_paper.py::test_seeded_random_transitions_match_independent_double_bellman_oracle[71]",
-        "tests/test_double_q_paper.py::test_double_q_lifecycle_and_artifact_binding"
+        "tests/test_double_q_paper.py::test_double_q_lifecycle_and_artifact_binding",
+        "tests/test_double_q_paper.py::test_behavior_action_uses_combined_tables_and_is_swap_invariant[3]",
+        "tests/test_double_q_paper.py::test_behavior_action_uses_combined_tables_and_is_swap_invariant[17]",
+        "tests/test_double_q_paper.py::test_behavior_action_uses_combined_tables_and_is_swap_invariant[71]"
       ],
       "claim_nodes": [
         [
@@ -54,12 +57,15 @@
           "tests/test_double_q_paper.py::test_double_q_selects_with_one_table_and_evaluates_with_other[alpha2-gamma2]"
         ],
         [
+          "tests/test_double_q_paper.py::test_behavior_action_uses_combined_tables_and_is_swap_invariant[3]",
+          "tests/test_double_q_paper.py::test_behavior_action_uses_combined_tables_and_is_swap_invariant[17]",
+          "tests/test_double_q_paper.py::test_behavior_action_uses_combined_tables_and_is_swap_invariant[71]",
           "tests/test_double_q_paper.py::test_double_q_lifecycle_and_artifact_binding"
         ]
       ]
     },
     "reinforcement.execution_value_learning": {
-      "claim_sha256": "fc4a27d64e886aedcf61ddd2a19a84a9ac32c6488c120557045f7d156d68ae6f",
+      "claim_sha256": "f2581e6517b887b2ba63144c1ed9f1d2a8f7f5acdb041cd3f9f6cb72fe6e5185",
       "source_sha256": "5bfe516b4a2ba5b7fbf389a79a9d900ebd0c3af91bf83513567575b1fd1c5496",
       "oracle_sha256": "1db03db85f475697599a74b74fcb0d46d04b5a281eace9d4b35f16621b62012a",
       "node_ids": [
@@ -135,7 +141,7 @@
       ]
     },
     "reinforcement.sarsa_inventory": {
-      "claim_sha256": "65687b08902c6e4af2bf5684ef635595b00fbb3cca47bd21101f9a9584e0762d",
+      "claim_sha256": "824b1411af38110a9cb9004e0e94d86e4c713743dd33f39ab19e0cc4016060ae",
       "source_sha256": "5838b82af6b888bb3c723d69d1ac038387150aa7a2d723bfb8628e80347f7fb4",
       "oracle_sha256": "c01bd6b5713d7190bdfeaa9ab998215125104fc4f3fcbca6fabad77fa5f5e7ed",
       "node_ids": [
@@ -189,9 +195,9 @@
       ]
     },
     "rule.microprice_toy": {
-      "claim_sha256": "e69306358095e13b460a920f44125c3612eacbfd81878fff198bb6d7470f19f7",
+      "claim_sha256": "0a512820a93dd8ffdf7fb807d0a8b1cdd7e4b4a034b98152c72ed1779e86da2a",
       "source_sha256": "900f70e095e4a462e06ec79b2c0c0b46f26ee8f75ebb74b372ebe99bc5c62a49",
-      "oracle_sha256": "0c2e894c6bcdc9aca64ce705b357c7d466dd33b41ce185eb2f2a0c0f42c0ad57",
+      "oracle_sha256": "124a95c713b11ddfe5e214f77c0d5a65a8d11477014217bc52cc4f4c53833751",
       "node_ids": [
         "tests/test_microprice_toy_paper.py::test_toy_price_matches_independent_rational_formula_and_trade_mapping[3]",
         "tests/test_microprice_toy_paper.py::test_toy_price_matches_independent_rational_formula_and_trade_mapping[17]",
@@ -231,7 +237,7 @@
       ]
     },
     "rule.pairs_distance": {
-      "claim_sha256": "db0a31ecbb44a0d2978b168bd31561779a82411948ef8f0d1492c6124e664828",
+      "claim_sha256": "9c958d4ff911a9957528fc75662d6a90a2ae6de08b00ee79208e814c3af7d688",
       "source_sha256": "e01afc561e29b43f823c97390a47bee022ca3e23576609bc21931c5e6e71886a",
       "oracle_sha256": "acd9392f8a22ddbb9952be712c8ca1d2d28d4439dcd049b1b4066a3b41084421",
       "node_ids": [
@@ -278,7 +284,7 @@
       ]
     },
     "rule.time_sliced_execution": {
-      "claim_sha256": "405ee6b04c24829203de2208f74196f7c10932b6bef702dcbf7aba4ba891f077",
+      "claim_sha256": "c9e13cb799253b77473f6254c23d06e562943f139e0b72e39f348e934ed4ea31",
       "source_sha256": "b227d3f49bdc31b4946db1b910a813f383a757b2f1edadeae3f7f6270fb83459",
       "oracle_sha256": "52e528d67e0b446cc03784890449e42181ff068191ae65e31de51a909533a622",
       "node_ids": [
@@ -301,9 +307,9 @@
       ]
     },
     "supervised.cross_sectional_rank": {
-      "claim_sha256": "264f119b5fb286595c41360ad689da0cc77d38a3f79fce889340c371fb44921f",
+      "claim_sha256": "ee9226c95f95d9a0b8184f571c064df4f6ab6308a43db52eba2f84d8376176b9",
       "source_sha256": "4fd97bcb737e325280b270a4c9fb33c9e720efaf24b14b36fd1a809f60ab9038",
-      "oracle_sha256": "46e066192971e61e423e7172626fe2f1b498d49fc5030d5f82e10238412aa351",
+      "oracle_sha256": "2b296512117f64bf288f29fe525170481e2654cce1a590ef3d8a57adb47d7ab7",
       "node_ids": [
         "tests/test_cross_sectional_rank_paper.py::test_panel_rebuilds_and_training_precedes_all_evaluation_opens",
         "tests/test_cross_sectional_rank_paper.py::test_elastic_net_kkt_and_forecast_rank_oracle[120]",
@@ -325,7 +331,7 @@
       ]
     },
     "supervised.gaussian_nb_direction": {
-      "claim_sha256": "b729f73da1de9fe03b15bf10cc2692dacc16e1a596afdb920f43e7f7539c169e",
+      "claim_sha256": "2cafed28598f280a8c83d1f4d6aaa4412158dea5967b3203217aeb54461c13ec",
       "source_sha256": "8d8785c9419e45709610c7eb1f66a2d328ddf46dc945d6548081d5ba2b6eaac3",
       "oracle_sha256": "1aaee018a2b7091cb6b0ae80d7bfa63174a764e904df4b7c5ff71148f7fc6681",
       "node_ids": [

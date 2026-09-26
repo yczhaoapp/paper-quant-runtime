@@ -1,0 +1,47 @@
+{
+  "additional_source_sha256": [],
+  "excluded_paper_components": [
+    "The source uses 22 technical indicators, 68 Ibovespa stocks and a tuned grid of stop/duration parameters. This component uses three current-bar OHLCV features, one public AAPL proxy, fixed reduced parameters and a chronological holdout.",
+    "The source assumes 1% trade cost and a rental fee for shorts. This sample's labels ignore those costs, and the reference engine fills on the next opening rather than the labeling close; paper returns are not reproduced.",
+    "Tree depth and leaf size are bounded for this compact runtime example instead of growing unpruned full trees. The forest still bootstraps examples, subsamples node features and votes among all three operation classes."
+  ],
+  "fields": [
+    "close",
+    "high",
+    "low",
+    "open",
+    "volume"
+  ],
+  "schema_version": "1.0",
+  "source_sha256": "762191079b211fae64fc7ce0457d9bac1d373a3bd9eb8ebd9cb464787ad127d2",
+  "steps": [
+    {
+      "adaptation": "The source uses 22 technical indicators, 68 Ibovespa stocks and a tuned grid of stop/duration parameters. This component uses three current-bar OHLCV features, one public AAPL proxy, fixed reduced parameters and a chronological holdout.",
+      "claim_index": 0,
+      "implementation": "RandomForestOperations.train",
+      "oracle_node": "tests/test_random_forest_operations_paper.py::test_bootstrap_forest_votes_match_independent_tree_traversal[5]",
+      "paper_rule": "Each random-forest tree is trained on a bootstrap resample, considers random features at each node, and votes on the class.",
+      "role": "training",
+      "runtime_rule": "Train trees on bootstrap samples with node-level feature subsampling, then take a majority vote."
+    },
+    {
+      "adaptation": "The source uses 22 technical indicators, 68 Ibovespa stocks and a tuned grid of stop/duration parameters. This component uses three current-bar OHLCV features, one public AAPL proxy, fixed reduced parameters and a chronological holdout.",
+      "claim_index": 1,
+      "implementation": "scripts/build_public_forest.py",
+      "oracle_node": "tests/test_random_forest_operations_paper.py::test_operation_labels_and_chronology_rebuild_from_public_bars",
+      "paper_rule": "Training labels are buy-sell, sell-buy and no-operation classes based on gain, loss and duration conditions.",
+      "role": "data",
+      "runtime_rule": "Construct the three operation labels from declared gain, loss and duration rules."
+    },
+    {
+      "adaptation": "The source assumes 1% trade cost and a rental fee for shorts. This sample's labels ignore those costs, and the reference engine fills on the next opening rather than the labeling close; paper returns are not reproduced.",
+      "claim_index": 2,
+      "implementation": "scripts/build_public_forest.py",
+      "oracle_node": "tests/test_random_forest_operations_paper.py::test_operation_labels_and_chronology_rebuild_from_public_bars",
+      "paper_rule": "The evaluation procedure trains only on prior observations.",
+      "role": "data",
+      "runtime_rule": "Limit each training row to labels known before the held-out evaluation interval."
+    }
+  ],
+  "strategy_id": "supervised.random_forest_operations"
+}

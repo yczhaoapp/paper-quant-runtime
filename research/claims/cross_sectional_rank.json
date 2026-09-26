@@ -7,8 +7,8 @@
     "version": "Review of Financial Studies 33(5), author-hosted PDF"
   },
   "claims": [
-    {"locator": "Section 2.3, equation (8), PDF page 12", "statement": "Elastic net combines absolute-value and squared-coefficient penalties.", "implementation": "CrossSectionalRank.train: soft-threshold coordinate update with fixed L1/L2 shares"},
-    {"locator": "Figure 9 caption, PDF page 46", "statement": "Forecast-sorted portfolios take long high-prediction stocks and short low-prediction stocks.", "implementation": "CrossSectionalRank.decide: rank complete daily cross-section and target high/low symbols"}
+    {"locator": "Section 2.3, equation (8), PDF page 13", "statement": "Elastic net combines absolute-value and squared-coefficient penalties.", "implementation": "CrossSectionalRank.train: soft-threshold coordinate update with fixed L1/L2 shares"},
+    {"locator": "Table 8 caption, PDF page 44; Figure 9, PDF page 46", "statement": "Forecast-sorted portfolios take long high-prediction stocks and short low-prediction stocks.", "implementation": "CrossSectionalRank.decide: rank complete daily cross-section and target high/low symbols"}
   ],
   "chosen_variant": "Two-characteristic elastic net and top-one/bottom-one rank on three symbols",
   "oracle": "tests/test_cross_sectional_rank_paper.py",

@@ -31,7 +31,10 @@ def _strategy():  # type: ignore[no-untyped-def]
 @pytest.mark.parametrize("seed", [3, 17, 71])
 def test_toy_price_matches_independent_rational_formula_and_trade_mapping(seed: int) -> None:
     claim = json.loads((ROOT / "research/claims/microprice_toy.json").read_text())
-    assert claim["source"]["companion_slides"].endswith("Stoikov.pdf")
+    assert claim["source"]["url"] == (
+        "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2970694"
+    )
+    assert "PDF pages 2 and 6" in claim["claims"][0]["locator"]
     inspect_package("microprice-paper", PACKAGE)
     generator = random.Random(seed)
     account = AccountSnapshot(

@@ -1,0 +1,55 @@
+{
+  "additional_sources": [],
+  "anchors": [
+    {
+      "claim_index": 0,
+      "page": 3,
+      "text": "portfolio weights, which should be continuous"
+    },
+    {
+      "claim_index": 1,
+      "page": 3,
+      "text": "policy gradient actor critic (PGAC) algorithm"
+    },
+    {
+      "claim_index": 2,
+      "page": 4,
+      "text": "to generate continuous actions, we use a normal distribution"
+    }
+  ],
+  "claim_file": "../claims/actor_critic_allocation.json",
+  "expected": {
+    "actions": [
+      "prediction",
+      "target_position"
+    ],
+    "fields": [
+      "close",
+      "high",
+      "low",
+      "open",
+      "volume"
+    ],
+    "granularity": "day",
+    "kind": "reinforcement",
+    "strategy_id": "reinforcement.actor_critic_allocation",
+    "symbols": [
+      "DEMO"
+    ],
+    "training_required": true
+  },
+  "package": "../../strategies/reinforcement.actor_critic_allocation",
+  "package_source_sha256": "f9e07b93048ee549cc7a969ef80bd2b32404e65f2d7954e57effc40495572a65",
+  "review_note": "Human-reviewed page anchors and declared method adaptations. Source text does not by itself prove algorithm or original-experiment fidelity; see the bound independent oracle and individual claim record.",
+  "schema_version": "1.0",
+  "source": {
+    "file": "../source-cache/li2019.pdf",
+    "format": "pdf",
+    "license": "Redistribution not asserted; prepare hash-pinned local copy",
+    "sha256": "28bac43b974c41a9acd602fdd6b3033341fd9a9f25aac739591be58a7bbf9a7b",
+    "title": "A General Framework on Enhancing Portfolio Management with Reinforcement Learning",
+    "url": "https://arxiv.org/pdf/1911.11880v2"
+  },
+  "spec_file": "../deep-specs/actor_critic_allocation.json",
+  "spec_sha256": "88792fb7c032ce7c1a6287765b128bcbe659cbed68d0bb2a925561be65834715"
+}

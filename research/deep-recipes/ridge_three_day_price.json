@@ -1,0 +1,51 @@
+{
+  "additional_sources": [],
+  "anchors": [
+    {
+      "claim_index": 0,
+      "page": 11,
+      "text": "a 3-day time window is intended for the data set"
+    },
+    {
+      "claim_index": 1,
+      "page": 13,
+      "text": "regulated by l2-norm"
+    }
+  ],
+  "claim_file": "../claims/ridge_three_day_price.json",
+  "expected": {
+    "actions": [
+      "none",
+      "prediction",
+      "target_position"
+    ],
+    "fields": [
+      "close",
+      "high",
+      "low",
+      "open",
+      "volume"
+    ],
+    "granularity": "day",
+    "kind": "supervised",
+    "strategy_id": "supervised.ridge_three_day_price",
+    "symbols": [
+      "DEMO"
+    ],
+    "training_required": true
+  },
+  "package": "../../strategies/supervised.ridge_three_day_price",
+  "package_source_sha256": "60359adeb0b5eff3d47fb75b78d0dee807eeaae8c28a23fa793ea058bb169ab2",
+  "review_note": "Human-reviewed page anchors and declared method adaptations. Source text does not by itself prove algorithm or original-experiment fidelity; see the bound independent oracle and individual claim record.",
+  "schema_version": "1.0",
+  "source": {
+    "file": "../source-cache/moodi2023.pdf",
+    "format": "pdf",
+    "license": "Redistribution not asserted; prepare hash-pinned local copy",
+    "sha256": "f2b1f92613d1db365206481427daec60cc491dfe3464d41890733aba18d523d5",
+    "title": "Integrating feature selection and regression methods with technical indicators for predicting Apple Inc. stock prices",
+    "url": "https://arxiv.org/pdf/2310.09903v5"
+  },
+  "spec_file": "../deep-specs/ridge_three_day_price.json",
+  "spec_sha256": "f20df07011278c5a4b583e312e82d9553c8608f86a7adf825e860f51ea22003c"
+}

@@ -129,6 +129,19 @@ def _run_oracles(output: Path, bindings: dict[str, dict],
     return digest(junit)
 
 
+def _check_paper_run_scope(receipt: dict[str, object]) -> None:
+    expected = {
+        "status": "passed",
+        "status_scope": "source_mapping_runtime_and_replay",
+        "source_mapping": "passed",
+        "runtime_validation": "passed",
+        "replay_validation": "passed",
+        "method_validation": "not_run",
+    }
+    if any(receipt.get(key) != value for key, value in expected.items()):
+        raise ValueError("Standalone paper-run receipt misstates its validation scope")
+
+
 def _run_paper_case(recipe: Path, entry: dict, output: Path, checked: dict) -> str:
     fixture = ROOT / "examples" / entry["fixture"]
     destination = output / "paper_cases" / entry["strategy"]
@@ -151,6 +164,7 @@ def _run_paper_case(recipe: Path, entry: dict, output: Path, checked: dict) -> s
         raise RuntimeError(f"{entry['strategy']} paper-run failed: {stream.getvalue()}")
     receipt_path = destination / "run/paper-run.json"
     receipt = json.loads(receipt_path.read_text())
+    _check_paper_run_scope(receipt)
     linked = RunReport.model_validate_json((destination / "run/report.json").read_bytes())
     standard = RunReport.model_validate_json(
         (output / entry["strategy"] / "host/run/report.json").read_bytes())
@@ -391,6 +405,7 @@ def main() -> int:
             raise ValueError("Unlisted real-paper executions are missing")
         for paper_receipt_path in external_receipts:
             paper_receipt = json.loads(paper_receipt_path.read_text())
+            _check_paper_run_scope(paper_receipt)
             bundle_path = paper_receipt_path.parent / "bundle.json"
             bundle = verify_bundle_file(bundle_path)
             external_recipe_path = paper_receipt_path.parent.parent / "recipe.json"
@@ -414,11 +429,17 @@ def main() -> int:
                 "paper_run_sha256": digest(paper_receipt_path),
                 "bundle_sha256": digest(bundle_path),
                 "fill_count": len(bundle.report.fills),
+                "source_mapping": "passed",
+                "runtime_validation": "passed",
+                "method_validation": "passed",
                 "oracle_junit_sha256": external_junit_sha256,
             })
         for checked, recipe_path in zip(paper_checks, recipe_paths, strict=True):
             entry = next(item for item in entries if item["strategy"] == checked["strategy_id"])
             checked["paper_run_sha256"] = _run_paper_case(recipe_path, entry, output, checked)
+            checked["source_mapping"] = "passed"
+            checked["runtime_validation"] = "passed"
+            checked["method_validation"] = "passed"
             checked["oracle_junit_sha256"] = oracle_junit_sha256
         source_record = json.loads((ROOT / "data/public/SOURCE.json").read_text())
         raw_csv_sha256 = digest(ROOT / "data/public/finance-charts-apple.csv")
@@ -505,6 +526,7 @@ def main() -> int:
         _check_native_differential(
             native_paper, public_reports["rule.time_sliced_execution"])
         paper_receipt = json.loads((native_paper_output / "paper-run.json").read_text())
+        _check_paper_run_scope(paper_receipt)
         schedule_check = next(item for item in paper_checks
                               if item["strategy_id"] == "rule.time_sliced_execution")
         if (paper_receipt["method_spec_sha256"] != schedule_check["method_spec_sha256"]

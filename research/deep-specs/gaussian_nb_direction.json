@@ -1,0 +1,38 @@
+{
+  "additional_source_sha256": [],
+  "excluded_paper_components": [
+    "This is one explicitly identified classifier from the paper, not the paper's weighted four-model ensemble, dynamic 25-of-148 feature selection or ANOVA stage.",
+    "Four engineered current-bar OHLCV features replace the original multi-timeframe feature universe; the classifier fits once on 320 chronological AAPL proxy rows and evaluates after the last training label is known.",
+    "The public AAPL source is not the paper's 1500-stock 2011–2019 universe and paper returns or accuracy are not claimed."
+  ],
+  "fields": [
+    "close",
+    "high",
+    "low",
+    "open",
+    "volume"
+  ],
+  "schema_version": "1.0",
+  "source_sha256": "7af54057ce8fc74068583b2251d249f68f13c960e70517653d74556020fb28c3",
+  "steps": [
+    {
+      "adaptation": "This is one explicitly identified classifier from the paper, not the paper's weighted four-model ensemble, dynamic 25-of-148 feature selection or ANOVA stage.",
+      "claim_index": 0,
+      "implementation": "GaussianNBDirection.train",
+      "oracle_node": "tests/test_gaussian_nb_paper.py::test_gaussian_training_and_posterior_match_independent_oracle[100]",
+      "paper_rule": "Gaussian Naive Bayes is one component of a four-classifier daily trading ensemble.",
+      "role": "training",
+      "runtime_rule": "Fit one Gaussian Naive Bayes component with per-class priors, feature means and variances."
+    },
+    {
+      "adaptation": "This is one explicitly identified classifier from the paper, not the paper's weighted four-model ensemble, dynamic 25-of-148 feature selection or ANOVA stage.",
+      "claim_index": 1,
+      "implementation": "GaussianNBDirection.decide",
+      "oracle_node": "tests/test_gaussian_nb_paper.py::test_gaussian_training_and_posterior_match_independent_oracle[100]",
+      "paper_rule": "The Naive Bayes class posterior combines a class prior and class-conditional feature factors under conditional independence.",
+      "role": "inference",
+      "runtime_rule": "Combine each class prior and conditional feature density in log space to score direction."
+    }
+  ],
+  "strategy_id": "supervised.gaussian_nb_direction"
+}

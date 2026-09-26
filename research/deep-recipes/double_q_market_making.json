@@ -1,0 +1,71 @@
+{
+  "additional_sources": [
+    {
+      "file": "../source-cache/vanhasselt2010.pdf",
+      "format": "pdf",
+      "license": "Redistribution not asserted; prepare hash-pinned local copy",
+      "sha256": "f94cf09e58b6392da4d81504cd6349ae432023f08dc040d11c1b6d23a9a4f542",
+      "title": "Double Q-learning",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2010/file/091d584fced301b442654dd8c23b3fc9-Paper.pdf"
+    }
+  ],
+  "anchors": [
+    {
+      "claim_index": 0,
+      "page": 5,
+      "source_index": 0,
+      "text": "Learning rate (α) 0.001"
+    },
+    {
+      "claim_index": 0,
+      "page": 5,
+      "source_index": 0,
+      "text": "Discount factor"
+    },
+    {
+      "claim_index": 1,
+      "page": 5,
+      "source_index": 1,
+      "text": "Choose (e.g. random) either"
+    },
+    {
+      "claim_index": 2,
+      "page": 5,
+      "source_index": 1,
+      "text": "Choose a, based on"
+    }
+  ],
+  "claim_file": "../claims/double_q_market_making.json",
+  "expected": {
+    "actions": [
+      "none",
+      "target_position"
+    ],
+    "fields": [
+      "ask_size",
+      "bid_size",
+      "price"
+    ],
+    "granularity": "tick",
+    "kind": "reinforcement",
+    "strategy_id": "reinforcement.double_q_market_making",
+    "symbols": [
+      "DEMO"
+    ],
+    "training_required": true
+  },
+  "package": "../../strategies/reinforcement.double_q_market_making",
+  "package_source_sha256": "94e0e1ad39c9c18321cc622dc4afdcb49d2068bc7f93bddfa682c66c90fb0bce",
+  "review_note": "Human-reviewed page anchors and declared method adaptations. Source text does not by itself prove algorithm or original-experiment fidelity; see the bound independent oracle and individual claim record.",
+  "schema_version": "1.0",
+  "source": {
+    "file": "../source-cache/spooner2018.pdf",
+    "format": "pdf",
+    "license": "Redistribution not asserted; prepare hash-pinned local copy",
+    "sha256": "1f653c9b625fa068f521660006194796a835da239b1da529f124841af9f82762",
+    "title": "Market Making via Reinforcement Learning",
+    "url": "https://arxiv.org/pdf/1804.04216"
+  },
+  "spec_file": "../deep-specs/double_q_market_making.json",
+  "spec_sha256": "5a36e7faee158db5519fe696eb6d50a005dd308e37da08c8154535aa4b9dd885"
+}

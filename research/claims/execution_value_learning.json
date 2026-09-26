@@ -9,7 +9,7 @@
   "claims": [
     {"locator": "Section 3, PDF page 3", "statement": "The private state includes elapsed time and remaining inventory; public market variables are separate.", "implementation": "ExecutionValueLearning._state, _pressure and decide"},
     {"locator": "Section 3, PDF pages 3–4, cost update and pseudocode", "statement": "Training moves backward through the finite horizon and averages immediate payoff plus optimal next-state value for each state-action.", "implementation": "ExecutionValueLearning.train: ascending remaining-time lattice and incremental observed mean"},
-    {"locator": "Section 3, PDF page 3", "statement": "When the horizon expires, remaining inventory must be executed.", "implementation": "ExecutionValueLearning._actions: time-one action equals all remaining units"}
+    {"locator": "Section 3, PDF page 4", "statement": "When the horizon expires, remaining inventory must be executed.", "implementation": "ExecutionValueLearning._actions: time-one action equals all remaining units"}
   ],
   "chosen_variant": "Four decision intervals, four-unit buy program and empirical finite-horizon value table",
   "oracle": "tests/test_execution_value_learning_paper.py",

@@ -14,7 +14,7 @@ Paper Quant Runtime 是面向公开研究策略的可执行契约。它将策略
 - 失败返回机器可读的错误，不补造行情、模型或订单。
 - 市价与限价订单均有明确的下一事件语义；未成交限价单显式过期。
 
-接口与错误语义见 [契约说明](docs/contract.md)，参考引擎与限定能力的原生 Backtrader 桥接见[扩展边界](docs/engine-extension.md)，真实 PDF 与 PDF/HTML/TeX 接入、人工方法 spec 的边界见[论文接入说明](docs/paper-intake.md)；逐项能力与证据边界见 [验收矩阵](docs/development-plan.md)。
+接口与错误语义见 [契约说明](docs/contract.md)，参考引擎与限定能力的原生 Backtrader 桥接见[扩展边界](docs/engine-extension.md)，真实 PDF 与 PDF/HTML/TeX 接入、人工方法 spec 的边界见[论文接入说明](docs/paper-intake.md)；逐项能力与证据边界见 [验收矩阵](docs/development-plan.md)，算法、数据、实验和运行范围的内部评级见[四轴证据口径](docs/evidence-axes.md)。
 
 研究候选清单记录了 18 个方法与来源核对状态；候选清单本身不作为完成证据，实际完成以对应策略包、oracle 和运行收据为准。不同实现的效果比较使用中立观察格式，要求相同的输入哈希、方法标识和执行条件哈希，输出动作/成交路径与权益差。观察相同只说明该场景中的行为一致，不证明论文实验结果复现。格式和使用方式见 [比较协议](docs/comparison.md)。
 
@@ -48,6 +48,8 @@ uv run --no-sync python scripts/verify_strict.py --require-clean --output runs/s
 ```
 
 该命令还会逐项执行 `examples/catalog.json` 中的 18 个策略，要求每项生成真实决策、成交、可离线重验的运行包和冷启动回放；论文主张核对结构化方法 spec 与实际实现符号，并把精确 oracle 测试节点绑定到本轮 JUnit 与源码哈希；同时比较主机和严格 worker 轨迹，另用原生 Backtrader broker 验证规则、监督、强化学习各一项的真实成交与账户差分，并验证三篇真实 CC BY PDF 的页级接入和策略绑定。逐项报告与 `acceptance.json` 位于本轮 `attempts/<attempt_id>/acceptance/`，主收据保存该验收文件的 SHA-256。只需查看主机运行时，也可执行 `uv run --no-sync python scripts/acceptance.py --output runs/acceptance-host`。
+
+额外的论文深度验收在主机显式准备固定原文后，逐项检查全部 18 个策略的页级方法证据与 `paper-run`，并构建、运行一篇现有目录之外的 VWAP 论文案例。它还核对八条公开 AAPL 方法轨迹，其中均线和突破另跑公开行情补充案例；收据分别记录经审阅的 A/D/E 范围和本轮主机论文接入 R1。严格容器收据只对其实际验证的 18 个目录策略授予 R2。16 个主要论文来源、Double Q 的独立算法原文、以及目录外新论文在收据中分别计数，不将 18 个策略混称为 18 篇主要论文。详情和命令见[论文接入说明](docs/paper-intake.md)。
 
 隔离边界、实际容器配置核查及已知限制见 [沙箱说明](docs/sandbox.md)。
 

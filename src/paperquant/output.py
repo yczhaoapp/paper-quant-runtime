@@ -67,6 +67,7 @@ class Attempt:
     def failed(self, *, run_id: str, code: str, failure: bytes) -> None:
         (self.root / "report.json").unlink(missing_ok=True)
         (self.root / "bundle.json").unlink(missing_ok=True)
+        (self.root / "paper-run.json").unlink(missing_ok=True)
         atomic_bytes(self.root / "failure.json", failure)
         self._publish(
             "failed",

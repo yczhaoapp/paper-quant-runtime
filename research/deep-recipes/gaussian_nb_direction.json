@@ -1,0 +1,56 @@
+{
+  "additional_sources": [],
+  "anchors": [
+    {
+      "claim_index": 0,
+      "page": 2,
+      "text": "four classifiers: Gaussian Naive Bayes"
+    },
+    {
+      "claim_index": 1,
+      "page": 53,
+      "text": "Naive Bayes classification uses Bayes’ rule"
+    },
+    {
+      "claim_index": 1,
+      "page": 53,
+      "text": "independent of the occurrence of any other"
+    }
+  ],
+  "claim_file": "../claims/gaussian_nb_direction.json",
+  "expected": {
+    "actions": [
+      "none",
+      "prediction",
+      "target_position"
+    ],
+    "fields": [
+      "close",
+      "high",
+      "low",
+      "open",
+      "volume"
+    ],
+    "granularity": "day",
+    "kind": "supervised",
+    "strategy_id": "supervised.gaussian_nb_direction",
+    "symbols": [
+      "DEMO"
+    ],
+    "training_required": true
+  },
+  "package": "../../strategies/supervised.gaussian_nb_direction",
+  "package_source_sha256": "8d8785c9419e45709610c7eb1f66a2d328ddf46dc945d6548081d5ba2b6eaac3",
+  "review_note": "Human-reviewed page anchors and declared method adaptations. Source text does not by itself prove algorithm or original-experiment fidelity; see the bound independent oracle and individual claim record.",
+  "schema_version": "1.0",
+  "source": {
+    "file": "../source-cache/saifan2021.pdf",
+    "format": "pdf",
+    "license": "Redistribution not asserted; prepare hash-pinned local copy",
+    "sha256": "7af54057ce8fc74068583b2251d249f68f13c960e70517653d74556020fb28c3",
+    "title": "Combining Machine Learning Classifiers for Stock Trading with Effective Feature Extraction",
+    "url": "https://arxiv.org/pdf/2107.13148v3"
+  },
+  "spec_file": "../deep-specs/gaussian_nb_direction.json",
+  "spec_sha256": "929f60039813d23c81f9807cbcd45efb4f91e0e02a8eaf6b8ca2b61991c5dab2"
+}

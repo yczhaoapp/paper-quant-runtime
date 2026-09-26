@@ -1,0 +1,44 @@
+{
+  "additional_source_sha256": [],
+  "excluded_paper_components": [
+    "The source experiment selects several pairs from CRSP dividend-reinvested total-return histories; this sample selects one pair from three synthetic close series without dividends.",
+    "The paper reports one-dollar long and one-dollar short legs. This engine fixes each leg at 100 units of quote currency using signal-close prices and fills at next opening; later returns and corporate actions do not reproduce the paper's return accounting.",
+    "Orders for both legs are submitted together but fill independently on each symbol's next event; this engine does not guarantee atomic pair execution.",
+    "A final exit is signaled one session before the end of the trading interval to permit next-open execution. Delisting, staggered monthly portfolios and the original market results are outside this implementation."
+  ],
+  "fields": [
+    "close"
+  ],
+  "schema_version": "1.0",
+  "source_sha256": "ab3cdc1acf6b603e5e9e5a9f6ae2bcf467519a0807d9d54716338367a11c03a2",
+  "steps": [
+    {
+      "adaptation": "The source experiment selects several pairs from CRSP dividend-reinvested total-return histories; this sample selects one pair from three synthetic close series without dividends.",
+      "claim_index": 0,
+      "implementation": "DistancePair._select_pair",
+      "oracle_node": "tests/test_pairs_distance_paper.py::test_minimum_distance_pair_and_trades_match_independent_oracle[False]",
+      "paper_rule": "Rank formation-period pairs by summed squared distance of normalized prices.",
+      "role": "training",
+      "runtime_rule": "Select the formation pair minimizing squared distance between normalized closing-price paths."
+    },
+    {
+      "adaptation": "The source experiment selects several pairs from CRSP dividend-reinvested total-return histories; this sample selects one pair from three synthetic close series without dividends.",
+      "claim_index": 1,
+      "implementation": "DistancePair.decide",
+      "oracle_node": "tests/test_pairs_distance_paper.py::test_minimum_distance_pair_and_trades_match_independent_oracle[False]",
+      "paper_rule": "Open on a spread exceeding two formation standard deviations and unwind at the next price crossing.",
+      "role": "signal",
+      "runtime_rule": "Open at a two-standard-deviation divergence and close when the normalized spread crosses zero."
+    },
+    {
+      "adaptation": "The paper reports one-dollar long and one-dollar short legs. This engine fixes each leg at 100 units of quote currency using signal-close prices and fills at next opening; later returns and corporate actions do not reproduce the paper's return accounting.",
+      "claim_index": 2,
+      "implementation": "DistancePair.decide",
+      "oracle_node": "tests/test_pairs_distance_paper.py::test_fixture_is_pinned_and_synchronized",
+      "paper_rule": "Separate a twelve-month formation period from a six-month trading period.",
+      "role": "data",
+      "runtime_rule": "Keep the declared formation and subsequent trading windows disjoint in event time."
+    }
+  ],
+  "strategy_id": "rule.pairs_distance"
+}

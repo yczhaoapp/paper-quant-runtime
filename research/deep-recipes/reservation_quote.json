@@ -1,0 +1,55 @@
+{
+  "additional_sources": [],
+  "anchors": [
+    {
+      "claim_index": 0,
+      "page": 5,
+      "text": "around the reservation price given by"
+    },
+    {
+      "claim_index": 1,
+      "page": 5,
+      "text": "optimal pricing strategy amounts to quoting a spread"
+    }
+  ],
+  "claim_file": "../claims/reservation_quote.json",
+  "expected": {
+    "actions": [
+      "none",
+      "prediction",
+      "submit_order"
+    ],
+    "fields": [
+      "ask_price",
+      "ask_price_2",
+      "ask_size",
+      "ask_size_2",
+      "bid_price",
+      "bid_price_2",
+      "bid_size",
+      "bid_size_2",
+      "price"
+    ],
+    "granularity": "tick",
+    "kind": "rule",
+    "strategy_id": "rule.reservation_quote",
+    "symbols": [
+      "DEMO"
+    ],
+    "training_required": false
+  },
+  "package": "../../strategies/rule.reservation_quote",
+  "package_source_sha256": "97343aeea07fa1ef37d43e3764a9ea7336f0637b5ab4f798ec55f2ebbd89339d",
+  "review_note": "Human-reviewed page anchors and declared method adaptations. Source text does not by itself prove algorithm or original-experiment fidelity; see the bound independent oracle and individual claim record.",
+  "schema_version": "1.0",
+  "source": {
+    "file": "../source-cache/avellaneda2008.pdf",
+    "format": "pdf",
+    "license": "Redistribution not asserted; prepare hash-pinned local copy",
+    "sha256": "71fa9268339ae82365171caa7416833b3a5d584f05e4f4c087c4ae72d7121a8d",
+    "title": "High-frequency trading in a limit order book",
+    "url": "https://math.nyu.edu/inmemoriam/avellaneda/HighFrequencyTrading.pdf"
+  },
+  "spec_file": "../deep-specs/reservation_quote.json",
+  "spec_sha256": "f2b96988576af9358b582760c41a7b283bfe58e79fe54ed8a9670efbcc029a85"
+}

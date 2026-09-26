@@ -48,7 +48,7 @@ def _run(tmp_path: Path, training: TrainingRequest):  # type: ignore[no-untyped-
 
 def test_panel_rebuilds_and_training_precedes_all_evaluation_opens() -> None:
     claim = json.loads((ROOT / "research/claims/cross_sectional_rank.json").read_text())
-    assert claim["claims"][0]["locator"] == "Section 2.3, equation (8), PDF page 12"
+    assert claim["claims"][0]["locator"] == "Section 2.3, equation (8), PDF page 13"
     inspect_package("cross-sectional-paper", PACKAGE)
     dataset, events, training = _inputs()
     panel = runpy.run_path(str(ROOT / "scripts/build_cross_sectional_fixture.py"))["build_panel"]()

@@ -1,0 +1,182 @@
+{
+  "schema_version": "1.0",
+  "sources": [
+    {
+      "source_id": "lauretto2013",
+      "title": "Evaluation of a Supervised Learning Approach for Stock Market Operations",
+      "canonical_url": "https://arxiv.org/pdf/1301.4944v1",
+      "retrieval_url": "https://arxiv.org/pdf/1301.4944v1",
+      "sha256": "762191079b211fae64fc7ce0457d9bac1d373a3bd9eb8ebd9cb464787ad127d2",
+      "format": "pdf",
+      "file": "research/source-cache/lauretto2013.pdf",
+      "distribution": "not_asserted"
+    },
+    {
+      "source_id": "zhu2015",
+      "title": "Profitability of simple technical trading rules of Chinese stock exchange indexes",
+      "canonical_url": "https://arxiv.org/pdf/1504.04254",
+      "retrieval_url": "https://arxiv.org/pdf/1504.04254",
+      "sha256": "6908ca31e92e750881255742a99ffc3daf00ca2e9d0b0012652809d0f538b87a",
+      "format": "pdf",
+      "file": "research/source-cache/zhu2015.pdf",
+      "distribution": "not_asserted"
+    },
+    {
+      "source_id": "gould2015",
+      "title": "Queue Imbalance as a One-Tick-Ahead Price Predictor in a Limit Order Book",
+      "canonical_url": "https://arxiv.org/pdf/1512.03492",
+      "retrieval_url": "https://arxiv.org/pdf/1512.03492",
+      "sha256": "a5051285adfe2d8a2d7f46a758486f357d556a46a964bc89b245de7e7a0bc338",
+      "format": "pdf",
+      "file": "research/source-cache/gould2015.pdf",
+      "distribution": "not_asserted"
+    },
+    {
+      "source_id": "spooner2018",
+      "title": "Market Making via Reinforcement Learning",
+      "canonical_url": "https://arxiv.org/pdf/1804.04216",
+      "retrieval_url": "https://arxiv.org/pdf/1804.04216",
+      "sha256": "1f653c9b625fa068f521660006194796a835da239b1da529f124841af9f82762",
+      "format": "pdf",
+      "file": "research/source-cache/spooner2018.pdf",
+      "distribution": "not_asserted"
+    },
+    {
+      "source_id": "li2019",
+      "title": "A General Framework on Enhancing Portfolio Management with Reinforcement Learning",
+      "canonical_url": "https://arxiv.org/pdf/1911.11880v2",
+      "retrieval_url": "https://arxiv.org/pdf/1911.11880v2",
+      "sha256": "28bac43b974c41a9acd602fdd6b3033341fd9a9f25aac739591be58a7bbf9a7b",
+      "format": "pdf",
+      "file": "research/source-cache/li2019.pdf",
+      "distribution": "not_asserted"
+    },
+    {
+      "source_id": "saifan2021",
+      "title": "Combining Machine Learning Classifiers for Stock Trading with Effective Feature Extraction",
+      "canonical_url": "https://arxiv.org/pdf/2107.13148v3",
+      "retrieval_url": "https://arxiv.org/pdf/2107.13148v3",
+      "sha256": "7af54057ce8fc74068583b2251d249f68f13c960e70517653d74556020fb28c3",
+      "format": "pdf",
+      "file": "research/source-cache/saifan2021.pdf",
+      "distribution": "not_asserted"
+    },
+    {
+      "source_id": "lin2022",
+      "title": "Risk-averse Contextual Multi-armed Bandit Problem with Linear Payoffs",
+      "canonical_url": "https://arxiv.org/pdf/2206.12463v1",
+      "retrieval_url": "https://arxiv.org/pdf/2206.12463v1",
+      "sha256": "3e538c2468d69e084a06f231d86254c0672e91d69f565e7418bf5fce45f665bf",
+      "format": "pdf",
+      "file": "research/source-cache/lin2022.pdf",
+      "distribution": "not_asserted"
+    },
+    {
+      "source_id": "pardo2022",
+      "title": "A Modular Framework for Reinforcement Learning Optimal Execution",
+      "canonical_url": "https://arxiv.org/pdf/2208.06244v1",
+      "retrieval_url": "https://arxiv.org/pdf/2208.06244v1",
+      "sha256": "289db4306c3f73189511586bf128793f4eeaa3b6d36991508458c3062d83d838",
+      "format": "pdf",
+      "file": "research/sources/pardo-2022.pdf",
+      "distribution": "cc_by_4_0"
+    },
+    {
+      "source_id": "moodi2023",
+      "title": "Integrating feature selection and regression methods with technical indicators for predicting Apple Inc. stock prices",
+      "canonical_url": "https://arxiv.org/pdf/2310.09903v5",
+      "retrieval_url": "https://arxiv.org/pdf/2310.09903v5",
+      "sha256": "f2b1f92613d1db365206481427daec60cc491dfe3464d41890733aba18d523d5",
+      "format": "pdf",
+      "file": "research/source-cache/moodi2023.pdf",
+      "distribution": "not_asserted"
+    },
+    {
+      "source_id": "chipwanya2023",
+      "title": "Stock Market Directional Bias Prediction Using ML Algorithms",
+      "canonical_url": "https://arxiv.org/pdf/2310.16855",
+      "retrieval_url": "https://arxiv.org/pdf/2310.16855",
+      "sha256": "ce5644b3dc03932fca64156631ddcb2ef3f2abab9a44ec6d8364f5c0ba2fe7c1",
+      "format": "pdf",
+      "file": "research/sources/chipwanya-2023.pdf",
+      "distribution": "cc_by_4_0"
+    },
+    {
+      "source_id": "yang2024",
+      "title": "Reinforcement Learning Pair Trading: A Dynamic Scaling Approach",
+      "canonical_url": "https://arxiv.org/pdf/2407.16103",
+      "retrieval_url": "https://arxiv.org/pdf/2407.16103",
+      "sha256": "9b30affe7f856c1add02ff4fb8bb7f3eac670e877a19bf3c91a18bbf4fc98eb3",
+      "format": "pdf",
+      "file": "research/sources/yang-malik-2024.pdf",
+      "distribution": "cc_by_4_0"
+    },
+    {
+      "source_id": "gu2019",
+      "title": "Empirical Asset Pricing via Machine Learning",
+      "canonical_url": "https://dachxiu.chicagobooth.edu/download/ML.pdf",
+      "retrieval_url": "https://dachxiu.chicagobooth.edu/download/ML.pdf",
+      "sha256": "05e4ef8a1c830c9f33a0f461f07c145f6e6be30fbd7996a09d0672de1413bd61",
+      "format": "pdf",
+      "file": "research/source-cache/gu2019.pdf",
+      "distribution": "not_asserted"
+    },
+    {
+      "source_id": "avellaneda2008",
+      "title": "High-frequency trading in a limit order book",
+      "canonical_url": "https://math.nyu.edu/inmemoriam/avellaneda/HighFrequencyTrading.pdf",
+      "retrieval_url": "https://math.nyu.edu/inmemoriam/avellaneda/HighFrequencyTrading.pdf",
+      "sha256": "71fa9268339ae82365171caa7416833b3a5d584f05e4f4c087c4ae72d7121a8d",
+      "format": "pdf",
+      "file": "research/source-cache/avellaneda2008.pdf",
+      "distribution": "not_asserted"
+    },
+    {
+      "source_id": "stoikov2017",
+      "title": "The Micro-Price: A High Frequency Estimator of Future Prices",
+      "canonical_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2970694",
+      "retrieval_url": "https://raw.githubusercontent.com/saranshss/MicroPrice/c3366637c6fa9fc4cb4e6a9ac790b6ff4c6979a3/Micro-Price%20Stoikov.pdf",
+      "sha256": "71d3b3c5ae5caa87721e8251373dd7675f9ae21deca4fcbbce09d0b62a1bea68",
+      "format": "pdf",
+      "file": "research/source-cache/stoikov2017.pdf",
+      "distribution": "not_asserted",
+      "retrieval_note": "Pinned third-party mirror of the 14-page Stoikov manuscript because SSRN denies automated byte retrieval. The verifier checks the manuscript title and named author against its opening pages; the canonical record remains the SSRN abstract.",
+      "authors": [
+        "Sasha Stoikov"
+      ]
+    },
+    {
+      "source_id": "gatev2006",
+      "title": "Pairs Trading: Performance of a Relative Value Arbitrage Rule",
+      "canonical_url": "https://repec.som.yale.edu/icfpub/publications/2573.pdf",
+      "retrieval_url": "https://repec.som.yale.edu/icfpub/publications/2573.pdf",
+      "sha256": "ab3cdc1acf6b603e5e9e5a9f6ae2bcf467519a0807d9d54716338367a11c03a2",
+      "format": "pdf",
+      "file": "research/source-cache/gatev2006.pdf",
+      "distribution": "not_asserted"
+    },
+    {
+      "source_id": "nevmyvaka2006",
+      "title": "Reinforcement Learning for Optimized Trade Execution",
+      "canonical_url": "https://www.cis.upenn.edu/~mkearns/papers/rlexec.pdf",
+      "retrieval_url": "https://www.cis.upenn.edu/~mkearns/papers/rlexec.pdf",
+      "sha256": "3157e2d6ace0bb95ff8fb7215f1b2bb79e7c27f5434137bab4fdd2e9507dcae4",
+      "format": "pdf",
+      "file": "research/source-cache/nevmyvaka2006.pdf",
+      "distribution": "not_asserted"
+    }
+  ],
+  "supporting_sources": [
+    {
+      "source_id": "vanhasselt2010",
+      "title": "Double Q-learning",
+      "canonical_url": "https://proceedings.neurips.cc/paper_files/paper/2010/file/091d584fced301b442654dd8c23b3fc9-Paper.pdf",
+      "retrieval_url": "https://papers.neurips.cc/paper_files/paper/2010/file/091d584fced301b442654dd8c23b3fc9-Paper.pdf",
+      "sha256": "f94cf09e58b6392da4d81504cd6349ae432023f08dc040d11c1b6d23a9a4f542",
+      "format": "pdf",
+      "file": "research/source-cache/vanhasselt2010.pdf",
+      "distribution": "not_asserted",
+      "supports_strategy": "reinforcement.double_q_market_making"
+    }
+  ]
+}

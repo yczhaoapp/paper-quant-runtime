@@ -1,0 +1,47 @@
+{
+  "additional_source_sha256": [],
+  "excluded_paper_components": [
+    "The paper studies multiple assets, state tensors, neural policy/value networks and trading costs. This example has one public AAPL asset plus cash, three linear state components and zero-cost training rewards.",
+    "The Gaussian variable is passed through a sigmoid to make the risky weight lie strictly between zero and one. The policy score derivative is exact for the latent Gaussian with this invertible squashing transformation, but this architecture is not the paper's original network.",
+    "Training samples contain chronological observed state transitions; the algorithm samples its own actions on-policy and computes rewards from next closes. Evaluation starts after the last training successor is known. Next-open target-share execution only approximates the training portfolio weight."
+  ],
+  "fields": [
+    "close",
+    "high",
+    "low",
+    "open",
+    "volume"
+  ],
+  "schema_version": "1.0",
+  "source_sha256": "28bac43b974c41a9acd602fdd6b3033341fd9a9f25aac739591be58a7bbf9a7b",
+  "steps": [
+    {
+      "adaptation": "The paper studies multiple assets, state tensors, neural policy/value networks and trading costs. This example has one public AAPL asset plus cash, three linear state components and zero-cost training rewards.",
+      "claim_index": 0,
+      "implementation": "ActorCriticAllocation.train",
+      "oracle_node": "tests/test_actor_critic_allocation_paper.py::test_on_policy_actor_and_td_critic_match_independent_reference[3]",
+      "paper_rule": "Portfolio actions are continuous weights that sum to one, and the reward is a portfolio log return.",
+      "role": "reward",
+      "runtime_rule": "Use one risky weight with a cash complement and calculate log gross portfolio return."
+    },
+    {
+      "adaptation": "The paper studies multiple assets, state tensors, neural policy/value networks and trading costs. This example has one public AAPL asset plus cash, three linear state components and zero-cost training rewards.",
+      "claim_index": 1,
+      "implementation": "ActorCriticAllocation.train",
+      "oracle_node": "tests/test_actor_critic_allocation_paper.py::test_on_policy_actor_and_td_critic_match_independent_reference[3]",
+      "paper_rule": "Actor-critic estimates a value function, computes an advantage using reward and next-state value, and updates policy parameters by a score-function gradient.",
+      "role": "training",
+      "runtime_rule": "Fit a linear value function and update the actor with a one-step advantage."
+    },
+    {
+      "adaptation": "The Gaussian variable is passed through a sigmoid to make the risky weight lie strictly between zero and one. The policy score derivative is exact for the latent Gaussian with this invertible squashing transformation, but this architecture is not the paper's original network.",
+      "claim_index": 2,
+      "implementation": "ActorCriticAllocation.train",
+      "oracle_node": "tests/test_actor_critic_allocation_paper.py::test_gaussian_policy_score_gradient_has_expected_finite_difference",
+      "paper_rule": "A Gaussian policy generates continuous actions and has a tractable log-likelihood gradient.",
+      "role": "training",
+      "runtime_rule": "Sample a Gaussian latent action and map the selected risky weight into a bounded position."
+    }
+  ],
+  "strategy_id": "reinforcement.actor_critic_allocation"
+}

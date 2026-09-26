@@ -1,0 +1,43 @@
+{
+  "additional_source_sha256": [],
+  "excluded_paper_components": [
+    "Risk aversion, volatility and arrival-decay constants are fixed before each run rather than calibrated from original order-arrival observations.",
+    "The 32-event two-level book is synthetic; second-level depth validates L2 field handling but does not change the paper's best-quote midpoint formula.",
+    "The reference engine accepts each limit quote for only the next event and fills it at the next best bid/ask if marketable. It does not model standing queue priority, cancellation/replacement, partial fills, Poisson arrivals or the original simulation's P&L distribution.",
+    "One event slot represents a fixed fraction of the finite horizon; it is not calibrated clock time from the paper's original data."
+  ],
+  "fields": [
+    "ask_price",
+    "ask_price_2",
+    "ask_size",
+    "ask_size_2",
+    "bid_price",
+    "bid_price_2",
+    "bid_size",
+    "bid_size_2",
+    "price"
+  ],
+  "schema_version": "1.0",
+  "source_sha256": "71fa9268339ae82365171caa7416833b3a5d584f05e4f4c087c4ae72d7121a8d",
+  "steps": [
+    {
+      "adaptation": "Risk aversion, volatility and arrival-decay constants are fixed before each run rather than calibrated from original order-arrival observations.",
+      "claim_index": 0,
+      "implementation": "ReservationQuote.quotes",
+      "oracle_node": "tests/test_reservation_quote_paper.py::test_random_equations_match_independent_reservation_and_spread[3]",
+      "paper_rule": "Finite-horizon reservation price equals midpoint minus inventory times risk aversion, price variance and remaining time.",
+      "role": "signal",
+      "runtime_rule": "Calculate a horizon-adjusted reservation price from midpoint, inventory and variance."
+    },
+    {
+      "adaptation": "Risk aversion, volatility and arrival-decay constants are fixed before each run rather than calibrated from original order-arrival observations.",
+      "claim_index": 1,
+      "implementation": "ReservationQuote.quotes",
+      "oracle_node": "tests/test_reservation_quote_paper.py::test_random_equations_match_independent_reservation_and_spread[3]",
+      "paper_rule": "The approximate total quote spread combines the inventory-risk horizon term and twice the exponential-arrival logarithmic term divided by risk aversion.",
+      "role": "execution",
+      "runtime_rule": "Calculate both quote prices from the paper spread approximation and submit price-bounded limits."
+    }
+  ],
+  "strategy_id": "rule.reservation_quote"
+}

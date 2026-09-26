@@ -1,0 +1,67 @@
+{
+  "reinforcement.actor_critic_allocation": [
+    {"role": "reward", "runtime_rule": "Use one risky weight with a cash complement and calculate log gross portfolio return.", "implementation": "ActorCriticAllocation.train", "adaptation_index": 0},
+    {"role": "training", "runtime_rule": "Fit a linear value function and update the actor with a one-step advantage.", "implementation": "ActorCriticAllocation.train", "adaptation_index": 0},
+    {"role": "training", "runtime_rule": "Sample a Gaussian latent action and map the selected risky weight into a bounded position.", "implementation": "ActorCriticAllocation.train", "adaptation_index": 1}
+  ],
+  "reinforcement.double_q_market_making": [
+    {"role": "training", "runtime_rule": "Initialize two action-value tables with the declared learning and discount factors.", "implementation": "DoubleQInventory.__init__", "adaptation_index": 1},
+    {"role": "training", "runtime_rule": "Select one table for each update, choose the next action in it and evaluate with the other table.", "implementation": "DoubleQInventory.train", "adaptation_index": 0},
+    {"role": "inference", "runtime_rule": "Choose the behavior action from the combined values of both learned tables.", "implementation": "DoubleQInventory.decide", "adaptation_index": 1}
+  ],
+  "rule.channel_breakout": [
+    {"role": "signal", "runtime_rule": "Compare the latest close with completed-window extrema and the declared one-percent band.", "implementation": "ChannelBreakout.decide", "adaptation_index": 0},
+    {"role": "execution", "runtime_rule": "Maintain the active position through its ten-session hold and ignore intervening entry signals.", "implementation": "ChannelBreakout.decide", "adaptation_index": 0}
+  ],
+  "supervised.cross_sectional_rank": [
+    {"role": "training", "runtime_rule": "Fit the fixed elastic-net objective by a soft-threshold coordinate update.", "implementation": "CrossSectionalRank.train", "adaptation_index": 0},
+    {"role": "inference", "runtime_rule": "Rank a complete daily panel of forecasts and target the highest and lowest symbols.", "implementation": "CrossSectionalRank.decide", "adaptation_index": 1}
+  ],
+  "reinforcement.execution_value_learning": [
+    {"role": "data", "runtime_rule": "Build a finite-horizon state from remaining time, remaining inventory and public pressure.", "implementation": "ExecutionValueLearning._state", "adaptation_index": 0},
+    {"role": "training", "runtime_rule": "Sweep the horizon backward and update each state-action cost with observed immediate cost and continuation.", "implementation": "ExecutionValueLearning.train", "adaptation_index": 0},
+    {"role": "execution", "runtime_rule": "At the terminal decision, force the outstanding quantity into the available action set.", "implementation": "ExecutionValueLearning._actions", "adaptation_index": 1}
+  ],
+  "supervised.gaussian_nb_direction": [
+    {"role": "training", "runtime_rule": "Fit one Gaussian Naive Bayes component with per-class priors, feature means and variances.", "implementation": "GaussianNBDirection.train", "adaptation_index": 0},
+    {"role": "inference", "runtime_rule": "Combine each class prior and conditional feature density in log space to score direction.", "implementation": "GaussianNBDirection.decide", "adaptation_index": 0}
+  ],
+  "rule.moving_average_crossover": [
+    {"role": "signal", "runtime_rule": "Calculate short and long arithmetic means from completed daily closing prices.", "implementation": "MovingAverageCrossover.decide", "adaptation_index": 0},
+    {"role": "inference", "runtime_rule": "Choose long, short or flat target inventory from the mean gap and declared band.", "implementation": "MovingAverageCrossover.decide", "adaptation_index": 0}
+  ],
+  "rule.microprice_toy": [
+    {"role": "signal", "runtime_rule": "Compute best-bid-size weighted ask plus best-ask-size weighted bid, then compare with last trade price.", "implementation": "WeightedMicropriceToy.fair_price", "adaptation_index": 0}
+  ],
+  "rule.pairs_distance": [
+    {"role": "training", "runtime_rule": "Select the formation pair minimizing squared distance between normalized closing-price paths.", "implementation": "DistancePair._select_pair", "adaptation_index": 0},
+    {"role": "signal", "runtime_rule": "Open at a two-standard-deviation divergence and close when the normalized spread crosses zero.", "implementation": "DistancePair.decide", "adaptation_index": 0},
+    {"role": "data", "runtime_rule": "Keep the declared formation and subsequent trading windows disjoint in event time.", "implementation": "DistancePair.decide", "adaptation_index": 1}
+  ],
+  "supervised.queue_imbalance": [
+    {"role": "data", "runtime_rule": "Compute best-bid-size minus best-ask-size divided by their sum on each L1 event.", "implementation": "QueueImbalanceLogistic._imbalance", "adaptation_index": 0},
+    {"role": "training", "runtime_rule": "Fit two logistic coefficients and map the observed imbalance to a next-up probability.", "implementation": "QueueImbalanceLogistic.train", "adaptation_index": 0}
+  ],
+  "supervised.random_forest_operations": [
+    {"role": "training", "runtime_rule": "Train trees on bootstrap samples with node-level feature subsampling, then take a majority vote.", "implementation": "RandomForestOperations.train", "adaptation_index": 0},
+    {"role": "data", "runtime_rule": "Construct the three operation labels from declared gain, loss and duration rules.", "implementation": "scripts/build_public_forest.py", "adaptation_index": 0},
+    {"role": "data", "runtime_rule": "Limit each training row to labels known before the held-out evaluation interval.", "implementation": "scripts/build_public_forest.py", "adaptation_index": 1}
+  ],
+  "rule.reservation_quote": [
+    {"role": "signal", "runtime_rule": "Calculate a horizon-adjusted reservation price from midpoint, inventory and variance.", "implementation": "ReservationQuote.quotes", "adaptation_index": 0},
+    {"role": "execution", "runtime_rule": "Calculate both quote prices from the paper spread approximation and submit price-bounded limits.", "implementation": "ReservationQuote.quotes", "adaptation_index": 0}
+  ],
+  "supervised.ridge_three_day_price": [
+    {"role": "data", "runtime_rule": "Flatten three completed OHLCV days into one feature row and attach a later available target.", "implementation": "scripts/build_public_ridge.py", "adaptation_index": 0},
+    {"role": "training", "runtime_rule": "Solve a linear squared-error model with a declared L2 penalty and persist its coefficients.", "implementation": "RidgeThreeDayPrice.train", "adaptation_index": 0}
+  ],
+  "reinforcement.risk_averse_bandit": [
+    {"role": "training", "runtime_rule": "Update the selected arm's one-dimensional normal-gamma posterior from realized rewards.", "implementation": "RiskAverseBandit._update", "adaptation_index": 0},
+    {"role": "inference", "runtime_rule": "Sample precision and mean for each arm, then subtract the declared variance-risk penalty.", "implementation": "RiskAverseBandit._sample_scores", "adaptation_index": 0},
+    {"role": "reward", "runtime_rule": "Observe the next price interval before updating only the arm actually held during that interval.", "implementation": "RiskAverseBandit.decide", "adaptation_index": 1}
+  ],
+  "reinforcement.sarsa_inventory": [
+    {"role": "training", "runtime_rule": "Update the current action value using the actual next behavior action, not a greedy maximum.", "implementation": "InventorySarsa.train", "adaptation_index": 0},
+    {"role": "data", "runtime_rule": "Discretize inventory and declared market observations into the learner's runtime state.", "implementation": "InventorySarsa._state", "adaptation_index": 0}
+  ]
+}

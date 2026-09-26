@@ -1,0 +1,46 @@
+{
+  "additional_source_sha256": [],
+  "excluded_paper_components": [
+    "The paper's action is a limit-price revision for all remaining shares, with queue priority, partial fills and mandatory terminal market execution. Here an action is the number of whole units to buy with a next-tick market target; no standing limit orders or queue model are claimed.",
+    "The training lattice uses synthetic rewards and three pressure states. It covers all private states and actions but does not use NASDAQ INET order-flow records, original cost normalization or market-impact simulation.",
+    "Each five-tick demonstration episode resets the target position for the next buy program. The reset is an adapter device, not part of the paper's execution objective."
+  ],
+  "fields": [
+    "ask_size",
+    "bid_size",
+    "price",
+    "time_remaining"
+  ],
+  "schema_version": "1.0",
+  "source_sha256": "3157e2d6ace0bb95ff8fb7215f1b2bb79e7c27f5434137bab4fdd2e9507dcae4",
+  "steps": [
+    {
+      "adaptation": "The paper's action is a limit-price revision for all remaining shares, with queue priority, partial fills and mandatory terminal market execution. Here an action is the number of whole units to buy with a next-tick market target; no standing limit orders or queue model are claimed.",
+      "claim_index": 0,
+      "implementation": "ExecutionValueLearning._state",
+      "oracle_node": "tests/test_execution_value_learning_paper.py::test_complete_training_lattice_and_backward_values_match_reference",
+      "paper_rule": "The private state includes elapsed time and remaining inventory; public market variables are separate.",
+      "role": "data",
+      "runtime_rule": "Build a finite-horizon state from remaining time, remaining inventory and public pressure."
+    },
+    {
+      "adaptation": "The paper's action is a limit-price revision for all remaining shares, with queue priority, partial fills and mandatory terminal market execution. Here an action is the number of whole units to buy with a next-tick market target; no standing limit orders or queue model are claimed.",
+      "claim_index": 1,
+      "implementation": "ExecutionValueLearning.train",
+      "oracle_node": "tests/test_execution_value_learning_paper.py::test_complete_training_lattice_and_backward_values_match_reference",
+      "paper_rule": "Training moves backward through the finite horizon and averages immediate payoff plus optimal next-state value for each state-action.",
+      "role": "training",
+      "runtime_rule": "Sweep the horizon backward and update each state-action cost with observed immediate cost and continuation."
+    },
+    {
+      "adaptation": "The training lattice uses synthetic rewards and three pressure states. It covers all private states and actions but does not use NASDAQ INET order-flow records, original cost normalization or market-impact simulation.",
+      "claim_index": 2,
+      "implementation": "ExecutionValueLearning._actions",
+      "oracle_node": "tests/test_execution_value_learning_paper.py::test_execution_training_save_reload_and_episode_fills",
+      "paper_rule": "When the horizon expires, remaining inventory must be executed.",
+      "role": "execution",
+      "runtime_rule": "At the terminal decision, force the outstanding quantity into the available action set."
+    }
+  ],
+  "strategy_id": "reinforcement.execution_value_learning"
+}

@@ -1,0 +1,56 @@
+{
+  "additional_sources": [],
+  "anchors": [
+    {
+      "claim_index": 0,
+      "page": 6,
+      "text": "the posterior for λi is given by Gamma"
+    },
+    {
+      "claim_index": 1,
+      "page": 6,
+      "text": "Thompson sampling algorithm for the disjoint model"
+    },
+    {
+      "claim_index": 2,
+      "page": 1,
+      "text": "rewards of the arms"
+    }
+  ],
+  "claim_file": "../claims/risk_averse_bandit.json",
+  "expected": {
+    "actions": [
+      "none",
+      "prediction",
+      "target_position"
+    ],
+    "fields": [
+      "ask_price",
+      "ask_size",
+      "bid_price",
+      "bid_size",
+      "price"
+    ],
+    "granularity": "tick",
+    "kind": "reinforcement",
+    "strategy_id": "reinforcement.risk_averse_bandit",
+    "symbols": [
+      "DEMO"
+    ],
+    "training_required": true
+  },
+  "package": "../../strategies/reinforcement.risk_averse_bandit",
+  "package_source_sha256": "49a83b0ed0717e1484ddfeb40261033695fcc1a8cc3b073db0f145c9fca33887",
+  "review_note": "Human-reviewed page anchors and declared method adaptations. Source text does not by itself prove algorithm or original-experiment fidelity; see the bound independent oracle and individual claim record.",
+  "schema_version": "1.0",
+  "source": {
+    "file": "../source-cache/lin2022.pdf",
+    "format": "pdf",
+    "license": "Redistribution not asserted; prepare hash-pinned local copy",
+    "sha256": "3e538c2468d69e084a06f231d86254c0672e91d69f565e7418bf5fce45f665bf",
+    "title": "Risk-averse Contextual Multi-armed Bandit Problem with Linear Payoffs",
+    "url": "https://arxiv.org/pdf/2206.12463v1"
+  },
+  "spec_file": "../deep-specs/risk_averse_bandit.json",
+  "spec_sha256": "ca971053a779c308f4763c1668b577f81d54b71e120145e3a4f4ea24728c3cba"
+}

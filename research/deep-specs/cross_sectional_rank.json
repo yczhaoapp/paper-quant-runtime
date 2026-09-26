@@ -1,0 +1,37 @@
+{
+  "additional_source_sha256": [],
+  "excluded_paper_components": [
+    "The source uses a large equity universe, many firm characteristics, monthly returns, validation-selected hyperparameters and multiple model families; this sample fixes two synthetic characteristics, three symbols, daily returns and one declared penalty.",
+    "The implementation uses coordinate descent for the same elastic-net objective instead of the paper's accelerated proximal gradient solver. It does not implement Huber loss or report paper performance.",
+    "The reference engine emits paired target positions after all three daily closes and fills each symbol separately at its next opening; it does not guarantee atomic portfolio rebalancing."
+  ],
+  "fields": [
+    "close",
+    "liquidity",
+    "open",
+    "signal"
+  ],
+  "schema_version": "1.0",
+  "source_sha256": "05e4ef8a1c830c9f33a0f461f07c145f6e6be30fbd7996a09d0672de1413bd61",
+  "steps": [
+    {
+      "adaptation": "The source uses a large equity universe, many firm characteristics, monthly returns, validation-selected hyperparameters and multiple model families; this sample fixes two synthetic characteristics, three symbols, daily returns and one declared penalty.",
+      "claim_index": 0,
+      "implementation": "CrossSectionalRank.train",
+      "oracle_node": "tests/test_cross_sectional_rank_paper.py::test_elastic_net_kkt_and_forecast_rank_oracle[120]",
+      "paper_rule": "Elastic net combines absolute-value and squared-coefficient penalties.",
+      "role": "training",
+      "runtime_rule": "Fit the fixed elastic-net objective by a soft-threshold coordinate update."
+    },
+    {
+      "adaptation": "The implementation uses coordinate descent for the same elastic-net objective instead of the paper's accelerated proximal gradient solver. It does not implement Huber loss or report paper performance.",
+      "claim_index": 1,
+      "implementation": "CrossSectionalRank.decide",
+      "oracle_node": "tests/test_cross_sectional_rank_paper.py::test_elastic_net_kkt_and_forecast_rank_oracle[120]",
+      "paper_rule": "Forecast-sorted portfolios take long high-prediction stocks and short low-prediction stocks.",
+      "role": "inference",
+      "runtime_rule": "Rank a complete daily panel of forecasts and target the highest and lowest symbols."
+    }
+  ],
+  "strategy_id": "supervised.cross_sectional_rank"
+}

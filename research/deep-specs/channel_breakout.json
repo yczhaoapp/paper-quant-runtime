@@ -1,0 +1,34 @@
+{
+  "additional_source_sha256": [],
+  "excluded_paper_components": [
+    "The trading index is replaced with pinned public AAPL OHLCV as an execution proxy; original SHCI/SZCI results are not reproduced.",
+    "The ten holding sessions are counted after the signal close; entry fills at the next opening and exit at the opening following the tenth held session.",
+    "Short target positions express the paper's short signal even though its Chinese-market investment discussion separately considers no-short-sale results."
+  ],
+  "fields": [
+    "close"
+  ],
+  "schema_version": "1.0",
+  "source_sha256": "6908ca31e92e750881255742a99ffc3daf00ca2e9d0b0012652809d0f538b87a",
+  "steps": [
+    {
+      "adaptation": "The trading index is replaced with pinned public AAPL OHLCV as an execution proxy; original SHCI/SZCI results are not reproduced.",
+      "claim_index": 0,
+      "implementation": "ChannelBreakout.decide",
+      "oracle_node": "tests/test_channel_breakout_paper.py::test_paper_trb_matches_independent_crossing_and_holding_oracle[3]",
+      "paper_rule": "TRB buy and short signals cross the 50-day historical maximum or minimum with band 0.01.",
+      "role": "signal",
+      "runtime_rule": "Compare the latest close with completed-window extrema and the declared one-percent band."
+    },
+    {
+      "adaptation": "The trading index is replaced with pinned public AAPL OHLCV as an execution proxy; original SHCI/SZCI results are not reproduced.",
+      "claim_index": 1,
+      "implementation": "ChannelBreakout.decide",
+      "oracle_node": "tests/test_channel_breakout_paper.py::test_paper_trb_matches_independent_crossing_and_holding_oracle[3]",
+      "paper_rule": "Ignore new signals during the fixed C=10-day holding period.",
+      "role": "execution",
+      "runtime_rule": "Maintain the active position through its ten-session hold and ignore intervening entry signals."
+    }
+  ],
+  "strategy_id": "rule.channel_breakout"
+}

@@ -38,6 +38,7 @@ class Anchor(PaperModel):
     page: int = Field(ge=1)
     text: str = Field(min_length=4)
     claim_index: int = Field(ge=0)
+    source_index: int = Field(default=0, ge=0)
 
 
 class ExpectedStrategy(PaperModel):
@@ -57,6 +58,7 @@ class ExpectedStrategy(PaperModel):
 class Recipe(PaperModel):
     schema_version: Literal["1.0"] = "1.0"
     source: Source
+    additional_sources: tuple[Source, ...] = ()
     package: str
     package_source_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
     claim_file: str
@@ -81,6 +83,7 @@ class MethodSpec(PaperModel):
     schema_version: Literal["1.0"] = "1.0"
     strategy_id: str
     source_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+    additional_source_sha256: tuple[str, ...] = ()
     fields: frozenset[str]
     steps: tuple[MethodStep, ...] = Field(min_length=1)
     excluded_paper_components: tuple[str, ...] = Field(min_length=1)
@@ -139,16 +142,36 @@ def fetch_paper_source(url: str, expected_sha256: str, destination: Path) -> str
     return expected_sha256
 
 
+class PaperParseError(ValueError):
+    """A source could not be parsed; parser-specific exceptions stay inside intake."""
+
+
+def _pdf_text(raw: bytes, selected_pages: frozenset[int] | None = None) -> tuple[str, ...]:
+    try:
+        reader = PdfReader(io.BytesIO(raw))
+        if reader.is_encrypted or not reader.pages:
+            raise PaperParseError("PDF is encrypted or empty")
+        indices = selected_pages if selected_pages is not None else range(1, len(reader.pages) + 1)
+        pages = [""] * len(reader.pages)
+        for number in indices:
+            if number > len(pages) or number < 1:
+                raise PaperParseError("Paper anchor page is out of range")
+            pages[number - 1] = reader.pages[number - 1].extract_text() or ""
+        if selected_pages is None and not any(page.strip() for page in pages):
+            raise PaperParseError("PDF has no extractable text; OCR is not automatic")
+        return tuple(pages)
+    except PaperParseError:
+        raise
+    except Exception as exc:
+        raise PaperParseError(
+            f"PDF parsing failed ({type(exc).__name__}): {str(exc)[:200]}"
+        ) from exc
+
+
 def extract_text(raw: bytes, format: Literal["pdf", "html", "tex"]) -> tuple[str, ...]:
     """Extract visible text, never infer equations or fill in missing content."""
     if format == "pdf":
-        reader = PdfReader(io.BytesIO(raw))
-        if reader.is_encrypted or not reader.pages:
-            raise ValueError("PDF is encrypted or empty")
-        pages = tuple(page.extract_text() or "" for page in reader.pages)
-        if not any(page.strip() for page in pages):
-            raise ValueError("PDF has no extractable text; OCR is not automatic")
-        return pages
+        return _pdf_text(raw)
     decoded = raw.decode("utf-8")
     if format == "html":
         parser = _HTMLText()
@@ -176,29 +199,30 @@ def _resolve(recipe_file: Path, relative: str) -> Path:
 def verify_recipe(recipe_file: Path) -> dict[str, object]:
     recipe_file = recipe_file.resolve(strict=True)
     recipe = Recipe.model_validate_json(recipe_file.read_bytes())
-    source_path = _resolve(recipe_file, recipe.source.file)
-    raw = source_path.read_bytes()
-    source_sha = hashlib.sha256(raw).hexdigest()
-    if source_sha != recipe.source.sha256:
-        raise ValueError("Paper source bytes differ from the recipe's pinned digest")
-    if recipe.source.format == "pdf":
-        reader = PdfReader(io.BytesIO(raw))
-        if reader.is_encrypted or not reader.pages:
-            raise ValueError("PDF is encrypted or empty")
-        pages = [""] * len(reader.pages)
-        for page_number in {anchor.page for anchor in recipe.anchors}:
-            if page_number > len(pages):
-                raise ValueError("Paper anchor page is out of range")
-            pages[page_number - 1] = reader.pages[page_number - 1].extract_text() or ""
-    else:
-        pages = list(extract_text(raw, recipe.source.format))
+    sources = (recipe.source, *recipe.additional_sources)
+    source_digests: list[str] = []
+    source_pages: list[list[str]] = []
+    for source_index, source in enumerate(sources):
+        raw = _resolve(recipe_file, source.file).read_bytes()
+        source_sha = hashlib.sha256(raw).hexdigest()
+        if source_sha != source.sha256:
+            raise ValueError("Paper source bytes differ from the recipe's pinned digest")
+        source_digests.append(source_sha)
+        if source.format == "pdf":
+            pages = list(_pdf_text(raw, frozenset(
+                anchor.page for anchor in recipe.anchors if anchor.source_index == source_index
+            )))
+        else:
+            pages = list(extract_text(raw, source.format))
+        source_pages.append(pages)
     package_path = _resolve(recipe_file, recipe.package)
     manifest, strategy_source = inspect_package(recipe.expected.strategy_id, package_path)
     declaration = manifest.declaration
     if manifest.source_sha256 != recipe.package_source_sha256:
         raise ValueError("Strategy package source differs from reviewed recipe")
     expected = recipe.expected
-    if (declaration.strategy_id != expected.strategy_id
+    if (
+        declaration.strategy_id != expected.strategy_id
         or declaration.kind != expected.kind
         or declaration.data.granularity != expected.granularity
         or declaration.data.fields != expected.fields
@@ -209,22 +233,34 @@ def verify_recipe(recipe_file: Path) -> dict[str, object]:
         or declaration.data.bar_seconds != expected.bar_seconds
         or declaration.data.max_staleness_seconds != expected.max_staleness_seconds
         or declaration.data.minimum_book_depth != expected.minimum_book_depth
-        or declaration.source != recipe.source.url):
+        or declaration.source != recipe.source.url
+    ):
         raise ValueError("Strategy declaration differs from the reviewed paper mapping")
     claim_path = _resolve(recipe_file, recipe.claim_file)
     claim = json.loads(claim_path.read_text(encoding="utf-8"))
     claim_source = claim.get("source", claim.get("trading_source"))
     if claim["strategy_id"] != expected.strategy_id or claim_source["url"] != recipe.source.url:
         raise ValueError("Paper claim does not identify the mapped strategy and source")
+    declared_algorithm = claim.get("algorithm_source")
+    if (recipe.additional_sources or declared_algorithm is not None) and (
+        not isinstance(declared_algorithm, dict)
+        or tuple(source.url for source in recipe.additional_sources)
+        != (declared_algorithm.get("url"),)
+    ):
+        raise ValueError("Supporting algorithm source differs from the research claim")
     spec_path = _resolve(recipe_file, recipe.spec_file)
     spec_bytes = spec_path.read_bytes()
     spec_sha = hashlib.sha256(spec_bytes).hexdigest()
     if spec_sha != recipe.spec_sha256:
         raise ValueError("Reviewed method spec differs from its pinned digest")
     spec = MethodSpec.model_validate_json(spec_bytes)
-    if (spec.strategy_id != expected.strategy_id or spec.source_sha256 != source_sha
+    if (
+        spec.strategy_id != expected.strategy_id
+        or spec.source_sha256 != source_digests[0]
+        or spec.additional_source_sha256 != tuple(source_digests[1:])
         or spec.fields != expected.fields
-        or {step.claim_index for step in spec.steps} != set(range(len(claim["claims"])))):
+        or {step.claim_index for step in spec.steps} != set(range(len(claim["claims"])))
+    ):
         raise ValueError("Reviewed method spec does not cover the source and claims")
     strategy_tree = ast.parse(strategy_source)
     classes = {node.name: node for node in strategy_tree.body if isinstance(node, ast.ClassDef)}
@@ -234,27 +270,50 @@ def verify_recipe(recipe_file: Path) -> dict[str, object]:
                 raise ValueError("Reviewed implementation script is absent")
         else:
             parts = step.implementation.split(".")
-            if len(parts) != 2 or parts[0] not in classes or not any(
-                isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
-                and node.name == parts[1] for node in classes[parts[0]].body
+            if (
+                len(parts) != 2
+                or parts[0] not in classes
+                or not any(
+                    isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
+                    and node.name == parts[1]
+                    for node in classes[parts[0]].body
+                )
             ):
                 raise ValueError("Reviewed implementation symbol is absent")
     evidence = []
     for anchor in recipe.anchors:
-        if anchor.page > len(pages) or anchor.claim_index >= len(claim["claims"]):
+        if (
+            anchor.source_index >= len(sources)
+            or anchor.page > len(source_pages[anchor.source_index])
+            or anchor.claim_index >= len(claim["claims"])
+        ):
             raise ValueError("Paper anchor page or claim index is out of range")
-        if _normalized(anchor.text) not in _normalized(pages[anchor.page - 1]):
-            raise ValueError(f"Paper anchor missing on page {anchor.page}")
-        evidence.append({"page": anchor.page, "text": anchor.text,
-                         "claim_index": anchor.claim_index,
-                         "locator": claim["claims"][anchor.claim_index]["locator"]})
+        if _normalized(anchor.text) not in _normalized(
+            source_pages[anchor.source_index][anchor.page - 1]
+        ):
+            raise ValueError(
+                f"Paper anchor missing on page {anchor.page}: "
+                f"{recipe_file.name}, source {anchor.source_index}, text {anchor.text!r}"
+            )
+        evidence.append(
+            {
+                "page": anchor.page,
+                "text": anchor.text,
+                "source_index": anchor.source_index,
+                "source_sha256": source_digests[anchor.source_index],
+                "claim_index": anchor.claim_index,
+                "locator": claim["claims"][anchor.claim_index]["locator"],
+            }
+        )
     return {
         "strategy_id": expected.strategy_id,
         "paper_title": recipe.source.title,
         "source_url": recipe.source.url,
-        "source_sha256": source_sha,
+        "source_sha256": source_digests[0],
+        "additional_source_sha256": tuple(source_digests[1:]),
         "format": recipe.source.format,
-        "page_count": len(pages),
+        "page_count": len(source_pages[0]),
+        "additional_page_counts": tuple(len(pages) for pages in source_pages[1:]),
         "package_source_sha256": manifest.source_sha256,
         "claim_sha256": hashlib.sha256(claim_path.read_bytes()).hexdigest(),
         "method_spec_sha256": spec_sha,

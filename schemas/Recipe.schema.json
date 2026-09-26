@@ -13,6 +13,12 @@
           "title": "Page",
           "type": "integer"
         },
+        "source_index": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Source Index",
+          "type": "integer"
+        },
         "text": {
           "minLength": 4,
           "title": "Text",
@@ -199,6 +205,14 @@
   },
   "additionalProperties": false,
   "properties": {
+    "additional_sources": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Source"
+      },
+      "title": "Additional Sources",
+      "type": "array"
+    },
     "anchors": {
       "items": {
         "$ref": "#/$defs/Anchor"
