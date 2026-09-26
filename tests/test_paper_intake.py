@@ -196,7 +196,7 @@ class ExternalSchedule:
     claim = {
         "strategy_id": strategy_id,
         "source": {"url": original["source"]["url"]},
-        "claims": [{"locator": "Section 3.3"}, {"locator": "Section 2.5"}],
+        "claims": [{"locator": "Section 3.3"}, {"locator": "Section 2.4, PDF page 7"}],
     }
     (tmp_path / "claim.json").write_text(json.dumps(claim), encoding="utf-8")
     spec = {

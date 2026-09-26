@@ -142,16 +142,36 @@ def fetch_paper_source(url: str, expected_sha256: str, destination: Path) -> str
     return expected_sha256
 
 
+class PaperParseError(ValueError):
+    """A source could not be parsed; parser-specific exceptions stay inside intake."""
+
+
+def _pdf_text(raw: bytes, selected_pages: frozenset[int] | None = None) -> tuple[str, ...]:
+    try:
+        reader = PdfReader(io.BytesIO(raw))
+        if reader.is_encrypted or not reader.pages:
+            raise PaperParseError("PDF is encrypted or empty")
+        indices = selected_pages if selected_pages is not None else range(1, len(reader.pages) + 1)
+        pages = [""] * len(reader.pages)
+        for number in indices:
+            if number > len(pages) or number < 1:
+                raise PaperParseError("Paper anchor page is out of range")
+            pages[number - 1] = reader.pages[number - 1].extract_text() or ""
+        if selected_pages is None and not any(page.strip() for page in pages):
+            raise PaperParseError("PDF has no extractable text; OCR is not automatic")
+        return tuple(pages)
+    except PaperParseError:
+        raise
+    except Exception as exc:
+        raise PaperParseError(
+            f"PDF parsing failed ({type(exc).__name__}): {str(exc)[:200]}"
+        ) from exc
+
+
 def extract_text(raw: bytes, format: Literal["pdf", "html", "tex"]) -> tuple[str, ...]:
     """Extract visible text, never infer equations or fill in missing content."""
     if format == "pdf":
-        reader = PdfReader(io.BytesIO(raw))
-        if reader.is_encrypted or not reader.pages:
-            raise ValueError("PDF is encrypted or empty")
-        pages = tuple(page.extract_text() or "" for page in reader.pages)
-        if not any(page.strip() for page in pages):
-            raise ValueError("PDF has no extractable text; OCR is not automatic")
-        return pages
+        return _pdf_text(raw)
     decoded = raw.decode("utf-8")
     if format == "html":
         parser = _HTMLText()
@@ -189,16 +209,9 @@ def verify_recipe(recipe_file: Path) -> dict[str, object]:
             raise ValueError("Paper source bytes differ from the recipe's pinned digest")
         source_digests.append(source_sha)
         if source.format == "pdf":
-            reader = PdfReader(io.BytesIO(raw))
-            if reader.is_encrypted or not reader.pages:
-                raise ValueError("PDF is encrypted or empty")
-            pages = [""] * len(reader.pages)
-            for anchor in recipe.anchors:
-                if anchor.source_index != source_index:
-                    continue
-                if anchor.page > len(pages):
-                    raise ValueError("Paper anchor page is out of range")
-                pages[anchor.page - 1] = reader.pages[anchor.page - 1].extract_text() or ""
+            pages = list(_pdf_text(raw, frozenset(
+                anchor.page for anchor in recipe.anchors if anchor.source_index == source_index
+            )))
         else:
             pages = list(extract_text(raw, source.format))
         source_pages.append(pages)

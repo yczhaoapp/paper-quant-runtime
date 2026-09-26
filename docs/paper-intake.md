@@ -39,7 +39,11 @@ uv run --no-sync python -m paperquant.cli paper-run \
   --output runs/paper-pair
 ```
 
-`paper-run` 先核对原文、人工 recipe、结构化方法 spec、策略源码和主张，再调用通用运行时，最后仅凭制品冷启动回放；同一次尝试的 `paper-run.json` 记录论文、spec、主张、源码、报告和 bundle 的哈希。对单独的来源检查，仍可使用 `paper-check`。基础严格容器验收保持三篇可直接离线分发的 PDF 深度案例；增强的论文深度验收在显式来源准备后逐项运行全部 18 个 catalog 策略，并另行生成独立新论文案例的构建、oracle、回测收据：
+`paper-run` 先核对原文、人工 recipe、结构化方法 spec、策略源码和主张，再调用通用运行时，最后仅凭制品冷启动回放；同一次尝试的 `paper-run.json` 记录论文、spec、主张、源码、报告和 bundle 的哈希。其 `status=passed` 只覆盖 `source_mapping=passed`、`runtime_validation=passed` 和 `replay_validation=passed`，`status_scope` 明确限定为来源映射、运行与回放。来源映射通过表示固定文本、实现符号和审阅文件的绑定检查通过，不代表论文语义已获证明。
+
+单独的 `paper-run` 不收集或执行 pytest oracle，故始终记录 `method_validation=not_run`；`declared_method_oracle_nodes` 仅记录 spec 声明的节点，不证明节点存在或测试通过。只有完整验收检查节点与逐项主张的绑定，并实际执行全部节点、核对无失败且无跳过的 JUnit 后，才在自己的验收收据中记录 `method_validation=passed` 和本轮 `oracle_junit_sha256`；它不会把内层 `paper-run.json` 改写成方法验证通过。
+
+对单独的来源检查，仍可使用 `paper-check`。损坏、截断或无法提取的 PDF 会产生结构化 `failure.json`，并将本轮 `attempt.json` 结束为 `failed`；复用输出目录时，先使旧的成功报告、bundle 和论文运行收据失效。基础严格容器验收保持三篇可直接离线分发的 PDF 深度案例；增强的论文深度验收在显式来源准备后逐项运行全部 18 个 catalog 策略，并另行生成独立新论文案例的构建、oracle、回测收据：
 
 ```bash
 uv run --no-sync python -m scripts.accept_paper_depth \

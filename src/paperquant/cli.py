@@ -242,6 +242,12 @@ def main(argv: Sequence[str] | None = None) -> int:
             )
             evidence = {
                 "status": "passed",
+                "status_scope": "source_mapping_runtime_and_replay",
+                "source_mapping": "passed",
+                "runtime_validation": "passed",
+                "replay_validation": "passed",
+                "method_validation": "not_run",
+                "declared_method_oracle_nodes": checked["method_oracle_nodes"],
                 "run_id": report.run_id,
                 "strategy_id": report.plan.strategy_id,
                 "recipe_sha256": hashlib.sha256(args.recipe.read_bytes()).hexdigest(),
@@ -262,7 +268,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 (json.dumps(evidence, indent=2, sort_keys=True) + "\n").encode(),
             )
             attempt.succeeded(run_id=report.run_id)
-        except (ContractFault, ValidationError, ValueError, OSError, KeyError) as exc:
+        except Exception as exc:
             failure = (
                 exc.failure
                 if isinstance(exc, ContractFault)
@@ -274,7 +280,6 @@ def main(argv: Sequence[str] | None = None) -> int:
                     details={"cause": type(exc).__name__, "reason": str(exc)[:200]},
                 )
             )
-            (args.output / "paper-run.json").unlink(missing_ok=True)
             attempt.failed(
                 run_id=failure.run_id,
                 code=failure.code,
@@ -282,7 +287,8 @@ def main(argv: Sequence[str] | None = None) -> int:
             )
             print(failure.model_dump_json(), file=sys.stderr)
             return 2
-        print(json.dumps({"status": "passed", "receipt": str(args.output / "paper-run.json")}))
+        print(json.dumps({"status": "passed", "method_validation": "not_run",
+                          "receipt": str(args.output / "paper-run.json")}))
         return 0
     if args.command == "observe":
         observation = from_report(

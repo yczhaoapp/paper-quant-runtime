@@ -21,7 +21,7 @@ from paperquant.evidence import verify_bundle_file
 from paperquant.models import RunReport
 from paperquant.output import atomic_bytes
 from paperquant.papers import MethodSpec, Recipe, fetch_paper_source, verify_recipe
-from scripts.acceptance import PUBLIC_CASES, _run_oracles
+from scripts.acceptance import PUBLIC_CASES, _check_paper_run_scope, _run_oracles
 from scripts.assurance_axes import validate_assurance
 from scripts.build_busseti_case import CACHE, REVIEW, build_case
 from scripts.verify_paper_sources import LOCK, verify_sources
@@ -119,7 +119,8 @@ def _check_public_supplement(entries: list[dict[str, Any]]) -> dict[str, dict[st
 
 
 def _run_paper(
-    recipe_path: Path, fixture: Path, entry: dict[str, Any], output: Path
+    recipe_path: Path, fixture: Path, entry: dict[str, Any], output: Path,
+    *, oracle_junit_sha256: str,
 ) -> dict[str, Any]:
     arguments = [
         "paper-run",
@@ -143,6 +144,7 @@ def _run_paper(
     report = RunReport.model_validate_json((output / "report.json").read_bytes())
     verify_bundle_file(output / "bundle.json")
     receipt = json.loads((output / "paper-run.json").read_text())
+    _check_paper_run_scope(receipt)
     checked = verify_recipe(recipe_path)
     if (
         report.status != "succeeded"
@@ -158,6 +160,12 @@ def _run_paper(
         raise ValueError(f"Paper execution is incomplete: {checked['strategy_id']}")
     return {
         "strategy_id": checked["strategy_id"],
+        "source_mapping": "passed",
+        "runtime_validation": "passed",
+        "replay_validation": "passed",
+        "method_validation": "passed",
+        "method_oracle_nodes": checked["method_oracle_nodes"],
+        "oracle_junit_sha256": oracle_junit_sha256,
         "source_sha256": checked["source_sha256"],
         "additional_source_sha256": checked["additional_source_sha256"],
         "method_spec_sha256": checked["method_spec_sha256"],
@@ -243,6 +251,7 @@ def run_depth(output: Path, *, fetch: bool = False) -> dict[str, Any]:
                     ROOT / "examples" / entry["fixture"],
                     entry,
                     attempt / "paper_runs" / strategy_id,
+                    oracle_junit_sha256=catalog_junit_sha,
                 )
             record["pinned_inputs"] = pinned_inputs[strategy_id]["files"]
             paper_runs.append(record)
@@ -267,6 +276,7 @@ def run_depth(output: Path, *, fetch: bool = False) -> dict[str, Any]:
                     fixture,
                     entry,
                     attempt / "public_supplement" / strategy_id,
+                    oracle_junit_sha256=catalog_junit_sha,
                 )
                 record["pinned_inputs"] = public_supplement[strategy_id]["files"]
             lineage_path = fixture / "lineage.json"
@@ -284,6 +294,10 @@ def run_depth(output: Path, *, fetch: bool = False) -> dict[str, Any]:
                 raise ValueError(f"Public-data training lineage is absent: {strategy_id}")
             public_paper_runs.append({
                 "strategy_id": strategy_id,
+                "source_mapping": record["source_mapping"],
+                "runtime_validation": record["runtime_validation"],
+                "method_validation": record["method_validation"],
+                "oracle_junit_sha256": record["oracle_junit_sha256"],
                 "fixture": fixture_name,
                 "raw_source_sha256": source_csv_sha256,
                 "lineage_sha256": lineage_sha256,
@@ -303,6 +317,11 @@ def run_depth(output: Path, *, fetch: bool = False) -> dict[str, Any]:
             fetch_paper_source(independent_source["url"], independent_source["sha256"], CACHE)
         built = attempt / "independent" / "build"
         build_receipt = build_case(CACHE, built)
+        independent_recipe = Recipe.model_validate_json((built / "recipe.json").read_bytes())
+        independent_spec = MethodSpec.model_validate_json(
+            (built / independent_recipe.spec_file).read_bytes())
+        if any(step.oracle_node not in INDEPENDENT_NODES for step in independent_spec.steps):
+            raise ValueError("Independent method spec refers to an oracle outside this attempt")
         independent_junit_sha = _run_oracles(
             attempt / "independent_oracles",
             {"independent": {"node_ids": INDEPENDENT_NODES}},
@@ -312,6 +331,7 @@ def run_depth(output: Path, *, fetch: bool = False) -> dict[str, Any]:
             ROOT / "examples/independent_busseti",
             {},
             attempt / "independent" / "run",
+            oracle_junit_sha256=independent_junit_sha,
         )
         independent["pinned_inputs"] = independent_inputs
         if source_tree_sha256 != _source_sha256() or (git_commit, git_clean) != _git_state():
