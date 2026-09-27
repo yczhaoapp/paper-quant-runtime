@@ -100,7 +100,10 @@ def _read_json(path: Path) -> object:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def _selected_engine(name: str, cash: Decimal, fee_rate: Decimal) -> BacktestEngine:
+def _selected_engine(
+    name: str, cash: Decimal | str, fee_rate: Decimal | str
+) -> BacktestEngine:
+    cash, fee_rate = Decimal(cash), Decimal(fee_rate)
     if name == "reference":
         return ReferenceEngine(initial_cash=cash, fee_rate=fee_rate)
     if name == "backtrader":
@@ -123,8 +126,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     paper_run.add_argument("--training", type=Path)
     paper_run.add_argument("--policy", type=Path)
     paper_run.add_argument("--output", type=Path, required=True)
-    paper_run.add_argument("--cash", type=Decimal, default=Decimal("100000"))
-    paper_run.add_argument("--fee-rate", type=Decimal, default=Decimal("0"))
+    paper_run.add_argument("--cash", default="100000")
+    paper_run.add_argument("--fee-rate", default="0")
     paper_run.add_argument("--engine", choices=("reference", "backtrader"), default="reference")
     bundle_check = commands.add_parser("verify-bundle")
     bundle_check.add_argument("--bundle", type=Path, required=True)
@@ -138,8 +141,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     execute.add_argument("--training", type=Path)
     execute.add_argument("--policy", type=Path)
     execute.add_argument("--output", type=Path, required=True)
-    execute.add_argument("--cash", type=Decimal, default=Decimal("100000"))
-    execute.add_argument("--fee-rate", type=Decimal, default=Decimal("0"))
+    execute.add_argument("--cash", default="100000")
+    execute.add_argument("--fee-rate", default="0")
     execute.add_argument("--engine", choices=("reference", "backtrader"), default="reference")
     observe = commands.add_parser("observe")
     observe.add_argument("--report", type=Path, required=True)

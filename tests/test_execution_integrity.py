@@ -259,7 +259,7 @@ def test_engine_configuration_rejects_nonfinite_numbers(engine_type, parameter, 
 
 @pytest.mark.parametrize("engine", ["reference", "backtrader"])
 @pytest.mark.parametrize("parameter", ["cash", "fee-rate"])
-@pytest.mark.parametrize("value", ["NaN", "sNaN", "Infinity", "-Infinity"])
+@pytest.mark.parametrize("value", ["NaN", "sNaN", "Infinity", "-Infinity", "invalid", ""])
 def test_cli_nonfinite_configuration_closes_attempt(engine, parameter, value, tmp_path) -> None:
     for filename in ("report.json", "bundle.json", "paper-run.json"):
         (tmp_path / filename).write_text('{"status":"passed"}', encoding="utf-8")
