@@ -39,8 +39,8 @@ def source_sha256(root: Path) -> str:
                      and not any(part in EXCLUDE_DIRS for part in path.relative_to(root).parts)
                      and path.suffix != ".pyc")
     digest = hashlib.sha256()
-    for path in sorted(paths):
-        digest.update(str(path.relative_to(root)).encode("utf-8") + b"\0")
+    for path in sorted(paths, key=lambda value: value.relative_to(root).as_posix()):
+        digest.update(path.relative_to(root).as_posix().encode("utf-8") + b"\0")
         digest.update(path.read_bytes())
         digest.update(b"\0")
     return digest.hexdigest()
