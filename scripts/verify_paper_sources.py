@@ -12,14 +12,18 @@ import json
 import re
 import sys
 import unicodedata
+from datetime import UTC, datetime
 from pathlib import Path
 
 from pypdf import PdfReader
 
-from paperquant.papers import fetch_paper_source
+from paperquant.papers import PaperParseError, fetch_paper_source
 
 ROOT = Path(__file__).resolve().parents[1]
 LOCK = ROOT / "research/source-lock.json"
+if __package__ in (None, ""):
+    sys.path.insert(0, str(ROOT))
+from scripts.gate_support import new_attempt, write_json  # noqa: E402
 
 
 def _sha256(data: bytes) -> str:
@@ -63,7 +67,8 @@ def _expected_claim_urls() -> set[str]:
 def verify_sources(*, fetch: bool = False) -> list[dict[str, object]]:
     lock_bytes = LOCK.read_bytes()
     lock = json.loads(lock_bytes)
-    if lock.get("schema_version") != "1.0" or not isinstance(lock.get("sources"), list):
+    if (not isinstance(lock, dict) or lock.get("schema_version") != "1.0"
+        or not isinstance(lock.get("sources"), list)):
         raise ValueError("Paper source lock has an unsupported schema")
     primary = lock["sources"]
     supporting = lock.get("supporting_sources", [])
@@ -102,10 +107,14 @@ def verify_sources(*, fetch: bool = False) -> list[dict[str, object]]:
         data = path.read_bytes()
         if _sha256(data) != expected:
             raise ValueError(f"Paper source bytes differ from pinned digest: {source_id}")
-        reader = PdfReader(io.BytesIO(data))
-        if reader.is_encrypted or not reader.pages:
-            raise ValueError(f"Paper source is not an extractable PDF: {source_id}")
-        opening_text = " ".join((page.extract_text() or "") for page in reader.pages[:2])
+        try:
+            reader = PdfReader(io.BytesIO(data))
+            if reader.is_encrypted or not reader.pages:
+                raise ValueError("PDF is encrypted or has no pages")
+            opening_text = " ".join((page.extract_text() or "") for page in reader.pages[:2])
+        except Exception as exc:
+            raise PaperParseError(f"Paper PDF parsing failed: {source_id}: "
+                                  f"{type(exc).__name__}: {exc}") from exc
         if not opening_text.strip() or _words(source["title"]) not in _words(opening_text):
             raise ValueError(f"Paper title is absent from pinned PDF: {source_id}")
         if any(_words(author) not in _words(opening_text)
@@ -130,20 +139,22 @@ def main() -> int:
     parser.add_argument("--fetch", action="store_true", help="explicitly fetch missing public PDFs")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
+    result = new_attempt()
+    write_json(args.output, result)
     try:
         records = verify_sources(fetch=args.fetch)
-        result: dict[str, object] = {
+        result.update({
             "status": "passed",
             "source_lock_sha256": _sha256(LOCK.read_bytes()),
             "catalog_cases": 18,
             "unique_primary_sources": sum(record["role"] == "primary" for record in records),
             "supporting_sources": sum(record["role"] == "supporting" for record in records),
             "sources": records,
-        }
-    except (KeyError, OSError, ValueError, TypeError) as exc:
-        result = {"status": "failed", "cause": type(exc).__name__, "reason": str(exc)}
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
+        })
+    except Exception as exc:
+        result.update({"status": "failed", "cause": type(exc).__name__, "reason": str(exc)})
+    result["completed_at"] = datetime.now(UTC).isoformat()
+    write_json(args.output, result)
     print(json.dumps({"status": result["status"], "receipt": str(args.output)}))
     return 0 if result["status"] == "passed" else 2
 
