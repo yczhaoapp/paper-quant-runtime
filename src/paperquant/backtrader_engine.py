@@ -9,7 +9,7 @@ from typing import Any, NoReturn
 
 from pydantic import TypeAdapter, ValidationError
 
-from paperquant.compiler import fingerprint
+from paperquant.compiler import fingerprint, validate_plan_projection
 from paperquant.engine import DecisionStrategy
 from paperquant.models import (
     AccountSnapshot,
@@ -51,14 +51,15 @@ class BacktraderEngine:
     """Run the native Backtrader broker and translate its completed orders and account.
 
     This adapter deliberately supports one symbol, cash-only financing, market
-    orders, and one next-bar execution opportunity. Unsupported modes fail before
-    any strategy inference instead of being translated to another matching rule.
+    orders, and one next-bar execution opportunity. Unsupported configuration is
+    rejected at compilation; unsupported actions are rejected after inference.
     """
 
     def __init__(self, *, initial_cash: Decimal = Decimal("100000"),
                  fee_rate: Decimal = Decimal("0")) -> None:
-        if initial_cash <= 0 or not Decimal("0") <= fee_rate < Decimal("1"):
-            raise ValueError("initial cash must be positive and fee rate between zero and one")
+        if (not initial_cash.is_finite() or not fee_rate.is_finite()
+            or initial_cash <= 0 or not Decimal("0") <= fee_rate < Decimal("1")):
+            raise ValueError("cash and fees must be finite, cash positive, fee rate in [0, 1)")
         self.initial_cash = initial_cash
         self.fee_rate = fee_rate
 
@@ -98,6 +99,7 @@ class BacktraderEngine:
                 tuple[Decision, ...], tuple[OrderEvent, ...], tuple[Fill, ...],
                 tuple[AccountSnapshot, ...],
             ]:
+        validate_plan_projection(plan, strategy.declaration)
         if (plan.engine_id != "paperquant.backtrader"
             or fingerprint(plan.engine_capability) != plan.engine_sha256
             or fingerprint(self.capability(plan.engine_capability.data_fields))
@@ -274,6 +276,10 @@ class BacktraderEngine:
                                   "Target exceeds position limit")
                         signed = action.quantity - quantity
                         order_id = f"target:{len(decisions)}:{event.symbol}"
+                        if order_id in known_ids:
+                            _fail(plan, Stage.INFER, ErrorCode.ORDER_REJECTED,
+                                  "Duplicate order ID", order_id=order_id)
+                        known_ids.add(order_id)
                     elif isinstance(action, SubmitOrder):
                         if action.limit_price is not None:
                             _fail(plan, Stage.INFER, ErrorCode.ENGINE_UNSUPPORTED,

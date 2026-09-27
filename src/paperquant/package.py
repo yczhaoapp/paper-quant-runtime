@@ -13,6 +13,7 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationError
 from paperquant.compiler import canonical_document, compile_run, fingerprint
 from paperquant.engine import BacktestEngine
 from paperquant.evidence import verify_bundle_file
+from paperquant.failures import failure_boundary
 from paperquant.models import (
     ContractFault,
     DatasetDeclaration,
@@ -81,6 +82,27 @@ def inspect_package(run_id: str, root: Path) -> tuple[PackageManifest, bytes]:
 
 
 def run_package(
+    *,
+    run_id: str,
+    package_dir: Path,
+    dataset: DatasetDeclaration,
+    engine_capability: EngineCapability,
+    policy: RunPolicy,
+    events: tuple[MarketEvent, ...],
+    engine: BacktestEngine,
+    output: Path,
+    training: TrainingRequest | None = None,
+) -> RunReport:
+    with failure_boundary(run_id, Stage.COMPILE, ErrorCode.INPUT_INVALID,
+                          "Strategy package execution could not be prepared"):
+        return _run_package(
+            run_id=run_id, package_dir=package_dir, dataset=dataset,
+            engine_capability=engine_capability, policy=policy, events=events,
+            engine=engine, output=output, training=training,
+        )
+
+
+def _run_package(
     *,
     run_id: str,
     package_dir: Path,
@@ -196,6 +218,13 @@ def write_manifest(root: Path, declaration: StrategyDeclaration, class_name: str
 
 
 def replay_bundle(*, bundle_path: Path, package_dir: Path, engine: BacktestEngine) -> RunReport:
+    """Verify inputs, restore inference without training, and compare every saved trace."""
+    with failure_boundary("replay", Stage.LOAD, ErrorCode.MODEL_CORRUPT,
+                          "Cold replay inputs or strategy could not be restored"):
+        return _replay_bundle(bundle_path=bundle_path, package_dir=package_dir, engine=engine)
+
+
+def _replay_bundle(*, bundle_path: Path, package_dir: Path, engine: BacktestEngine) -> RunReport:
     """Rebuild inference without training and compare every trace to a saved run."""
     bundle = verify_bundle_file(bundle_path)
     report = bundle.report
@@ -206,8 +235,12 @@ def replay_bundle(*, bundle_path: Path, package_dir: Path, engine: BacktestEngin
         or fingerprint(manifest.declaration) != plan.declaration_sha256
         or source.decode("utf-8") != bundle.package_source):
         _fail(plan.run_id, ErrorCode.INPUT_INVALID, "Replay package differs from bound source")
-    if (fingerprint(engine.capability(plan.engine_capability.data_fields)) != plan.engine_sha256
-        or fingerprint(engine.profile()) != plan.engine_profile_sha256):
+    with failure_boundary(plan.run_id, Stage.BACKTEST, ErrorCode.BACKTEST_FAILED,
+                          "Replay engine metadata could not be read"):
+        capability = engine.capability(plan.engine_capability.data_fields)
+        profile = engine.profile()
+    if (fingerprint(capability) != plan.engine_sha256
+        or fingerprint(profile) != plan.engine_profile_sha256):
         _fail(plan.run_id, ErrorCode.ENGINE_UNSUPPORTED,
               "Replay engine differs from bound execution settings")
     if plan.sandbox == "strict":
@@ -227,7 +260,14 @@ def replay_bundle(*, bundle_path: Path, package_dir: Path, engine: BacktestEngin
         if report.artifact is not None:
             assert bundle.model_base64 is not None
             strategy.load(base64.b64decode(bundle.model_base64, validate=True))
-        traces = engine.run(plan=plan, strategy=strategy, events=bundle.effective_events)
+        with failure_boundary(plan.run_id, Stage.BACKTEST, ErrorCode.BACKTEST_FAILED,
+                              "Cold replay engine execution failed"):
+            traces = engine.run(plan=plan, strategy=strategy, events=bundle.effective_events)
+            if fingerprint(engine.profile()) != plan.engine_profile_sha256:
+                raise ContractFault(Failure(
+                    run_id=plan.run_id, stage=Stage.BACKTEST, code=ErrorCode.INPUT_INVALID,
+                    message="Replay engine execution settings changed",
+                ))
     except ContractFault:
         raise
     except Exception as exc:

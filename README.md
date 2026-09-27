@@ -31,7 +31,7 @@ uv run --no-sync python -m paperquant.cli run \
 uv run --no-sync pytest -q
 ```
 
-`runs/demo/report.json` 包含实际执行计划、引擎执行配置、兼容记录、逐事件决策、订单、成交和账户快照。`bundle.json` 另附完整声明、源与有效行情、训练请求、模型字节及策略源码，便于离线校验和不训练的冷启动回放：
+`runs/demo/report.json` 包含实际执行计划、引擎执行配置、兼容记录、逐事件决策、订单、成交和账户快照。`bundle.json` 另附完整声明、源与有效行情、训练请求、模型字节及策略源码。离线校验会从输入重编译计划和转换，检查派生限制与唯一订单生命周期；冷启动回放先通过该校验，再不训练地重放策略：
 
 ```bash
 uv run --no-sync python -m paperquant.cli verify-bundle --bundle runs/demo/bundle.json

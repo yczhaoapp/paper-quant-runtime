@@ -10,6 +10,7 @@ from typing import NoReturn, Protocol, cast
 
 from paperquant.compiler import compile_run, fingerprint
 from paperquant.engine import BacktestEngine, DecisionStrategy
+from paperquant.failures import failure_boundary
 from paperquant.models import (
     AccountSnapshot,
     Artifact,
@@ -29,7 +30,8 @@ from paperquant.models import (
     TrainingRequest,
     WorkerReceipt,
 )
-from paperquant.output import atomic_bytes, prepare_output
+from paperquant.output import atomic_bytes, discard_success, prepare_output
+from paperquant.traces import validate_traces
 
 
 class TrainableStrategy(DecisionStrategy, Protocol):
@@ -93,6 +95,37 @@ def _execute(
     package_source: bytes | None = None,
     package_class_name: str | None = None,
 ) -> RunReport:
+    try:
+        with failure_boundary(run_id, Stage.BACKTEST, ErrorCode.BACKTEST_FAILED,
+                              "Runtime execution failed"):
+            return _execute_checked(
+                run_id=run_id, strategy=strategy, dataset=dataset,
+                engine_capability=engine_capability, policy=policy, events=events,
+                engine=engine, output=output, training=training, worker_receipt=worker_receipt,
+                fresh_strategy=fresh_strategy, package_source=package_source,
+                package_class_name=package_class_name,
+            )
+    except ContractFault:
+        discard_success(output)
+        raise
+
+
+def _execute_checked(
+    *,
+    run_id: str,
+    strategy: DecisionStrategy,
+    dataset: DatasetDeclaration,
+    engine_capability: EngineCapability,
+    policy: RunPolicy,
+    events: tuple[MarketEvent, ...],
+    engine: BacktestEngine,
+    output: Path,
+    training: TrainingRequest | None = None,
+    worker_receipt: WorkerReceipt | None = None,
+    fresh_strategy: Callable[[], DecisionStrategy] | None = None,
+    package_source: bytes | None = None,
+    package_class_name: str | None = None,
+) -> RunReport:
     if (policy.sandbox == "strict") != (worker_receipt is not None):
         _fail(
             run_id,
@@ -118,19 +151,21 @@ def _execute(
         _fail(run_id, Stage.COMPILE, ErrorCode.ENGINE_UNSUPPORTED,
               "Engine could not declare its execution profile", cause=type(exc).__name__)
     declaration = strategy.declaration
-    plan, effective = compile_run(
-        run_id=run_id,
-        strategy=declaration,
-        dataset=dataset,
-        engine=engine_capability,
-        engine_profile=engine_profile,
-        policy=policy,
-        events=events,
-        training=training,
-        package_source_sha256=(hashlib.sha256(package_source).hexdigest()
-                               if package_source is not None else None),
-        package_class_name=package_class_name,
-    )
+    with failure_boundary(run_id, Stage.COMPILE, ErrorCode.INPUT_INVALID,
+                          "Execution inputs could not compile"):
+        plan, effective = compile_run(
+            run_id=run_id,
+            strategy=declaration,
+            dataset=dataset,
+            engine=engine_capability,
+            engine_profile=engine_profile,
+            policy=policy,
+            events=events,
+            training=training,
+            package_source_sha256=(hashlib.sha256(package_source).hexdigest()
+                                   if package_source is not None else None),
+            package_class_name=package_class_name,
+        )
     artifact = None
     training_worker_receipt = worker_receipt
     if declaration.training_required:
@@ -170,19 +205,21 @@ def _execute(
                 ErrorCode.TRAINING_FAILED,
                 "Training request changed during training",
             )
-        artifact = _persist_model(
-            run_id=run_id,
-            strategy_id=declaration.strategy_id,
-            request=training,
-            payload=payload,
-            root=output,
-        )
-        stored = output / artifact.relative_path
-        if not stored.is_file():
-            _fail(run_id, Stage.LOAD, ErrorCode.MODEL_MISSING, "Model file disappeared")
-        model_bytes = stored.read_bytes()
-        if hashlib.sha256(model_bytes).hexdigest() != artifact.content_sha256:
-            _fail(run_id, Stage.LOAD, ErrorCode.MODEL_CORRUPT, "Model digest differs")
+        with failure_boundary(run_id, Stage.LOAD, ErrorCode.MODEL_CORRUPT,
+                              "Model persistence or retrieval failed"):
+            artifact = _persist_model(
+                run_id=run_id,
+                strategy_id=declaration.strategy_id,
+                request=training,
+                payload=payload,
+                root=output,
+            )
+            stored = output / artifact.relative_path
+            if not stored.is_file():
+                _fail(run_id, Stage.LOAD, ErrorCode.MODEL_MISSING, "Model file disappeared")
+            model_bytes = stored.read_bytes()
+            if hashlib.sha256(model_bytes).hexdigest() != artifact.content_sha256:
+                _fail(run_id, Stage.LOAD, ErrorCode.MODEL_CORRUPT, "Model digest differs")
         try:
             if fresh_strategy is None:
                 _fail(run_id, Stage.LOAD, ErrorCode.MODEL_CORRUPT,
@@ -248,7 +285,10 @@ def _execute(
     ):
         _fail(run_id, Stage.INPUT, ErrorCode.INPUT_INVALID,
               "Market inputs changed during execution")
-    if fingerprint(engine.profile()) != plan.engine_profile_sha256:
+    with failure_boundary(run_id, Stage.BACKTEST, ErrorCode.BACKTEST_FAILED,
+                          "Engine could not provide its final execution profile"):
+        final_profile = engine.profile()
+    if fingerprint(final_profile) != plan.engine_profile_sha256:
         _fail(run_id, Stage.BACKTEST, ErrorCode.INPUT_INVALID,
               "Engine execution settings changed during run")
     expected = (Decision, OrderEvent, Fill, AccountSnapshot)
@@ -273,18 +313,6 @@ def _execute(
             if hasattr(action, "symbol") and action.symbol not in plan.symbols:
                 _fail(run_id, Stage.INFER, ErrorCode.ACTION_INVALID,
                       "Engine reported an unknown action symbol")
-    accepted = {(order.order_id, order.symbol) for order in orders
-                if order.status == "accepted"}
-    completed = {(order.order_id, order.symbol) for order in orders
-                 if order.status == "filled"}
-    if any((fill.order_id, fill.symbol) not in accepted & completed for fill in fills):
-        _fail(run_id, Stage.BACKTEST, ErrorCode.BACKTEST_FAILED,
-              "Engine fill lacks accepted and filled order states")
-    accepted_times = {(order.order_id, order.symbol): order.timestamp for order in orders
-                      if order.status == "accepted"}
-    if any(fill.timestamp < accepted_times[(fill.order_id, fill.symbol)] for fill in fills):
-        _fail(run_id, Stage.BACKTEST, ErrorCode.BACKTEST_FAILED,
-              "Engine fill predates the accepted order")
     report = RunReport(
         run_id=run_id,
         plan=plan,
@@ -303,21 +331,28 @@ def _execute(
             f"executed {len(decisions)} decisions, {len(fills)} fills",
         ),
     )
-    bundle = RunBundle(
-        report=report,
-        strategy_declaration=declaration,
-        dataset_declaration=dataset,
-        source_events=events,
-        effective_events=effective,
-        training_request=training,
-        model_base64=(base64.b64encode((output / artifact.relative_path).read_bytes()).decode()
-                      if artifact is not None else None),
-        package_source=package_source.decode("utf-8") if package_source is not None else None,
-    )
-    from paperquant.evidence import verify_bundle
-    verify_bundle(bundle)
-    atomic_bytes(output / "bundle.json", (bundle.model_dump_json(indent=2) + "\n").encode())
-    atomic_bytes(output / "report.json", (report.model_dump_json(indent=2) + "\n").encode("utf-8"))
+    with failure_boundary(run_id, Stage.BACKTEST, ErrorCode.BACKTEST_FAILED,
+                          "Engine returned an invalid order or risk trace"):
+        validate_traces(report)
+    with failure_boundary(run_id, Stage.REPORT, ErrorCode.BACKTEST_FAILED,
+                          "Run evidence could not be verified or published"):
+        bundle = RunBundle(
+            report=report,
+            strategy_declaration=declaration,
+            dataset_declaration=dataset,
+            source_events=events,
+            effective_events=effective,
+            training_request=training,
+            model_base64=(base64.b64encode((output / artifact.relative_path).read_bytes()).decode()
+                          if artifact is not None else None),
+            package_source=package_source.decode("utf-8") if package_source is not None else None,
+        )
+        from paperquant.evidence import verify_bundle
+        verify_bundle(bundle)
+        atomic_bytes(output / "bundle.json", (bundle.model_dump_json(indent=2) + "\n").encode())
+        atomic_bytes(
+            output / "report.json", (report.model_dump_json(indent=2) + "\n").encode("utf-8")
+        )
     return report
 
 
@@ -335,7 +370,9 @@ def run(
     strategy_factory: Callable[[], DecisionStrategy] | None = None,
 ) -> RunReport:
     """In-process development API; strict execution is only reached via a package worker."""
-    prepare_output(output)
+    with failure_boundary(run_id, Stage.REPORT, ErrorCode.BACKTEST_FAILED,
+                          "Run output could not be prepared"):
+        prepare_output(output)
     return _execute(
         run_id=run_id,
         strategy=strategy,

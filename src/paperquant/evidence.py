@@ -6,9 +6,10 @@ import base64
 import hashlib
 from pathlib import Path
 
-from paperquant.compiler import fingerprint
+from paperquant.compiler import compile_run, fingerprint
 from paperquant.market_semantics import validate_market_event
-from paperquant.models import RunBundle
+from paperquant.models import ContractFault, RunBundle
+from paperquant.traces import validate_traces
 
 
 def verify_bundle(bundle: RunBundle) -> None:
@@ -114,6 +115,23 @@ def verify_bundle(bundle: RunBundle) -> None:
             break
     if failed := [name for name, okay in checks.items() if not okay]:
         raise ValueError("Run bundle verification failed: " + ", ".join(failed))
+
+    try:
+        rebuilt, effective = compile_run(
+            run_id=plan.run_id, strategy=bundle.strategy_declaration,
+            dataset=bundle.dataset_declaration, engine=plan.engine_capability,
+            engine_profile=plan.engine_profile, policy=plan.policy,
+            events=bundle.source_events, training=bundle.training_request,
+            package_source_sha256=plan.package_source_sha256,
+            package_class_name=plan.package_class_name,
+        )
+    except ContractFault as exc:
+        raise ValueError("Run bundle inputs cannot compile: " + exc.failure.message) from exc
+    if fingerprint(rebuilt) != fingerprint(plan):
+        raise ValueError("Run bundle execution plan differs from recompiled inputs")
+    if fingerprint(effective) != fingerprint(bundle.effective_events):
+        raise ValueError("Run bundle effective events differ from authorized conversions")
+    validate_traces(report)
 
 
 def verify_bundle_file(path: Path) -> RunBundle:

@@ -7,7 +7,7 @@ from typing import Literal, NoReturn, Protocol
 
 from pydantic import TypeAdapter, ValidationError
 
-from paperquant.compiler import fingerprint
+from paperquant.compiler import fingerprint, validate_plan_projection
 from paperquant.models import (
     AccountSnapshot,
     Action,
@@ -105,8 +105,11 @@ class ReferenceEngine:
     def __init__(
         self, *, initial_cash: Decimal = Decimal("100000"), fee_rate: Decimal = Decimal("0")
     ) -> None:
-        if initial_cash <= 0 or fee_rate < 0:
-            raise ValueError("initial cash must be positive and fees nonnegative")
+        if (not initial_cash.is_finite() or not fee_rate.is_finite()
+            or initial_cash <= 0 or fee_rate < 0):
+            raise ValueError(
+                "initial cash and fees must be finite, cash positive, fees nonnegative"
+            )
         self.initial_cash = initial_cash
         self.fee_rate = fee_rate
 
@@ -181,6 +184,7 @@ class ReferenceEngine:
             or plan.financing_mode != plan.policy.financing_mode):
             self._fail(plan, Stage.BACKTEST, ErrorCode.INPUT_INVALID,
                        "Financing policy differs from bound plan")
+        validate_plan_projection(plan, strategy.declaration)
         cash = self.initial_cash
         holdings: dict[str, _Holding] = {}
         marks: dict[str, Decimal] = {}
@@ -395,6 +399,10 @@ class ReferenceEngine:
                             plan, Stage.INFER, ErrorCode.ORDER_REJECTED, "Target exceeds limit"
                         )
                     order_id = f"target:{len(decisions)}:{action.symbol}"
+                    if order_id in known_order_ids:
+                        self._fail(plan, Stage.INFER, ErrorCode.ORDER_REJECTED,
+                                   "Duplicate order ID", order_id=order_id)
+                    known_order_ids.add(order_id)
                     pending.append(_Intent(order_id, action.symbol, action.quantity, None,
                                            event.available_time))
                 elif isinstance(action, SubmitOrder):

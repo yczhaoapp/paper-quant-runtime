@@ -8,7 +8,7 @@ from collections.abc import Sequence
 from decimal import Decimal
 from pathlib import Path
 
-from pydantic import TypeAdapter, ValidationError
+from pydantic import TypeAdapter
 
 from paperquant.backtrader_engine import BacktraderEngine
 from paperquant.comparison import Comparison, Observation, compare, from_report
@@ -159,7 +159,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.command == "verify-bundle":
         try:
             bundle = verify_bundle_file(args.bundle)
-        except (OSError, ValueError, ValidationError) as exc:
+        except Exception as exc:
             print(json.dumps({"status": "failed", "reason": str(exc)[:300]}), file=sys.stderr)
             return 2
         print(json.dumps({"status": "passed", "run_id": bundle.report.run_id}))
@@ -180,7 +180,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                     Decimal(settings["fee_rate"]),
                 ),
             )
-        except (ContractFault, OSError, ValueError, KeyError, ValidationError) as exc:
+        except Exception as exc:
             print(json.dumps({"status": "failed", "reason": str(exc)[:300]}), file=sys.stderr)
             return 2
         print(json.dumps({"status": "passed", "run_id": bundle.report.run_id}))
@@ -316,6 +316,8 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     output: Path = args.output
     attempt = Attempt(output)
+    stage = Stage.INPUT
+    code = ErrorCode.INPUT_INVALID
     try:
         events = TypeAdapter(tuple[MarketEvent, ...]).validate_python(_read_json(args.events))
         dataset = DatasetDeclaration.model_validate(_read_json(args.dataset))
@@ -324,6 +326,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         policy = RunPolicy.model_validate(_read_json(args.policy)) if args.policy else RunPolicy()
         engine = _selected_engine(args.engine, args.cash, args.fee_rate)
+        stage, code = Stage.BACKTEST, ErrorCode.BACKTEST_FAILED
         report = run_package(
             run_id=f"run-{fingerprint(events)[:12]}",
             package_dir=args.package,
@@ -335,6 +338,8 @@ def main(argv: Sequence[str] | None = None) -> int:
             output=output,
             training=training,
         )
+        stage = Stage.REPORT
+        attempt.succeeded(run_id=report.run_id)
     except ContractFault as exc:
         attempt.failed(
             run_id=exc.failure.run_id,
@@ -343,13 +348,13 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         print(exc.failure.model_dump_json(), file=sys.stderr)
         return 2
-    except (ValidationError, ValueError, OSError, json.JSONDecodeError) as exc:
+    except Exception as exc:
         failure = Failure(
             run_id="invalid-input",
-            stage=Stage.INPUT,
-            code=ErrorCode.INPUT_INVALID,
-            message="Input could not be parsed",
-            details={"cause": type(exc).__name__},
+            stage=stage,
+            code=code,
+            message="Execution attempt failed",
+            details={"cause": type(exc).__name__, "reason": str(exc)[:200]},
         )
         attempt.failed(
             run_id=failure.run_id,
@@ -358,7 +363,6 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         print(failure.model_dump_json(), file=sys.stderr)
         return 2
-    attempt.succeeded(run_id=report.run_id)
     print(json.dumps({"status": report.status, "report": str(output / "report.json")}))
     return 0
 

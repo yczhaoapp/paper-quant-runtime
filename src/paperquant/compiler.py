@@ -90,6 +90,39 @@ def _reject(run_id: str, stage: Stage, code: ErrorCode, message: str, **details:
     )
 
 
+def validate_plan_projection(plan: ExecutionPlan, strategy: StrategyDeclaration) -> None:
+    """Check every executable projection available at the public engine boundary.
+
+    Engines only receive effective events. Full source/conversion re-compilation
+    belongs to bundle verification, which also has the original dataset inputs.
+    """
+    expected = {
+        "strategy_id": strategy.strategy_id,
+        "declaration_sha256": fingerprint(strategy),
+        "engine_id": plan.engine_capability.engine_id,
+        "engine_sha256": fingerprint(plan.engine_capability),
+        "engine_profile_sha256": fingerprint(plan.engine_profile),
+        "policy_sha256": fingerprint(plan.policy),
+        "sandbox": plan.policy.sandbox,
+        "financing_mode": plan.policy.financing_mode,
+        "granularity": strategy.data.granularity,
+        "symbols": strategy.data.symbols,
+        "required_fields": strategy.data.fields | plan.engine_capability.execution_fields.get(
+            strategy.data.granularity, frozenset()
+        ),
+        "allowed_actions": strategy.actions,
+        "max_abs_position": strategy.max_abs_position,
+        "max_order_quantity": strategy.max_order_quantity,
+    }
+    mismatches = [name for name, value in expected.items() if getattr(plan, name) != value]
+    if plan.engine_profile.engine_id != plan.engine_id:
+        mismatches.append("engine_profile.engine_id")
+    if mismatches:
+        _reject(plan.run_id, Stage.BACKTEST, ErrorCode.INPUT_INVALID,
+                "Executable plan differs from its bound declarations",
+                fields=",".join(mismatches))
+
+
 def _check_source(
     run_id: str, dataset: DatasetDeclaration, events: tuple[MarketEvent, ...]
 ) -> None:
