@@ -14,3 +14,7 @@ uv run --no-sync python scripts/verify_strict.py --require-clean --output runs/s
 ```
 
 脚本每次先原子发布新的 `running` 尝试并使旧成功结果失效，再无缓存构建、核查镜像、运行全部主机与严格容器测试，最后发布 `passed` 或 `failed`。`verification.json`、`image.json` 通过相同的 `attempt_id` 关联；成功收据还记录 Git commit、源码树、镜像与完整日志哈希。发布时增加 `--require-clean`，要求验证前后均为同一已提交的干净源码树。验收方应要求本轮 `verification.json.status == "passed"`，并核对 `attempt_id`、源码哈希与日志，而不是只看目录中是否存在旧报告。
+
+严格测试命令清除外部 `PYTEST_ADDOPTS`、`PYTEST_PLUGINS`，关闭第三方 pytest 插件自动加载，并显式清空配置中的额外选项。完整测试输出保存为本轮 `tests.xml`。脚本独立核对 `research/strict-test-nodes.json` 中经审阅的 27 个隔离、安全与目录外生命周期节点：每个必须恰好出现一次且实际通过，缺失、跳过、xfail、重复或失败均拒绝授予 R2。论文缓存尚未准备时的可选测试跳过不等同于安全验证完成；论文全文另由 `paper-depth` 门禁显式获取并验证，不固定整个测试集的总数量。
+
+子验收收据必须为结构正确的 JSON 对象，包含新的尝试编号、完成时间、完整 18 项清单，并与父验收的 Git 提交、源码树、干净状态和实际镜像 ID 一致。构建、检查、测试、解析子收据或最终身份复验中的普通异常均结束为 `failed`，撤销当前镜像收据及 R2 声明。历史尝试保留在各自目录中，不能替代本轮成功。

@@ -41,7 +41,7 @@ jobs:
       - name: Type check
         run: uv run --no-sync mypy src/paperquant
       - name: Verify all eighteen strategy packages
-        run: uv run --no-sync python scripts/acceptance.py --output runs/host-acceptance
+        run: uv run --no-sync python scripts/acceptance.py --require-clean --output runs/host-acceptance
       - name: Preserve host acceptance reports
         if: always()
         uses: actions/upload-artifact@v7
@@ -98,3 +98,15 @@ jobs:
             runs/paper-depth
             !runs/paper-depth/attempts/*/independent/build/paper.pdf
           if-no-files-found: error
+
+  release-gates:
+    name: Release gates
+    if: always()
+    needs: [host, strict, paper-depth]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Require every release job to succeed
+        env:
+          CI_JOB_RESULTS: ${{ toJSON(needs) }}
+        run: python scripts/ci_gate.py

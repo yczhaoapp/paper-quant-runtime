@@ -47,7 +47,7 @@ uv run --no-sync python -m paperquant.cli replay-bundle \
 uv run --no-sync python scripts/verify_strict.py --require-clean --output runs/strict-verification
 ```
 
-该命令还会逐项执行 `examples/catalog.json` 中的 18 个策略，要求每项生成真实决策、成交、可离线重验的运行包和冷启动回放；论文主张核对结构化方法 spec 与实际实现符号，并把精确 oracle 测试节点绑定到本轮 JUnit 与源码哈希；同时比较主机和严格 worker 轨迹，另用原生 Backtrader broker 验证规则、监督、强化学习各一项的真实成交与账户差分，并验证三篇真实 CC BY PDF 的页级接入和策略绑定。逐项报告与 `acceptance.json` 位于本轮 `attempts/<attempt_id>/acceptance/`，主收据保存该验收文件的 SHA-256。只需查看主机运行时，也可执行 `uv run --no-sync python scripts/acceptance.py --output runs/acceptance-host`。
+该命令还会逐项执行 `examples/catalog.json` 中的 18 个策略，要求每项生成真实决策、成交、可离线重验的运行包和冷启动回放；论文主张核对结构化方法 spec 与实际实现符号，并把精确 oracle 测试节点绑定到本轮 JUnit 与源码哈希；同时比较主机和严格 worker 轨迹，另用原生 Backtrader broker 验证规则、监督、强化学习各一项的真实成交与账户差分，并验证三篇真实 CC BY PDF 的页级接入和策略绑定。逐项报告与 `acceptance.json` 位于本轮 `attempts/<attempt_id>/acceptance/`，主收据保存该验收文件的 SHA-256。只需查看主机运行时，也可执行 `uv run --no-sync python scripts/acceptance.py --require-clean --output runs/acceptance-host`。
 
 额外的论文深度验收在主机显式准备固定原文后，逐项检查全部 18 个策略的页级方法证据与 `paper-run`，并构建、运行一篇现有目录之外的 VWAP 论文案例。它还核对八条公开 AAPL 方法轨迹，其中均线和突破另跑公开行情补充案例；收据分别记录经审阅的 A/D/E 范围和本轮主机论文接入 R1。严格容器收据只对其实际验证的 18 个目录策略授予 R2。16 个主要论文来源、Double Q 的独立算法原文、以及目录外新论文在收据中分别计数，不将 18 个策略混称为 18 篇主要论文。详情和命令见[论文接入说明](docs/paper-intake.md)。
 

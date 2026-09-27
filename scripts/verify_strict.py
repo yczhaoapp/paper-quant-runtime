@@ -5,88 +5,59 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import os
 import subprocess
 import sys
-import tempfile
-import uuid
 from datetime import UTC, datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE_DIRS = (
-    "src",
-    "tests",
-    "strategies",
-    "research",
-    "examples",
-    "scripts",
-    "docs",
-    "schemas",
-    "data",
-    ".github",
+# Direct script execution and python -m scripts.verify_strict share the same helpers.
+if __package__ in (None, ""):
+    sys.path.insert(0, str(ROOT))
+
+from scripts.gate_support import (  # noqa: E402
+    check_source_identity,
+    git_state,
+    new_attempt,
+    source_sha256,
+    write_json,
 )
-SOURCE_FILES = (
-    ".dockerignore",
-    ".gitattributes",
-    ".gitignore",
-    "Dockerfile.worker",
-    "requirements-worker.txt",
-    "pyproject.toml",
-    "uv.lock",
-    "README.md",
-)
+from scripts.strict_test_gate import test_environment, verify_safety_tests  # noqa: E402
+
 ASSURANCE_MATRIX = ROOT / "research/assurance-axes.json"
-EXCLUDE_DIRS = {"__pycache__", ".pytest_cache", ".ruff_cache", ".mypy_cache",
-                "source-cache"}
 
 
 def _write_json(path: Path, value: dict[str, object]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    encoded = (json.dumps(value, indent=2, sort_keys=True) + "\n").encode("utf-8")
-    with tempfile.NamedTemporaryFile(dir=path.parent, prefix=".receipt-", delete=False) as handle:
-        temporary = Path(handle.name)
-        handle.write(encoded)
-        handle.flush()
-        os.fsync(handle.fileno())
-    try:
-        os.replace(temporary, path)
-    finally:
-        temporary.unlink(missing_ok=True)
+    write_json(path, value)
 
 
 def _source_sha256() -> str:
-    paths = [ROOT / filename for filename in SOURCE_FILES]
-    for directory in SOURCE_DIRS:
-        paths.extend(
-            path
-            for path in (ROOT / directory).rglob("*")
-            if path.is_file()
-            and not any(part in EXCLUDE_DIRS for part in path.relative_to(ROOT).parts)
-            and path.suffix != ".pyc"
-        )
-    digest = hashlib.sha256()
-    for path in sorted(paths):
-        digest.update(str(path.relative_to(ROOT)).encode("utf-8") + b"\0")
-        digest.update(path.read_bytes())
-        digest.update(b"\0")
-    return digest.hexdigest()
+    return source_sha256(ROOT)
 
 
 def _git_state() -> tuple[str | None, bool]:
-    head = subprocess.run(
-        ["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True, check=False
-    )
-    status = subprocess.run(
-        ["git", "status", "--porcelain", "--untracked-files=all"],
-        cwd=ROOT,
-        capture_output=True,
-        text=True,
-        check=False,
-    )
-    commit = head.stdout.strip() if head.returncode == 0 else None
-    clean = status.returncode == 0 and not status.stdout.strip()
-    return commit, clean
+    return git_state(ROOT)
+
+
+def _validate_acceptance(value: object, identity: dict[str, object], image_id: str) -> dict:
+    if not isinstance(value, dict):
+        raise ValueError("Child acceptance receipt must be a JSON object")
+    if (value.get("status") != "passed" or type(value.get("count")) is not int
+        or value["count"] != 18 or value.get("strict") is not True
+        or value.get("strict_image_id") != image_id
+        or not isinstance(value.get("attempt_id"), str) or not value["attempt_id"]
+        or not isinstance(value.get("completed_at"), str) or not value["completed_at"]
+        or any(value.get(key) != expected for key, expected in identity.items())
+        or type(value.get("git_clean")) is not bool):
+        raise ValueError("Child acceptance is not bound to this source and strict image")
+    cases = value.get("cases")
+    catalog_ids = {item["strategy"] for item in json.loads(
+        (ROOT / "examples/catalog.json").read_text())["cases"]}
+    if (not isinstance(cases, list) or len(cases) != 18
+        or any(not isinstance(case, dict) for case in cases)
+        or {case.get("strategy_id") for case in cases} != catalog_ids):
+        raise ValueError("Child acceptance does not cover the eighteen-case catalog")
+    return value
 
 
 def _run(
@@ -114,22 +85,20 @@ def main() -> int:
     args = parser.parse_args()
     output: Path = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
-    attempt_id = uuid.uuid4().hex
+    state: dict[str, object] = new_attempt()
+    attempt_id = str(state["attempt_id"])
     attempt_dir = output / "attempts" / attempt_id
     attempt_dir.mkdir(parents=True)
     receipt = output / "verification.json"
     image_receipt = output / "image.json"
     image_receipt.unlink(missing_ok=True)
-    state: dict[str, object] = {
-        "attempt_id": attempt_id,
-        "status": "running",
-        "started_at": datetime.now(UTC).isoformat(),
-    }
     _write_json(receipt, state)
     phase = "source"
     try:
         before = _source_sha256()
         commit, clean = _git_state()
+        identity = {"source_tree_sha256": before, "git_commit": commit, "git_clean": clean}
+        state.update(identity)
         state["source_sha256"] = before
         state["git_commit"] = commit
         state["git_clean"] = clean
@@ -161,36 +130,33 @@ def main() -> int:
             raise RuntimeError("image inspection returned no immutable image ID")
         _write_json(image_receipt, {"attempt_id": attempt_id, "image_id": image_id})
         phase = "tests"
-        environment = dict(os.environ)
+        environment = test_environment()
         environment["PAPERQUANT_TEST_DOCKER"] = "1"
         environment["PYTHONPATH"] = "src"
         _run(
-            [sys.executable, "-m", "pytest", "-q", "tests"],
+            [sys.executable, "-m", "pytest", "-c", "pyproject.toml", "-o", "addopts=",
+             "-q", "tests", "--junitxml", str(attempt_dir / "tests.xml")],
             attempt_dir / "tests.log",
             timeout=900,
             environment=environment,
         )
+        phase = "safety-tests"
+        state["safety_test_gate"] = verify_safety_tests(attempt_dir / "tests.xml")
+        _write_json(receipt, state)
         phase = "acceptance"
         _run(
             [sys.executable, "scripts/acceptance.py", "--output", str(attempt_dir / "acceptance"),
-             "--strict-image-id", image_id],
+             "--strict-image-id", image_id] + (["--require-clean"] if args.require_clean else []),
             attempt_dir / "acceptance.log",
             timeout=900,
             environment=environment,
         )
         acceptance_file = attempt_dir / "acceptance/acceptance.json"
-        acceptance = json.loads(acceptance_file.read_text())
-        if (
-            acceptance.get("status") != "passed"
-            or acceptance.get("count") != 18
-            or not acceptance.get("strict")
-        ):
-            raise RuntimeError("eighteen-case strict acceptance did not pass")
+        acceptance = _validate_acceptance(
+            json.loads(acceptance_file.read_text()), identity, image_id,
+        )
         phase = "source-recheck"
-        after = _source_sha256()
-        after_commit, after_clean = _git_state()
-        if before != after or commit != after_commit or (args.require_clean and not after_clean):
-            raise RuntimeError("source tree changed during verification")
+        check_source_identity(ROOT, identity, require_clean=args.require_clean)
         state.update(
             {
                 "status": "passed",
@@ -221,8 +187,10 @@ def main() -> int:
         _write_json(receipt, state)
         print(json.dumps({"status": "passed", "receipt": str(receipt), "attempt_id": attempt_id}))
         return 0
-    except (OSError, RuntimeError, subprocess.TimeoutExpired) as exc:
+    except Exception as exc:
         image_receipt.unlink(missing_ok=True)
+        state.pop("runtime_assurance", None)
+        state.pop("image_id", None)
         state.update(
             {
                 "status": "failed",

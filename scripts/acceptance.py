@@ -28,11 +28,20 @@ from paperquant.models import (
     RunReport,
     TrainingRequest,
 )
-from paperquant.output import atomic_bytes
 from paperquant.package import inspect_package, replay_bundle, run_package
 from paperquant.papers import MethodSpec, Recipe, verify_recipe
 
 ROOT = Path(__file__).resolve().parents[1]
+if __package__ in (None, ""):
+    sys.path.insert(0, str(ROOT))
+from scripts.gate_support import (  # noqa: E402
+    check_source_identity,
+    new_attempt,
+    source_identity,
+    write_json,
+)
+from scripts.strict_test_gate import test_environment  # noqa: E402
+
 PUBLIC_CASES = (
     ("rule.moving_average_crossover", "public_aapl"),
     ("rule.channel_breakout", "public_aapl"),
@@ -61,7 +70,7 @@ def digest(path: Path) -> str:
 
 
 def publish(path: Path, value: dict) -> None:
-    atomic_bytes(path, (json.dumps(value, indent=2, sort_keys=True) + "\n").encode())
+    write_json(path, value)
 
 
 def _check_implementation(claim: dict, strategy_id: str) -> None:
@@ -110,7 +119,7 @@ def _run_oracles(output: Path, bindings: dict[str, dict],
         command.extend(["--basetemp", str(output / "case-artifacts")])
     completed = subprocess.run(
         command,
-        cwd=ROOT, capture_output=True, text=True, timeout=300,
+        cwd=ROOT, capture_output=True, text=True, timeout=300, env=test_environment(),
     )
     (output / "oracle-run.log").write_text(
         completed.stdout + completed.stderr, encoding="utf-8",
@@ -282,13 +291,17 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--strict-image-id", default=None)
+    parser.add_argument("--require-clean", action="store_true")
     args = parser.parse_args()
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
     receipt = output / "acceptance.json"
-    state: dict = {"status": "running", "started_at": datetime.now(UTC).isoformat()}
+    state: dict = new_attempt()
     publish(receipt, state)
     try:
+        identity = source_identity(ROOT, require_clean=args.require_clean)
+        state.update(identity)
+        publish(receipt, state)
         catalog = json.loads((ROOT / "examples/catalog.json").read_text())
         entries = catalog["cases"]
         if catalog["schema_version"] != "1.0" or len(entries) != 18:
@@ -535,9 +548,11 @@ def main() -> int:
             raise ValueError("Native paper-run evidence is not bound to its reviewed spec")
         schedule_check["native_paper_run_sha256"] = digest(
             native_paper_output / "paper-run.json")
+        check_source_identity(ROOT, identity, require_clean=args.require_clean)
         state.pop("current_case", None)
         state.update({"status": "passed", "completed_at": datetime.now(UTC).isoformat(),
                       "count": len(records), "strict": args.strict_image_id is not None,
+                      "strict_image_id": args.strict_image_id,
                       "cases": records, "paper_checks": paper_checks,
                       "public_data_cases": public_cases,
                       "native_engine_cases": native_cases,

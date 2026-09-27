@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "scope": "Required strict isolation, resource cleanup, unseen-package lifecycle and order integrity tests",
+  "required_nodes": [
+    "tests/test_strict_worker.py::test_strict_worker_matches_host_behavior[rule.moving_average_crossover-daily_vma-None]",
+    "tests/test_strict_worker.py::test_strict_worker_matches_host_behavior[rule.channel_breakout-daily_vma-None]",
+    "tests/test_strict_worker.py::test_strict_worker_matches_host_behavior[rule.microprice_toy-l1_queues-None]",
+    "tests/test_strict_worker.py::test_strict_worker_matches_host_behavior[rule.reservation_quote-l2_book-None]",
+    "tests/test_strict_worker.py::test_strict_worker_matches_host_behavior[rule.pairs_distance-three_stock_pairs-None]",
+    "tests/test_strict_worker.py::test_strict_worker_matches_host_behavior[supervised.queue_imbalance-l1_queues-training.json]",
+    "tests/test_strict_worker.py::test_strict_worker_matches_host_behavior[reinforcement.sarsa_inventory-l1_queues-sarsa_training.json]",
+    "tests/test_strict_worker.py::test_strict_worker_matches_host_behavior[reinforcement.double_q_market_making-l1_queues-sarsa_training.json]",
+    "tests/test_strict_worker.py::test_strict_worker_matches_host_behavior[reinforcement.execution_value_learning-execution_lattice-training.json]",
+    "tests/test_strict_worker.py::test_strict_worker_matches_host_behavior[reinforcement.risk_averse_bandit-bandit_l1-training.json]",
+    "tests/test_strict_worker.py::test_strict_worker_matches_host_behavior[reinforcement.pairs_actor_critic-pairs_actor_critic-training.json]",
+    "tests/test_strict_worker.py::test_extended_strategy_matches_strict_worker[supervised.logistic_direction-public_direction-training.json-symbol_map0]",
+    "tests/test_strict_worker.py::test_extended_strategy_matches_strict_worker[supervised.ridge_three_day_price-public_ridge-training.json-symbol_map1]",
+    "tests/test_strict_worker.py::test_extended_strategy_matches_strict_worker[supervised.gaussian_nb_direction-public_gaussian-training.json-symbol_map2]",
+    "tests/test_strict_worker.py::test_extended_strategy_matches_strict_worker[supervised.random_forest_operations-public_forest-training.json-symbol_map3]",
+    "tests/test_strict_worker.py::test_extended_strategy_matches_strict_worker[reinforcement.actor_critic_allocation-public_actor_critic-training.json-symbol_map4]",
+    "tests/test_strict_worker.py::test_extended_strategy_matches_strict_worker[supervised.cross_sectional_rank-cross_sectional_rank-training.json-symbol_map5]",
+    "tests/test_strict_worker.py::test_extended_strategy_matches_strict_worker[rule.time_sliced_execution-public_aapl-None-symbol_map6]",
+    "tests/test_strict_worker.py::test_dynamic_import_cannot_write_to_package_mount",
+    "tests/test_strict_worker.py::test_timeout_stops_and_removes_the_actual_container",
+    "tests/test_strict_worker.py::test_training_or_loading_timeout_also_removes_container[train]",
+    "tests/test_strict_worker.py::test_training_or_loading_timeout_also_removes_container[load]",
+    "tests/test_strict_worker.py::test_constructor_failure_records_verified_cleanup",
+    "tests/test_unseen_packages.py::test_unregistered_strategy_matches_strict_worker[rule]",
+    "tests/test_unseen_packages.py::test_unregistered_strategy_matches_strict_worker[supervised]",
+    "tests/test_unseen_packages.py::test_unregistered_strategy_matches_strict_worker[reinforcement]",
+    "tests/test_execution_integrity.py::test_strict_worker_cannot_make_order_collision_succeed"
+  ]
+}
