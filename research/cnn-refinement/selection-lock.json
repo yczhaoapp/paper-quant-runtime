@@ -274,303 +274,7 @@
   "budget_probe_status": "passed",
   "candidates": [
     {
-      "host_seconds": 4.352763750001031,
-      "options": {
-        "activation": 0,
-        "ae_epochs": 12,
-        "batch_size": 32,
-        "feature_mode": 0,
-        "freeze_encoders": 1,
-        "head_epochs": 0,
-        "hidden": 4,
-        "history_bars": 24,
-        "learning_rate": 0.003,
-        "max_epochs": 24,
-        "patience": 6
-      },
-      "receipt_sha256": "0afc3eaf43461bd20944600d802266b3a98f83e7a784a8daf7bdf5435995d729",
-      "selected_epoch": 0,
-      "train_bce": 0.6930492346388284,
-      "trial": "grid-m0-a0-lr0.003.json",
-      "validation_bce": 0.6932596538859466
-    },
-    {
-      "host_seconds": 4.3444454170021345,
-      "options": {
-        "activation": 0,
-        "ae_epochs": 12,
-        "batch_size": 32,
-        "feature_mode": 0,
-        "freeze_encoders": 1,
-        "head_epochs": 0,
-        "hidden": 4,
-        "history_bars": 24,
-        "learning_rate": 0.006,
-        "max_epochs": 24,
-        "patience": 6
-      },
-      "receipt_sha256": "149c8fc863e97c221ae49896fd24e98023c5bb43c4548c2737bef118ef60d801",
-      "selected_epoch": 0,
-      "train_bce": 0.6931166839078788,
-      "trial": "grid-m0-a0-lr0.006.json",
-      "validation_bce": 0.6931765778693036
-    },
-    {
-      "host_seconds": 4.709381542001211,
-      "options": {
-        "activation": 1,
-        "ae_epochs": 12,
-        "batch_size": 32,
-        "feature_mode": 0,
-        "freeze_encoders": 1,
-        "head_epochs": 0,
-        "hidden": 4,
-        "history_bars": 24,
-        "learning_rate": 0.003,
-        "max_epochs": 24,
-        "patience": 6
-      },
-      "receipt_sha256": "2b9f53d27a285c6b4708c96deaa5eb2b90adb4adf113578ebf3e9b36fd7f2567",
-      "selected_epoch": 1,
-      "train_bce": 0.6921295153989732,
-      "trial": "grid-m0-a1-lr0.003.json",
-      "validation_bce": 0.6923425881478936
-    },
-    {
-      "host_seconds": 4.788109708002594,
-      "options": {
-        "activation": 1,
-        "ae_epochs": 12,
-        "batch_size": 32,
-        "feature_mode": 0,
-        "freeze_encoders": 1,
-        "head_epochs": 0,
-        "hidden": 4,
-        "history_bars": 24,
-        "learning_rate": 0.006,
-        "max_epochs": 24,
-        "patience": 6
-      },
-      "receipt_sha256": "a46193ef5b4ed0b5a6405564c6cc0c3fc70b8ec57bdd6bd3cd6fddb02d433e3c",
-      "selected_epoch": 1,
-      "train_bce": 0.6921421515438869,
-      "trial": "grid-m0-a1-lr0.006.json",
-      "validation_bce": 0.6924789994644436
-    },
-    {
-      "host_seconds": 4.460350166998978,
-      "options": {
-        "activation": 0,
-        "ae_epochs": 12,
-        "batch_size": 32,
-        "feature_mode": 1,
-        "freeze_encoders": 1,
-        "head_epochs": 0,
-        "hidden": 4,
-        "history_bars": 64,
-        "learning_rate": 0.003,
-        "max_epochs": 24,
-        "patience": 6
-      },
-      "receipt_sha256": "cd9a55bd4a16ca1ba4cfd8d93285b533f9a1cdb7838ce048bfe9d477ef7f286f",
-      "selected_epoch": 0,
-      "train_bce": 0.6930033959475411,
-      "trial": "grid-m1-a0-lr0.003.json",
-      "validation_bce": 0.6932462837391887
-    },
-    {
-      "host_seconds": 4.537922374998743,
-      "options": {
-        "activation": 0,
-        "ae_epochs": 12,
-        "batch_size": 32,
-        "feature_mode": 1,
-        "freeze_encoders": 1,
-        "head_epochs": 0,
-        "hidden": 4,
-        "history_bars": 64,
-        "learning_rate": 0.006,
-        "max_epochs": 24,
-        "patience": 6
-      },
-      "receipt_sha256": "2d499307bbfb236f7a00112a0b6a803b51a8ee2b8ccb59062d25805ed80eb79b",
-      "selected_epoch": 0,
-      "train_bce": 0.6930419993868866,
-      "trial": "grid-m1-a0-lr0.006.json",
-      "validation_bce": 0.6932053671736456
-    },
-    {
-      "host_seconds": 4.500561250002647,
-      "options": {
-        "activation": 1,
-        "ae_epochs": 12,
-        "batch_size": 32,
-        "feature_mode": 1,
-        "freeze_encoders": 1,
-        "head_epochs": 0,
-        "hidden": 4,
-        "history_bars": 64,
-        "learning_rate": 0.003,
-        "max_epochs": 24,
-        "patience": 6
-      },
-      "receipt_sha256": "3abcfca142116b6e935d9c6ac0def174276b63e4efc2f859d872a16ce49d2d4b",
-      "selected_epoch": 0,
-      "train_bce": 0.6928239876060774,
-      "trial": "grid-m1-a1-lr0.003.json",
-      "validation_bce": 0.6926436701454795
-    },
-    {
-      "host_seconds": 4.481311750001623,
-      "options": {
-        "activation": 1,
-        "ae_epochs": 12,
-        "batch_size": 32,
-        "feature_mode": 1,
-        "freeze_encoders": 1,
-        "head_epochs": 0,
-        "hidden": 4,
-        "history_bars": 64,
-        "learning_rate": 0.006,
-        "max_epochs": 24,
-        "patience": 6
-      },
-      "receipt_sha256": "ba25d91e71517a276e2e7ecaefa9a86ef3f2454ba5031e7e385f3046d2455dfc",
-      "selected_epoch": 0,
-      "train_bce": 0.6928304058652964,
-      "trial": "grid-m1-a1-lr0.006.json",
-      "validation_bce": 0.6925985536544458
-    },
-    {
-      "host_seconds": 4.5396311670047,
-      "options": {
-        "activation": 0,
-        "ae_epochs": 12,
-        "batch_size": 32,
-        "feature_mode": 2,
-        "freeze_encoders": 1,
-        "head_epochs": 0,
-        "hidden": 4,
-        "history_bars": 64,
-        "learning_rate": 0.003,
-        "max_epochs": 24,
-        "patience": 6
-      },
-      "receipt_sha256": "1e46eab613690fa977adaf0db26c9c0bce868edce3e7a5f0f7eff7ef2e603a2c",
-      "selected_epoch": 0,
-      "train_bce": 0.6930358914672526,
-      "trial": "grid-m2-a0-lr0.003.json",
-      "validation_bce": 0.6932156352598577
-    },
-    {
-      "host_seconds": 4.596602875004464,
-      "options": {
-        "activation": 0,
-        "ae_epochs": 12,
-        "batch_size": 32,
-        "feature_mode": 2,
-        "freeze_encoders": 1,
-        "head_epochs": 0,
-        "hidden": 4,
-        "history_bars": 64,
-        "learning_rate": 0.006,
-        "max_epochs": 24,
-        "patience": 6
-      },
-      "receipt_sha256": "fd3e40cc707b16f56352ada51ec83ec85a0961363a1961e677edc0ee0db7086f",
-      "selected_epoch": 0,
-      "train_bce": 0.6930703858094309,
-      "trial": "grid-m2-a0-lr0.006.json",
-      "validation_bce": 0.693159069567051
-    },
-    {
-      "host_seconds": 4.967618750000838,
-      "options": {
-        "activation": 1,
-        "ae_epochs": 12,
-        "batch_size": 32,
-        "feature_mode": 2,
-        "freeze_encoders": 1,
-        "head_epochs": 0,
-        "hidden": 4,
-        "history_bars": 64,
-        "learning_rate": 0.003,
-        "max_epochs": 24,
-        "patience": 6
-      },
-      "receipt_sha256": "2cf383949481e768ee377a27936f888384b7318672ac36a50ca786d4674ffdf0",
-      "selected_epoch": 1,
-      "train_bce": 0.6920659250470294,
-      "trial": "grid-m2-a1-lr0.003.json",
-      "validation_bce": 0.692634992367105
-    },
-    {
-      "host_seconds": 4.559696582997276,
-      "options": {
-        "activation": 1,
-        "ae_epochs": 12,
-        "batch_size": 32,
-        "feature_mode": 2,
-        "freeze_encoders": 1,
-        "head_epochs": 0,
-        "hidden": 4,
-        "history_bars": 64,
-        "learning_rate": 0.006,
-        "max_epochs": 24,
-        "patience": 6
-      },
-      "receipt_sha256": "f7ffe055e8835711ce113c3182f987dfbb4b3a46b97677c1db90cb9547673851",
-      "selected_epoch": 0,
-      "train_bce": 0.6928378107109886,
-      "trial": "grid-m2-a1-lr0.006.json",
-      "validation_bce": 0.6926166892501893
-    },
-    {
-      "host_seconds": 5.96361745899776,
-      "options": {
-        "activation": 0,
-        "ae_epochs": 12,
-        "batch_size": 32,
-        "feature_mode": 0,
-        "freeze_encoders": 1,
-        "head_epochs": 32,
-        "hidden": 4,
-        "history_bars": 24,
-        "learning_rate": 0.003,
-        "max_epochs": 12,
-        "patience": 6,
-        "recurrent_epochs": 12
-      },
-      "receipt_sha256": "248c2079bd91682458548e29f3c19b84a2f9c9d302445703ae32537359640f9b",
-      "selected_epoch": 7,
-      "train_bce": 0.6923817593652858,
-      "trial": "staged-m0-a0-lr0.003.json",
-      "validation_bce": 0.6928770211234261
-    },
-    {
-      "host_seconds": 5.866915333004727,
-      "options": {
-        "activation": 0,
-        "ae_epochs": 12,
-        "batch_size": 32,
-        "feature_mode": 0,
-        "freeze_encoders": 1,
-        "head_epochs": 32,
-        "hidden": 4,
-        "history_bars": 24,
-        "learning_rate": 0.006,
-        "max_epochs": 12,
-        "patience": 6,
-        "recurrent_epochs": 12
-      },
-      "receipt_sha256": "ec1ce7a33148fccc9a1af6f1812f656077cd184b5d11a2e81c0f169c02f50b27",
-      "selected_epoch": 7,
-      "train_bce": 0.6923774238819271,
-      "trial": "staged-m0-a0-lr0.006.json",
-      "validation_bce": 0.692713414149054
-    },
-    {
-      "host_seconds": 6.239676874996803,
+      "host_seconds": 6.2648769579973305,
       "options": {
         "activation": 1,
         "ae_epochs": 12,
@@ -583,16 +287,17 @@
         "learning_rate": 0.003,
         "max_epochs": 12,
         "patience": 6,
-        "recurrent_epochs": 12
+        "recurrent_epochs": 12,
+        "scaler": 0
       },
-      "receipt_sha256": "acdc1a462d4dc89837d715c772a891e98e04a97e8417c0ecabf2b55a15b54058",
+      "receipt_sha256": "25eb8125e6ef7c1045c0bd4218411e98b4b3a94de273d2f6f039a718e23d5bfe",
       "selected_epoch": 40,
       "train_bce": 0.6917880589071023,
-      "trial": "staged-m0-a1-lr0.003.json",
+      "trial": "standard-reference",
       "validation_bce": 0.6920944480666726
     },
     {
-      "host_seconds": 6.699624749999202,
+      "host_seconds": 9.133089082999504,
       "options": {
         "activation": 1,
         "ae_epochs": 12,
@@ -602,104 +307,40 @@
         "head_epochs": 32,
         "hidden": 4,
         "history_bars": 24,
-        "learning_rate": 0.006,
+        "learning_rate": 0.0001,
         "max_epochs": 12,
         "patience": 6,
-        "recurrent_epochs": 12
+        "recurrent_epochs": 12,
+        "scaler": 1
       },
-      "receipt_sha256": "8ac2e52f64fb1e7e79847127861d9ec92402ae1b655ed671e3d90ec89369178f",
+      "receipt_sha256": "cc4058a6513f18873ada576f8e6c16c1bcf1fdebdbb489275ff4220efa65057a",
+      "selected_epoch": 53,
+      "train_bce": 0.6923768060895203,
+      "trial": "minmax-lr0.0001",
+      "validation_bce": 0.6927719199686171
+    },
+    {
+      "host_seconds": 6.707826457997726,
+      "options": {
+        "activation": 1,
+        "ae_epochs": 12,
+        "batch_size": 32,
+        "feature_mode": 0,
+        "freeze_encoders": 1,
+        "head_epochs": 32,
+        "hidden": 4,
+        "history_bars": 24,
+        "learning_rate": 0.001,
+        "max_epochs": 12,
+        "patience": 6,
+        "recurrent_epochs": 12,
+        "scaler": 1
+      },
+      "receipt_sha256": "44e72c302861e9739ae98748ec527580190ec17fa5317ffe9b026857ce99e76d",
       "selected_epoch": 17,
-      "train_bce": 0.6919593080919616,
-      "trial": "staged-m0-a1-lr0.006.json",
-      "validation_bce": 0.6924316475221706
-    },
-    {
-      "host_seconds": 6.169527250000101,
-      "options": {
-        "activation": 0,
-        "ae_epochs": 12,
-        "batch_size": 32,
-        "feature_mode": 2,
-        "freeze_encoders": 1,
-        "head_epochs": 32,
-        "hidden": 4,
-        "history_bars": 64,
-        "learning_rate": 0.003,
-        "max_epochs": 12,
-        "patience": 6,
-        "recurrent_epochs": 12
-      },
-      "receipt_sha256": "21b8077e584a411f4e796eab0faf5bef6a291e69e75c9a3464faeef22a3fcc5c",
-      "selected_epoch": 7,
-      "train_bce": 0.6922210494826747,
-      "trial": "staged-m2-a0-lr0.003.json",
-      "validation_bce": 0.6927720519062222
-    },
-    {
-      "host_seconds": 6.179120166998473,
-      "options": {
-        "activation": 0,
-        "ae_epochs": 12,
-        "batch_size": 32,
-        "feature_mode": 2,
-        "freeze_encoders": 1,
-        "head_epochs": 32,
-        "hidden": 4,
-        "history_bars": 64,
-        "learning_rate": 0.006,
-        "max_epochs": 12,
-        "patience": 6,
-        "recurrent_epochs": 12
-      },
-      "receipt_sha256": "1de8b1bb26cb21c4c00cb5b1998b75ab4a54bfd15987f75e1c0be584fdb23232",
-      "selected_epoch": 7,
-      "train_bce": 0.6921841380021272,
-      "trial": "staged-m2-a0-lr0.006.json",
-      "validation_bce": 0.6927346738210092
-    },
-    {
-      "host_seconds": 6.3526599159959005,
-      "options": {
-        "activation": 1,
-        "ae_epochs": 12,
-        "batch_size": 32,
-        "feature_mode": 2,
-        "freeze_encoders": 1,
-        "head_epochs": 32,
-        "hidden": 4,
-        "history_bars": 64,
-        "learning_rate": 0.003,
-        "max_epochs": 12,
-        "patience": 6,
-        "recurrent_epochs": 12
-      },
-      "receipt_sha256": "b2413bf26709f9d2b564f4e702a18021a8f65ee7a7aefdd1bfc6f1eb4ba470c5",
-      "selected_epoch": 1,
-      "train_bce": 0.6920659250470294,
-      "trial": "staged-m2-a1-lr0.003.json",
-      "validation_bce": 0.692634992367105
-    },
-    {
-      "host_seconds": 6.213506124993728,
-      "options": {
-        "activation": 1,
-        "ae_epochs": 12,
-        "batch_size": 32,
-        "feature_mode": 2,
-        "freeze_encoders": 1,
-        "head_epochs": 32,
-        "hidden": 4,
-        "history_bars": 64,
-        "learning_rate": 0.006,
-        "max_epochs": 12,
-        "patience": 6,
-        "recurrent_epochs": 12
-      },
-      "receipt_sha256": "2d32e1d1d271d9ea14a1bf065b3ab2db112f56889a1b402c91d2507649ba1e39",
-      "selected_epoch": 22,
-      "train_bce": 0.6921979438794634,
-      "trial": "staged-m2-a1-lr0.006.json",
-      "validation_bce": 0.6923675995420309
+      "train_bce": 0.6923366429505966,
+      "trial": "minmax-lr0.001",
+      "validation_bce": 0.692796776599065
     }
   ],
   "configuration": {
@@ -714,40 +355,40 @@
     "learning_rate": 0.003,
     "max_epochs": 12,
     "patience": 6,
-    "recurrent_epochs": 12
+    "recurrent_epochs": 12,
+    "scaler": 0
   },
-  "experiment_plan_sha256": "c30135e9433a75710e3bf404bc955c29a574e14afff673846b4c269156738f35",
-  "feature_selection_disclosure": "Causal EMA/Williams and SMA/volatility variants were evaluated and did not beat the selected window-relative features; they remain research alternatives, no hidden fallback",
-  "holdout_acquired_at_lock": true,
+  "experiment_plan_sha256": "0bdd32c43042cda71f928a1c5dfd16457e369744704ffce63eb800b1a854d06a",
+  "feature_selection_disclosure": "Fixed window-relative channels; predeclared train-only standard vs author-inspired MinMax and two learning rates; all development candidates retained",
+  "holdout_acquired_at_lock": false,
   "holdout_used_for_selection": false,
-  "host_payload_sha256": "37d8398ddc77a0b37606835459d6bbccac3aaed17f00d14a347c563d93e595f8",
-  "locked_at": "2026-10-14T21:45:32.582469+00:00",
+  "host_payload_sha256": "f2eeb6b7c6f653decf3266fd3fadccfb3b85bfa92f52913dc9bbc38e4f5d9acb",
+  "locked_at": "2026-10-14T23:09:30.583106+00:00",
   "market_prediction_assertion": "not established; no profitability or original experiment reproduction claim",
-  "model_parameter_max_abs_environment_difference": 1.0685896612017132e-15,
-  "package_source_sha256": "7349edb2c5e490f43c2004b84ab8f3b13ad9996300dbb3d0ec5aa5707c3e0e62",
-  "post_evaluation_source_amendment": {
-    "configuration_and_selection_changed": false,
-    "scope": "formatting only",
-    "training_strategy_ast_sha256_before_and_after": "a269cf750265b0c3e53b1eb12c3d4bda861481b4dee4f390196699b168dd3e7f"
+  "package_source_sha256": "a4d75d0cd1fa750f1a5e6c5eaf3240b68d572284a621e3da3bddecfcf868b245",
+  "post_selection_formatting": {
+    "pre_format_lock_sha256": "536dfdefc2db2c6d3c512cfece1155a2110035e1ad92f81074f7319a7497a2b7",
+    "scope": "formatting only after CSV acquisition, before predictions; configuration and numerical implementation unchanged",
+    "strategy_ast_before_and_after": "2d62e4d9c5fa91644bc2771f8ecd874c12067841659ee54f7c3062e4bd0bb280"
   },
-  "pre_format_selection_lock_sha256": "b2045fa4a1fd3ac203bd36d3ddcbf8ec34c799f186177baa5ad5e0d6635d2cd1",
   "prior_negative_result": {
-    "commit": "7760ade45621a92ff0c2b6afe4f5a8f2138723af",
+    "auc": 0.47811,
+    "commit": "0dc85ca84dde9b73e80df72430a7ee86b44ac546",
+    "evidence": "prior independent supplement retained; rounded metrics are descriptive",
     "fills": 0,
-    "test_accuracy": 0.49122807017543857,
-    "test_bce": 0.7052111376635785,
+    "test_bce": 0.6921765,
     "test_period": [
-      "2024-08",
-      "2024-09"
+      "2024-10",
+      "2024-11",
+      "2024-12"
     ],
-    "training_prior_bce": 0.6930006626512965,
-    "version": "0.2.1"
+    "version": "0.2.2"
   },
-  "protocol_deviation": "Candidate selection, host reproduction and strict resource probe completed before holdout download. The lock-writing attempt failed on an overly strong byte-identical artifact assertion, but download continued. Before persisting this lock, the downloaded holdout received only checksum/format/timestamp validation, no predictions, returns or selection feedback. Numerical model comparison using fit/validation only found max parameter difference 1.07e-15. This chronology is disclosed; lock publication is not claimed to predate acquisition.",
+  "protocol_deviation": "none for this new 2025Q1 holdout; prior protocol retained in archived prior lock",
   "seed": 23,
-  "selected_trial": "staged-m0-a1-lr0.003.json",
+  "selected_trial": "standard-reference",
   "selection_metric": "minimum aggregated chronological validation BCE, then actual strict resource feasibility",
-  "strict_payload_sha256": "f638a10100811e8cf299771cf03c95a535299e11f3c3d1364ba1be855de383e8",
-  "training_request_canonical_sha256": "22bdc99dcf929db483def608d3f706d3988c616f2cf785945237a243d5b96a89",
-  "version": "1.0"
+  "strict_payload_sha256": "76c0873ac984337c3d8dcd5561bc45a1decd373e5ff4603e7492beb896c3b79a",
+  "training_request_canonical_sha256": "86ddc41ca9004ad13b5d562784b1eaa84d83e26dfa985331603a3156fd607455",
+  "version": "2.0"
 }

@@ -18,6 +18,72 @@ def cls():
     return strategy("grouped_cnn_lstm", "GroupedCNNLSTM")
 
 
+def test_author_minmax_fit_uses_only_training_rows_without_validation_clipping():
+    request = training_request(count=16, epochs=1, mode=0)
+    samples = [
+        sample.model_copy(
+            update={
+                "features": {
+                    **sample.features,
+                    "cfg_scaler": Decimal(1),
+                    "cfg_history_bars": Decimal(24),
+                }
+            }
+        )
+        for sample in request.samples
+    ]
+    # Retain only the 24 declared bars and use the same request across both runs.
+    request = request.model_copy(update={"samples": tuple(samples)})
+    model = cls()()
+    state = json.loads(model.train(request))
+    raw = [
+        [float(s.features[f"v_{t}_{j}"]) for j in range(5)]
+        for s in samples
+        if s.features["partition"] == 0
+        for t in range(24)
+    ]
+    windows = np.asarray(raw).reshape(-1, 24, 5)
+    features = np.asarray([row for window in windows for row in cls().features(window.tolist())])
+    assert state["means"] == pytest.approx(features.min(axis=0))
+    ranges = features.max(axis=0) - features.min(axis=0)
+    assert state["scales"] == pytest.approx(np.where(ranges == 0, 1, ranges))
+    changed = [
+        s
+        if s.features["partition"] == 0
+        else s.model_copy(
+            update={
+                "features": {
+                    k: v * (1 + int(k.split("_")[1]) * 20)
+                    if k.startswith("v_") and k.endswith("_4")
+                    else v
+                    for k, v in s.features.items()
+                }
+            }
+        )
+        for s in samples
+    ]
+    second = json.loads(cls()().train(request.model_copy(update={"samples": tuple(changed)})))
+    assert second["means"] == state["means"]
+    assert second["scales"] == state["scales"]
+    assert state["training"]["scaler"] == "training-only MinMax"
+    raw_validation = [
+        [float(changed[-1].features[f"v_{t}_{j}"]) for j in range(5)] for t in range(24)
+    ]
+    assert any(v < 0 or v > 1 for channel in model.channels(raw_validation) for v in channel)
+
+
+def test_public_2025_timestamp_conversion_requires_declared_units():
+    from scripts.build_six_paper_inputs import canonical_bar_timestamp
+
+    assert (
+        canonical_bar_timestamp(1735689600000000, "microseconds since Unix epoch") == 1735689600000
+    )
+    assert canonical_bar_timestamp(1735689600000, "milliseconds since Unix epoch") == 1735689600000
+    for stamp, unit in ((1735689600000001, "microseconds since Unix epoch"), (1, "unknown")):
+        with pytest.raises(ValueError, match="timestamp"):
+            canonical_bar_timestamp(stamp, unit)
+
+
 def bars(seed, count=64):
     rng = random.Random(seed)
     price, result = 200.0, []

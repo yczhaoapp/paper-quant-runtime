@@ -1,0 +1,16 @@
+{
+  "version": "interval-probability-v1",
+  "engine_source_sha256": "c9a71478b935341500fd2c38d4d650bd6cdde0022a4c72a480e285248769b2e7",
+  "flow": "directional aggregate flow over the preceding event interval; snapshots do not reconstruct intrainterval exchange matching",
+  "fill_order": "existing quotes evaluated from interval flow and the ending quote snapshot, then account marked, then strategy decision",
+  "nonadverse": "opposite directional flow > 0 and independent uniform draw < configured p; existing quote can fill at its own price even when off current touch",
+  "adverse": "ending bid below resting buy price or ending ask above resting sell price",
+  "limits": [
+    "unit full fills only",
+    "no price priority or queue/depth reconstruction",
+    "not a native exchange L1 execution model",
+    "no partial fills or endogenous maker impact"
+  ],
+  "validation": "independent adversarial off-touch buy/sell tests, probability boundaries, cancellations and ledger checks",
+  "scope": "explicit unchanged bounded approximation; no claim that aggregate snapshots prove exchange-priority fills"
+}

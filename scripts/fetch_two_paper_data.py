@@ -37,7 +37,7 @@ def prepare(*, cnn_history=False, cnn_holdout=False):
     if cnn_history:
         intervals.append(("4h", "2023-12"))
     if cnn_holdout:
-        intervals += [("4h", f"2024-{month:02d}") for month in range(10, 13)]
+        intervals += [("4h", month) for month in json.loads(plan.read_text())["evaluation"]]
     for interval, month in intervals:
         name = f"BTCUSDT-{interval}-{month}"
         path = DATA / (name + ".csv")
@@ -62,8 +62,10 @@ def prepare(*, cnn_history=False, cnn_holdout=False):
         rows = list(csv.reader(io.StringIO(content.decode())))
         stamps = [int(row[0]) for row in rows]
         seconds = 14400 if interval == "4h" else 60
+        unit = "microseconds" if month >= "2025-01" else "milliseconds"
+        units_per_second = 1000000 if unit == "microseconds" else 1000
         if not stamps or any(
-            b - a != seconds * 1000 for a, b in zip(stamps, stamps[1:], strict=False)
+            b - a != seconds * units_per_second for a, b in zip(stamps, stamps[1:], strict=False)
         ):
             raise ValueError("Public data contains a gap, duplicate or invalid order")
         path.write_bytes(content)
@@ -74,7 +76,9 @@ def prepare(*, cnn_history=False, cnn_holdout=False):
             "csv": path.name,
             "csv_sha256": hashlib.sha256(content).hexdigest(),
             "rows": len(rows),
-            "timestamp_unit": "milliseconds since Unix epoch",
+            "timestamp_unit": unit + " since Unix epoch",
+            "timestamp_conversion": "explicit source-metadata conversion to milliseconds in "
+            "upstream builder",
             "scope": "BTC/USDT spot OHLCV, UTC; explicit paper exchange/window adaptation",
         }
         records.append(record)

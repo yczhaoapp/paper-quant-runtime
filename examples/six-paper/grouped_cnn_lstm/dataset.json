@@ -1,9 +1,9 @@
 {
   "bar_seconds": 14400,
-  "content_sha256": "9692043794e7729ca3363185f580f9c34d16d877ab5186bacead5b518182b764",
+  "content_sha256": "1ca713978f63325850fc789717b78666d6e13bba126434293988cec2edb98e8c",
   "contract_version": "1.1",
   "dataset_id": "supplement.grouped_cnn_lstm",
-  "event_count": 575,
+  "event_count": 563,
   "fields": [
     "close",
     "high",

@@ -34,5 +34,5 @@
     "strategy_id": "supplement.ppo_twap_aware",
     "training_required": true
   },
-  "source_sha256": "81da686088f0d733a066797a83dab6d5e15d1f0b1fa42578694ea497f8a7b375"
+  "source_sha256": "2f007bec7ec7330cd50e5c606570e0e76e8f2d483a7bcf3b84e9efe5ecb96065"
 }

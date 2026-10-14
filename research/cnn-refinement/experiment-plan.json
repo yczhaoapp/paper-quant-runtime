@@ -1,36 +1,88 @@
 {
-  "version": "1.0",
+  "version": "2.0",
   "created_before_holdout_acquisition": true,
-  "reference_commit": "7760ade45621a92ff0c2b6afe4f5a8f2138723af",
+  "reference_commit": "0dc85ca84dde9b73e80df72430a7ee86b44ac546",
   "scope": "CNN upstream method adaptation; runtime, schemas, worker dependencies and resource controls frozen",
   "market": "public Binance BTCUSDT spot four-hour OHLCV",
-  "training": ["2024-01", "2024-02", "2024-03", "2024-04", "2024-05", "2024-06"],
-  "validation": ["2024-07", "2024-08", "2024-09"],
+  "training": [
+    "2024-01",
+    "2024-02",
+    "2024-03",
+    "2024-04",
+    "2024-05",
+    "2024-06"
+  ],
+  "validation": [
+    "2024-07",
+    "2024-08",
+    "2024-09"
+  ],
   "validation_disclosure": "August-September was the already observed negative evaluation in 0.2.1; now development validation, never relabelled as unseen",
   "history_month": "2023-12",
-  "evaluation": ["2024-10", "2024-11", "2024-12"],
-  "evaluation_policy": "Acquire and evaluate only after candidate selection and configuration lock; retain all months and zero-trade outcomes",
+  "evaluation": [
+    "2025-01",
+    "2025-02",
+    "2025-03"
+  ],
+  "evaluation_policy": "Persist selection and strict budget evidence before acquisition; retain all Jan-Mar2025 outcomes",
   "window": 24,
   "history_bars": 64,
   "theta": 0.5,
   "seed": 23,
-  "diagnostic_seeds": [5, 19, 61],
-  "baselines": {"models": ["training-prior", "regularized-logistic"], "ridge": [0.001, 0.01, 0.1], "epochs": 400, "learning_rate": 0.03},
-  "candidate_policy": {
-    "features": ["window-relative legacy", "causal 64-bar EMA/Williams indicators", "causal 64-bar SMA/volatility indicators"],
-    "feature_modes": [0, 1, 2],
-    "activation": ["tanh", "relu"],
-    "hidden": [4],
-    "learning_rate": [0.003, 0.006],
-    "ae_epochs": [12],
-    "joint_epochs": [12, 24],
-    "head_epochs": [0, 32],
-    "recurrent_epochs": [0, 12],
-    "batch_size": 32,
-    "patience": 6,
-    "selection": "minimum aggregated chronological validation BCE among declared resource-feasible candidates; no test trade or return selection",
-    "staging": "pretrain grouped autoencoders on fit samples, freeze/cached encoder outputs, train CNN-LSTM-head, optional cached-convolution recurrent refinement and frozen trunk head refinement"
+  "diagnostic_seeds": [
+    5,
+    19,
+    61
+  ],
+  "baselines": {
+    "models": [
+      "training-prior",
+      "regularized-logistic"
+    ],
+    "ridge": [
+      0.001,
+      0.01,
+      0.1
+    ],
+    "epochs": 400,
+    "learning_rate": 0.03
   },
-  "constraints": {"operation_seconds": 20, "cpu": 0.5, "memory_mb": 256, "contract_and_runtime_byte_identical": true, "threshold_changes": false},
-  "release_evidence": ["actual hidden4 gradients and learnability", "independent logistic and prior baselines", "causal prefix invariance and warmup", "training-only scaler and AE", "validation-only checkpoint selection", "resource-feasible host and Docker lifecycle", "unseen predictions and unchanged thresholds", "old negative results retained"]
+  "candidate_policy": {
+    "scaler": [
+      0,
+      1
+    ],
+    "candidates": [
+      "existing-standard-lr.003",
+      "author-minmax-lr.0001",
+      "minmax-lr.001-bounded-adaptation"
+    ],
+    "seed": 23,
+    "selection": "minimum chronological development-validation BCE among all predeclared candidates; strict resource gate before acquisition; no heldout predictions or trades used"
+  },
+  "constraints": {
+    "operation_seconds": 20,
+    "cpu": 0.5,
+    "memory_mb": 256,
+    "contract_and_runtime_byte_identical": true,
+    "threshold_changes": false
+  },
+  "release_evidence": [
+    "actual hidden4 gradients and learnability",
+    "independent logistic and prior baselines",
+    "causal prefix invariance and warmup",
+    "training-only scaler and AE",
+    "validation-only checkpoint selection",
+    "resource-feasible host and Docker lifecycle",
+    "unseen predictions and unchanged thresholds",
+    "old negative results retained"
+  ],
+  "created_at": "2026-10-14T23:08:38.273780+00:00",
+  "prior_observed_test": [
+    "2024-08",
+    "2024-09",
+    "2024-10",
+    "2024-11",
+    "2024-12"
+  ]
 }

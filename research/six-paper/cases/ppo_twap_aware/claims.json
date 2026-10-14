@@ -29,8 +29,8 @@
   "differences": [
     "Five observations and width8 networks replace the full source high-dimensional LOB networks.",
     "Training uses a late-start rPOV2-style prefix instead of the source rPOV1 training metaorder; evaluation observes eight unit children.",
-    "Three initial on-policy rollouts and four 32-transition PPO minibatches replace 140+ training episodes.",
-    "Quote stream uses bounded exponential Hawkes excitation with metaorder flow; not the original compound full LOB.",
+    "Three initial on-policy rollouts and four rounds sampling 32 transitions each, with one SGD update per transition (128 steps), replace 140+ training episodes.",
+    "Interval probability fill approximation may fill an off-touch resting quote; it does not enforce exchange price priority. Quote stream uses bounded exponential Hawkes excitation with metaorder flow; not the original compound full LOB.",
     "Queue, deep-book, partial fills, endogenous market-maker impact and original urgency-based TWAP agent are excluded.",
     "100-second warmup, .213-second action step and 40-second metaorder interval are retained in the bounded setup.",
     "One-basis-point per-fill fee differs from the source liquidation fee; the exact configured ledger is reported.",

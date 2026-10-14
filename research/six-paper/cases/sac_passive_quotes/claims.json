@@ -26,12 +26,12 @@
     "Retain Table1 dt=.001,T=1,spread=.01,q=5,p=.2 and total diffusion variance=.03.",
     "Separate parameter-extraction network omitted; actor/critics take normalized state directly.",
     "Four random-behavior episodes and 128 updates replace 1000 training episodes and 200 test episodes.",
-    "Hidden layers8 replace256; fixed entropy coefficient .2 and gamma .99 are disclosed.",
+    "Hidden layers8 replace256; hidden activation is tanh instead of the source ReLU. The Gaussian action also has a separate tanh squash. Fixed entropy coefficient .2 and gamma .99 are disclosed.",
     "Modern twin-Q target follows the implemented stable-baselines-style SAC rather than the earlier separate-V equations.",
     "Gaussian latent score is explicitly quantized into sell/hold/buy posting controls.",
     "The critic learns the collected continuous latent, whose quantized posting control produced the reward; it does not treat an integer control as that latent.",
     "Simulated diffusion approximation and independent order-flow draws do not reconstruct a calibrated non-Markov LOB.",
-    "No queue priority, partial fills, market impact or original experimental reward distribution claim."
+    "Interval probability fill approximation may fill an off-touch resting quote; it does not enforce exchange price priority. No queue priority, partial fills, market impact or original experimental reward distribution claim."
   ],
   "reproduction_scope": "bounded local method adaptation; not full paper experiment",
   "source": {

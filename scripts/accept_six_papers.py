@@ -122,6 +122,12 @@ def accept(output, *, strict=False, require_clean=False):
         identity = source_identity(ROOT, require_clean=require_clean)
         state.update(identity)
         state["contract_preservation"] = check_contract_lock()
+        semantics = ROOT / "research/six-paper/quote-semantics.json"
+        interpretation = json.loads(semantics.read_text())
+        if sha(ROOT / "src/paperquant/passive_engine.py") != interpretation["engine_source_sha256"]:
+            raise ValueError("Quote simulator differs from its pinned semantic declaration")
+        state["passive_quote_semantics"] = interpretation
+        state["passive_quote_semantics_sha256"] = sha(semantics)
         state["sources"] = prepare(fetch=False)
         check_inputs()
         catalog = json.loads(CATALOG.read_text())["cases"]
@@ -153,7 +159,9 @@ def accept(output, *, strict=False, require_clean=False):
         bindings = {
             c["strategy_id"]: {"node_ids": expanded_oracles(c["oracle_nodes"])} for c in catalog
         }
-        bindings["quote-contract"] = {"node_ids": expanded_oracles(QUOTE_NODES)}
+        bindings["quote-contract"] = {"node_ids": expanded_oracles(QUOTE_NODES + [
+            "tests/test_six_audit_refinement.py::test_interval_probability_simulator_explicitly_allows_off_touch_resting_fill"
+        ])}
         oracle_sha = _run_oracles(attempt / "oracles", bindings)
         state["method_oracle_junit_sha256"] = oracle_sha
         image_id = None

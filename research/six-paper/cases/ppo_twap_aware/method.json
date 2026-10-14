@@ -6,8 +6,8 @@
   "excluded_paper_components": [
     "Five observations and width8 networks replace the full source high-dimensional LOB networks.",
     "Training uses a late-start rPOV2-style prefix instead of the source rPOV1 training metaorder; evaluation observes eight unit children.",
-    "Three initial on-policy rollouts and four 32-transition PPO minibatches replace 140+ training episodes.",
-    "Quote stream uses bounded exponential Hawkes excitation with metaorder flow; not the original compound full LOB.",
+    "Three initial on-policy rollouts and four rounds sampling 32 transitions each, with one SGD update per transition (128 steps), replace 140+ training episodes.",
+    "Interval probability fill approximation may fill an off-touch resting quote; it does not enforce exchange price priority. Quote stream uses bounded exponential Hawkes excitation with metaorder flow; not the original compound full LOB.",
     "Queue, deep-book, partial fills, endogenous market-maker impact and original urgency-based TWAP agent are excluded.",
     "100-second warmup, .213-second action step and 40-second metaorder interval are retained in the bounded setup.",
     "One-basis-point per-fill fee differs from the source liquidation fee; the exact configured ledger is reported.",
@@ -50,6 +50,24 @@
       "paper_rule": "Training RL Agent, Table4: rho=0,+1,-1 denotes absent,buy,sell metaorder",
       "role": "inference",
       "runtime_rule": "Price/inventory/Hawkes-intensity/rho observations; post or cancel top-of-book quotes through contract1.1"
+    },
+    {
+      "adaptation": "Bounded setting and listed differences apply: Five observations and width8 networks replace the full source high-dimensional LOB networks.",
+      "claim_index": 0,
+      "implementation": "PPOTWAPAware.update_parameters",
+      "oracle_node": "tests/test_six_audit_refinement.py::test_ppo_multistep_gradient_reset_matches_independent_finite_difference",
+      "paper_rule": "RL MM Agent: decision and action networks trained by PPO",
+      "role": "training",
+      "runtime_rule": "Clear all optimizer gradients before every skip/mask/clip-dependent backward pass; no stale updates"
+    },
+    {
+      "adaptation": "Bounded setting and listed differences apply: Five observations and width8 networks replace the full source high-dimensional LOB networks.",
+      "claim_index": 0,
+      "implementation": "PPOTWAPAware.update_parameters",
+      "oracle_node": "tests/test_six_audit_refinement.py::test_ppo_real_training_never_updates_parameters_outside_current_loss",
+      "paper_rule": "RL MM Agent: decision and action networks trained by PPO",
+      "role": "training",
+      "runtime_rule": "Clear all optimizer gradients before every skip/mask/clip-dependent backward pass; no stale updates"
     }
   ],
   "strategy_id": "supplement.ppo_twap_aware"

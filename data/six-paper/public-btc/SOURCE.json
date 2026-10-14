@@ -179,6 +179,39 @@
       "rows": 186,
       "timestamp_unit": "milliseconds since Unix epoch",
       "scope": "BTC/USDT spot OHLCV, UTC; explicit paper exchange/window adaptation"
+    },
+    {
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/4h/BTCUSDT-4h-2025-01.zip",
+      "published_checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/4h/BTCUSDT-4h-2025-01.zip.CHECKSUM",
+      "archive_sha256": "a410122c029a07931b639bcd96a304ea81904ab4dfcf2d88c016158190102520",
+      "csv": "BTCUSDT-4h-2025-01.csv",
+      "csv_sha256": "502757e83b79e640ac26111150ed0a61719c4acf991317c38bd4543affa0cfe9",
+      "rows": 186,
+      "timestamp_unit": "microseconds since Unix epoch",
+      "timestamp_conversion": "explicit source-metadata conversion to milliseconds in upstream builder",
+      "scope": "BTC/USDT spot OHLCV, UTC; explicit paper exchange/window adaptation"
+    },
+    {
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/4h/BTCUSDT-4h-2025-02.zip",
+      "published_checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/4h/BTCUSDT-4h-2025-02.zip.CHECKSUM",
+      "archive_sha256": "e6454bd1819f944bb05571ec8cc7bc92e8b6ff996c83f5642f3c8e044784f6a5",
+      "csv": "BTCUSDT-4h-2025-02.csv",
+      "csv_sha256": "69354d1bffb89b521b3f2f1200057f1203127b5bf864511a9d302e3f6ed58add",
+      "rows": 168,
+      "timestamp_unit": "microseconds since Unix epoch",
+      "timestamp_conversion": "explicit source-metadata conversion to milliseconds in upstream builder",
+      "scope": "BTC/USDT spot OHLCV, UTC; explicit paper exchange/window adaptation"
+    },
+    {
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/4h/BTCUSDT-4h-2025-03.zip",
+      "published_checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/4h/BTCUSDT-4h-2025-03.zip.CHECKSUM",
+      "archive_sha256": "3d6d47445370c9d502745795e71e6afffcfba828b7f86cf29124f35c53386b4d",
+      "csv": "BTCUSDT-4h-2025-03.csv",
+      "csv_sha256": "393682c7de94474d11cb68722c19503d472ea84f7491288b58d7639183e7f24d",
+      "rows": 186,
+      "timestamp_unit": "microseconds since Unix epoch",
+      "timestamp_conversion": "explicit source-metadata conversion to milliseconds in upstream builder",
+      "scope": "BTC/USDT spot OHLCV, UTC; explicit paper exchange/window adaptation"
     }
   ]
 }

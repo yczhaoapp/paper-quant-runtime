@@ -24,7 +24,7 @@
       "adaptation": "Bounded setting and listed differences apply: Preselected generated pair replaces WRDS/Datastream, distance ranking and manual industry selection.",
       "claim_index": 1,
       "implementation": "OUPercentilePairs.decide",
-      "oracle_node": "tests/test_six_paper_methods.py::test_ou_refuses_nonstationary_calibration_and_quantiles_match_numpy",
+      "oracle_node": "tests/test_six_audit_refinement.py::test_ou_complete_rolling_entry_hold_and_median_exit",
       "paper_rule": "Signal Generation: PIT 25th/75th entry and crossing 50th exit, executed following day",
       "role": "inference",
       "runtime_rule": "Use prior 90 observed z-scores and frozen training OU fit; submit both next-open hedge targets"

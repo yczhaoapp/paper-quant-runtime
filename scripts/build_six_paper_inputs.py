@@ -168,13 +168,28 @@ def ou_inputs():
     )
 
 
+def canonical_bar_timestamp(stamp, unit):
+    if unit == "milliseconds since Unix epoch":
+        return int(stamp)
+    if unit == "microseconds since Unix epoch" and int(stamp) % 1000 == 0:
+        return int(stamp) // 1000
+    raise ValueError("Unsupported declared bar timestamp unit or sub-millisecond opening")
+
+
 def raw_bars(interval, months):
     result = []
+    records = json.loads((ROOT / "data/six-paper/public-btc/SOURCE.json").read_text())["sources"]
+    units = {record["csv"]: record["timestamp_unit"] for record in records}
     for month in months:
         path = ROOT / "data/six-paper/public-btc" / f"BTCUSDT-{interval}-{month}.csv"
         with path.open() as handle:
             for row in csv.reader(handle):
-                result.append((int(row[0]), [float(v) for v in row[1:6]]))
+                result.append(
+                    (
+                        canonical_bar_timestamp(row[0], units[path.name]),
+                        [float(v) for v in row[1:6]],
+                    )
+                )
     return result
 
 
@@ -210,16 +225,18 @@ def cnn_inputs():
         lock = json.loads(refinement.read_text())
         history = lock["configuration"]["history_bars"]
         request = request_for(lock["configuration"], history=history, seed=lock["seed"])
-        evaluation = raw_bars("4h", plan["validation"])[-(history - 1):]
+        evaluation = raw_bars("4h", plan["validation"])[-(history - 1) :]
         evaluation += raw_bars("4h", plan["evaluation"])
         publish(
-            "grouped_cnn_lstm", bar_events(evaluation, 14400),
+            "grouped_cnn_lstm",
+            bar_events(evaluation, 14400),
             dataset={"granularity": "minute", "bar_seconds": 14400, "market_kind": "bar"},
             training=request,
             provenance={
                 "type": "public_market_data",
                 "source": "data/six-paper/public-btc/SOURCE.json",
-                "training": plan["training"], "validation": plan["validation"],
+                "training": plan["training"],
+                "validation": plan["validation"],
                 "evaluation": plan["evaluation"],
                 "evaluation_warmup": "last history_bars-1 completed validation bars",
                 "experiment_plan": "research/cnn-refinement/experiment-plan.json",
@@ -227,6 +244,10 @@ def cnn_inputs():
                 "prior_negative_evaluation": lock["prior_negative_result"],
                 "feature_selection": lock["feature_selection_disclosure"],
                 "availability": "completed bar exclusive end, archive close time plus 1ms",
+                "timestamp_conversion": (
+                    "2025 spot microseconds to milliseconds using pinned "
+                    "SOURCE metadata; source CSV bytes preserved"
+                ),
                 "exclusions": "local method adaptation; no original experiment or profit claim",
             },
         )

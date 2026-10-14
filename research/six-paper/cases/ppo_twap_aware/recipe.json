@@ -74,7 +74,7 @@
     "training_required": true
   },
   "package": "../../../../strategies/supplement.ppo_twap_aware",
-  "package_source_sha256": "81da686088f0d733a066797a83dab6d5e15d1f0b1fa42578694ea497f8a7b375",
+  "package_source_sha256": "2f007bec7ec7330cd50e5c606570e0e76e8f2d483a7bcf3b84e9efe5ecb96065",
   "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Five observations and width8 networks replace the full source high-dimensional LOB networks.",
   "source": {
     "file": "../../../source-cache/six/2510.27334v1.pdf",
@@ -85,5 +85,5 @@
     "url": "https://arxiv.org/pdf/2510.27334v1"
   },
   "spec_file": "method.json",
-  "spec_sha256": "2d723d22ca18b48b1960bde97602548213b8515264e94c5b9253f6d97792499b"
+  "spec_sha256": "5f395161b0ba4c06a548d6a9b65093b8a57ef8fe366e44945c3b7b61d8e56fb5"
 }

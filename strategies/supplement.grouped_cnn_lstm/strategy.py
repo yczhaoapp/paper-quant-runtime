@@ -495,6 +495,7 @@ class GroupedCNNLSTM:
             "freeze_encoders": 1,
             "head_epochs": 0,
             "recurrent_epochs": 0,
+            "scaler": 0,
         }
         options = {
             key: float(request.samples[0].features.get("cfg_" + key, value))
@@ -510,6 +511,7 @@ class GroupedCNNLSTM:
                     "freeze_encoders",
                     "head_epochs",
                     "recurrent_epochs",
+                    "scaler",
                 }
                 else 1
             )
@@ -522,6 +524,7 @@ class GroupedCNNLSTM:
             options["feature_mode"] not in (0, 1, 2)
             or options["activation"] not in (0, 1)
             or options["freeze_encoders"] not in (0, 1)
+            or options["scaler"] not in (0, 1)
             or options["history_bars"] not in (24, 64)
             or options["feature_mode"]
             and options["history_bars"] != 64
@@ -563,11 +566,20 @@ class GroupedCNNLSTM:
         features = [
             row for i in train_indices for row in self.features(windows[i], mode=self.feature_mode)
         ]
-        self.means = [sum(row[j] for row in features) / len(features) for j in range(10)]
-        self.scales = [
-            math.sqrt(sum((row[j] - self.means[j]) ** 2 for row in features) / len(features)) or 1.0
-            for j in range(10)
-        ]
+        if options["scaler"]:
+            # Author-inspired train-only MinMax normalization. Validation/test
+            # values may lie outside [0,1]; never refit or clip those partitions.
+            self.means = [min(row[j] for row in features) for j in range(10)]
+            self.scales = [
+                max(row[j] for row in features) - self.means[j] or 1.0 for j in range(10)
+            ]
+        else:
+            self.means = [sum(row[j] for row in features) / len(features) for j in range(10)]
+            self.scales = [
+                math.sqrt(sum((row[j] - self.means[j]) ** 2 for row in features) / len(features))
+                or 1.0
+                for j in range(10)
+            ]
         channels = [self.channels(window) for window in windows]
         before = [p.value for p in self.parameters()]
         rng = random.Random(request.seed)
@@ -823,6 +835,9 @@ class GroupedCNNLSTM:
                     "selected_epoch": best_epoch,
                     "options": options,
                     "optimizer": "minibatch Adam with global gradient norm clip5",
+                    "scaler": "training-only MinMax"
+                    if options["scaler"]
+                    else "training-only standard",
                     "checkpoint_selection": "minimum chronological validation BCE",
                     "initial_train": initial_train,
                     "initial_validation": initial_validation,

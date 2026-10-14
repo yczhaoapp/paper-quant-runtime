@@ -1,0 +1,25 @@
+{
+  "repository": "https://github.com/mxgx110/MyPaper_DL_ML_Fin",
+  "commit": "2377abc5b464ca001b01c9100db122426bc18af1",
+  "files": {
+    "README.md": "5acd799310211e25788eb5a53fd9059efd2665a6b983331b49f6312e13f394fe",
+    "BTC_Main.ipynb": "f8b9d8544982e9d181a6c134e6eb4f590827a7669656c093319e1268887aae0a",
+    "utils/AE.py": "a787c3e1a9e4f07371708dcfd4a10c6cb1467c82145b98ce4dadbc25b2a30740",
+    "utils/AEArchitecture.py": "7bec84185d2e34d2217120d72a634724afa561eefab4bd3b1138842cbaebe246",
+    "utils/OHLCVDataset.py": "d1f13c09549f8a359044d6eb359079ccc4ca2fa431277f849a5514662e2cddb4"
+  },
+  "reviewed_at": "2026-10-14T23:08:38.280753+00:00",
+  "notebook_cell_numbering": "zero-based JSON cells",
+  "adopted_for_comparison": [
+    "BTC cell27 train-fitted MinMaxScaler",
+    "cells39/68 Adam learning_rate=.0001 and batch32",
+    "cell77 detached pretrained encoding and reset LSTM state"
+  ],
+  "not_adopted": [
+    "OHLCVDataset.py window [i,i+ws) uses binary_labels[i+ws], one bar later than current immediate next-close target; target scope remains explicit",
+    "cells85-89 side determined from clipped_y_test (actual target); runtime instead uses predictions",
+    "cell77 last batch loss as epoch loss; use full validation BCE",
+    "600 epochs, BatchNorm, full AE/XGBoost/wavelet and width20 are not represented by bounded hidden4 model"
+  ],
+  "implementation": "independently implement train-only MinMax scaling; no author code copied; bounds remain disclosed"
+}

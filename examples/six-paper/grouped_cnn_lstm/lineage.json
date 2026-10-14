@@ -2,31 +2,33 @@
   "availability": "completed bar exclusive end, archive close time plus 1ms",
   "configuration_lock": "research/cnn-refinement/selection-lock.json",
   "evaluation": [
-    "2024-10",
-    "2024-11",
-    "2024-12"
+    "2025-01",
+    "2025-02",
+    "2025-03"
   ],
   "evaluation_warmup": "last history_bars-1 completed validation bars",
-  "event_count": 575,
-  "events_sha256": "9692043794e7729ca3363185f580f9c34d16d877ab5186bacead5b518182b764",
+  "event_count": 563,
+  "events_sha256": "1ca713978f63325850fc789717b78666d6e13bba126434293988cec2edb98e8c",
   "exclusions": "local method adaptation; no original experiment or profit claim",
   "experiment_plan": "research/cnn-refinement/experiment-plan.json",
-  "feature_selection": "Causal EMA/Williams and SMA/volatility variants were evaluated and did not beat the selected window-relative features; they remain research alternatives, no hidden fallback",
+  "feature_selection": "Fixed window-relative channels; predeclared train-only standard vs author-inspired MinMax and two learning rates; all development candidates retained",
   "first_event": "2024-09-27T08:00:00+00:00",
-  "last_event": "2025-01-01T00:00:00+00:00",
+  "last_event": "2025-04-01T00:00:00+00:00",
   "prior_negative_evaluation": {
-    "commit": "7760ade45621a92ff0c2b6afe4f5a8f2138723af",
+    "auc": 0.47811,
+    "commit": "0dc85ca84dde9b73e80df72430a7ee86b44ac546",
+    "evidence": "prior independent supplement retained; rounded metrics are descriptive",
     "fills": 0,
-    "test_accuracy": 0.49122807017543857,
-    "test_bce": 0.7052111376635785,
+    "test_bce": 0.6921765,
     "test_period": [
-      "2024-08",
-      "2024-09"
+      "2024-10",
+      "2024-11",
+      "2024-12"
     ],
-    "training_prior_bce": 0.6930006626512965,
-    "version": "0.2.1"
+    "version": "0.2.2"
   },
   "source": "data/six-paper/public-btc/SOURCE.json",
+  "timestamp_conversion": "2025 spot microseconds to milliseconds using pinned SOURCE metadata; source CSV bytes preserved",
   "training": [
     "2024-01",
     "2024-02",
@@ -35,7 +37,7 @@
     "2024-05",
     "2024-06"
   ],
-  "training_sha256": "22bdc99dcf929db483def608d3f706d3988c616f2cf785945237a243d5b96a89",
+  "training_sha256": "86ddc41ca9004ad13b5d562784b1eaa84d83e26dfa985331603a3156fd607455",
   "type": "public_market_data",
   "validation": [
     "2024-07",

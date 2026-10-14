@@ -1,0 +1,17 @@
+{
+  "created_at": "2026-10-14T23:08:38.281101+00:00",
+  "evaluation_seeds": [
+    51037,
+    61037,
+    71037
+  ],
+  "ppo_meta_sides": [
+    -1,
+    0,
+    1
+  ],
+  "sac_natural_paths": 3,
+  "controlled_branch": "separate interval flow=1 with draw=0, p remains .2; train and evaluate SAC separately on this controlled path; not a natural-market experiment",
+  "retain_all_results": true,
+  "selection_feedback": false
+}

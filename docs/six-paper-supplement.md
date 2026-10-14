@@ -1,7 +1,7 @@
 # 六篇新论文定向接入补充版本
 
 本补充版本沿用 `0.2.0` 的六篇接入和 `0.2.1` 两篇补强，并在独立分支 `codex/cnn-refinement`
-形成软件版本 `0.2.2`。本轮完善 CNN 的配置验证、基线、分阶段训练和独立测试；
+形成软件版本 `0.2.3`。本轮完善 CNN 的配置验证、基线、分阶段训练和独立测试；
 所有运行时源码及 Schema 与提交 `d009b62e725c53a3484021e4fef0be74d9dc2b23` 字节一致。
 原封存提交 `747460544d5dabcafa9421031bdbc97a1bf28282` 及两轮历史收据保持原状。
 本轮范围、完整负面结果、因果特征选模及协议偏差见 [CNN说明](cnn-refinement.txt)。
@@ -23,10 +23,10 @@ PDF 页码从文件第一页计数，不使用印刷页码。锚点是定位辅�
 | --- | --- | --- |
 | [2403.07998v1](https://arxiv.org/abs/2403.07998v1) | 负单滞后 ADF 权重、精确全局最大权匹配、504 日滚动对数价差、月度选对、z-score 与 beta 美元对冲 | 四资产受控模拟；只实现 z-score 分支；子集动态规划替代 blossom；两腿非原子；不用原文收益实验。原文 Eq3 与后文方向矛盾时采用 §4.2 经济方向，z-score 用标准差。规则策略无训练入口执行需求。 |
 | [2412.12458v1](https://arxiv.org/abs/2412.12458v1) | 训练段 AR(1) OLS、Eq8–10 OU 参数转换、历史 90 日分位信号 | 预选模拟价差与固定 hedge；形成期和运行期分离；不使用私有 WRDS、原股池或人为行业选对；Eq7 排印与 Eq9–10 不一致时遵循 Eq10。 |
-| [2205.08382v1](https://arxiv.org/abs/2205.08382v1) | 两个卷积自编码器、三组 Conv/Pool/Conv 分支、many-to-one LSTM、经独立梯度验证的解析反向传播、概率阈值与下注量 | BTC 四小时数据；2024 Jan–Jun 训练、July 验证、固定 August–September 测试；完整步长一窗口、窗口相对价量、训练段 scaler、Adam 和验证损失检查点。最终 LSTM/FC 宽度4满足既有 worker 时限；省略 wavelet、XGBoost、dropout、大指标搜索及 SL/TP 引擎。原文质量代理与原实验复现状态单列。 |
-| [2409.03762v1](https://arxiv.org/abs/2409.03762v1) | 59 分钟因果特征、训练内 4% 分位标签、BIC 选 GMM、簇内 KNN | BTC 一分钟数据；2024 Jan–Feb 训练、March 仅诊断验证、固定 April–May 测试。1,440 个训练块，训练段阈值/scaler/GMM/邻居库；对角协方差、ridge=.001、K=1..4、1NN。报告类别召回率与持有基线；不声称原三市场收益实验。原文末六分钟歧义按恰好六根处理。 |
-| [2410.14504v2](https://arxiv.org/abs/2410.14504v2) | Gaussian/tanh actor、双 critic、熵项、目标软更新、库存约束报价、真实模拟账本奖励 | 四条行为轨迹与 128 更新；隐藏层 8；固定 alpha=0.2；采用现代 twin-Q SAC，省略参数抽取网络；明确量化连续潜变量为三种报价控制。保留 dt=.001、T=1、q=5、spread=.01、p=.2，使用简化扩散，不声称完整 non-Markov 订单簿。 |
-| [2510.27334v1](https://arxiv.org/abs/2510.27334v1) | decision/action 双政策、绑定原始行为 logp 的 PPO clip、正优势 SIL、rho 与报价/撤单 | 五维观察、宽度 8；三条初始 on-policy 轨迹、4×32 样本更新；100 秒预热后开始代理，评估八笔间隔 40 秒 TWAP 子单；训练用晚启动 rPOV2 前缀而非原 rPOV1；Hawkes-like 模拟省略完整订单簿、排队、冲击与部分成交；每次成交 1bp 手续费单独披露。 |
+| [2205.08382v1](https://arxiv.org/abs/2205.08382v1) | 两个卷积自编码器、三组 Conv/Pool/Conv 分支、many-to-one LSTM、经独立梯度验证的解析反向传播、概率阈值与下注量 | BTC 四小时数据；2024 Jan–Jun 训练、July–September 开发验证、固定 2025 January–March 独立测试；完整步长一窗口、窗口相对价量、训练段 scaler、Adam 和验证损失检查点。最终 LSTM/FC 宽度4满足既有 worker 时限；省略 wavelet、XGBoost、dropout、大指标搜索及 SL/TP 引擎。原文质量代理与原实验复现状态单列。 |
+| [2409.03762v1](https://arxiv.org/abs/2409.03762v1) | 59 分钟因果特征、训练内 4% 分位标签、BIC 选 GMM、簇内 KNN | BTC 一分钟数据；2024 Jan–Feb 训练、March 仅诊断验证、固定 April–May 测试。1,440 个训练块，训练段阈值/scaler/GMM/邻居库；对角协方差、ridge=.001、K=1..4、1NN。报告类别召回率与始终预测类别0的基线；不声称原三市场收益实验。原文末六分钟歧义按恰好六根处理。 |
+| [2410.14504v2](https://arxiv.org/abs/2410.14504v2) | Gaussian/tanh actor、双 critic、熵项、目标软更新、库存约束报价、真实模拟账本奖励 | 四条行为轨迹与 128 更新；隐藏层 8、tanh 隐层替代原 ReLU；固定 alpha=0.2；采用现代 twin-Q SAC，省略参数抽取网络；明确量化连续潜变量为三种报价控制。保留 dt=.001、T=1、q=5、spread=.01、p=.2，使用简化扩散，不声称完整 non-Markov 订单簿。 |
+| [2510.27334v1](https://arxiv.org/abs/2510.27334v1) | decision/action 双政策、绑定原始行为 logp 的 PPO clip、正优势 SIL、rho 与报价/撤单 | 五维观察、宽度 8；三条初始 on-policy 轨迹、四轮各抽32条、逐条SGD，共128次更新；100 秒预热后开始代理，评估八笔间隔 40 秒 TWAP 子单；训练用晚启动 rPOV2 前缀而非原 rPOV1；Hawkes-like 模拟省略完整订单簿、排队、冲击与部分成交；每次成交 1bp 手续费单独披露。 |
 
 支持算法原文：
 [SAC](https://arxiv.org/abs/1812.05905v2)、
@@ -112,3 +112,5 @@ CNN 与 GMM 使用参考引擎和 `--fee-rate 0.0001`。其他例子按 catalog 
 算法测试使用多参数、随机样本、独立公式、梯度性质及对照实现；
 RL 还检验变更奖励确实改变模型，而不是返回固定模型或预存动作序列。
 这些测试支持局部方法正确性，不能保证没有未知缺陷或推广到未验证的数据、依赖与语义。
+
+持续挂单的概率成交采用 preceding-interval flow 和结束报价快照的显式近似：旧挂单可能在已离开当前最优价时按自身价格成交。它不复现交易所价格优先或队列，详见 `research/six-paper/quote-semantics.json`；完整验收会校验该语义声明与引擎源码绑定。

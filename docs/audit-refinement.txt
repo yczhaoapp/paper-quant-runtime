@@ -1,0 +1,58 @@
+六篇方法审计修复与 CNN 作者代码核对——独立补充版本 0.2.3
+
+本轮修复
+PPO 每次优化前清理全部待优化参数梯度，防止 skip、mask、clip 不依赖的参数再次沿旧梯度更新。
+公式测试、48次连续有限差分更新和实际训练128步图外参数不变检查分别验证，更新日程明确为
+四轮各抽32条 transition，逐条SGD，共128次更新。
+OU增加600帧滚动开仓/持有/中位数退出验证，SAC执行和奖励主张分别绑定账本及奖励测试。
+全部新增方法验证纳入逐篇来源和方法门禁，不把一次运行passed当成整篇论文忠实复现。
+
+报价模拟语义
+运行时和Schema仍与0.2.0逐文件字节一致。当前 passive 引擎继续采用显式区间概率近似。
+flow代表前一事件至当前事件之间的方向流量，事件末报价用于不利成交判断和账户标记，随后推理。
+非不利成交由flow>0、uniform<p决定，不约束旧挂单仍处于事件末最优价；因此可能off-touch成交。
+这不是交易所价格优先或队列模拟，不验证部分成交、深度消耗和内生冲击。
+research/six-paper/quote-semantics.json绑定实际引擎源码哈希，正式门禁核对并写入报告。
+两侧off-touch、概率边界、撤单和完整账本测试验证这一声明的真实行为。
+
+RL情景
+固定三个评价种子，PPO每个种子分别执行买入、卖出和无TWAP整段行情，SAC执行三条自然模拟路径。
+全部结果保留，不按收益、成交或测试表现筛选。自然路径是否存在非不利成交如实统计。
+另用明确标记的高流量/固定draw受控输入验证SAC训练、奖励反馈和训练后推理的非不利成交分支；
+p仍为.2。受控模型、输入和结果单独存档，不替代或混入自然路径，不声称论文实验复现。
+
+CNN作者代码核对
+固定作者官方仓库commit2377abc5b464ca001b01c9100db122426bc18af1。
+定位和文件哈希见research/audit-refinement/cnn-author-source.json。
+BTC_Main.ipynb第27个JSON cell使用训练段MinMaxScaler；第39/68个使用Adam lr=.0001、batch32；
+第77个使用分组预训练表示并detach、每批重置LSTM状态。这些思想用于有依据的研究对照。
+独立实现可选训练段MinMax缩放，验证段和测试段不参与范围估计，也不按范围裁剪。
+固定三组候选：现有standard/lr=.003，MinMax/lr=.0001，MinMax/lr=.001。
+开发验证BCE分别为.69209445、.69277192、.69279678；因此保留现有standard配置。
+未为了更贴近作者参数而选择表现更差的候选，也不声称作者配置提高了本次预测能力。
+
+作者utils/OHLCVDataset.py的标签索引在当前24根窗口后多移一根；本例明确保留立即下一收盘方向。
+作者收益单元使用clipped_y_test决定side；本例使用模型预测下单，以真实回测账本报告。
+作者将最后一个batch loss作为epoch loss；本例使用完整验证集聚合BCE与检查点选择。
+作者完整BatchNorm、AE结构、wavelet/XGBoost、width20及600轮训练仍未复现。
+本轮没有引入PyTorch或改变沙箱限制。theta=.5保持多头2/3、空头1/3阈值和原下注量。
+
+新独立测试
+训练2024年1月至6月、开发验证7月至9月；历史2024年8月至12月已观察结果继续保留。
+新测试固定2025年1月至3月。配置、三个候选结果及现有限制下Docker训练探针在下载前落锁。
+下载后仅格式化了策略源码；已核对AST完全相同，原选择锁和格式化摘要均保留，不作数值更改。
+2025年Binance现货CSV采用微秒时间戳，按SOURCE明示元数据转换为毫秒，原CSV字节保留。
+该转换属于上游数据准备，记录在来源与lineage中，没有静默猜测时间单位。
+新测试不用于选种子、模型、阈值或超参数。新结果由本轮收据给出，不预设盈利或成交结论。
+
+版本与复现
+原封存版本及0.2.0/0.2.1/0.2.2补充源码、模型和归档均保留。本轮为新的本地提交与封存证据。
+uv sync --locked --extra dev
+uv run --no-sync python -m scripts.prepare_six_sources --fetch --output runs/source-preparation
+uv run --no-sync python scripts/verify_strict.py --require-clean --output runs/audit-strict
+uv run --no-sync python -m scripts.accept_cnn_refinement --strict --require-clean --output runs/audit-final
+uv run --no-sync python -m scripts.accept_rl_scenarios --strict --require-clean --output runs/audit-rl
+uv run --no-sync python -m scripts.accept_paper_depth --output runs/audit-depth
+完整首轮安装和论文获取需要显式联网准备；准备后的策略运行按断网沙箱执行。
+随包镜像为linux/arm64，新版本远端跨平台CI状态以实际执行为准，不能用历史CI代替。
+S档认证以公开条款和主办方判定为准，不由运行成功推断预测有效或原论文收益复现。

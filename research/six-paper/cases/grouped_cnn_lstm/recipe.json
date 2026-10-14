@@ -46,8 +46,8 @@
     "training_required": true
   },
   "package": "../../../../strategies/supplement.grouped_cnn_lstm",
-  "package_source_sha256": "7349edb2c5e490f43c2004b84ab8f3b13ad9996300dbb3d0ec5aa5707c3e0e62",
-  "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Public BTC/USDT Jan-Jun2024 training, July-September development validation, independent October-December test; prior August-September negative result retained.",
+  "package_source_sha256": "a4d75d0cd1fa750f1a5e6c5eaf3240b68d572284a621e3da3bddecfcf868b245",
+  "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Public BTC/USDT Jan-Jun2024 training, July-September development validation, independent January-March2025 test; prior August-September and October-December negative results retained.",
   "source": {
     "file": "../../../source-cache/six/2205.08382v1.pdf",
     "format": "pdf",
@@ -57,5 +57,5 @@
     "url": "https://arxiv.org/pdf/2205.08382v1"
   },
   "spec_file": "method.json",
-  "spec_sha256": "9e899e55c1a543a2ea594697be4f2e96728bd92281c1da39f3279039339041cb"
+  "spec_sha256": "5f81280392c9381692cb98f99abf54224e429645a14da08245b48c7871718b9a"
 }

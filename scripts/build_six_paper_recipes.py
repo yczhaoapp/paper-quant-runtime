@@ -96,7 +96,8 @@ MAPPINGS = [
                 "90 day window",
                 "inference",
                 "decide",
-                "test_ou_refuses_nonstationary_calibration_and_quantiles_match_numpy",
+                "tests/test_six_audit_refinement.py::test_ou_complete_ro"
+                "lling_entry_hold_and_median_exit",
                 (
                     "Signal Generation: PIT 25th/75th entry and crossing 50th "
                     "exit, executed following day"
@@ -187,7 +188,9 @@ MAPPINGS = [
         ],
         [
             "Public BTC/USDT Jan-Jun2024 training, July-September development validation, "
-            "independent October-December test; prior August-September negative result retained.",
+            "independent January-March2025 test; prior August-"
+            "September and October-December negative results "
+            "retained.",
             (
                 "Wavelet denoising, XGBoost feature selection, large "
                 "indicator grid and dropout are excluded."
@@ -202,7 +205,8 @@ MAPPINGS = [
                 "Conv outputs reduced."
             ),
             (
-                "Training uses minibatch Adam, training-only scaler, 12-epoch AE pretraining, "
+                "Training uses minibatch Adam, training-only standard or"
+                " MinMax scaler, 12-epoch AE pretraining, "
                 "frozen encoder/CNN stages and validation checkpoint selection. ReLU replaces "
                 "the earlier main tanh activation; BatchNorm remains excluded. Bounded stages "
                 "do not reproduce the paper's convergence loop."
@@ -308,7 +312,8 @@ MAPPINGS = [
                 "original APC profitability reproduction excluded."
             ),
             (
-                "Validation reports per-class support, recall and a hold baseline; "
+                "Validation reports per-class support, recall and an "
+                "always-predict-class-0 baseline; "
                 "it cannot alter labels, scaler, GMM or neighbors."
             ),
         ],
@@ -337,7 +342,10 @@ MAPPINGS = [
                 "non-adverse fill probability",
                 "execution",
                 "decide",
-                "test_sac_soft_bellman_terminal_and_entropy_properties",
+                (
+                    "tests/test_six_audit_refinement.py::"
+                    "test_sac_execution_uses_trained_policy_and_inventory_bounded_quote_ledger"
+                ),
                 (
                     "Eq25-32: adverse quote crosses or nonadverse flow fills; "
                     "cash and inventory ledger"
@@ -352,7 +360,8 @@ MAPPINGS = [
                 "maximum position size",
                 "reward",
                 "train",
-                "test_sac_soft_bellman_terminal_and_entropy_properties",
+                "tests/test_six_audit_refinement.py::test_sac_collected_"
+                "rewards_match_separate_marked_wealth_and_penalty",
                 (
                     "Eq33-35: price/inventory state, q=5 feasible controls, "
                     "marked wealth minus inventory penalty"
@@ -374,7 +383,10 @@ MAPPINGS = [
                 "Four random-behavior episodes and 128 updates replace 1000"
                 " training episodes and 200 test episodes."
             ),
-            "Hidden layers8 replace256; fixed entropy coefficient .2 and gamma .99 are disclosed.",
+            "Hidden layers8 replace256; hidden activation is tanh "
+            "instead of the source ReLU. The Gaussian action also "
+            "has a separate tanh squash. Fixed entropy coefficient "
+            ".2 and gamma .99 are disclosed.",
             (
                 "Modern twin-Q target follows the implemented "
                 "stable-baselines-style SAC rather than the earlier "
@@ -391,7 +403,10 @@ MAPPINGS = [
                 "non-Markov LOB."
             ),
             (
-                "No queue priority, partial fills, market impact or "
+                "Interval probability fill approximation may fill an "
+                "off-touch resting quote; it does not enforce exchange "
+                "price priority. No queue priority, partial fills, "
+                "market impact or "
                 "original experimental reward distribution claim."
             ),
         ],
@@ -451,11 +466,14 @@ MAPPINGS = [
                 "rPOV1 training metaorder; evaluation observes eight unit children."
             ),
             (
-                "Three initial on-policy rollouts and four 32-transition "
-                "PPO minibatches replace 140+ training episodes."
+                "Three initial on-policy rollouts and four rounds sampling 32 transitions each, "
+                "with one SGD update per transition (128 steps), replace 140+ training episodes."
             ),
             (
-                "Quote stream uses bounded exponential Hawkes excitation "
+                "Interval probability fill approximation may fill an "
+                "off-touch resting quote; it does not enforce exchange "
+                "price priority. Quote stream uses bounded exponential "
+                "Hawkes excitation "
                 "with metaorder flow; not the original compound full LOB."
             ),
             (
@@ -521,7 +539,7 @@ def main():
                     "paper_rule": paper,
                     "runtime_rule": runtime,
                     "implementation": CLASSES[name] + "." + implementation,
-                    "oracle_node": TEST + test,
+                    "oracle_node": test if test.startswith("tests/") else TEST + test,
                     "adaptation": "Bounded setting and listed differences apply: " + differences[0],
                 }
                 for i, (page, anchor, role, implementation, test, paper, runtime) in enumerate(
@@ -567,8 +585,28 @@ def main():
                 ),
             )
             spec["steps"].append(step)
+        if name == "ppo_twap_aware":
+            for node in (
+                "test_ppo_multistep_gradient_reset_matches_independent_finite_difference",
+                "test_ppo_real_training_never_updates_parameters_outside_current_loss",
+            ):
+                spec["steps"].append(
+                    {
+                        **spec["steps"][0],
+                        "implementation": "PPOTWAPAware.update_parameters",
+                        "oracle_node": "tests/test_six_audit_refinement.py::" + node,
+                        "runtime_rule": "Clear all optimizer gradients before every "
+                        "skip/mask/clip-dependent backward pass; no stale "
+                        "updates",
+                    }
+                )
         if name == "grouped_cnn_lstm":
             for claim_index, implementation, oracle in (
+                (
+                    2,
+                    "train",
+                    "test_author_minmax_fit_uses_only_training_rows_without_validation_clipping",
+                ),
                 (
                     0,
                     "causal_features",
@@ -582,7 +620,8 @@ def main():
                 (
                     2,
                     "train",
-                    "test_actual_hidden4_training_freezes_encoder_and_excludes_validation_from_fitting",
+                    "test_actual_hidden4_training_freezes_encoder_and_exclud"
+                    "es_validation_from_fitting",
                 ),
                 (
                     0,
@@ -597,12 +636,14 @@ def main():
                 (
                     0,
                     "convolution_sequence",
-                    "test_cached_convolution_recurrent_stage_preserves_forward_and_recurrent_gradients",
+                    "test_cached_convolution_recurrent_stage_preserves_forwa"
+                    "rd_and_recurrent_gradients",
                 ),
                 (
                     2,
                     "train",
-                    "test_deployed_hidden4_relu_stages_learn_unseen_patterns_without_threshold_changes",
+                    "test_deployed_hidden4_relu_stages_learn_unseen_patterns"
+                    "_without_threshold_changes",
                 ),
             ):
                 step = dict(spec["steps"][claim_index])

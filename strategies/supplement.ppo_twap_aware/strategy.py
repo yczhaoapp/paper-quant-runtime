@@ -105,6 +105,15 @@ class PPOTWAPAware:
         positive = max(0.0, target - value.value)
         return -logp * positive + 0.5 * (value - target) ** 2 if positive > 0 else Scalar(0)
 
+    @staticmethod
+    def update_parameters(loss, parameters, rate=0.002):
+        # Skip, masks and clipping can exclude whole parameter branches from
+        # this graph. Clear the full optimizer set before every backward pass.
+        for parameter in parameters:
+            parameter.grad = 0.0
+        loss.backward()
+        gradient_step(parameters, rate, clip=1)
+
     def train(self, request):
         if len(request.samples) < 32 or any(
             s.reward is None or s.action is None for s in request.samples
@@ -153,8 +162,7 @@ class PPOTWAPAware:
                 if positive > 0:
                     loss += 0.05 * self.self_imitation_loss(logp, value, returns[i])
                     imitation_updates += 1
-                loss.backward()
-                gradient_step(params, 0.002, clip=1)
+                self.update_parameters(loss, params)
                 losses.append(loss.value)
         after = [p.value for p in params]
         return json.dumps(
@@ -167,6 +175,9 @@ class PPOTWAPAware:
                     "transitions": len(request.samples),
                     "ppo_epochs": 4,
                     "minibatch_samples_per_epoch": 32,
+                    "optimizer_steps": len(losses),
+                    "update_schedule": "four rounds of 32 sampled individual SGD updates",
+                    "gradient_lifecycle": "full optimizer parameter set cleared before backward",
                     "self_imitation_updates": imitation_updates,
                     "parameter_change_l1": sum(
                         abs(a - b) for a, b in zip(before, after, strict=False)

@@ -66,8 +66,8 @@
       "fee_rate": "0",
       "fixture": "examples/six-paper/ou_percentile",
       "oracle_nodes": [
-        "tests/test_six_paper_methods.py::test_ou_calibration_matches_independent_ar1_equations",
-        "tests/test_six_paper_methods.py::test_ou_refuses_nonstationary_calibration_and_quantiles_match_numpy"
+        "tests/test_six_audit_refinement.py::test_ou_complete_rolling_entry_hold_and_median_exit",
+        "tests/test_six_paper_methods.py::test_ou_calibration_matches_independent_ar1_equations"
       ],
       "paper_id": "2412.12458v1",
       "recipe": "research/six-paper/cases/ou_percentile/recipe.json",
@@ -97,9 +97,9 @@
         "interpretation": "human-reviewed mapping; anchor checks do not prove semantic fidelity",
         "method_oracle_nodes": [
           "tests/test_six_paper_methods.py::test_ou_calibration_matches_independent_ar1_equations",
-          "tests/test_six_paper_methods.py::test_ou_refuses_nonstationary_calibration_and_quantiles_match_numpy"
+          "tests/test_six_audit_refinement.py::test_ou_complete_rolling_entry_hold_and_median_exit"
         ],
-        "method_spec_sha256": "6888ce0e120a5182412e5a22b9bfb05b83f5d3863437fdcd7a9c470de6b67613",
+        "method_spec_sha256": "b7294a530c8db98ac527dcc288b04eac80ab42caeea80b6efe3034fae6e6d2e7",
         "method_steps": 2,
         "package_source_sha256": "7cd04e3d37eb0d94535b62e8671b842e9cc44afb232fe765a5b530f23f1b6720",
         "page_count": 13,
@@ -118,6 +118,7 @@
       "fixture": "examples/six-paper/grouped_cnn_lstm",
       "oracle_nodes": [
         "tests/test_cnn_refinement.py::test_actual_hidden4_training_freezes_encoder_and_excludes_validation_from_fitting",
+        "tests/test_cnn_refinement.py::test_author_minmax_fit_uses_only_training_rows_without_validation_clipping",
         "tests/test_cnn_refinement.py::test_cached_convolution_recurrent_stage_preserves_forward_and_recurrent_gradients",
         "tests/test_cnn_refinement.py::test_causal_features_use_completed_prefix_and_reject_insufficient_history",
         "tests/test_cnn_refinement.py::test_causal_indicator_features_match_independent_prefix_equations",
@@ -172,7 +173,7 @@
             "text": "two thresholds"
           }
         ],
-        "claim_sha256": "721116fd7c674ee5c2accb529a08068668c94f47d3e631c63dd97598eb225a2f",
+        "claim_sha256": "7142ce7ce7c93eb20ceb0b67a3da321f85beb49831bf7cc36f68578f2dc2aeba",
         "format": "pdf",
         "interpretation": "human-reviewed mapping; anchor checks do not prove semantic fidelity",
         "method_oracle_nodes": [
@@ -184,6 +185,7 @@
           "tests/test_two_paper_adaptation.py::test_cnn_learns_unseen_controlled_patterns_and_reloads_without_test_branches",
           "tests/test_two_paper_adaptation.py::test_cnn_validation_does_not_fit_scaler_or_change_training_updates",
           "tests/test_two_paper_adaptation.py::test_cnn_window_normalization_is_price_and_volume_scale_invariant",
+          "tests/test_cnn_refinement.py::test_author_minmax_fit_uses_only_training_rows_without_validation_clipping",
           "tests/test_cnn_refinement.py::test_causal_indicator_features_match_independent_prefix_equations",
           "tests/test_cnn_refinement.py::test_causal_features_use_completed_prefix_and_reject_insufficient_history",
           "tests/test_cnn_refinement.py::test_actual_hidden4_training_freezes_encoder_and_excludes_validation_from_fitting",
@@ -192,12 +194,12 @@
           "tests/test_cnn_refinement.py::test_cached_convolution_recurrent_stage_preserves_forward_and_recurrent_gradients",
           "tests/test_cnn_refinement.py::test_deployed_hidden4_relu_stages_learn_unseen_patterns_without_threshold_changes"
         ],
-        "method_spec_sha256": "9e899e55c1a543a2ea594697be4f2e96728bd92281c1da39f3279039339041cb",
-        "method_steps": 15,
-        "package_source_sha256": "7349edb2c5e490f43c2004b84ab8f3b13ad9996300dbb3d0ec5aa5707c3e0e62",
+        "method_spec_sha256": "5f81280392c9381692cb98f99abf54224e429645a14da08245b48c7871718b9a",
+        "method_steps": 16,
+        "package_source_sha256": "a4d75d0cd1fa750f1a5e6c5eaf3240b68d572284a621e3da3bddecfcf868b245",
         "page_count": 26,
         "paper_title": "Compatible deep neural network framework with financial time series data, including data preprocessor, neural network model and trading strategy",
-        "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Public BTC/USDT Jan-Jun2024 training, July-September development validation, independent October-December test; prior August-September negative result retained.",
+        "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Public BTC/USDT Jan-Jun2024 training, July-September development validation, independent January-March2025 test; prior August-September and October-December negative results retained.",
         "source_sha256": "82c0033f3555793139c834accdae22fccaef16152f72c65889e17c764c5ba486",
         "source_url": "https://arxiv.org/pdf/2205.08382v1",
         "strategy_id": "supplement.grouped_cnn_lstm"
@@ -246,7 +248,7 @@
             "text": "K-nearest neighbours"
           }
         ],
-        "claim_sha256": "2ebb4fc100a13aa4581baf4c29d3b19a59ca341a8549682c5c7ddc43f8c2dcc3",
+        "claim_sha256": "6be676fc532a603d02716810c177696feb28f8d6f2f33536cd59bdd1ef7e11bd",
         "format": "pdf",
         "interpretation": "human-reviewed mapping; anchor checks do not prove semantic fidelity",
         "method_oracle_nodes": [
@@ -255,7 +257,7 @@
           "tests/test_six_paper_methods.py::test_knn_is_not_a_constant_hold_classifier",
           "tests/test_two_paper_adaptation.py::test_gmm_validation_cannot_change_quantile_scaler_mixture_or_neighbor_bank"
         ],
-        "method_spec_sha256": "b788662495eee41f80e735c3bd7b900fcc1abbb91b5433af254d7385d7f60baa",
+        "method_spec_sha256": "7be4e056b383be98a3fda2861666ccd7c27a1c92f00f7f944c066a7221030ceb",
         "method_steps": 4,
         "package_source_sha256": "36d94b683a1d3d2a0c721922e22a8cbbe9c69c833e187ac4906a4630fc525fd2",
         "page_count": 22,
@@ -273,6 +275,8 @@
       "fee_rate": "0",
       "fixture": "examples/six-paper/sac_passive_quotes",
       "oracle_nodes": [
+        "tests/test_six_audit_refinement.py::test_sac_collected_rewards_match_separate_marked_wealth_and_penalty",
+        "tests/test_six_audit_refinement.py::test_sac_execution_uses_trained_policy_and_inventory_bounded_quote_ledger",
         "tests/test_six_paper_methods.py::test_sac_soft_bellman_terminal_and_entropy_properties"
       ],
       "paper_id": "2410.14504v2",
@@ -326,15 +330,15 @@
             "text": "two soft Q-functions"
           }
         ],
-        "claim_sha256": "3e1a920bba4638d5d9328e86014e8dd876441102835c32f12b598467df514502",
+        "claim_sha256": "80c78cfa43e0026f97a1e18c1b9767c022777bc64d0c32e7a8af7f9b1615ac5f",
         "format": "pdf",
         "interpretation": "human-reviewed mapping; anchor checks do not prove semantic fidelity",
         "method_oracle_nodes": [
           "tests/test_six_paper_methods.py::test_sac_soft_bellman_terminal_and_entropy_properties",
-          "tests/test_six_paper_methods.py::test_sac_soft_bellman_terminal_and_entropy_properties",
-          "tests/test_six_paper_methods.py::test_sac_soft_bellman_terminal_and_entropy_properties"
+          "tests/test_six_audit_refinement.py::test_sac_execution_uses_trained_policy_and_inventory_bounded_quote_ledger",
+          "tests/test_six_audit_refinement.py::test_sac_collected_rewards_match_separate_marked_wealth_and_penalty"
         ],
-        "method_spec_sha256": "1f67371789c448a5ccebb82361acf90b6384282beaef0b2fd59e26eb7cc1ffc5",
+        "method_spec_sha256": "afc468d8c642dd196d74097ca8d8468495cea684245bc5bb82c2bfa48a0d05e0",
         "method_steps": 3,
         "package_source_sha256": "fd0e40006902f56bf1edade2cb7e9ecf06bdd03659cf2f5c0c9e289f543eeb81",
         "page_count": 23,
@@ -352,6 +356,8 @@
       "fee_rate": "0.0001",
       "fixture": "examples/six-paper/ppo_twap_aware",
       "oracle_nodes": [
+        "tests/test_six_audit_refinement.py::test_ppo_multistep_gradient_reset_matches_independent_finite_difference",
+        "tests/test_six_audit_refinement.py::test_ppo_real_training_never_updates_parameters_outside_current_loss",
         "tests/test_six_paper_methods.py::test_ppo_clipping_changes_gradient_by_advantage_sign_and_masks_infeasible_actions",
         "tests/test_six_paper_methods.py::test_self_imitation_uses_only_positive_return_advantage"
       ],
@@ -408,17 +414,19 @@
             "text": "off-policy"
           }
         ],
-        "claim_sha256": "2dbc1e3fd029c848cb4802b319823c0f8521cd89bc3dc0921b356ae86c45a827",
+        "claim_sha256": "86e6ad5128a9c2f9d51b5fd70cc1ddf7552cbc2d1bf5c8ad66c2d9ba0c4c5f3b",
         "format": "pdf",
         "interpretation": "human-reviewed mapping; anchor checks do not prove semantic fidelity",
         "method_oracle_nodes": [
           "tests/test_six_paper_methods.py::test_ppo_clipping_changes_gradient_by_advantage_sign_and_masks_infeasible_actions",
           "tests/test_six_paper_methods.py::test_self_imitation_uses_only_positive_return_advantage",
-          "tests/test_six_paper_methods.py::test_ppo_clipping_changes_gradient_by_advantage_sign_and_masks_infeasible_actions"
+          "tests/test_six_paper_methods.py::test_ppo_clipping_changes_gradient_by_advantage_sign_and_masks_infeasible_actions",
+          "tests/test_six_audit_refinement.py::test_ppo_multistep_gradient_reset_matches_independent_finite_difference",
+          "tests/test_six_audit_refinement.py::test_ppo_real_training_never_updates_parameters_outside_current_loss"
         ],
-        "method_spec_sha256": "2d723d22ca18b48b1960bde97602548213b8515264e94c5b9253f6d97792499b",
-        "method_steps": 3,
-        "package_source_sha256": "81da686088f0d733a066797a83dab6d5e15d1f0b1fa42578694ea497f8a7b375",
+        "method_spec_sha256": "5f395161b0ba4c06a548d6a9b65093b8a57ef8fe366e44945c3b7b61d8e56fb5",
+        "method_steps": 5,
+        "package_source_sha256": "2f007bec7ec7330cd50e5c606570e0e76e8f2d483a7bcf3b84e9efe5ecb96065",
         "page_count": 8,
         "paper_title": "When AI Trading Agents Compete: Adverse Selection of Meta-Orders by Reinforcement Learning-Based Market Making",
         "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Five observations and width8 networks replace the full source high-dimensional LOB networks.",
