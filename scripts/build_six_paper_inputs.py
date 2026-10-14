@@ -202,6 +202,35 @@ def bar_events(rows, seconds):
 
 
 def cnn_inputs():
+    refinement = ROOT / "research/cnn-refinement/selection-lock.json"
+    if refinement.exists():
+        from scripts.cnn_research import request_for
+
+        plan = json.loads((ROOT / "research/cnn-refinement/experiment-plan.json").read_text())
+        lock = json.loads(refinement.read_text())
+        history = lock["configuration"]["history_bars"]
+        request = request_for(lock["configuration"], history=history, seed=lock["seed"])
+        evaluation = raw_bars("4h", plan["validation"])[-(history - 1):]
+        evaluation += raw_bars("4h", plan["evaluation"])
+        publish(
+            "grouped_cnn_lstm", bar_events(evaluation, 14400),
+            dataset={"granularity": "minute", "bar_seconds": 14400, "market_kind": "bar"},
+            training=request,
+            provenance={
+                "type": "public_market_data",
+                "source": "data/six-paper/public-btc/SOURCE.json",
+                "training": plan["training"], "validation": plan["validation"],
+                "evaluation": plan["evaluation"],
+                "evaluation_warmup": "last history_bars-1 completed validation bars",
+                "experiment_plan": "research/cnn-refinement/experiment-plan.json",
+                "configuration_lock": "research/cnn-refinement/selection-lock.json",
+                "prior_negative_evaluation": lock["prior_negative_result"],
+                "feature_selection": lock["feature_selection_disclosure"],
+                "availability": "completed bar exclusive end, archive close time plus 1ms",
+                "exclusions": "local method adaptation; no original experiment or profit claim",
+            },
+        )
+        return
     plan = json.loads((ROOT / "research/two-paper/experiment-plan.json").read_text())["cnn"]
     train = raw_bars("4h", plan["training"])
     validation = raw_bars("4h", plan["validation"])

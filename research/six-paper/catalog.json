@@ -117,6 +117,13 @@
       "fee_rate": "0.0001",
       "fixture": "examples/six-paper/grouped_cnn_lstm",
       "oracle_nodes": [
+        "tests/test_cnn_refinement.py::test_actual_hidden4_training_freezes_encoder_and_excludes_validation_from_fitting",
+        "tests/test_cnn_refinement.py::test_cached_convolution_recurrent_stage_preserves_forward_and_recurrent_gradients",
+        "tests/test_cnn_refinement.py::test_causal_features_use_completed_prefix_and_reject_insufficient_history",
+        "tests/test_cnn_refinement.py::test_causal_indicator_features_match_independent_prefix_equations",
+        "tests/test_cnn_refinement.py::test_deployed_hidden4_relu_stages_learn_unseen_patterns_without_threshold_changes",
+        "tests/test_cnn_refinement.py::test_frozen_encoder_cache_matches_uncached_prediction_and_training_gradients",
+        "tests/test_cnn_refinement.py::test_head_refinement_gradients_match_independent_scalar_autodiff",
         "tests/test_six_paper_methods.py::test_autodiff_gradients_match_independent_math_and_finite_differences",
         "tests/test_six_paper_methods.py::test_cnn_training_updates_all_model_stages_and_confidence_equations",
         "tests/test_six_paper_methods.py::test_confidence_and_bet_size_mapping_uses_real_probability_boundaries",
@@ -165,7 +172,7 @@
             "text": "two thresholds"
           }
         ],
-        "claim_sha256": "540b87f05d20cf49aa9dfb0a6d841d847cfc932ba3cd2dbb020cb770fe19ffe1",
+        "claim_sha256": "721116fd7c674ee5c2accb529a08068668c94f47d3e631c63dd97598eb225a2f",
         "format": "pdf",
         "interpretation": "human-reviewed mapping; anchor checks do not prove semantic fidelity",
         "method_oracle_nodes": [
@@ -176,14 +183,21 @@
           "tests/test_two_paper_adaptation.py::test_analytic_cnn_all_gradients_match_autodiff_and_sampled_finite_differences",
           "tests/test_two_paper_adaptation.py::test_cnn_learns_unseen_controlled_patterns_and_reloads_without_test_branches",
           "tests/test_two_paper_adaptation.py::test_cnn_validation_does_not_fit_scaler_or_change_training_updates",
-          "tests/test_two_paper_adaptation.py::test_cnn_window_normalization_is_price_and_volume_scale_invariant"
+          "tests/test_two_paper_adaptation.py::test_cnn_window_normalization_is_price_and_volume_scale_invariant",
+          "tests/test_cnn_refinement.py::test_causal_indicator_features_match_independent_prefix_equations",
+          "tests/test_cnn_refinement.py::test_causal_features_use_completed_prefix_and_reject_insufficient_history",
+          "tests/test_cnn_refinement.py::test_actual_hidden4_training_freezes_encoder_and_excludes_validation_from_fitting",
+          "tests/test_cnn_refinement.py::test_frozen_encoder_cache_matches_uncached_prediction_and_training_gradients",
+          "tests/test_cnn_refinement.py::test_head_refinement_gradients_match_independent_scalar_autodiff",
+          "tests/test_cnn_refinement.py::test_cached_convolution_recurrent_stage_preserves_forward_and_recurrent_gradients",
+          "tests/test_cnn_refinement.py::test_deployed_hidden4_relu_stages_learn_unseen_patterns_without_threshold_changes"
         ],
-        "method_spec_sha256": "8e5b12c0cc305236a604e85bcc7dc2e1f362510e651f74e8a4e752829fb4d5ac",
-        "method_steps": 8,
-        "package_source_sha256": "7f5e66538f4bf544f10cdf0b53018aefc7cd4dda2dc4836aff5417d43f72625f",
+        "method_spec_sha256": "9e899e55c1a543a2ea594697be4f2e96728bd92281c1da39f3279039339041cb",
+        "method_steps": 15,
+        "package_source_sha256": "7349edb2c5e490f43c2004b84ab8f3b13ad9996300dbb3d0ec5aa5707c3e0e62",
         "page_count": 26,
         "paper_title": "Compatible deep neural network framework with financial time series data, including data preprocessor, neural network model and trading strategy",
-        "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Public BTC/USDT Jan-Jun2024 training, July validation, fixed August-September test.",
+        "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Public BTC/USDT Jan-Jun2024 training, July-September development validation, independent October-December test; prior August-September negative result retained.",
         "source_sha256": "82c0033f3555793139c834accdae22fccaef16152f72c65889e17c764c5ba486",
         "source_url": "https://arxiv.org/pdf/2205.08382v1",
         "strategy_id": "supplement.grouped_cnn_lstm"

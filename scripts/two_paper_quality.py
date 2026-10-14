@@ -56,8 +56,9 @@ def quality_for_run(run_dir, report, bundle):
     training = state["training"]
     traces, predicted, truth = [], [], []
     if name == "grouped_cnn_lstm":
-        for i in range(23, len(rows)):
-            p = model.forward(model.channels(rows[i - 23 : i + 1])).value
+        history = model.history_bars
+        for i in range(history - 1, len(rows)):
+            p = model.forward(model.channels(rows[i - history + 1 : i + 1])).value
             direction = 1 if p >= 2 / 3 else -1 if p <= 1 / 3 else 0
             action = report.decisions[i].actions[0]
             actual_direction = 1 if action.quantity > 0 else -1 if action.quantity < 0 else 0
@@ -88,6 +89,10 @@ def quality_for_run(run_dir, report, bundle):
         }
         if not fitting["optimization_effective"]:
             raise ValueError("CNN selected model lacks measured real-data fitting improvement")
+        from scripts.cnn_release import audit_cnn
+
+        refinement = audit_cnn(model, state, bundle, rows, traces, truth, predicted)
+        test_metrics.update(refinement["cnn"])
     else:
         threshold = state["threshold"]
         for start in range(0, len(rows) - 59, 60):
@@ -138,6 +143,8 @@ def quality_for_run(run_dir, report, bundle):
         "prediction_audit": "recomputed from executed model and matched to actual decisions",
         "test_used_for_selection": False,
     }
+    if name == "grouped_cnn_lstm":
+        result["cnn_refinement"] = refinement
     write_json(run_dir / "quality.json", result)
     write_json(run_dir / "prediction-audit.json", {"predictions": traces})
     return result

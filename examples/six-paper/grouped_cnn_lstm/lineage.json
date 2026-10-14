@@ -1,15 +1,45 @@
 {
   "availability": "completed bar exclusive end, archive close time plus 1ms",
-  "evaluation": "2024-08 through 2024-09 UTC, fixed before new test evaluation",
-  "event_count": 366,
-  "events_sha256": "0aca88867ec3e5a0bdd844bdc6d114b1716e111b943803cd3b043691c363dd3e",
-  "exclusions": "Binance sample replaces original 2017-2021 crypto exchange data; no original profitability claim",
-  "experiment_plan": "research/two-paper/experiment-plan.json",
-  "first_event": "2024-08-01T04:00:00+00:00",
-  "last_event": "2024-10-01T00:00:00+00:00",
+  "configuration_lock": "research/cnn-refinement/selection-lock.json",
+  "evaluation": [
+    "2024-10",
+    "2024-11",
+    "2024-12"
+  ],
+  "evaluation_warmup": "last history_bars-1 completed validation bars",
+  "event_count": 575,
+  "events_sha256": "9692043794e7729ca3363185f580f9c34d16d877ab5186bacead5b518182b764",
+  "exclusions": "local method adaptation; no original experiment or profit claim",
+  "experiment_plan": "research/cnn-refinement/experiment-plan.json",
+  "feature_selection": "Causal EMA/Williams and SMA/volatility variants were evaluated and did not beat the selected window-relative features; they remain research alternatives, no hidden fallback",
+  "first_event": "2024-09-27T08:00:00+00:00",
+  "last_event": "2025-01-01T00:00:00+00:00",
+  "prior_negative_evaluation": {
+    "commit": "7760ade45621a92ff0c2b6afe4f5a8f2138723af",
+    "fills": 0,
+    "test_accuracy": 0.49122807017543857,
+    "test_bce": 0.7052111376635785,
+    "test_period": [
+      "2024-08",
+      "2024-09"
+    ],
+    "training_prior_bce": 0.6930006626512965,
+    "version": "0.2.1"
+  },
   "source": "data/six-paper/public-btc/SOURCE.json",
-  "training": "2024-01 through 2024-06 UTC, all stride-one 24-candle windows",
-  "training_sha256": "de74a5c8e5ebedfecb878dc099356cf50d13d2f78b45569f2b9c715ec54da91b",
+  "training": [
+    "2024-01",
+    "2024-02",
+    "2024-03",
+    "2024-04",
+    "2024-05",
+    "2024-06"
+  ],
+  "training_sha256": "22bdc99dcf929db483def608d3f706d3988c616f2cf785945237a243d5b96a89",
   "type": "public_market_data",
-  "validation": "2024-07 UTC, no gradient/scaler fitting; minimum validation BCE checkpoint"
+  "validation": [
+    "2024-07",
+    "2024-08",
+    "2024-09"
+  ]
 }

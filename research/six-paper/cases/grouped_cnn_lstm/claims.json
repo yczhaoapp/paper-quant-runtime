@@ -22,17 +22,19 @@
     }
   ],
   "differences": [
-    "Public BTC/USDT Jan-Jun2024 training, July validation, fixed August-September test.",
+    "Public BTC/USDT Jan-Jun2024 training, July-September development validation, independent October-December test; prior August-September negative result retained.",
     "Wavelet denoising, XGBoost feature selection, large indicator grid and dropout are excluded.",
     "Convolutional autoencoders omit the original encoder/decoder pool-upsampling stacks; latent channels are reduced.",
     "Configurable bounded LSTM/FC widths replace original widths20/10; Conv outputs reduced.",
-    "Training uses minibatch Adam, training-only scaler, shuffled training windows and chronological validation checkpoint selection; bounded epochs are not the paper's convergence loop.",
+    "Training uses minibatch Adam, training-only scaler, 12-epoch AE pretraining, frozen encoder/CNN stages and validation checkpoint selection. ReLU replaces the earlier main tanh activation; BatchNorm remains excluded. Bounded stages do not reproduce the paper's convergence loop.",
     "Training quality threshold is reported honestly; runtime pass is not a well-trained or profitable-model assertion.",
     "Printed 10^-BCE proxy uses a different log base from conventional BCE; preserve it as a named paper proxy.",
     "Theta=.5, next-open fills and per-fill costs are declared execution adaptations; no SL/TP bracket engine.",
     "OHLC/price-like features use causal window-relative price normalization; volume uses window mean.",
     "Analytic convolution/LSTM backpropagation matches the independent Scalar autodiff path and finite differences.",
-    "Validation influences checkpoint selection only, never gradients or scaler fitting; test is excluded from training request."
+    "Validation influences checkpoint selection only, never gradients or scaler fitting; test is excluded from training request.",
+    "Causal 64-bar EMA/Williams and SMA/volatility alternatives were evaluated on development validation but were not selected; this is explicit model selection.",
+    "Selected four-unit configuration uses cached frozen-stage features and numerical dot products; original worker time, memory, CPU and imports remain unchanged."
   ],
   "reproduction_scope": "bounded local method adaptation; not full paper experiment",
   "source": {

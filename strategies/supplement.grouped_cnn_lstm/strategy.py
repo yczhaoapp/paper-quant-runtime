@@ -40,9 +40,12 @@ class GroupedCNNLSTM:
     def __init__(self):
         self.history = []
         self.theta = 0.5
+        self.history_bars = 24
+        self.feature_mode, self.activation = 0, 0
 
-    def initialize(self, seed, hidden=8):
+    def initialize(self, seed, hidden=8, *, feature_mode=0, activation=0):
         self.hidden = hidden
+        self.feature_mode, self.activation = feature_mode, activation
         rng = random.Random(seed)
         self.encoders = [Conv1D(2, 1, 3, rng, padding=1), Conv1D(3, 1, 3, rng, padding=1)]
         self.decoders = [Conv1D(1, 2, 3, rng, padding=1), Conv1D(1, 3, 3, rng, padding=1)]
@@ -52,7 +55,10 @@ class GroupedCNNLSTM:
         self.head = DenseMLP((hidden, hidden, 1), rng)
 
     @staticmethod
-    def features(bars):
+    def features(bars, *, mode=0):
+        if mode:
+            return GroupedCNNLSTM.causal_features(bars, mode=mode)
+        bars = bars[-24:]
         # Same causal features for upstream training and runtime inference.
         closes = [float(row[3]) for row in bars]
         base = closes[0]
@@ -81,13 +87,65 @@ class GroupedCNNLSTM:
             )
         return result
 
+    @staticmethod
+    def causal_features(bars, *, mode=1):
+        if len(bars) < 64:
+            raise ValueError("Causal CNN indicators require 64 completed bars")
+        closes = [float(row[3]) for row in bars]
+        if min(closes) <= 0:
+            raise ValueError("Causal CNN prices must be positive")
+        start = len(bars) - 24
+        base = closes[start]
+        volume_scale = sum(float(row[4]) for row in bars[start:]) / 24
+        if volume_scale <= 0:
+            raise ValueError("Causal CNN average volume must be positive")
+        ema14, ema28 = closes[0], closes[0]
+        gain, loss = 0.0, 0.0
+        result = []
+        for i, row in enumerate(bars):
+            ema14 += 2 / 15 * (closes[i] - ema14)
+            ema28 += 2 / 29 * (closes[i] - ema28)
+            change = closes[i] - closes[i - 1] if i else 0.0
+            if 1 <= i <= 14:
+                gain += max(change, 0) / 14
+                loss += max(-change, 0) / 14
+            elif i > 14:
+                gain = (13 * gain + max(change, 0)) / 14
+                loss = (13 * loss + max(-change, 0)) / 14
+            if i < start:
+                continue
+            high = max(float(r[1]) for r in bars[i - 13 : i + 1])
+            low = min(float(r[2]) for r in bars[i - 13 : i + 1])
+            rsi = gain / (gain + loss) if gain + loss else 0.5
+            williams = (closes[i] - low) / (high - low) if high > low else 0.5
+            roc = closes[i] / closes[i - 14] - 1
+            if mode == 1:
+                indicators = [ema14 / base - 1, ema28 / base - 1, rsi, williams, roc]
+            else:
+                window = closes[i - 13 : i + 1]
+                mean = sum(window) / 14
+                sd = math.sqrt(sum((v - mean) ** 2 for v in window) / 14)
+                indicators = [
+                    mean / base - 1,
+                    sum(closes[i - 4 : i + 1]) / 5 / base - 1,
+                    rsi,
+                    roc,
+                    sd / mean,
+                ]
+            result.append(
+                [float(v) / base - 1 for v in row[:4]]
+                + [float(row[4]) / volume_scale - 1]
+                + indicators
+            )
+        return result
+
     def channels(self, rows):
-        features = self.features(rows)
+        features = self.features(rows, mode=self.feature_mode)
         return [[(row[j] - self.means[j]) / self.scales[j] for row in features] for j in range(10)]
 
     @staticmethod
-    def activate(channels):
-        return [[v.tanh() for v in channel] for channel in channels]
+    def activate(channels, *, activation=0):
+        return [[v.relu() if activation else v.tanh() for v in channel] for channel in channels]
 
     def forward(self, channels):
         price = self.activate(self.encoders[0](channels[5:7]))
@@ -95,7 +153,7 @@ class GroupedCNNLSTM:
         groups = [channels[:5], price, nonprice]
         convolved = []
         for group, first, second in zip(groups, self.first, self.second, strict=False):
-            first_output = self.activate(first(group))
+            first_output = self.activate(first(group), activation=self.activation)
             pooled = [
                 [
                     max(channel[t : t + 2], key=lambda v: v.value)
@@ -103,12 +161,20 @@ class GroupedCNNLSTM:
                 ]
                 for channel in first_output
             ]
-            convolved.extend(self.activate(second(pooled)))
+            convolved.extend(self.activate(second(pooled), activation=self.activation))
         hidden = [Scalar(0.0) for _ in range(self.hidden)]
         cell = [Scalar(0.0) for _ in range(self.hidden)]
         for t in range(len(convolved[0])):
             hidden, cell = self.lstm([c[t] for c in convolved], hidden, cell)
-        return self.head(hidden)[0].sigmoid()
+        head_hidden = [
+            sum((w * x for w, x in zip(row, hidden, strict=True)), b)
+            for row, b in zip(self.head.weights[0], self.head.biases[0], strict=True)
+        ]
+        head_hidden = [v.relu() if self.activation else v.tanh() for v in head_hidden]
+        return sum(
+            (w * x for w, x in zip(self.head.weights[1][0], head_hidden, strict=True)),
+            self.head.biases[1][0],
+        ).sigmoid()
 
     def parameters(self):
         parts = self.encoders + self.decoders + self.first + self.second + [self.lstm, self.head]
@@ -119,28 +185,37 @@ class GroupedCNNLSTM:
         return 1 / (1 + math.exp(-value)) if value >= 0 else math.exp(value) / (1 + math.exp(value))
 
     @staticmethod
-    def conv_fast(layer, inputs, *, activate=True):
+    def conv_fast(layer, inputs, *, activate=True, activation=0, prepared=None):
         length = len(inputs[0]) + 2 * layer.padding - layer.kernel + 1
         padded = [[0.0] * layer.padding + row + [0.0] * layer.padding for row in inputs]
+        patches = [[x for row in padded for x in row[t : t + layer.kernel]] for t in range(length)]
         output = []
-        for weights, bias in zip(layer.weights, layer.biases, strict=True):
+        weights_flat = (
+            prepared
+            if prepared is not None
+            else [[w.value for row in group for w in row] for group in layer.weights]
+        )
+        for weights, bias in zip(weights_flat, layer.biases, strict=True):
             channel = []
             for t in range(length):
-                value = bias.value
-                for row, input_row in zip(weights, padded, strict=True):
-                    for k, weight in enumerate(row):
-                        value += weight.value * input_row[t + k]
-                channel.append(math.tanh(value) if activate else value)
+                value = bias.value + math.sumprod(weights, patches[t])
+                channel.append(
+                    (max(0.0, value) if activation else math.tanh(value)) if activate else value
+                )
             output.append(channel)
         return output
 
     @staticmethod
-    def conv_backward(layer, inputs, output, upstream, gradient, *, activate=True):
+    def conv_backward(layer, inputs, output, upstream, gradient, *, activate=True, activation=0):
         padded = [[0.0] * layer.padding + row + [0.0] * layer.padding for row in inputs]
         result = [[0.0] * len(row) for row in padded]
         for c, (weights, bias) in enumerate(zip(layer.weights, layer.biases, strict=True)):
             for t, incoming in enumerate(upstream[c]):
-                derivative = incoming * (1 - output[c][t] ** 2) if activate else incoming
+                derivative = (
+                    incoming * ((output[c][t] > 0) if activation else (1 - output[c][t] ** 2))
+                    if activate
+                    else incoming
+                )
                 gradient[bias] += derivative
                 for row, input_row, input_gradient in zip(weights, padded, result, strict=True):
                     for k, weight in enumerate(row):
@@ -152,20 +227,53 @@ class GroupedCNNLSTM:
             else result
         )
 
-    def fast_prediction(self, channels, *, label=None):
+    def snapshot_weights(self):
+        convs = self.encoders + self.decoders + self.first + self.second
+        dense = self.lstm.gates + [self.head]
+        return {
+            "conv": {
+                layer: [[w.value for row in group for w in row] for group in layer.weights]
+                for layer in convs
+            },
+            "dense": {
+                layer: [[[w.value for w in row] for row in weights] for weights in layer.weights]
+                for layer in dense
+            },
+        }
+
+    def fast_prediction(
+        self,
+        channels,
+        *,
+        label=None,
+        groups=None,
+        prepared=None,
+        return_hidden=False,
+        sequence=None,
+    ):
         """Same convolution/LSTM/head equations with analytic backpropagation.
 
         The Scalar path remains an independent executable autodiff reference for
         gradient checks. Both paths read exactly the same parameter objects.
         """
-        encoded = [
-            self.conv_fast(net, rows)
-            for net, rows in zip(self.encoders, [channels[5:7], channels[7:10]], strict=True)
-        ]
-        groups = [channels[:5], *encoded]
-        caches, sequence = [], []
-        for group, first, second in zip(groups, self.first, self.second, strict=True):
-            first_out = self.conv_fast(first, group)
+        prepared = prepared or self.snapshot_weights()
+        frozen = groups is not None
+        frozen_conv = sequence is not None
+        if not frozen and not frozen_conv:
+            encoded = [
+                self.conv_fast(net, rows, prepared=prepared["conv"][net])
+                for net, rows in zip(self.encoders, [channels[5:7], channels[7:10]], strict=True)
+            ]
+            groups = [channels[:5], *encoded]
+        caches = []
+        if sequence is None:
+            sequence = []
+        for group, first, second in (
+            [] if frozen_conv else zip(groups, self.first, self.second, strict=True)
+        ):
+            first_out = self.conv_fast(
+                first, group, activation=self.activation, prepared=prepared["conv"][first]
+            )
             indices = [
                 [max(range(t, t + 2), key=lambda i: row[i]) for t in range(0, len(row) - 1, 2)]
                 for row in first_out
@@ -173,7 +281,9 @@ class GroupedCNNLSTM:
             pooled = [
                 [row[i] for i in selected] for row, selected in zip(first_out, indices, strict=True)
             ]
-            second_out = self.conv_fast(second, pooled)
+            second_out = self.conv_fast(
+                second, pooled, activation=self.activation, prepared=prepared["conv"][second]
+            )
             sequence.extend(second_out)
             caches.append((group, first_out, indices, pooled, second_out))
         hidden, cell = [0.0] * self.hidden, [0.0] * self.hidden
@@ -183,8 +293,8 @@ class GroupedCNNLSTM:
             gates = []
             for index, gate in enumerate(self.lstm.gates):
                 values = [
-                    sum(w.value * x for w, x in zip(row, combined, strict=True)) + bias.value
-                    for row, bias in zip(gate.weights[0], gate.biases[0], strict=True)
+                    math.sumprod(row, combined) + bias.value
+                    for row, bias in zip(prepared["dense"][gate][0], gate.biases[0], strict=True)
                 ]
                 gates.append([math.tanh(v) if index == 0 else self.sigmoid(v) for v in values])
             candidate, update, forget, output = gates
@@ -195,11 +305,14 @@ class GroupedCNNLSTM:
             ]
             hidden = [o * math.tanh(c) for o, c in zip(output, cell, strict=True)]
             recurrent.append((combined, previous_cell, cell, gates))
+        if return_hidden:
+            return hidden
         head_hidden = [
-            math.tanh(sum(w.value * x for w, x in zip(row, hidden, strict=True)) + b.value)
-            for row, b in zip(self.head.weights[0], self.head.biases[0], strict=True)
+            math.sumprod(row, hidden) + b.value
+            for row, b in zip(prepared["dense"][self.head][0], self.head.biases[0], strict=True)
         ]
-        logit = sum(w.value * x for w, x in zip(self.head.weights[1][0], head_hidden, strict=True))
+        head_hidden = [max(0.0, v) if self.activation else math.tanh(v) for v in head_hidden]
+        logit = math.sumprod(prepared["dense"][self.head][1][0], head_hidden)
         logit += self.head.biases[1][0].value
         probability = self.sigmoid(logit)
         if label is None:
@@ -214,7 +327,11 @@ class GroupedCNNLSTM:
         for i, (weights, bias) in enumerate(
             zip(self.head.weights[0], self.head.biases[0], strict=True)
         ):
-            dz = derivative * self.head.weights[1][0][i].value * (1 - head_hidden[i] ** 2)
+            dz = (
+                derivative
+                * self.head.weights[1][0][i].value
+                * ((head_hidden[i] > 0) if self.activation else (1 - head_hidden[i] ** 2))
+            )
             gradient[bias] += dz
             for j, weight in enumerate(weights):
                 gradient[weight] += dz * hidden[j]
@@ -261,15 +378,22 @@ class GroupedCNNLSTM:
         for index, (group, first_out, indices, pooled, second_out) in enumerate(caches):
             width = len(second_out)
             dpool = self.conv_backward(
-                self.second[index], pooled, second_out, dsequence[offset : offset + width], gradient
+                self.second[index],
+                pooled,
+                second_out,
+                dsequence[offset : offset + width],
+                gradient,
+                activation=self.activation,
             )
             offset += width
             dfirst = [[0.0] * len(row) for row in first_out]
             for row, selected, upstream in zip(dfirst, indices, dpool, strict=True):
                 for i, value in zip(selected, upstream, strict=True):
                     row[i] += value
-            dgroup = self.conv_backward(self.first[index], group, first_out, dfirst, gradient)
-            if index:
+            dgroup = self.conv_backward(
+                self.first[index], group, first_out, dfirst, gradient, activation=self.activation
+            )
+            if index and not frozen:
                 self.conv_backward(
                     self.encoders[index - 1],
                     channels[5:7] if index == 1 else channels[7:10],
@@ -278,6 +402,20 @@ class GroupedCNNLSTM:
                     gradient,
                 )
         return probability, loss, gradient
+
+    def convolution_sequence(self, channels):
+        encoded = [
+            self.conv_fast(net, group)
+            for net, group in zip(self.encoders, [channels[5:7], channels[7:10]], strict=True)
+        ]
+        sequence = []
+        for group, first, second in zip(
+            [channels[:5], *encoded], self.first, self.second, strict=True
+        ):
+            output = self.conv_fast(first, group, activation=self.activation)
+            pooled = [[max(row[t : t + 2]) for t in range(0, len(row) - 1, 2)] for row in output]
+            sequence.extend(self.conv_fast(second, pooled, activation=self.activation))
+        return sequence
 
     @staticmethod
     def adam_step(parameters, gradient, optimizer, rate):
@@ -293,6 +431,35 @@ class GroupedCNNLSTM:
             p.value -= rate * (m / (1 - 0.9**t)) / (math.sqrt(v / (1 - 0.999**t)) + 1e-8)
             if not math.isfinite(p.value):
                 raise ValueError("CNN optimization produced a nonfinite parameter")
+
+    def head_prediction(self, hidden, *, label=None):
+        values = [
+            sum(w.value * x for w, x in zip(row, hidden, strict=True)) + b.value
+            for row, b in zip(self.head.weights[0], self.head.biases[0], strict=True)
+        ]
+        values = [max(0.0, v) if self.activation else math.tanh(v) for v in values]
+        logit = sum(w.value * x for w, x in zip(self.head.weights[1][0], values, strict=True))
+        logit += self.head.biases[1][0].value
+        probability = self.sigmoid(logit)
+        if label is None:
+            return probability
+        gradient = {p: 0.0 for p in self.head.parameters()}
+        derivative = probability - label
+        gradient[self.head.biases[1][0]] = derivative
+        for weight, value in zip(self.head.weights[1][0], values, strict=True):
+            gradient[weight] = derivative * value
+        for i, (weights, bias) in enumerate(
+            zip(self.head.weights[0], self.head.biases[0], strict=True)
+        ):
+            dz = (
+                derivative
+                * self.head.weights[1][0][i].value
+                * ((values[i] > 0) if self.activation else (1 - values[i] ** 2))
+            )
+            gradient[bias] = dz
+            for weight, value in zip(weights, hidden, strict=True):
+                gradient[weight] = dz * value
+        return probability, gradient
 
     @staticmethod
     def metrics(probabilities, labels):
@@ -322,26 +489,62 @@ class GroupedCNNLSTM:
             "patience": 4,
             "hidden": 8,
             "learning_rate": 0.003,
+            "history_bars": 24,
+            "feature_mode": 0,
+            "activation": 0,
+            "freeze_encoders": 1,
+            "head_epochs": 0,
+            "recurrent_epochs": 0,
         }
         options = {
             key: float(request.samples[0].features.get("cfg_" + key, value))
             for key, value in defaults.items()
         }
         for key in defaults.keys() - {"learning_rate"}:
-            if options[key] != int(options[key]) or not 1 <= options[key] <= 128:
+            minimum = (
+                0
+                if key
+                in {
+                    "feature_mode",
+                    "activation",
+                    "freeze_encoders",
+                    "head_epochs",
+                    "recurrent_epochs",
+                }
+                else 1
+            )
+            if options[key] != int(options[key]) or not minimum <= options[key] <= 128:
                 raise ValueError("Invalid integer training setting: " + key)
             options[key] = int(options[key])
         if not 0.00001 <= options["learning_rate"] <= 0.1 or options["hidden"] not in (4, 8, 12):
             raise ValueError("Invalid CNN optimizer or width setting")
+        if (
+            options["feature_mode"] not in (0, 1, 2)
+            or options["activation"] not in (0, 1)
+            or options["freeze_encoders"] not in (0, 1)
+            or options["history_bars"] not in (24, 64)
+            or options["feature_mode"]
+            and options["history_bars"] != 64
+        ):
+            raise ValueError("Invalid CNN feature/staging setting")
         if any(
             float(s.features.get("cfg_" + key, default)) != options[key]
             for s in request.samples
             for key, default in defaults.items()
         ):
             raise ValueError("CNN settings must be identical across the training request")
-        self.initialize(request.seed, options["hidden"])
+        self.initialize(
+            request.seed,
+            options["hidden"],
+            feature_mode=options["feature_mode"],
+            activation=options["activation"],
+        )
+        self.history_bars = options["history_bars"]
         windows = [
-            [[float(sample.features[f"v_{t}_{j}"]) for j in range(5)] for t in range(24)]
+            [
+                [float(sample.features[f"v_{t}_{j}"]) for j in range(5)]
+                for t in range(self.history_bars)
+            ]
             for sample in request.samples
         ]
         labels = [float(sample.target) for sample in request.samples]
@@ -357,7 +560,9 @@ class GroupedCNNLSTM:
         stamps = [float(s.features["window_end_ms"]) for s in request.samples]
         if any(b <= a for a, b in zip(stamps, stamps[1:], strict=False)):
             raise ValueError("CNN window end times must strictly increase")
-        features = [row for i in train_indices for row in self.features(windows[i])]
+        features = [
+            row for i in train_indices for row in self.features(windows[i], mode=self.feature_mode)
+        ]
         self.means = [sum(row[j] for row in features) / len(features) for j in range(10)]
         self.scales = [
             math.sqrt(sum((row[j] - self.means[j]) ** 2 for row in features) / len(features)) or 1.0
@@ -376,6 +581,7 @@ class GroupedCNNLSTM:
             for start in range(0, len(order), options["batch_size"]):
                 batch = order[start : start + options["batch_size"]]
                 gradient = {p: 0.0 for p in ae_parameters}
+                prepared = self.snapshot_weights()
                 for i in batch:
                     for group, encoder, decoder in zip(
                         [channels[i][5:7], channels[i][7:10]],
@@ -383,8 +589,10 @@ class GroupedCNNLSTM:
                         self.decoders,
                         strict=True,
                     ):
-                        encoded = self.conv_fast(encoder, group)
-                        decoded = self.conv_fast(decoder, encoded, activate=False)
+                        encoded = self.conv_fast(encoder, group, prepared=prepared["conv"][encoder])
+                        decoded = self.conv_fast(
+                            decoder, encoded, activate=False, prepared=prepared["conv"][decoder]
+                        )
                         scale = len(group) * 24
                         errors = [
                             [pred - actual for pred, actual in zip(a, b, strict=True)]
@@ -400,9 +608,31 @@ class GroupedCNNLSTM:
             ae_losses.append(total_loss / len(order))
         train_labels = [labels[i] for i in train_indices]
         val_labels = [labels[i] for i in val_indices]
+        encoder_after_pretraining = [p.value for net in self.encoders for p in net.parameters()]
+        frozen_groups = None
+        if options["freeze_encoders"]:
+            frozen_groups = [
+                [
+                    row[:5],
+                    self.conv_fast(self.encoders[0], row[5:7]),
+                    self.conv_fast(self.encoders[1], row[7:10]),
+                ]
+                for row in channels
+            ]
 
         def score(indices, targets):
-            return self.metrics([self.fast_prediction(channels[i]) for i in indices], targets)
+            prepared = self.snapshot_weights()
+            return self.metrics(
+                [
+                    self.fast_prediction(
+                        channels[i],
+                        groups=frozen_groups[i] if frozen_groups else None,
+                        prepared=prepared,
+                    )
+                    for i in indices
+                ],
+                targets,
+            )
 
         initial_train, initial_validation = (
             score(train_indices, train_labels),
@@ -414,7 +644,12 @@ class GroupedCNNLSTM:
         optimizer = {"step": 0, "moments": {}}
         parameters = [
             p
-            for layer in self.encoders + self.first + self.second + [self.lstm, self.head]
+            for layer in (
+                ([] if frozen_groups else self.encoders)
+                + self.first
+                + self.second
+                + [self.lstm, self.head]
+            )
             for p in layer.parameters()
         ]
         trace = []
@@ -425,8 +660,14 @@ class GroupedCNNLSTM:
             for start in range(0, len(order), options["batch_size"]):
                 batch = order[start : start + options["batch_size"]]
                 accumulated = {p: 0.0 for p in parameters}
+                prepared = self.snapshot_weights()
                 for i in batch:
-                    probability, _, gradient = self.fast_prediction(channels[i], label=labels[i])
+                    probability, _, gradient = self.fast_prediction(
+                        channels[i],
+                        label=labels[i],
+                        prepared=prepared,
+                        groups=frozen_groups[i] if frozen_groups else None,
+                    )
                     epoch_probabilities.append(probability)
                     epoch_labels.append(labels[i])
                     for p in parameters:
@@ -437,6 +678,7 @@ class GroupedCNNLSTM:
             trace.append(
                 {
                     "epoch": epoch,
+                    "stage": "cnn_lstm_head",
                     "train": train_score,
                     "validation": val_score,
                     "train_scope": "online pre-update minibatch probabilities",
@@ -449,8 +691,110 @@ class GroupedCNNLSTM:
                 patience += 1
             if patience >= options["patience"]:
                 break
+        joint_epochs = len(trace)
+        # Start the optional final stage from the best validation checkpoint.
         for p, value in zip(self.parameters(), best, strict=True):
             p.value = value
+        recurrent_epochs = 0
+        if options["recurrent_epochs"]:
+            sequences = [self.convolution_sequence(row) for row in channels]
+            recurrent_parameters = [
+                p for layer in [self.lstm, self.head] for p in layer.parameters()
+            ]
+            optimizer = {"step": 0, "moments": {}}
+            patience = 0
+            for recurrent_epoch in range(1, options["recurrent_epochs"] + 1):
+                order = list(train_indices)
+                rng.shuffle(order)
+                epoch_probabilities, epoch_labels = [], []
+                for start in range(0, len(order), options["batch_size"]):
+                    batch = order[start : start + options["batch_size"]]
+                    gradient = {p: 0.0 for p in recurrent_parameters}
+                    prepared = self.snapshot_weights()
+                    for i in batch:
+                        probability, _, sample_gradient = self.fast_prediction(
+                            channels[i], label=labels[i], sequence=sequences[i], prepared=prepared
+                        )
+                        epoch_probabilities.append(probability)
+                        epoch_labels.append(labels[i])
+                        for p in recurrent_parameters:
+                            gradient[p] += sample_gradient[p] / len(batch)
+                    self.adam_step(
+                        recurrent_parameters, gradient, optimizer, options["learning_rate"]
+                    )
+                prepared = self.snapshot_weights()
+                val_score = self.metrics(
+                    [
+                        self.fast_prediction(channels[i], sequence=sequences[i], prepared=prepared)
+                        for i in val_indices
+                    ],
+                    val_labels,
+                )
+                recurrent_epochs = recurrent_epoch
+                epoch = joint_epochs + recurrent_epoch
+                trace.append(
+                    {
+                        "epoch": epoch,
+                        "stage": "frozen_conv_lstm_head",
+                        "train": self.metrics(epoch_probabilities, epoch_labels),
+                        "validation": val_score,
+                        "train_scope": "online pre-update minibatch probabilities",
+                    }
+                )
+                if val_score["bce"] < best_loss - 1e-6:
+                    best_loss, best_epoch, patience = val_score["bce"], epoch, 0
+                    best = [p.value for p in self.parameters()]
+                else:
+                    patience += 1
+                if patience >= options["patience"]:
+                    break
+            for p, value in zip(self.parameters(), best, strict=True):
+                p.value = value
+        head_epochs = 0
+        if options["head_epochs"]:
+            hidden_vectors = [self.fast_prediction(row, return_hidden=True) for row in channels]
+            head_parameters = self.head.parameters()
+            optimizer = {"step": 0, "moments": {}}
+            patience = 0
+            for head_epoch in range(1, options["head_epochs"] + 1):
+                order = list(train_indices)
+                rng.shuffle(order)
+                epoch_probabilities, epoch_labels = [], []
+                for start in range(0, len(order), options["batch_size"]):
+                    batch = order[start : start + options["batch_size"]]
+                    gradient = {p: 0.0 for p in head_parameters}
+                    for i in batch:
+                        probability, sample_gradient = self.head_prediction(
+                            hidden_vectors[i], label=labels[i]
+                        )
+                        epoch_probabilities.append(probability)
+                        epoch_labels.append(labels[i])
+                        for p in head_parameters:
+                            gradient[p] += sample_gradient[p] / len(batch)
+                    self.adam_step(head_parameters, gradient, optimizer, options["learning_rate"])
+                val_score = self.metrics(
+                    [self.head_prediction(hidden_vectors[i]) for i in val_indices], val_labels
+                )
+                head_epochs = head_epoch
+                epoch = joint_epochs + recurrent_epochs + head_epoch
+                trace.append(
+                    {
+                        "epoch": epoch,
+                        "stage": "frozen_trunk_head",
+                        "train": self.metrics(epoch_probabilities, epoch_labels),
+                        "validation": val_score,
+                        "train_scope": "online pre-update minibatch probabilities",
+                    }
+                )
+                if val_score["bce"] < best_loss - 1e-6:
+                    best_loss, best_epoch, patience = val_score["bce"], epoch, 0
+                    best = [p.value for p in self.parameters()]
+                else:
+                    patience += 1
+                if patience >= options["patience"]:
+                    break
+            for p, value in zip(self.parameters(), best, strict=True):
+                p.value = value
         selected_train, selected_validation = (
             score(train_indices, train_labels),
             score(val_indices, val_labels),
@@ -459,7 +803,7 @@ class GroupedCNNLSTM:
         return json.dumps(
             {
                 "seed": request.seed,
-                "model_format": 2,
+                "model_format": 3,
                 "options": options,
                 "parameters": after,
                 "means": self.means,
@@ -468,6 +812,14 @@ class GroupedCNNLSTM:
                     "samples": len(train_indices),
                     "validation_samples": len(val_indices),
                     "supervised_epochs": len(trace),
+                    "joint_epochs": joint_epochs,
+                    "head_epochs": head_epochs,
+                    "recurrent_epochs": recurrent_epochs,
+                    "encoder_frozen": bool(options["freeze_encoders"]),
+                    "encoder_parameters_after_pretraining": encoder_after_pretraining,
+                    "encoder_parameters_after_supervised": [
+                        p.value for net in self.encoders for p in net.parameters()
+                    ],
                     "selected_epoch": best_epoch,
                     "options": options,
                     "optimizer": "minibatch Adam with global gradient norm clip5",
@@ -498,9 +850,15 @@ class GroupedCNNLSTM:
 
     def load(self, payload):
         state = json.loads(payload)
-        if state.get("model_format") != 2:
+        if state.get("model_format") != 3:
             raise ValueError("CNN model format differs from this strategy implementation")
-        self.initialize(state["seed"], state["options"]["hidden"])
+        self.initialize(
+            state["seed"],
+            state["options"]["hidden"],
+            feature_mode=state["options"]["feature_mode"],
+            activation=state["options"]["activation"],
+        )
+        self.history_bars = state["options"]["history_bars"]
         parameters = self.parameters()
         if len(parameters) != len(state["parameters"]):
             raise ValueError("CNN/LSTM model architecture differs")
@@ -513,10 +871,10 @@ class GroupedCNNLSTM:
         self.history = (
             self.history
             + [[float(event.values[k]) for k in ("open", "high", "low", "close", "volume")]]
-        )[-24:]
-        if len(self.history) < 24:
-            return (NoOp(reason="CNN/LSTM 24-candle warmup"),)
-        probability = self.forward(self.channels(self.history)).value
+        )[-self.history_bars :]
+        if len(self.history) < self.history_bars:
+            return (NoOp(reason="CNN/LSTM causal indicator warmup"),)
+        probability = self.fast_prediction(self.channels(self.history))
         upper, lower = 1 / (1 + self.theta), self.theta / (1 + self.theta)
         direction = 1 if probability >= upper else -1 if probability <= lower else 0
         quantity = (

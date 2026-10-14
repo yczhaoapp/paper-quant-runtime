@@ -405,7 +405,7 @@ def test_confidence_and_bet_size_mapping_uses_real_probability_boundaries(monkey
             agent.theta = theta
             monkeypatch.setattr(agent, "channels", lambda rows: None)
             monkeypatch.setattr(
-                agent, "forward", lambda inputs, probability=probability: Scalar(probability)
+                agent, "fast_prediction", lambda inputs, probability=probability: probability
             )
             action = agent.decide(event, account)[0]
             direction = (

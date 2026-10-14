@@ -186,7 +186,8 @@ MAPPINGS = [
             ),
         ],
         [
-            "Public BTC/USDT Jan-Jun2024 training, July validation, fixed August-September test.",
+            "Public BTC/USDT Jan-Jun2024 training, July-September development validation, "
+            "independent October-December test; prior August-September negative result retained.",
             (
                 "Wavelet denoising, XGBoost feature selection, large "
                 "indicator grid and dropout are excluded."
@@ -201,9 +202,10 @@ MAPPINGS = [
                 "Conv outputs reduced."
             ),
             (
-                "Training uses minibatch Adam, training-only scaler, shuffled training windows "
-                "and chronological validation checkpoint selection; bounded epochs are not "
-                "the paper's convergence loop."
+                "Training uses minibatch Adam, training-only scaler, 12-epoch AE pretraining, "
+                "frozen encoder/CNN stages and validation checkpoint selection. ReLU replaces "
+                "the earlier main tanh activation; BatchNorm remains excluded. Bounded stages "
+                "do not reproduce the paper's convergence loop."
             ),
             (
                 "Training quality threshold is reported honestly; runtime "
@@ -229,6 +231,10 @@ MAPPINGS = [
                 "Validation influences checkpoint selection only, never gradients "
                 "or scaler fitting; test is excluded from training request."
             ),
+            "Causal 64-bar EMA/Williams and SMA/volatility alternatives were evaluated on "
+            "development validation but were not selected; this is explicit model selection.",
+            "Selected four-unit configuration uses cached frozen-stage features and numerical "
+            "dot products; original worker time, memory, CPU and imports remain unchanged.",
         ],
     ),
     (
@@ -561,6 +567,52 @@ def main():
                 ),
             )
             spec["steps"].append(step)
+        if name == "grouped_cnn_lstm":
+            for claim_index, implementation, oracle in (
+                (
+                    0,
+                    "causal_features",
+                    "test_causal_indicator_features_match_independent_prefix_equations",
+                ),
+                (
+                    0,
+                    "causal_features",
+                    "test_causal_features_use_completed_prefix_and_reject_insufficient_history",
+                ),
+                (
+                    2,
+                    "train",
+                    "test_actual_hidden4_training_freezes_encoder_and_excludes_validation_from_fitting",
+                ),
+                (
+                    0,
+                    "fast_prediction",
+                    "test_frozen_encoder_cache_matches_uncached_prediction_and_training_gradients",
+                ),
+                (
+                    2,
+                    "head_prediction",
+                    "test_head_refinement_gradients_match_independent_scalar_autodiff",
+                ),
+                (
+                    0,
+                    "convolution_sequence",
+                    "test_cached_convolution_recurrent_stage_preserves_forward_and_recurrent_gradients",
+                ),
+                (
+                    2,
+                    "train",
+                    "test_deployed_hidden4_relu_stages_learn_unseen_patterns_without_threshold_changes",
+                ),
+            ):
+                step = dict(spec["steps"][claim_index])
+                step.update(
+                    implementation=CLASSES[name] + "." + implementation,
+                    oracle_node="tests/test_cnn_refinement.py::" + oracle,
+                    adaptation="Actual hidden4 staged adaptation or unselected causal alternative; "
+                    "controlled checks do not establish market prediction quality.",
+                )
+                spec["steps"].append(step)
         if additional_ids:
             claim["algorithm_sources"] = [
                 {"url": sources[item]["url"], "title": sources[item]["title"]}

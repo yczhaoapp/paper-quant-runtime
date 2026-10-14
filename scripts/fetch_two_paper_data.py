@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import csv
 import hashlib
 import io
@@ -14,13 +15,29 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data/six-paper/public-btc"
 
 
-def prepare():
+def prepare(*, cnn_history=False, cnn_holdout=False):
+    if cnn_holdout:
+        lock_path = ROOT / "research/cnn-refinement/selection-lock.json"
+        if not lock_path.is_file():
+            raise ValueError("CNN holdout acquisition requires a persisted selection lock")
+        lock = json.loads(lock_path.read_text())
+        plan = ROOT / "research/cnn-refinement/experiment-plan.json"
+        source = ROOT / "strategies/supplement.grouped_cnn_lstm/strategy.py"
+        if (
+            hashlib.sha256(plan.read_bytes()).hexdigest() != lock["experiment_plan_sha256"]
+            or hashlib.sha256(source.read_bytes()).hexdigest() != lock["package_source_sha256"]
+        ):
+            raise ValueError("CNN selection lock differs from the registered plan or strategy")
     DATA.mkdir(parents=True, exist_ok=True)
     manifest = DATA / "SOURCE.json"
     records = json.loads(manifest.read_text())["sources"]
     by_file = {record["csv"]: record for record in records}
     intervals = [("4h", f"2024-{month:02d}") for month in range(1, 10)]
     intervals += [("1m", f"2024-{month:02d}") for month in range(1, 6)]
+    if cnn_history:
+        intervals.append(("4h", "2023-12"))
+    if cnn_holdout:
+        intervals += [("4h", f"2024-{month:02d}") for month in range(10, 13)]
     for interval, month in intervals:
         name = f"BTCUSDT-{interval}-{month}"
         path = DATA / (name + ".csv")
@@ -66,4 +83,8 @@ def prepare():
 
 
 if __name__ == "__main__":
-    prepare()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--cnn-history", action="store_true")
+    parser.add_argument("--cnn-holdout", action="store_true")
+    args = parser.parse_args()
+    prepare(cnn_history=args.cnn_history, cnn_holdout=args.cnn_holdout)

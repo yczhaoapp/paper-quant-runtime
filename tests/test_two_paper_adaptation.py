@@ -41,10 +41,14 @@ def strategy(name, cls):
 
 @pytest.mark.parametrize("seed", [3, 17, 43])
 @pytest.mark.parametrize("label", [0, 1])
-def test_analytic_cnn_all_gradients_match_autodiff_and_sampled_finite_differences(seed, label):
+@pytest.mark.parametrize("hidden", [4, 8])
+@pytest.mark.parametrize("activation", [0, 1])
+def test_analytic_cnn_all_gradients_match_autodiff_and_sampled_finite_differences(
+    seed, label, hidden, activation
+):
     cls = strategy("grouped_cnn_lstm", "GroupedCNNLSTM")
     model = cls()
-    model.initialize(seed)
+    model.initialize(seed, hidden, activation=activation)
     rng = random.Random(seed + 90)
     channels = [[rng.uniform(-1, 1) for _ in range(24)] for _ in range(10)]
     probability, loss, gradient = model.fast_prediction(channels, label=label)
@@ -69,7 +73,7 @@ def test_analytic_cnn_all_gradients_match_autodiff_and_sampled_finite_difference
             assert gradient[p] == pytest.approx((losses[1] - losses[0]) / (2 * eps), abs=2e-8)
 
 
-def controlled_request(seed, *, count=96, epochs=16):
+def controlled_request(seed, *, count=96, epochs=16, hidden=4):
     rng = random.Random(seed)
     samples = []
     for index in range(count):
@@ -90,15 +94,17 @@ def controlled_request(seed, *, count=96, epochs=16):
             cfg_patience=Decimal(epochs),
             cfg_batch_size=Decimal(8),
             cfg_learning_rate=Decimal("0.01"),
+            cfg_hidden=Decimal(hidden),
         )
         samples.append(TrainingSample(features=features, target=Decimal(label)))
     return TrainingRequest(dataset_id="controlled-learnability", seed=seed, samples=tuple(samples))
 
 
 @pytest.mark.parametrize("seed", [5, 19, 61])
-def test_cnn_learns_unseen_controlled_patterns_and_reloads_without_test_branches(seed):
+@pytest.mark.parametrize("hidden", [4, 8])
+def test_cnn_learns_unseen_controlled_patterns_and_reloads_without_test_branches(seed, hidden):
     cls = strategy("grouped_cnn_lstm", "GroupedCNNLSTM")
-    request = controlled_request(seed)
+    request = controlled_request(seed, hidden=hidden)
     model = cls()
     payload = model.train(request)
     metrics = json.loads(payload)["training"]
