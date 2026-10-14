@@ -20,6 +20,7 @@ from paperquant.papers import verify_recipe
 from scripts.acceptance import _check_paper_run_scope, _run_oracles
 from scripts.gate_support import check_source_identity, new_attempt, source_identity, write_json
 from scripts.prepare_six_sources import prepare
+from scripts.two_paper_quality import check_contract_lock, quality_for_run
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "research/six-paper/catalog.json"
@@ -120,6 +121,7 @@ def accept(output, *, strict=False, require_clean=False):
         attempt.mkdir(parents=True)
         identity = source_identity(ROOT, require_clean=require_clean)
         state.update(identity)
+        state["contract_preservation"] = check_contract_lock()
         state["sources"] = prepare(fetch=False)
         check_inputs()
         catalog = json.loads(CATALOG.read_text())["cases"]
@@ -246,6 +248,7 @@ def accept(output, *, strict=False, require_clean=False):
                     "bundle_sha256": sha(run_dir / "run/bundle.json"),
                     "report_sha256": sha(run_dir / "run/report.json"),
                     "zero_trades": not bool(report.fills),
+                    "adaptation_quality": quality_for_run(run_dir / "run", report, bundle),
                 }
                 reports[mode] = report
             if strict:

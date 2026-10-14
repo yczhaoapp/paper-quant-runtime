@@ -1,11 +1,12 @@
 {
   "excluded_paper_components": [
     "Single public Binance BTC market replaces OKX BTC/PEPE and Nasdaq sources.",
-    "Seven-day sample and 4/3-day split replace six months and multiple temporal holdouts.",
+    "Jan-Feb2024 training, March diagnostic validation and fixed April-May test replace original six-month three-market experiments.",
     "Diagonal covariance and K=1..4 grid are declared; paper does not give all estimator settings.",
     "Feature text says six tail values but indices53..59 contain seven; choose exactly six, with a dedicated oracle.",
     "Degenerate/no-peak regression uses an explicit zero slope and local mean feature convention.",
-    "KNN only; RF, DNN, SVM, XGBoost, random benchmark and original APC profitability reproduction excluded."
+    "KNN only; RF, DNN, SVM, XGBoost, random benchmark and original APC profitability reproduction excluded.",
+    "Validation reports per-class support, recall and a hold baseline; it cannot alter labels, scaler, GMM or neighbors."
   ],
   "fields": [
     "close",
@@ -42,6 +43,15 @@
       "paper_rule": "Methods: classify buy/sell/hold within similarly clustered market trends",
       "role": "inference",
       "runtime_rule": "One-nearest-neighbor bank per selected mixture cluster; trade predicted minute60 then flatten"
+    },
+    {
+      "adaptation": "Additional adaptation check; controlled learnability is not paper performance reproduction.",
+      "claim_index": 1,
+      "implementation": "GMMConditionalKNN.train",
+      "oracle_node": "tests/test_two_paper_adaptation.py::test_gmm_validation_cannot_change_quantile_scaler_mixture_or_neighbor_bank",
+      "paper_rule": "Methods: training-only standardization, mixture estimation and BIC model selection",
+      "role": "training",
+      "runtime_rule": "EM diagonal covariance with declared .001 ridge; select K=1..4 by exact diagonal-model BIC"
     }
   ],
   "strategy_id": "supplement.gmm_knn"

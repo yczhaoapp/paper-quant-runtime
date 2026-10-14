@@ -3,7 +3,7 @@
     {
       "locator": "PDF page 11",
       "paper_rule": "Section2.2: three feature-group Conv1d branches, pooling, many-to-one LSTM and classification head",
-      "runtime_rule": "Train two reduced convolutional autoencoders; 24-to-20-to-10-to-8 branches; four-state LSTM"
+      "runtime_rule": "Two reduced convolutional autoencoders; 24-to-20-to-10-to-8 branches; configurable LSTM and MLP width"
     },
     {
       "locator": "PDF page 14",
@@ -22,14 +22,17 @@
     }
   ],
   "differences": [
-    "Use public Binance BTC/USDT Jan-Feb2024 training and March2024 holdout rather than original exchange/window.",
+    "Public BTC/USDT Jan-Jun2024 training, July validation, fixed August-September test.",
     "Wavelet denoising, XGBoost feature selection, large indicator grid and dropout are excluded.",
     "Convolutional autoencoders omit the original encoder/decoder pool-upsampling stacks; latent channels are reduced.",
-    "LSTM width4 and FC width4 replace width20 and width10; Conv outputs are reduced.",
-    "Four supervised epochs and two reconstruction epochs form a bounded engineering run, not paper convergence.",
+    "Configurable bounded LSTM/FC widths replace original widths20/10; Conv outputs reduced.",
+    "Training uses minibatch Adam, training-only scaler, shuffled training windows and chronological validation checkpoint selection; bounded epochs are not the paper's convergence loop.",
     "Training quality threshold is reported honestly; runtime pass is not a well-trained or profitable-model assertion.",
     "Printed 10^-BCE proxy uses a different log base from conventional BCE; preserve it as a named paper proxy.",
-    "Theta=.5, next-open fills and per-fill costs are declared execution adaptations; no SL/TP bracket engine."
+    "Theta=.5, next-open fills and per-fill costs are declared execution adaptations; no SL/TP bracket engine.",
+    "OHLC/price-like features use causal window-relative price normalization; volume uses window mean.",
+    "Analytic convolution/LSTM backpropagation matches the independent Scalar autodiff path and finite differences.",
+    "Validation influences checkpoint selection only, never gradients or scaler fitting; test is excluded from training request."
   ],
   "reproduction_scope": "bounded local method adaptation; not full paper experiment",
   "source": {

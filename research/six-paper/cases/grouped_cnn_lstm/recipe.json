@@ -46,8 +46,8 @@
     "training_required": true
   },
   "package": "../../../../strategies/supplement.grouped_cnn_lstm",
-  "package_source_sha256": "a75c362defe30d794d9ff0ce3f8de103561194dbc1e2e0d488707690c283e9ce",
-  "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Use public Binance BTC/USDT Jan-Feb2024 training and March2024 holdout rather than original exchange/window.",
+  "package_source_sha256": "7f5e66538f4bf544f10cdf0b53018aefc7cd4dda2dc4836aff5417d43f72625f",
+  "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Public BTC/USDT Jan-Jun2024 training, July validation, fixed August-September test.",
   "source": {
     "file": "../../../source-cache/six/2205.08382v1.pdf",
     "format": "pdf",
@@ -57,5 +57,5 @@
     "url": "https://arxiv.org/pdf/2205.08382v1"
   },
   "spec_file": "method.json",
-  "spec_sha256": "e209374f9663e92a1e9f64337cc6ebc82f5967b7d93846ed88ac9988d713e13c"
+  "spec_sha256": "8e5b12c0cc305236a604e85bcc7dc2e1f362510e651f74e8a4e752829fb4d5ac"
 }

@@ -120,7 +120,11 @@
         "tests/test_six_paper_methods.py::test_autodiff_gradients_match_independent_math_and_finite_differences",
         "tests/test_six_paper_methods.py::test_cnn_training_updates_all_model_stages_and_confidence_equations",
         "tests/test_six_paper_methods.py::test_confidence_and_bet_size_mapping_uses_real_probability_boundaries",
-        "tests/test_six_paper_methods.py::test_convolution_and_lstm_match_separate_numpy_equations"
+        "tests/test_six_paper_methods.py::test_convolution_and_lstm_match_separate_numpy_equations",
+        "tests/test_two_paper_adaptation.py::test_analytic_cnn_all_gradients_match_autodiff_and_sampled_finite_differences",
+        "tests/test_two_paper_adaptation.py::test_cnn_learns_unseen_controlled_patterns_and_reloads_without_test_branches",
+        "tests/test_two_paper_adaptation.py::test_cnn_validation_does_not_fit_scaler_or_change_training_updates",
+        "tests/test_two_paper_adaptation.py::test_cnn_window_normalization_is_price_and_volume_scale_invariant"
       ],
       "paper_id": "2205.08382v1",
       "recipe": "research/six-paper/cases/grouped_cnn_lstm/recipe.json",
@@ -161,21 +165,25 @@
             "text": "two thresholds"
           }
         ],
-        "claim_sha256": "1494649d71b5cd9cd27d0a5d9382774d07b5dd708f55a3dd417d6f3d6ea4633d",
+        "claim_sha256": "540b87f05d20cf49aa9dfb0a6d841d847cfc932ba3cd2dbb020cb770fe19ffe1",
         "format": "pdf",
         "interpretation": "human-reviewed mapping; anchor checks do not prove semantic fidelity",
         "method_oracle_nodes": [
           "tests/test_six_paper_methods.py::test_cnn_training_updates_all_model_stages_and_confidence_equations",
           "tests/test_six_paper_methods.py::test_convolution_and_lstm_match_separate_numpy_equations",
           "tests/test_six_paper_methods.py::test_autodiff_gradients_match_independent_math_and_finite_differences",
-          "tests/test_six_paper_methods.py::test_confidence_and_bet_size_mapping_uses_real_probability_boundaries"
+          "tests/test_six_paper_methods.py::test_confidence_and_bet_size_mapping_uses_real_probability_boundaries",
+          "tests/test_two_paper_adaptation.py::test_analytic_cnn_all_gradients_match_autodiff_and_sampled_finite_differences",
+          "tests/test_two_paper_adaptation.py::test_cnn_learns_unseen_controlled_patterns_and_reloads_without_test_branches",
+          "tests/test_two_paper_adaptation.py::test_cnn_validation_does_not_fit_scaler_or_change_training_updates",
+          "tests/test_two_paper_adaptation.py::test_cnn_window_normalization_is_price_and_volume_scale_invariant"
         ],
-        "method_spec_sha256": "e209374f9663e92a1e9f64337cc6ebc82f5967b7d93846ed88ac9988d713e13c",
-        "method_steps": 4,
-        "package_source_sha256": "a75c362defe30d794d9ff0ce3f8de103561194dbc1e2e0d488707690c283e9ce",
+        "method_spec_sha256": "8e5b12c0cc305236a604e85bcc7dc2e1f362510e651f74e8a4e752829fb4d5ac",
+        "method_steps": 8,
+        "package_source_sha256": "7f5e66538f4bf544f10cdf0b53018aefc7cd4dda2dc4836aff5417d43f72625f",
         "page_count": 26,
         "paper_title": "Compatible deep neural network framework with financial time series data, including data preprocessor, neural network model and trading strategy",
-        "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Use public Binance BTC/USDT Jan-Feb2024 training and March2024 holdout rather than original exchange/window.",
+        "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Public BTC/USDT Jan-Jun2024 training, July validation, fixed August-September test.",
         "source_sha256": "82c0033f3555793139c834accdae22fccaef16152f72c65889e17c764c5ba486",
         "source_url": "https://arxiv.org/pdf/2205.08382v1",
         "strategy_id": "supplement.grouped_cnn_lstm"
@@ -190,7 +198,8 @@
       "oracle_nodes": [
         "tests/test_six_paper_methods.py::test_59_minute_features_match_independent_peak_regression_and_have_no_future_slot",
         "tests/test_six_paper_methods.py::test_gmm_density_bic_and_training_cluster_predictions_are_real",
-        "tests/test_six_paper_methods.py::test_knn_is_not_a_constant_hold_classifier"
+        "tests/test_six_paper_methods.py::test_knn_is_not_a_constant_hold_classifier",
+        "tests/test_two_paper_adaptation.py::test_gmm_validation_cannot_change_quantile_scaler_mixture_or_neighbor_bank"
       ],
       "paper_id": "2409.03762v1",
       "recipe": "research/six-paper/cases/gmm_knn/recipe.json",
@@ -223,17 +232,18 @@
             "text": "K-nearest neighbours"
           }
         ],
-        "claim_sha256": "715b83c215d17e65cb753b80df926adc6bd229b2ec816015ff0662b9d56f8ab2",
+        "claim_sha256": "2ebb4fc100a13aa4581baf4c29d3b19a59ca341a8549682c5c7ddc43f8c2dcc3",
         "format": "pdf",
         "interpretation": "human-reviewed mapping; anchor checks do not prove semantic fidelity",
         "method_oracle_nodes": [
           "tests/test_six_paper_methods.py::test_59_minute_features_match_independent_peak_regression_and_have_no_future_slot",
           "tests/test_six_paper_methods.py::test_gmm_density_bic_and_training_cluster_predictions_are_real",
-          "tests/test_six_paper_methods.py::test_knn_is_not_a_constant_hold_classifier"
+          "tests/test_six_paper_methods.py::test_knn_is_not_a_constant_hold_classifier",
+          "tests/test_two_paper_adaptation.py::test_gmm_validation_cannot_change_quantile_scaler_mixture_or_neighbor_bank"
         ],
-        "method_spec_sha256": "dadca5ebf261bc3db10d144ac84f94e06e3d0709d3d4b112551fb4a3ccabb8cd",
-        "method_steps": 3,
-        "package_source_sha256": "968b1456bb56b87c403134412c4f98424e33a5dc6df8c7a390a83e77fe387666",
+        "method_spec_sha256": "b788662495eee41f80e735c3bd7b900fcc1abbb91b5433af254d7385d7f60baa",
+        "method_steps": 4,
+        "package_source_sha256": "36d94b683a1d3d2a0c721922e22a8cbbe9c69c833e187ac4906a4630fc525fd2",
         "page_count": 22,
         "paper_title": "Combining supervised and unsupervised learning methods to predict financial market movements",
         "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Single public Binance BTC market replaces OKX BTC/PEPE and Nasdaq sources.",

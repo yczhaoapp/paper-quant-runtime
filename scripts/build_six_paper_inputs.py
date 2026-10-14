@@ -202,20 +202,25 @@ def bar_events(rows, seconds):
 
 
 def cnn_inputs():
-    train = raw_bars("4h", ["2024-01", "2024-02"])
-    evaluation = raw_bars("4h", ["2024-03"])
-    # Data-independent stride bounds the miniature neural training workload.
-    indices = list(range(23, len(train) - 1, 14))
+    plan = json.loads((ROOT / "research/two-paper/experiment-plan.json").read_text())["cnn"]
+    train = raw_bars("4h", plan["training"])
+    validation = raw_bars("4h", plan["validation"])
+    evaluation = raw_bars("4h", plan["evaluation"])
     samples = []
-    for end in indices:
-        window = train[end - 23 : end + 1]
-        features = {
-            f"v_{t}_{j}": Decimal(str(value))
-            for t, (_, row) in enumerate(window)
-            for j, value in enumerate(row)
-        }
-        label = Decimal(int(train[end + 1][1][3] > train[end][1][3]))
-        samples.append(TrainingSample(features=features, target=label))
+    for partition, rows in enumerate((train, validation)):
+        for end in range(23, len(rows) - 1):
+            window = rows[end - 23 : end + 1]
+            features = {
+                f"v_{t}_{j}": Decimal(str(value))
+                for t, (_, row) in enumerate(window)
+                for j, value in enumerate(row)
+            }
+            features.update(partition=Decimal(partition), window_end_ms=Decimal(rows[end][0]))
+            features.update(
+                {"cfg_" + key: Decimal(str(value)) for key, value in plan["configuration"].items()}
+            )
+            label = Decimal(int(rows[end + 1][1][3] > rows[end][1][3]))
+            samples.append(TrainingSample(features=features, target=label))
     request = TrainingRequest(
         dataset_id="supplement.grouped_cnn_lstm", seed=23, samples=tuple(samples)
     )
@@ -227,8 +232,12 @@ def cnn_inputs():
         provenance={
             "type": "public_market_data",
             "source": "data/six-paper/public-btc/SOURCE.json",
-            "training": "2024-01 through 2024-02 UTC, 24-candle windows at stride 14",
-            "evaluation": "2024-03 UTC",
+            "training": "2024-01 through 2024-06 UTC, all stride-one 24-candle windows",
+            "validation": (
+                "2024-07 UTC, no gradient/scaler fitting; minimum validation BCE checkpoint"
+            ),
+            "evaluation": "2024-08 through 2024-09 UTC, fixed before new test evaluation",
+            "experiment_plan": "research/two-paper/experiment-plan.json",
             "availability": "completed bar exclusive end, archive close time plus 1ms",
             "exclusions": (
                 "Binance sample replaces original 2017-2021 crypto exchange"
@@ -239,19 +248,21 @@ def cnn_inputs():
 
 
 def gmm_inputs():
-    rows = raw_bars("1m", ["2024-01"])[: 7 * 24 * 60]
-    split = 4 * 24 * 60
-    train, evaluation = rows[:split], rows[split:]
+    plan = json.loads((ROOT / "research/two-paper/experiment-plan.json").read_text())["gmm"]
+    train = raw_bars("1m", plan["training"])
+    validation = raw_bars("1m", plan["validation"])
+    evaluation = raw_bars("1m", plan["evaluation"])
     samples = []
-    for start in range(0, len(train) - 59, 60):
-        samples.append(
-            TrainingSample(
-                features={
-                    f"close_{i}": Decimal(str(row[1][3]))
-                    for i, row in enumerate(train[start : start + 60])
-                }
+    for partition, rows in enumerate((train, validation)):
+        for start in range(0, len(rows) - 59, 60):
+            features = {
+                f"close_{i}": Decimal(str(row[1][3]))
+                for i, row in enumerate(rows[start : start + 60])
+            }
+            features.update(
+                partition=Decimal(partition), window_end_ms=Decimal(rows[start + 59][0])
             )
-        )
+            samples.append(TrainingSample(features=features))
     request = TrainingRequest(dataset_id="supplement.gmm_knn", seed=31, samples=tuple(samples))
     publish(
         "gmm_knn",
@@ -261,11 +272,13 @@ def gmm_inputs():
         provenance={
             "type": "public_market_data",
             "source": "data/six-paper/public-btc/SOURCE.json",
-            "training": "2024-01-01 through 2024-01-04 UTC",
-            "evaluation": "2024-01-05 through 2024-01-07 UTC",
-            "split": "training-only labels, scaler, GMM, BIC and neighbor bank",
+            "training": "2024-01 through 2024-02 UTC",
+            "validation": "2024-03 UTC, metrics only; no estimator/threshold selection",
+            "evaluation": "2024-04 through 2024-05 UTC, fixed before new test evaluation",
+            "split": "training-only quantile, scaler, GMM, BIC and neighbor bank",
+            "experiment_plan": "research/two-paper/experiment-plan.json",
             "exclusions": (
-                "single BTC market and seven-day window replace original "
+                "single BTC market and fixed five-month sample replace original "
                 "three markets and six months"
             ),
         },

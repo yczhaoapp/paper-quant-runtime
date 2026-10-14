@@ -41,7 +41,7 @@
     "training_required": true
   },
   "package": "../../../../strategies/supplement.gmm_knn",
-  "package_source_sha256": "968b1456bb56b87c403134412c4f98424e33a5dc6df8c7a390a83e77fe387666",
+  "package_source_sha256": "36d94b683a1d3d2a0c721922e22a8cbbe9c69c833e187ac4906a4630fc525fd2",
   "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Single public Binance BTC market replaces OKX BTC/PEPE and Nasdaq sources.",
   "source": {
     "file": "../../../source-cache/six/2409.03762v1.pdf",
@@ -52,5 +52,5 @@
     "url": "https://arxiv.org/pdf/2409.03762v1"
   },
   "spec_file": "method.json",
-  "spec_sha256": "dadca5ebf261bc3db10d144ac84f94e06e3d0709d3d4b112551fb4a3ccabb8cd"
+  "spec_sha256": "b788662495eee41f80e735c3bd7b900fcc1abbb91b5433af254d7385d7f60baa"
 }

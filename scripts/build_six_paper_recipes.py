@@ -141,8 +141,8 @@ MAPPINGS = [
                     "many-to-one LSTM and classification head"
                 ),
                 (
-                    "Train two reduced convolutional autoencoders; "
-                    "24-to-20-to-10-to-8 branches; four-state LSTM"
+                    "Two reduced convolutional autoencoders; "
+                    "24-to-20-to-10-to-8 branches; configurable LSTM and MLP width"
                 ),
             ),
             (
@@ -186,10 +186,7 @@ MAPPINGS = [
             ),
         ],
         [
-            (
-                "Use public Binance BTC/USDT Jan-Feb2024 training and "
-                "March2024 holdout rather than original exchange/window."
-            ),
+            "Public BTC/USDT Jan-Jun2024 training, July validation, fixed August-September test.",
             (
                 "Wavelet denoising, XGBoost feature selection, large "
                 "indicator grid and dropout are excluded."
@@ -199,10 +196,14 @@ MAPPINGS = [
                 "encoder/decoder pool-upsampling stacks; latent channels "
                 "are reduced."
             ),
-            "LSTM width4 and FC width4 replace width20 and width10; Conv outputs are reduced.",
             (
-                "Four supervised epochs and two reconstruction epochs form "
-                "a bounded engineering run, not paper convergence."
+                "Configurable bounded LSTM/FC widths replace original widths20/10; "
+                "Conv outputs reduced."
+            ),
+            (
+                "Training uses minibatch Adam, training-only scaler, shuffled training windows "
+                "and chronological validation checkpoint selection; bounded epochs are not "
+                "the paper's convergence loop."
             ),
             (
                 "Training quality threshold is reported honestly; runtime "
@@ -215,6 +216,18 @@ MAPPINGS = [
             (
                 "Theta=.5, next-open fills and per-fill costs are declared "
                 "execution adaptations; no SL/TP bracket engine."
+            ),
+            (
+                "OHLC/price-like features use causal window-relative price normalization; "
+                "volume uses window mean."
+            ),
+            (
+                "Analytic convolution/LSTM backpropagation matches the independent "
+                "Scalar autodiff path and finite differences."
+            ),
+            (
+                "Validation influences checkpoint selection only, never gradients "
+                "or scaler fitting; test is excluded from training request."
             ),
         ],
     ),
@@ -267,7 +280,10 @@ MAPPINGS = [
         ],
         [
             "Single public Binance BTC market replaces OKX BTC/PEPE and Nasdaq sources.",
-            "Seven-day sample and 4/3-day split replace six months and multiple temporal holdouts.",
+            (
+                "Jan-Feb2024 training, March diagnostic validation and fixed April-May test "
+                "replace original six-month three-market experiments."
+            ),
             (
                 "Diagonal covariance and K=1..4 grid are declared; paper "
                 "does not give all estimator settings."
@@ -284,6 +300,10 @@ MAPPINGS = [
             (
                 "KNN only; RF, DNN, SVM, XGBoost, random benchmark and "
                 "original APC profitability reproduction excluded."
+            ),
+            (
+                "Validation reports per-class support, recall and a hold baseline; "
+                "it cannot alter labels, scaler, GMM or neighbors."
             ),
         ],
     ),
@@ -503,6 +523,44 @@ def main():
                 )
             ],
         }
+        extra_oracles = {
+            "grouped_cnn_lstm": [
+                (
+                    0,
+                    "fast_prediction",
+                    "test_analytic_cnn_all_gradients_match_autodiff_and_sampled_finite_differences",
+                ),
+                (
+                    2,
+                    "train",
+                    "test_cnn_learns_unseen_controlled_patterns_and_reloads_without_test_branches",
+                ),
+                (2, "train", "test_cnn_validation_does_not_fit_scaler_or_change_training_updates"),
+                (
+                    0,
+                    "features",
+                    "test_cnn_window_normalization_is_price_and_volume_scale_invariant",
+                ),
+            ],
+            "gmm_knn": [
+                (
+                    1,
+                    "train",
+                    "test_gmm_validation_cannot_change_quantile_scaler_mixture_or_neighbor_bank",
+                )
+            ],
+        }.get(name, [])
+        for claim_index, implementation, oracle in extra_oracles:
+            step = dict(spec["steps"][claim_index])
+            step.update(
+                implementation=CLASSES[name] + "." + implementation,
+                oracle_node="tests/test_two_paper_adaptation.py::" + oracle,
+                adaptation=(
+                    "Additional adaptation check; controlled learnability "
+                    "is not paper performance reproduction."
+                ),
+            )
+            spec["steps"].append(step)
         if additional_ids:
             claim["algorithm_sources"] = [
                 {"url": sources[item]["url"], "title": sources[item]["title"]}

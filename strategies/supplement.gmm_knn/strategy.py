@@ -131,9 +131,22 @@ class GMMConditionalKNN:
         return model
 
     def train(self, request):
-        if len(request.samples) < 12:
+        partitions = [float(s.features.get("partition", 0)) for s in request.samples]
+        if not set(partitions) <= {0, 1} or partitions != sorted(partitions):
+            raise ValueError("GMM requires chronological training then validation partitions")
+        fitting = [
+            sample
+            for sample, partition in zip(request.samples, partitions, strict=True)
+            if partition == 0
+        ]
+        validation = [
+            sample
+            for sample, partition in zip(request.samples, partitions, strict=True)
+            if partition == 1
+        ]
+        if len(fitting) < 12:
             raise ValueError("GMM/KNN needs twelve training blocks")
-        closes = [[float(s.features[f"close_{i}"]) for i in range(60)] for s in request.samples]
+        closes = [[float(s.features[f"close_{i}"]) for i in range(60)] for s in fitting]
         returns = [math.log(row[-1] / row[-2]) for row in closes]
         continuous_closes = [value for row in closes for value in row]
         minute_returns = [
@@ -172,25 +185,66 @@ class GMMConditionalKNN:
         ]
         if any(not group for group in groups):
             raise ValueError("Selected GMM has an empty KNN training cluster")
-        return json.dumps(
-            {
-                "threshold": threshold,
-                "center": center,
-                "scales": scales,
-                "gmm": model,
-                "groups": groups,
-                "training": {
-                    "seed": request.seed,
-                    "blocks": len(rows),
-                    "bic_by_k": [m["bic"] for m in candidates],
-                    "label_counts": {str(label): labels.count(label) for label in (-1, 0, 1)},
-                    "cluster_counts": [len(g) for g in groups],
-                    "covariance": "diagonal",
-                    "neighbors": 1,
-                },
+        state = {
+            "threshold": threshold,
+            "center": center,
+            "scales": scales,
+            "gmm": model,
+            "groups": groups,
+            "training": {
+                "seed": request.seed,
+                "blocks": len(rows),
+                "bic_by_k": [m["bic"] for m in candidates],
+                "label_counts": {str(label): labels.count(label) for label in (-1, 0, 1)},
+                "cluster_counts": [len(g) for g in groups],
+                "covariance": "diagonal",
+                "neighbors": 1,
+                "validation_blocks": len(validation),
+                "validation_usage": (
+                    "report only; no threshold, scaler, mixture or neighbor fitting"
+                ),
             },
-            sort_keys=True,
-        ).encode()
+        }
+        self.model = state
+        if validation:
+            val_closes = [[float(s.features[f"close_{i}"]) for i in range(60)] for s in validation]
+            truth = [
+                1
+                if math.log(row[-1] / row[-2]) > threshold
+                else -1
+                if math.log(row[-1] / row[-2]) < -threshold
+                else 0
+                for row in val_closes
+            ]
+            predicted = [self.predict(row[:59]) for row in val_closes]
+            state["training"]["validation"] = self.classification_metrics(truth, predicted)
+        return json.dumps(state, sort_keys=True).encode()
+
+    @staticmethod
+    def classification_metrics(truth, predicted):
+        counts = {str(i): truth.count(i) for i in (-1, 0, 1)}
+        recalls = {
+            str(i): sum(a == i and b == i for a, b in zip(truth, predicted, strict=True))
+            / truth.count(i)
+            if truth.count(i)
+            else None
+            for i in (-1, 0, 1)
+        }
+        return {
+            "blocks": len(truth),
+            "label_counts": counts,
+            "prediction_counts": {str(i): predicted.count(i) for i in (-1, 0, 1)},
+            "confusion_actual_predicted": {
+                f"{i},{j}": sum(a == i and b == j for a, b in zip(truth, predicted, strict=True))
+                for i in (-1, 0, 1)
+                for j in (-1, 0, 1)
+            },
+            "recall": recalls,
+            "balanced_accuracy": sum(v for v in recalls.values() if v is not None)
+            / sum(v is not None for v in recalls.values()),
+            "accuracy": sum(a == b for a, b in zip(truth, predicted, strict=True)) / len(truth),
+            "always_hold_accuracy": truth.count(0) / len(truth),
+        }
 
     def load(self, payload):
         self.model = json.loads(payload)

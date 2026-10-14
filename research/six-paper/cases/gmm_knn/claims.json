@@ -18,11 +18,12 @@
   ],
   "differences": [
     "Single public Binance BTC market replaces OKX BTC/PEPE and Nasdaq sources.",
-    "Seven-day sample and 4/3-day split replace six months and multiple temporal holdouts.",
+    "Jan-Feb2024 training, March diagnostic validation and fixed April-May test replace original six-month three-market experiments.",
     "Diagonal covariance and K=1..4 grid are declared; paper does not give all estimator settings.",
     "Feature text says six tail values but indices53..59 contain seven; choose exactly six, with a dedicated oracle.",
     "Degenerate/no-peak regression uses an explicit zero slope and local mean feature convention.",
-    "KNN only; RF, DNN, SVM, XGBoost, random benchmark and original APC profitability reproduction excluded."
+    "KNN only; RF, DNN, SVM, XGBoost, random benchmark and original APC profitability reproduction excluded.",
+    "Validation reports per-class support, recall and a hold baseline; it cannot alter labels, scaler, GMM or neighbors."
   ],
   "reproduction_scope": "bounded local method adaptation; not full paper experiment",
   "source": {

@@ -1,0 +1,38 @@
+{
+  "version": "1.0",
+  "fixed_before_new_test_evaluation": true,
+  "scope": "two upstream strategy adaptations; public contract and runtime source unchanged",
+  "cnn": {
+    "training": ["2024-01", "2024-02", "2024-03", "2024-04", "2024-05", "2024-06"],
+    "validation": ["2024-07"],
+    "evaluation": ["2024-08", "2024-09"],
+    "window": 24,
+    "stride": 1,
+    "seed": 23,
+    "theta": 0.5,
+    "selection": "minimum chronological validation BCE among the declared configurations meeting the existing Docker operation limit; no selection by test trades or returns",
+    "training_method": "minibatch Adam, analytic backpropagation independently checked against autodiff and finite differences",
+    "configuration": {"max_epochs": 12, "ae_epochs": 2, "hidden": 4, "learning_rate": 0.006, "batch_size": 32, "patience": 4},
+    "resource_scope": "four-unit width retained after eight-unit worker timeout; two learning-rate candidates compared only on July validation, preserving the 20-second operation limit",
+    "checks": ["controlled learnability", "finite-difference gradients", "validation isolation", "real-data loss and prediction dispersion", "honest paper quality status"]
+  },
+  "gmm": {
+    "training": ["2024-01", "2024-02"],
+    "validation": ["2024-03"],
+    "evaluation": ["2024-04", "2024-05"],
+    "window": 60,
+    "seed": 31,
+    "label_quantile": 0.04,
+    "components": [1, 2, 3, 4],
+    "neighbors": 1,
+    "selection": "training-only BIC; validation reported without parameter selection",
+    "checks": ["per-class support", "per-cluster support", "chronological evaluation", "confusion matrices", "always-hold baseline"]
+  },
+  "shared": {
+    "market": "public Binance BTCUSDT",
+    "fee_rate": "0.0001",
+    "execution": "reference engine next-open fills; same public interfaces",
+    "test_policy": "retain every fixed evaluation window including zero-trade results",
+    "limits": "local method adaptations; no original experiment profitability claim; no forced-trade rule"
+  }
+}

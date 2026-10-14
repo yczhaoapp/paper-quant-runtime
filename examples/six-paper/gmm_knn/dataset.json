@@ -1,9 +1,9 @@
 {
   "bar_seconds": 60,
-  "content_sha256": "d0f8b1fe1e44698b097a6976675d9ccd8a8f563d5302a8607eb0f3d728f0c8ad",
+  "content_sha256": "0ed7efa038f241cae864554af826c300d7e45035cd7eab8609f035011065a03d",
   "contract_version": "1.1",
   "dataset_id": "supplement.gmm_knn",
-  "event_count": 4320,
+  "event_count": 87840,
   "fields": [
     "close",
     "high",

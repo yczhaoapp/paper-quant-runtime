@@ -1,13 +1,15 @@
 {
   "availability": "completed bar exclusive end, archive close time plus 1ms",
-  "evaluation": "2024-03 UTC",
-  "event_count": 186,
-  "events_sha256": "538183593126962a3c270a6738ef69d188f3232d17384ffa417144e82b3d7ac7",
+  "evaluation": "2024-08 through 2024-09 UTC, fixed before new test evaluation",
+  "event_count": 366,
+  "events_sha256": "0aca88867ec3e5a0bdd844bdc6d114b1716e111b943803cd3b043691c363dd3e",
   "exclusions": "Binance sample replaces original 2017-2021 crypto exchange data; no original profitability claim",
-  "first_event": "2024-03-01T04:00:00+00:00",
-  "last_event": "2024-04-01T00:00:00+00:00",
+  "experiment_plan": "research/two-paper/experiment-plan.json",
+  "first_event": "2024-08-01T04:00:00+00:00",
+  "last_event": "2024-10-01T00:00:00+00:00",
   "source": "data/six-paper/public-btc/SOURCE.json",
-  "training": "2024-01 through 2024-02 UTC, 24-candle windows at stride 14",
-  "training_sha256": "9555428df7fd34589ce3d6dd0bc131b1c87b2a7f6793ebb65045f0b213a48ae3",
-  "type": "public_market_data"
+  "training": "2024-01 through 2024-06 UTC, all stride-one 24-candle windows",
+  "training_sha256": "de74a5c8e5ebedfecb878dc099356cf50d13d2f78b45569f2b9c715ec54da91b",
+  "type": "public_market_data",
+  "validation": "2024-07 UTC, no gradient/scaler fitting; minimum validation BCE checkpoint"
 }

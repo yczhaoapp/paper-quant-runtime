@@ -1,13 +1,16 @@
 {
   "excluded_paper_components": [
-    "Use public Binance BTC/USDT Jan-Feb2024 training and March2024 holdout rather than original exchange/window.",
+    "Public BTC/USDT Jan-Jun2024 training, July validation, fixed August-September test.",
     "Wavelet denoising, XGBoost feature selection, large indicator grid and dropout are excluded.",
     "Convolutional autoencoders omit the original encoder/decoder pool-upsampling stacks; latent channels are reduced.",
-    "LSTM width4 and FC width4 replace width20 and width10; Conv outputs are reduced.",
-    "Four supervised epochs and two reconstruction epochs form a bounded engineering run, not paper convergence.",
+    "Configurable bounded LSTM/FC widths replace original widths20/10; Conv outputs reduced.",
+    "Training uses minibatch Adam, training-only scaler, shuffled training windows and chronological validation checkpoint selection; bounded epochs are not the paper's convergence loop.",
     "Training quality threshold is reported honestly; runtime pass is not a well-trained or profitable-model assertion.",
     "Printed 10^-BCE proxy uses a different log base from conventional BCE; preserve it as a named paper proxy.",
-    "Theta=.5, next-open fills and per-fill costs are declared execution adaptations; no SL/TP bracket engine."
+    "Theta=.5, next-open fills and per-fill costs are declared execution adaptations; no SL/TP bracket engine.",
+    "OHLC/price-like features use causal window-relative price normalization; volume uses window mean.",
+    "Analytic convolution/LSTM backpropagation matches the independent Scalar autodiff path and finite differences.",
+    "Validation influences checkpoint selection only, never gradients or scaler fitting; test is excluded from training request."
   ],
   "fields": [
     "close",
@@ -19,16 +22,16 @@
   "source_sha256": "82c0033f3555793139c834accdae22fccaef16152f72c65889e17c764c5ba486",
   "steps": [
     {
-      "adaptation": "Bounded setting and listed differences apply: Use public Binance BTC/USDT Jan-Feb2024 training and March2024 holdout rather than original exchange/window.",
+      "adaptation": "Bounded setting and listed differences apply: Public BTC/USDT Jan-Jun2024 training, July validation, fixed August-September test.",
       "claim_index": 0,
       "implementation": "GroupedCNNLSTM.forward",
       "oracle_node": "tests/test_six_paper_methods.py::test_cnn_training_updates_all_model_stages_and_confidence_equations",
       "paper_rule": "Section2.2: three feature-group Conv1d branches, pooling, many-to-one LSTM and classification head",
       "role": "training",
-      "runtime_rule": "Train two reduced convolutional autoencoders; 24-to-20-to-10-to-8 branches; four-state LSTM"
+      "runtime_rule": "Two reduced convolutional autoencoders; 24-to-20-to-10-to-8 branches; configurable LSTM and MLP width"
     },
     {
-      "adaptation": "Bounded setting and listed differences apply: Use public Binance BTC/USDT Jan-Feb2024 training and March2024 holdout rather than original exchange/window.",
+      "adaptation": "Bounded setting and listed differences apply: Public BTC/USDT Jan-Jun2024 training, July validation, fixed August-September test.",
       "claim_index": 1,
       "implementation": "GroupedCNNLSTM.forward",
       "oracle_node": "tests/test_six_paper_methods.py::test_convolution_and_lstm_match_separate_numpy_equations",
@@ -37,7 +40,7 @@
       "runtime_rule": "Shared LSTM parameters trained by reverse-mode differentiation through all eight sequence states"
     },
     {
-      "adaptation": "Bounded setting and listed differences apply: Use public Binance BTC/USDT Jan-Feb2024 training and March2024 holdout rather than original exchange/window.",
+      "adaptation": "Bounded setting and listed differences apply: Public BTC/USDT Jan-Jun2024 training, July validation, fixed August-September test.",
       "claim_index": 2,
       "implementation": "GroupedCNNLSTM.train",
       "oracle_node": "tests/test_six_paper_methods.py::test_autodiff_gradients_match_independent_math_and_finite_differences",
@@ -46,13 +49,49 @@
       "runtime_rule": "Natural-log BCE; separately report printed 10^-loss proxy and whether paper quality threshold is met"
     },
     {
-      "adaptation": "Bounded setting and listed differences apply: Use public Binance BTC/USDT Jan-Feb2024 training and March2024 holdout rather than original exchange/window.",
+      "adaptation": "Bounded setting and listed differences apply: Public BTC/USDT Jan-Jun2024 training, July validation, fixed August-September test.",
       "claim_index": 3,
       "implementation": "GroupedCNNLSTM.decide",
       "oracle_node": "tests/test_six_paper_methods.py::test_confidence_and_bet_size_mapping_uses_real_probability_boundaries",
       "paper_rule": "Section3, Eq15-16: confidence thresholds from risk/reward and margin fraction abs(p-.5)",
       "role": "execution",
       "runtime_rule": "Declared theta=.5 thresholds; signed target fraction of current equity; neutral closes inventory"
+    },
+    {
+      "adaptation": "Additional adaptation check; controlled learnability is not paper performance reproduction.",
+      "claim_index": 0,
+      "implementation": "GroupedCNNLSTM.fast_prediction",
+      "oracle_node": "tests/test_two_paper_adaptation.py::test_analytic_cnn_all_gradients_match_autodiff_and_sampled_finite_differences",
+      "paper_rule": "Section2.2: three feature-group Conv1d branches, pooling, many-to-one LSTM and classification head",
+      "role": "training",
+      "runtime_rule": "Two reduced convolutional autoencoders; 24-to-20-to-10-to-8 branches; configurable LSTM and MLP width"
+    },
+    {
+      "adaptation": "Additional adaptation check; controlled learnability is not paper performance reproduction.",
+      "claim_index": 2,
+      "implementation": "GroupedCNNLSTM.train",
+      "oracle_node": "tests/test_two_paper_adaptation.py::test_cnn_learns_unseen_controlled_patterns_and_reloads_without_test_branches",
+      "paper_rule": "Eq11-13: supervised BCE and loss-based training quality proxy",
+      "role": "training",
+      "runtime_rule": "Natural-log BCE; separately report printed 10^-loss proxy and whether paper quality threshold is met"
+    },
+    {
+      "adaptation": "Additional adaptation check; controlled learnability is not paper performance reproduction.",
+      "claim_index": 2,
+      "implementation": "GroupedCNNLSTM.train",
+      "oracle_node": "tests/test_two_paper_adaptation.py::test_cnn_validation_does_not_fit_scaler_or_change_training_updates",
+      "paper_rule": "Eq11-13: supervised BCE and loss-based training quality proxy",
+      "role": "training",
+      "runtime_rule": "Natural-log BCE; separately report printed 10^-loss proxy and whether paper quality threshold is met"
+    },
+    {
+      "adaptation": "Additional adaptation check; controlled learnability is not paper performance reproduction.",
+      "claim_index": 0,
+      "implementation": "GroupedCNNLSTM.features",
+      "oracle_node": "tests/test_two_paper_adaptation.py::test_cnn_window_normalization_is_price_and_volume_scale_invariant",
+      "paper_rule": "Section2.2: three feature-group Conv1d branches, pooling, many-to-one LSTM and classification head",
+      "role": "training",
+      "runtime_rule": "Two reduced convolutional autoencoders; 24-to-20-to-10-to-8 branches; configurable LSTM and MLP width"
     }
   ],
   "strategy_id": "supplement.grouped_cnn_lstm"
