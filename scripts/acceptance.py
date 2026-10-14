@@ -287,6 +287,20 @@ def _check_native_differential(native: RunReport, reference: RunReport) -> None:
                 raise ValueError("Native and reference position profits differ")
 
 
+def _check_package_inventory(
+    base_ids: set[str], candidate_ids: set[str], package_ids: set[str], supplement: list[dict],
+) -> set[str]:
+    """Account for the separate supplement without excusing unlisted directories."""
+    supplemental_ids = {case["strategy_id"] for case in supplement}
+    if (len(supplement) not in (0, 6) or len(supplemental_ids) != len(supplement)
+        or any(not value.startswith("supplement.") for value in supplemental_ids)
+        or supplemental_ids & base_ids
+        or base_ids != candidate_ids
+        or package_ids != base_ids | supplemental_ids):
+        raise ValueError("catalog, candidates, supplement and runnable packages differ")
+    return supplemental_ids
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, required=True)
@@ -315,8 +329,13 @@ def main() -> int:
             (ROOT / "research/candidates.json").read_text())["entries"]}
         package_ids = {directory.name for directory in (ROOT / "strategies").iterdir()
                        if directory.is_dir()}
-        if set(ids) != candidate_ids or set(ids) != package_ids:
-            raise ValueError("catalog, candidates and runnable packages differ")
+        supplement_path = ROOT / "research/six-paper/catalog.json"
+        supplement = (json.loads(supplement_path.read_text())["cases"]
+                      if supplement_path.is_file() else [])
+        supplemental_ids = _check_package_inventory(
+            set(ids), candidate_ids, package_ids, supplement,
+        )
+        state["supplement_cases_not_verified_by_this_gate"] = sorted(supplemental_ids)
         paper_checks = []
         recipe_paths = sorted((ROOT / "research/recipes").glob("*.json"))
         if len(recipe_paths) < 3:

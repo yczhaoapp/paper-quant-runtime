@@ -13,6 +13,7 @@ import pytest
 import scripts.accept_six_papers as gate
 from paperquant.models import TrainingRequest
 from paperquant.papers import verify_recipe
+from scripts.acceptance import _check_package_inventory
 from scripts.build_six_paper_inputs import CLASSES, quote_events
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -136,3 +137,16 @@ def test_supplement_gate_invalidates_old_success_when_new_source_preparation_fai
 def test_nonexistent_oracle_parent_is_rejected_before_runtime():
     with pytest.raises(ValueError, match="could not be collected"):
         gate.expanded_oracles(["tests/test_six_paper_methods.py::nonexistent_method"])
+
+
+def test_separate_catalog_cannot_hide_an_unlisted_package_or_duplicate_case():
+    base = {"rule.example"}
+    supplement = [{"strategy_id": f"supplement.example{i}"} for i in range(6)]
+    identifiers = {case["strategy_id"] for case in supplement}
+    assert _check_package_inventory(base, base, base | identifiers, supplement) == identifiers
+    with pytest.raises(ValueError, match="runnable packages differ"):
+        _check_package_inventory(
+            base, base, base | identifiers | {"supplement.unlisted"}, supplement
+        )
+    with pytest.raises(ValueError, match="runnable packages differ"):
+        _check_package_inventory(base, base, base | identifiers, supplement[:-1] + [supplement[0]])

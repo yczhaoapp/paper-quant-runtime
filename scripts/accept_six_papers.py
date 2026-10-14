@@ -123,8 +123,21 @@ def accept(output, *, strict=False, require_clean=False):
         state["sources"] = prepare(fetch=False)
         check_inputs()
         catalog = json.loads(CATALOG.read_text())["cases"]
-        if len(catalog) != 6 or len({c["paper_id"] for c in catalog}) != 6:
+        if (
+            len(catalog) != 6
+            or len({c["paper_id"] for c in catalog}) != 6
+            or len({c["strategy_id"] for c in catalog}) != 6
+        ):
             raise ValueError("Six distinct paper-specific adaptations are required")
+        base_ids = {
+            case["strategy"]
+            for case in json.loads((ROOT / "examples/catalog.json").read_text())["cases"]
+        }
+        actual_packages = {
+            directory.name for directory in (ROOT / "strategies").iterdir() if directory.is_dir()
+        }
+        if actual_packages != base_ids | {case["strategy_id"] for case in catalog}:
+            raise ValueError("An unlisted package cannot be omitted from supplemental evidence")
         sources = {source["id"]: source for source in state["sources"]}
         for case in catalog:
             checked = verify_recipe(ROOT / case["recipe"])
