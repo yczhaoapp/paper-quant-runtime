@@ -1,0 +1,56 @@
+{
+  "anchors": [
+    {
+      "claim_index": 0,
+      "page": 13,
+      "text": "single-lag Augmented Dickey-"
+    },
+    {
+      "claim_index": 1,
+      "page": 14,
+      "text": "maximum weight matching"
+    },
+    {
+      "claim_index": 2,
+      "page": 15,
+      "text": "winsorized"
+    }
+  ],
+  "claim_file": "claims.json",
+  "expected": {
+    "actions": [
+      "none",
+      "target_position"
+    ],
+    "bar_seconds": null,
+    "contract_version": "1.1",
+    "fields": [
+      "close",
+      "open"
+    ],
+    "granularity": "day",
+    "kind": "rule",
+    "market_kind": null,
+    "strategy_id": "supplement.graph_matching",
+    "symbols": [
+      "PAIR_A",
+      "PAIR_B",
+      "PAIR_C",
+      "PAIR_D"
+    ],
+    "training_required": false
+  },
+  "package": "../../../../strategies/supplement.graph_matching",
+  "package_source_sha256": "c041c6c89d7bb458eac8b594dd4b32d7e709ee84182df5b96aa917c1f671b82d",
+  "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Four generated assets replace the S&P500 universe and Yahoo 2017-2023 sample.",
+  "source": {
+    "file": "../../../source-cache/six/2403.07998v1.pdf",
+    "format": "pdf",
+    "license": "Redistribution not asserted; exact cached public source",
+    "sha256": "65982d757976069548223d51f40fb9143ddb24994d0ee662d0e3c75d4f056fbe",
+    "title": "Pairs Trading Using a Novel Graphical Matching Approach",
+    "url": "https://arxiv.org/pdf/2403.07998v1"
+  },
+  "spec_file": "method.json",
+  "spec_sha256": "27f93bd9170d6d1b690f7faf672cd61dcbca4a09003183819a347494e4c9306c"
+}

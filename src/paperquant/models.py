@@ -10,17 +10,21 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 _POSITIVE_DECIMAL_WIRE: dict[str, Any] = {
     "anyOf": [
         {"type": "number", "exclusiveMinimum": 0},
-        {"type": "string", "pattern": (
-            r"^\+?(?:0*[1-9]\d*(?:\.\d*)?|0*\.\d*[1-9]\d*)(?:[eE][+-]?\d+)?$"
-        )},
+        {
+            "type": "string",
+            "pattern": (r"^\+?(?:0*[1-9]\d*(?:\.\d*)?|0*\.\d*[1-9]\d*)(?:[eE][+-]?\d+)?$"),
+        },
     ]
 }
 _NONNEGATIVE_DECIMAL_WIRE: dict[str, Any] = {
     "anyOf": [
         {"type": "number", "minimum": 0},
-        {"type": "string", "pattern": (
-            r"^(?:\+?(?:(?:0|[1-9]\d*)(?:\.\d*)?|\.\d+)|-0+(?:\.0*)?)(?:[eE][+-]?\d+)?$"
-        )},
+        {
+            "type": "string",
+            "pattern": (
+                r"^(?:\+?(?:(?:0|[1-9]\d*)(?:\.\d*)?|\.\d+)|-0+(?:\.0*)?)(?:[eE][+-]?\d+)?$"
+            ),
+        },
     ]
 }
 _OPTIONAL_POSITIVE_DECIMAL_WIRE: dict[str, Any] = {
@@ -108,8 +112,10 @@ class DataNeed(Model):
             raise ValueError("bar_seconds applies only to minute bars")
         if self.market_kind == MarketKind.BAR and self.granularity == Granularity.TICK:
             raise ValueError("tick strategies cannot require bar payloads")
-        if self.market_kind in {MarketKind.TRADE, MarketKind.QUOTE_L1, MarketKind.BOOK_L2} \
-                and self.granularity != Granularity.TICK:
+        if (
+            self.market_kind in {MarketKind.TRADE, MarketKind.QUOTE_L1, MarketKind.BOOK_L2}
+            and self.granularity != Granularity.TICK
+        ):
             raise ValueError("trade and order-book payloads require tick granularity")
         if self.minimum_book_depth is not None and self.market_kind != MarketKind.BOOK_L2:
             raise ValueError("minimum_book_depth requires book_l2")
@@ -117,27 +123,33 @@ class DataNeed(Model):
 
 
 class StrategyDeclaration(Model):
-    contract_version: Literal["1.0"] = "1.0"
+    contract_version: Literal["1.0", "1.1"] = "1.0"
     strategy_id: str
     kind: StrategyKind
     data: DataNeed
-    actions: frozenset[Literal["none", "prediction", "target_position", "submit_order"]]
+    actions: frozenset[
+        Literal["none", "prediction", "target_position", "submit_order", "cancel_order"]
+    ]
     training_required: bool
     source: str
-    max_abs_position: Decimal | None = Field(default=None, gt=0,
-                                              json_schema_extra=_OPTIONAL_POSITIVE_DECIMAL_WIRE)
-    max_order_quantity: Decimal | None = Field(default=None, gt=0,
-                                               json_schema_extra=_OPTIONAL_POSITIVE_DECIMAL_WIRE)
+    max_abs_position: Decimal | None = Field(
+        default=None, gt=0, json_schema_extra=_OPTIONAL_POSITIVE_DECIMAL_WIRE
+    )
+    max_order_quantity: Decimal | None = Field(
+        default=None, gt=0, json_schema_extra=_OPTIONAL_POSITIVE_DECIMAL_WIRE
+    )
 
     @model_validator(mode="after")
     def check_training(self) -> StrategyDeclaration:
+        if "cancel_order" in self.actions and self.contract_version != "1.1":
+            raise ValueError("cancel_order requires contract 1.1")
         if self.kind != StrategyKind.RULE and not self.training_required:
             raise ValueError("learning strategies must declare training")
         return self
 
 
 class DatasetDeclaration(Model):
-    contract_version: Literal["1.0"] = "1.0"
+    contract_version: Literal["1.0", "1.1"] = "1.0"
     dataset_id: str
     granularity: Granularity
     fields: frozenset[str]
@@ -159,8 +171,10 @@ class DatasetDeclaration(Model):
             raise ValueError("book_depth requires book_l2")
         if self.market_kind == MarketKind.BAR and self.granularity == Granularity.TICK:
             raise ValueError("tick datasets cannot contain bar payloads")
-        if self.market_kind in {MarketKind.TRADE, MarketKind.QUOTE_L1, MarketKind.BOOK_L2} \
-                and self.granularity != Granularity.TICK:
+        if (
+            self.market_kind in {MarketKind.TRADE, MarketKind.QUOTE_L1, MarketKind.BOOK_L2}
+            and self.granularity != Granularity.TICK
+        ):
             raise ValueError("trade and order-book payloads require tick granularity")
         return self
 
@@ -172,8 +186,9 @@ class EngineCapability(Model):
     actions: frozenset[str]
     execution_fields: dict[Granularity, frozenset[str]] = Field(default_factory=dict)
     max_symbols: int | None = Field(default=None, ge=1)
-    financing_modes: frozenset[Literal["cash_only", "unbounded_margin"]] = frozenset({
-        "cash_only", "unbounded_margin"})
+    financing_modes: frozenset[Literal["cash_only", "unbounded_margin"]] = frozenset(
+        {"cash_only", "unbounded_margin"}
+    )
 
 
 class EngineProfile(Model):
@@ -281,12 +296,22 @@ class SubmitOrder(Model):
     symbol: str
     side: Literal["buy", "sell"]
     quantity: Decimal = Field(gt=0, json_schema_extra=_POSITIVE_DECIMAL_WIRE)
-    limit_price: Decimal | None = Field(default=None, gt=0,
-                                        json_schema_extra=_OPTIONAL_POSITIVE_DECIMAL_WIRE)
+    limit_price: Decimal | None = Field(
+        default=None, gt=0, json_schema_extra=_OPTIONAL_POSITIVE_DECIMAL_WIRE
+    )
     reason: str
 
 
-Action = Annotated[NoOp | Prediction | TargetPosition | SubmitOrder, Field(discriminator="kind")]
+class CancelOrder(Model):
+    kind: Literal["cancel_order"] = "cancel_order"
+    client_order_id: str
+    symbol: str
+    reason: str
+
+
+Action = Annotated[
+    NoOp | Prediction | TargetPosition | SubmitOrder | CancelOrder, Field(discriminator="kind")
+]
 
 
 class Position(Model):
@@ -319,7 +344,7 @@ class OrderEvent(Model):
     order_id: str
     symbol: str
     timestamp: datetime
-    status: Literal["accepted", "filled", "rejected", "expired"]
+    status: Literal["accepted", "filled", "rejected", "expired", "cancelled"]
     reason: str
 
 

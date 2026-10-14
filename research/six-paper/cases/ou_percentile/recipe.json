@@ -1,0 +1,49 @@
+{
+  "anchors": [
+    {
+      "claim_index": 0,
+      "page": 3,
+      "text": "autoregressive model"
+    },
+    {
+      "claim_index": 1,
+      "page": 4,
+      "text": "90 day window"
+    }
+  ],
+  "claim_file": "claims.json",
+  "expected": {
+    "actions": [
+      "none",
+      "target_position"
+    ],
+    "bar_seconds": null,
+    "contract_version": "1.1",
+    "fields": [
+      "close",
+      "open"
+    ],
+    "granularity": "day",
+    "kind": "supervised",
+    "market_kind": null,
+    "strategy_id": "supplement.ou_percentile",
+    "symbols": [
+      "OU_A",
+      "OU_B"
+    ],
+    "training_required": true
+  },
+  "package": "../../../../strategies/supplement.ou_percentile",
+  "package_source_sha256": "7cd04e3d37eb0d94535b62e8671b842e9cc44afb232fe765a5b530f23f1b6720",
+  "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Preselected generated pair replaces WRDS/Datastream, distance ranking and manual industry selection.",
+  "source": {
+    "file": "../../../source-cache/six/2412.12458v1.pdf",
+    "format": "pdf",
+    "license": "Redistribution not asserted; exact cached public source",
+    "sha256": "2b5c4dd169b851b4892fdee95fcd87dd091ede9234c09a6d11c7297f5e2865c7",
+    "title": "An Application of the Ornstein-Uhlenbeck Process to Pairs Trading",
+    "url": "https://arxiv.org/pdf/2412.12458v1"
+  },
+  "spec_file": "method.json",
+  "spec_sha256": "6888ce0e120a5182412e5a22b9bfb05b83f5d3863437fdcd7a9c470de6b67613"
+}

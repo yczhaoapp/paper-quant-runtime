@@ -1,0 +1,8 @@
+{
+  "aggregation_session_close": null,
+  "aggregation_session_open": null,
+  "allow_day_aggregation": false,
+  "financing_mode": "cash_only",
+  "sandbox": "development",
+  "symbol_map": {}
+}

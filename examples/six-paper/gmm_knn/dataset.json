@@ -1,0 +1,22 @@
+{
+  "bar_seconds": 60,
+  "content_sha256": "d0f8b1fe1e44698b097a6976675d9ccd8a8f563d5302a8607eb0f3d728f0c8ad",
+  "contract_version": "1.1",
+  "dataset_id": "supplement.gmm_knn",
+  "event_count": 4320,
+  "fields": [
+    "close",
+    "high",
+    "low",
+    "open",
+    "volume"
+  ],
+  "granularity": "minute",
+  "market_kind": "bar",
+  "session_close": null,
+  "session_open": null,
+  "session_timezone": "UTC",
+  "symbols": [
+    "BTCUSDT"
+  ]
+}

@@ -14,7 +14,8 @@
         "accepted",
         "filled",
         "rejected",
-        "expired"
+        "expired",
+        "cancelled"
       ],
       "title": "Status",
       "type": "string"

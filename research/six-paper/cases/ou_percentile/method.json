@@ -1,0 +1,34 @@
+{
+  "excluded_paper_components": [
+    "Preselected generated pair replaces WRDS/Datastream, distance ranking and manual industry selection.",
+    "Eq7 contains a printed exponent inconsistent with Eq9-10; calibration follows internally consistent Eq10.",
+    "Training 504 controlled sessions and evaluation 296 sessions replace the original historical universe.",
+    "No original return, Sharpe, factor neutrality or empirical pair-selection reproduction claim."
+  ],
+  "fields": [
+    "close",
+    "open"
+  ],
+  "source_sha256": "2b5c4dd169b851b4892fdee95fcd87dd091ede9234c09a6d11c7297f5e2865c7",
+  "steps": [
+    {
+      "adaptation": "Bounded setting and listed differences apply: Preselected generated pair replaces WRDS/Datastream, distance ranking and manual industry selection.",
+      "claim_index": 0,
+      "implementation": "OUPercentilePairs.calibrate",
+      "oracle_node": "tests/test_six_paper_methods.py::test_ou_calibration_matches_independent_ar1_equations",
+      "paper_rule": "OU Model Integration, Eq8-10: fit AR1 and convert a,b,residual SD to OU parameters",
+      "role": "training",
+      "runtime_rule": "Fit training-only spreads, reject a outside (0,1), preserve lambda/mu/sigma equations"
+    },
+    {
+      "adaptation": "Bounded setting and listed differences apply: Preselected generated pair replaces WRDS/Datastream, distance ranking and manual industry selection.",
+      "claim_index": 1,
+      "implementation": "OUPercentilePairs.decide",
+      "oracle_node": "tests/test_six_paper_methods.py::test_ou_refuses_nonstationary_calibration_and_quantiles_match_numpy",
+      "paper_rule": "Signal Generation: PIT 25th/75th entry and crossing 50th exit, executed following day",
+      "role": "inference",
+      "runtime_rule": "Use prior 90 observed z-scores and frozen training OU fit; submit both next-open hedge targets"
+    }
+  ],
+  "strategy_id": "supplement.ou_percentile"
+}

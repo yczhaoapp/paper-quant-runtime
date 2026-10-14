@@ -1,5 +1,35 @@
 {
   "$defs": {
+    "CancelOrder": {
+      "additionalProperties": false,
+      "properties": {
+        "client_order_id": {
+          "title": "Client Order Id",
+          "type": "string"
+        },
+        "kind": {
+          "const": "cancel_order",
+          "default": "cancel_order",
+          "title": "Kind",
+          "type": "string"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "symbol": {
+          "title": "Symbol",
+          "type": "string"
+        }
+      },
+      "required": [
+        "client_order_id",
+        "symbol",
+        "reason"
+      ],
+      "title": "CancelOrder",
+      "type": "object"
+    },
     "NoOp": {
       "additionalProperties": false,
       "properties": {
@@ -173,6 +203,7 @@
       "items": {
         "discriminator": {
           "mapping": {
+            "cancel_order": "#/$defs/CancelOrder",
             "none": "#/$defs/NoOp",
             "prediction": "#/$defs/Prediction",
             "submit_order": "#/$defs/SubmitOrder",
@@ -192,6 +223,9 @@
           },
           {
             "$ref": "#/$defs/SubmitOrder"
+          },
+          {
+            "$ref": "#/$defs/CancelOrder"
           }
         ]
       },

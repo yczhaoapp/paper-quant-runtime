@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "paper-quant-runtime"
-version = "0.1.0"
+version = "0.2.0"
 description = "A contract-first runtime for research strategies and reproducible paper trading."
 requires-python = ">=3.12,<3.14"
 dependencies = [
@@ -15,7 +15,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8,<9", "ruff>=0.6,<1", "mypy>=1.11,<2", "jsonschema>=4,<5",
-       "backtrader==1.9.78.123"]
+       "backtrader==1.9.78.123", "numpy==2.5.2"]
 engine-backtrader = [
     "backtrader==1.9.78.123",
 ]

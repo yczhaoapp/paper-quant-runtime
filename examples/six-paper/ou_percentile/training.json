@@ -1,0 +1,7062 @@
+{
+  "dataset_id": "supplement.ou_percentile",
+  "samples": [
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.12422589694496083"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6088157620953532"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.4112590748793368"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.04775738713611377"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6494558581608686"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.18900024800899995"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.5306810758773862"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.20365381661303306"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.5221496601629938"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.8060034011721138"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.1705094004568748"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.1540742752193258"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.0718520998238519"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.8285637692240679"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.0090978946748739"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.2504170337862064"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.889403468515678"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.7357018002813571"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.5403826382899096"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6938372352264293"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.42922477170044965"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.21744442931564706"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.3856068981419155"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.4230945920869218"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.7010172676624209"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.594689140556306"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.30916235943840187"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.20878857368406256"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.1769961172042835"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.4724689209394275"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.313056972900538"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.261039451023712"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.2323577401648413"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.9388590648243909"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.0301239071138844"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.8696492839202653"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.5284171439176162"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.3572710832166963"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.6131560552442623"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.47045111934671846"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.5685163710930984"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.7555986349503474"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.6922826596983852"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.5059438675498232"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.5441504186217231"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.20446897685140042"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.41196603199444193"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6764046349747865"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.4829971004410858"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.6031726849062342"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.5806126993348408"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.1736580485015744"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.0862801206111978"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.8671676343775517"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.2518215630029392"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.8095739254498152"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.3164520513866409"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.07654624153396017"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.3786605059708633"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.5232136327986985"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.05032071374731767"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.20490778780449675"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.47880448151896005"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.3845814907275624"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.3185665265419672"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.19871650658282192"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.14060794580112554"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.005846260218121138"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.08110280963003567"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.11289544556754615"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.013001258724232509"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.20118661314824046"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.4957894811742328"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.8730785838826925"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.257197218190706"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.098668744788129"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.2096520929117889"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.23614077772157804"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.16333240876201488"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.21495199806536675"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.7373201862867057"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6059358477918377"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.39565120633275563"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.22822058874508844"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.31904855789191156"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.00027921604968123015"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.12564357910049212"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.04482487427172328"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.4950156202895929"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.6266791339866338"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.7646518514611023"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.017874815184536708"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.2319871051868409"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.43874633565203147"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.023915222608717812"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.3441196399600523"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.8703389218158888"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.8857602937145374"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.9639147566604885"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.752720167797046"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.5113721477273097"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.026484208747249494"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.2423151437234428"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.7420468102394759"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.5356923826405413"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.2092826751067926"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.25247417384974047"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.1970493511367148"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.9485076741980321"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6975083818029968"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.7732380388838365"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.0595254923242767"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.0211591336131272"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.9292622698176849"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.1358449018257293"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.4694170212694624"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.1857475466814869"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.8258886755381306"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.7941756411421848"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.7299944286273348"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.03565526909882111"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.34568917625925283"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.06600485329487463"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.3355370747020979"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.3606629803690205"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.14762990821056773"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.31598030561811274"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.13687784241790488"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.26148915085705043"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.49133758200581173"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.201569278991292"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.5426266732115936"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.1817607367096379"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.4218229309956971"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.8380238101616657"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.8158266388441416"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.9905640124013745"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.15566797246404573"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.17343613741309186"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.36883188690486596"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.6783351730370331"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.21430856315372843"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.6117435953416013"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.5902311583675909"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.46397708279007555"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.4592517145864343"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.784661469598569"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.7123496907146603"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.22662452331845512"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.4174342749124373"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.1288025949642319"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.18662364077710708"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.1779999273903483"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.14598855090478977"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.28108596375022105"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.29807401362609326"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.5239395715162101"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.177525835316659"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.28998914914648427"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.17861625934441672"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.07726748194408493"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.5030311538964056"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.34127750942916973"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.496532843652401"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.2762181608358375"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.6055268198790755"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.5500331490180834"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.27256166120725267"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.36102441465606405"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.09677719382789066"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.4507754020349978"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.5564469934645675"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.271175655290151"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.5480696836483451"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.620755730943754"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.7923332165060286"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.08343854709933"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.8390944882021736"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.38562903153265166"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.48043809224091344"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.8069048236365595"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.2581048487314725"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.1575481664939848"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.7571074472291228"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.41580286875017824"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.5053682512187291"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.4531688943853153"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.8718170207387885"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.42249666638073907"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.21527636604358202"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.05470213885750036"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.17334645738675236"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.22526865035865307"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.09702197799112972"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.1484797600684018"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.31927682463151635"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.35904558262824376"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.15602156874657067"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.28543375464619325"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6205272888850648"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.1649383183881876"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.8799847827557101"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6149378734473844"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.1649848370616762"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.0044297898115615"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.42219182977160774"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.35461167730341314"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.32882796207097015"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.5999004676002622"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.46392453556625785"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.21076626466970833"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.32736396735696394"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.2958591762245894"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.47100955491969"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.755548655915719"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6309949756571447"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.14962846994447337"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.14043439613026826"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.17149045647026676"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.23985001455824984"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.3930034811369223"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.7413535093904886"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.6049879882912942"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.2141805217840531"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.216817108396322"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.9944618124883499"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.0075133889684291"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.952757753159719"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.7491714125240084"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.8780607758620232"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.7323521342358426"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.34739429994326715"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.13610090008998146"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.02796092742130489"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.17729440360409085"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.43707446548424556"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.11349301173295984"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.724050050119697"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.7759971192074107"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.7214543113249824"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.41005442572459405"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.4053733391405133"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.09285135706857733"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.4697114472338581"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6078576203741396"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.0592613872833781"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.10700474706064556"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.13849704046910835"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.10279492157811884"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.04463739409716471"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.19713885869943898"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.034649900437528"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.6804932452120783"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.8497101266918483"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.9032963287247469"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.2874613104077579"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.35075078716631675"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.0695629625363346"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.11241401022220945"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6384509006935465"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.41532837011679624"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.15125271432053208"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.040212235370923374"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.11628991069371317"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.08761528152312992"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.24210302161945765"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.2857333655991369"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.06174262127781094"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.342583069468479"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.8279299181015397"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.6923697449089306"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.47894963698238413"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.729042779912874"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.093839336920766"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.7237722046054629"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.44763055997952506"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.9057001329242784"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.6508409732294236"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.817759219176212"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.562758948497127"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.49773967269574476"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.24868569915442457"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.04174603959755088"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.729676548235575"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.2856945569544505"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.4930700799263497"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.9524377799605255"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.8871728159122448"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.061358311093557"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.8976516130950868"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.2827829429158174"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.7445295304314032"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.6270275000681516"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.761789839393654"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.7151396986912011"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.535307386382353"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.9791148351508789"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.2439725072458356"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.6588940075962334"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.34382788603405734"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.15478783841938287"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.2379779134620337"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.39521698549320944"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.49447307046920025"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.14811880124141846"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.648448263704861"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.28854339198274986"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.06112483971953628"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.27411383342550893"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.6321934370896037"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.107287272701057"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.6986404582147084"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.7016674069132769"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.0960123434105138"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.199468078399006"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.3051569510671157"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.506768586636267"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.9518935125902095"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.6403090732093201"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.25482907019751727"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.16252857100799492"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.9822104255766502"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.8111000940469091"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.2324792918840575"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.0973365070786851"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.145960670827404"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.5623199550102839"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.99111549342754"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.4333283590689292"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.4353511342089829"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.083675637974737"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.7878163144785733"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.6661748921932293"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.34538135632911166"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.08694360762198178"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.01222302111196548"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.1698502961243315"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.5806210583115622"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.562531313860057"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.9956097378917854"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.437296514060053"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.3334995274731856"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "1.006592691647446"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.9546507083763277"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.5932817259054834"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.2184152152197762"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.13691330609406588"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.934943418484609"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.1866335930574778"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.038450638619002"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.0720090069743282"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6466546731885028"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6404112636354342"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.34372606436072534"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.27215417491761834"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6485993242569142"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6920281320691701"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.5191746515756992"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.7335086647353152"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.9762549094443087"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.8145718508937608"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.4876088831643191"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.20607674904266057"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.28275129334520294"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.09021482743605594"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.1681296749396694"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.5490656968432536"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.18585284089599446"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.17895627903001626"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.3804557971688671"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.18351696691144004"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.21282324876598674"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.009772069293749464"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.11776752988392987"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.018904545785699917"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.26529892761469104"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.03283543723569676"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.27449071440234196"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.8923283937346727"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.41215998162624584"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.056042495196636954"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.13368790549730708"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6266111713667685"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.7407883862194924"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.7199878500029814"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.5354014774442124"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.4639303932853282"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6946176507783071"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.5863323636108795"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.38845334524906683"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.13001056689686774"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6029039572703214"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6565095887369411"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6035664977893024"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.9756668191023996"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.08383767115694196"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.2608623692185209"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.016520864660168944"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.16218022029091633"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.07233434865646307"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.47645302809526563"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.2773861106578912"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.8754803974284358"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.7125398015143891"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.35375075629888747"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.30511059402353163"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.9246002522285391"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.5805993977559922"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.0684766738153884"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.000551411147292"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.5300700161796922"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.3484947660100675"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.9523476825369754"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.671127002998794"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.208406605237339"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.14817103566677217"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.0988080351286593"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.15732206875972315"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.031021991728755555"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.1576801965886395"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6957223510150499"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.01553603110613544"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.1944317086096791"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.4228666406162792"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.9356355956956441"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.5434802600450119"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.09291540303268542"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.4724668863075614"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.3978952722709359"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.3681849131225486"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.13220472617404835"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.25829143203065963"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.14226916737554268"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.06295344914223437"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.059601365657720944"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.1976337451677564"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.22113887483685607"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.01654117724170448"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.4177351257511102"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.25532761583426244"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.4854178189839278"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.5834303143559258"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.449120598871141"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.4140498428290357"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.76042203328899"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.5481353141725606"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.4837438970990349"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.0389454235727793"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6582152073608546"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.8520729615597172"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.1245831763896015"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.963087733113989"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.8377716409469254"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.5884924715766972"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.3890778001746533"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.5821262148301791"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.8592932684476156"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.1785005693423407"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.1957992014713446"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.8207267253354233"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-2.43380438181702"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-2.4873665928750475"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-2.6304308389503444"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-2.568525278994994"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-2.13140286016883"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.7372090987678275"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.4367323623310142"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.1133217300638765"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.7884352026092554"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-2.2619358901856224"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.4840744354718018"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.8404857497101124"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.2088650052645808"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.2952364258140228"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.188365038990728"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.9179382982556632"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.1728114443983852"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.8930460414998549"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.8421583020157886"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.45577023210934164"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6450338362488197"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6801412983387354"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.0171055851152935"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.788880220742981"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.8211847960799018"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.7933949366417328"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.081992142383925"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.056157341363846"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-1.0065034488808038"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.9425723636531663"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.3808848697209648"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.06809347495270257"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.38186197212396933"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.28916003504311855"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6360998852845826"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.6685607823661078"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.7589091320710442"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.17533445678300585"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.5553336683803461"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.23959394474810342"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.11413836528422772"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.41119152584530066"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "-0.12865408285283314"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    },
+    {
+      "action": null,
+      "episode_id": null,
+      "features": {
+        "spread": "0.058852382638141534"
+      },
+      "next_action": null,
+      "next_features": null,
+      "reward": null,
+      "step": null,
+      "target": null,
+      "terminal": false,
+      "truncated": false
+    }
+  ],
+  "seed": 17
+}

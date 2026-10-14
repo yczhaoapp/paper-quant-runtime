@@ -1,0 +1,13 @@
+{
+  "evaluation": "2024-01-05 through 2024-01-07 UTC",
+  "event_count": 4320,
+  "events_sha256": "d0f8b1fe1e44698b097a6976675d9ccd8a8f563d5302a8607eb0f3d728f0c8ad",
+  "exclusions": "single BTC market and seven-day window replace original three markets and six months",
+  "first_event": "2024-01-05T00:01:00+00:00",
+  "last_event": "2024-01-08T00:00:00+00:00",
+  "source": "data/six-paper/public-btc/SOURCE.json",
+  "split": "training-only labels, scaler, GMM, BIC and neighbor bank",
+  "training": "2024-01-01 through 2024-01-04 UTC",
+  "training_sha256": "63a3c375938e533f29bf767b301e1eec537a23b5711aa9bdbf833a693308d6cb",
+  "type": "public_market_data"
+}

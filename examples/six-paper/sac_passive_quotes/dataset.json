@@ -1,0 +1,28 @@
+{
+  "content_sha256": "763b918eb1c0c970762de97abb6595f900cedde2a6a5b40766ba64eb58b7409a",
+  "contract_version": "1.1",
+  "dataset_id": "supplement.sac_passive_quotes",
+  "event_count": 1001,
+  "fields": [
+    "ask_price",
+    "ask_size",
+    "bid_price",
+    "bid_size",
+    "buy_flow",
+    "lambda_buy",
+    "lambda_sell",
+    "meta_child",
+    "sell_flow",
+    "twap_present",
+    "uniform_buy",
+    "uniform_sell"
+  ],
+  "granularity": "tick",
+  "market_kind": "quote_l1",
+  "session_close": null,
+  "session_open": null,
+  "session_timezone": "UTC",
+  "symbols": [
+    "MM"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "class_name": "GraphMatchingPairs",
+  "declaration": {
+    "actions": [
+      "none",
+      "target_position"
+    ],
+    "contract_version": "1.1",
+    "data": {
+      "bar_seconds": null,
+      "fields": [
+        "close",
+        "open"
+      ],
+      "granularity": "day",
+      "market_kind": null,
+      "max_staleness_seconds": null,
+      "minimum_book_depth": null,
+      "minimum_events_per_symbol": 505,
+      "symbols": [
+        "PAIR_A",
+        "PAIR_B",
+        "PAIR_C",
+        "PAIR_D"
+      ]
+    },
+    "kind": "rule",
+    "max_abs_position": "100",
+    "max_order_quantity": "200",
+    "source": "https://arxiv.org/pdf/2403.07998v1",
+    "strategy_id": "supplement.graph_matching",
+    "training_required": false
+  },
+  "source_sha256": "c041c6c89d7bb458eac8b594dd4b32d7e709ee84182df5b96aa917c1f671b82d"
+}

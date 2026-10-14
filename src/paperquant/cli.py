@@ -50,6 +50,7 @@ from paperquant.papers import (
     Source,
     verify_recipe,
 )
+from paperquant.passive_engine import PassiveQuoteEngine
 
 SCHEMAS = {
     model.__name__: model
@@ -100,14 +101,14 @@ def _read_json(path: Path) -> object:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def _selected_engine(
-    name: str, cash: Decimal | str, fee_rate: Decimal | str
-) -> BacktestEngine:
+def _selected_engine(name: str, cash: Decimal | str, fee_rate: Decimal | str) -> BacktestEngine:
     cash, fee_rate = Decimal(cash), Decimal(fee_rate)
     if name == "reference":
         return ReferenceEngine(initial_cash=cash, fee_rate=fee_rate)
     if name == "backtrader":
         return BacktraderEngine(initial_cash=cash, fee_rate=fee_rate)
+    if name == "passive":
+        return PassiveQuoteEngine(initial_cash=cash, fee_rate=fee_rate)
     raise ValueError(f"Unknown backtest engine: {name}")
 
 
@@ -128,7 +129,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     paper_run.add_argument("--output", type=Path, required=True)
     paper_run.add_argument("--cash", default="100000")
     paper_run.add_argument("--fee-rate", default="0")
-    paper_run.add_argument("--engine", choices=("reference", "backtrader"), default="reference")
+    paper_run.add_argument(
+        "--engine", choices=("reference", "backtrader", "passive"), default="reference"
+    )
     bundle_check = commands.add_parser("verify-bundle")
     bundle_check.add_argument("--bundle", type=Path, required=True)
     replay = commands.add_parser("replay-bundle")
@@ -143,7 +146,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     execute.add_argument("--output", type=Path, required=True)
     execute.add_argument("--cash", default="100000")
     execute.add_argument("--fee-rate", default="0")
-    execute.add_argument("--engine", choices=("reference", "backtrader"), default="reference")
+    execute.add_argument(
+        "--engine", choices=("reference", "backtrader", "passive"), default="reference"
+    )
     observe = commands.add_parser("observe")
     observe.add_argument("--report", type=Path, required=True)
     observe.add_argument("--scenario", required=True)
@@ -172,13 +177,20 @@ def main(argv: Sequence[str] | None = None) -> int:
             bundle = verify_bundle_file(args.bundle)
             settings = bundle.report.plan.engine_profile.settings
             engine_id = bundle.report.plan.engine_id
-            if engine_id not in {"paperquant.reference", "paperquant.backtrader"}:
+            if engine_id not in {
+                "paperquant.reference",
+                "paperquant.backtrader",
+                "paperquant.passive_quote",
+            }:
                 raise ValueError("Replay CLI does not support this engine ID")
             replay_bundle(
                 bundle_path=args.bundle,
                 package_dir=args.package,
                 engine=_selected_engine(
-                    "backtrader" if engine_id == "paperquant.backtrader" else "reference",
+                    {
+                        "paperquant.backtrader": "backtrader",
+                        "paperquant.passive_quote": "passive",
+                    }.get(engine_id, "reference"),
                     Decimal(settings["initial_cash"]),
                     Decimal(settings["fee_rate"]),
                 ),
@@ -290,8 +302,15 @@ def main(argv: Sequence[str] | None = None) -> int:
             )
             print(failure.model_dump_json(), file=sys.stderr)
             return 2
-        print(json.dumps({"status": "passed", "method_validation": "not_run",
-                          "receipt": str(args.output / "paper-run.json")}))
+        print(
+            json.dumps(
+                {
+                    "status": "passed",
+                    "method_validation": "not_run",
+                    "receipt": str(args.output / "paper-run.json"),
+                }
+            )
+        )
         return 0
     if args.command == "observe":
         observation = from_report(

@@ -1,0 +1,35 @@
+{
+  "class_name": "GroupedCNNLSTM",
+  "declaration": {
+    "actions": [
+      "none",
+      "target_position"
+    ],
+    "contract_version": "1.1",
+    "data": {
+      "bar_seconds": 14400,
+      "fields": [
+        "close",
+        "high",
+        "low",
+        "open",
+        "volume"
+      ],
+      "granularity": "minute",
+      "market_kind": "bar",
+      "max_staleness_seconds": null,
+      "minimum_book_depth": null,
+      "minimum_events_per_symbol": 1,
+      "symbols": [
+        "BTCUSDT"
+      ]
+    },
+    "kind": "supervised",
+    "max_abs_position": "2",
+    "max_order_quantity": "4",
+    "source": "https://arxiv.org/pdf/2205.08382v1",
+    "strategy_id": "supplement.grouped_cnn_lstm",
+    "training_required": true
+  },
+  "source_sha256": "a75c362defe30d794d9ff0ce3f8de103561194dbc1e2e0d488707690c283e9ce"
+}

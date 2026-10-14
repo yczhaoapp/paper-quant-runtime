@@ -1,0 +1,46 @@
+{
+  "excluded_paper_components": [
+    "Four generated assets replace the S&P500 universe and Yahoo 2017-2023 sample.",
+    "Choose the z-score variant only; q-score variant, original costs and performance experiments excluded.",
+    "Page6 Eq3 and following prose have opposite sign descriptions; execution follows Section4.2 economic direction.",
+    "Page15 calls the statistic a z-score but says variance; divide by residual standard deviation.",
+    "Subset-DP has the exact maximum-weight objective but is not the scalable blossom implementation.",
+    "Hedge legs fill separately at subsequent symbol opens; no atomic paired fill claim.",
+    "Target quantities are explicitly rounded to eight decimal places."
+  ],
+  "fields": [
+    "close",
+    "open"
+  ],
+  "source_sha256": "65982d757976069548223d51f40fb9143ddb24994d0ee662d0e3c75d4f056fbe",
+  "steps": [
+    {
+      "adaptation": "Bounded setting and listed differences apply: Four generated assets replace the S&P500 universe and Yahoo 2017-2023 sample.",
+      "claim_index": 0,
+      "implementation": "GraphMatchingPairs.adf_statistic",
+      "oracle_node": "tests/test_six_paper_methods.py::test_single_lag_adf_matches_numpy_ols_and_standard_error",
+      "paper_rule": "Section 4.1, Eq18: log-price OLS residuals and single-lag ADF edge weights",
+      "role": "data",
+      "runtime_rule": "Exact intercept-bearing lag-one ADF t-statistic; use its negative as graph weight"
+    },
+    {
+      "adaptation": "Bounded setting and listed differences apply: Four generated assets replace the S&P500 universe and Yahoo 2017-2023 sample.",
+      "claim_index": 1,
+      "implementation": "GraphMatchingPairs.maximum_matching",
+      "oracle_node": "tests/test_six_paper_methods.py::test_matching_is_global_optimum_and_has_no_shared_assets",
+      "paper_rule": "Section 4.1: jointly maximize selected pair weights with no repeated assets",
+      "role": "signal",
+      "runtime_rule": "Exact subset dynamic programming on a bounded four-asset universe"
+    },
+    {
+      "adaptation": "Bounded setting and listed differences apply: Four generated assets replace the S&P500 universe and Yahoo 2017-2023 sample.",
+      "claim_index": 2,
+      "implementation": "GraphMatchingPairs.decide",
+      "oracle_node": "tests/test_six_paper_methods.py::test_graph_trading_signal_matches_independent_log_regression",
+      "paper_rule": "Section 4.2: daily trailing regression, winsorized z-score and beta-dollar hedge",
+      "role": "inference",
+      "runtime_rule": "504 prior sessions, calendar-month pair refresh and next-open non-atomic hedge fills"
+    }
+  ],
+  "strategy_id": "supplement.graph_matching"
+}

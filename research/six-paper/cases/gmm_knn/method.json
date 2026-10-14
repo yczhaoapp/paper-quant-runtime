@@ -1,0 +1,48 @@
+{
+  "excluded_paper_components": [
+    "Single public Binance BTC market replaces OKX BTC/PEPE and Nasdaq sources.",
+    "Seven-day sample and 4/3-day split replace six months and multiple temporal holdouts.",
+    "Diagonal covariance and K=1..4 grid are declared; paper does not give all estimator settings.",
+    "Feature text says six tail values but indices53..59 contain seven; choose exactly six, with a dedicated oracle.",
+    "Degenerate/no-peak regression uses an explicit zero slope and local mean feature convention.",
+    "KNN only; RF, DNN, SVM, XGBoost, random benchmark and original APC profitability reproduction excluded."
+  ],
+  "fields": [
+    "close",
+    "high",
+    "low",
+    "open",
+    "volume"
+  ],
+  "source_sha256": "9338d36fcacd418a85ddace0572224b62b1ffd59c4e1db9fa6ab2d6c819bfcd2",
+  "steps": [
+    {
+      "adaptation": "Bounded setting and listed differences apply: Single public Binance BTC market replaces OKX BTC/PEPE and Nasdaq sources.",
+      "claim_index": 0,
+      "implementation": "GMMConditionalKNN.features",
+      "oracle_node": "tests/test_six_paper_methods.py::test_59_minute_features_match_independent_peak_regression_and_have_no_future_slot",
+      "paper_rule": "Methods: training 4th-percentile log-return labels and causal 59-minute proposed features",
+      "role": "data",
+      "runtime_rule": "Prior minute changes, peak curvature/height regression and last-six-to-all-window change ratio"
+    },
+    {
+      "adaptation": "Bounded setting and listed differences apply: Single public Binance BTC market replaces OKX BTC/PEPE and Nasdaq sources.",
+      "claim_index": 1,
+      "implementation": "GMMConditionalKNN.fit_gmm",
+      "oracle_node": "tests/test_six_paper_methods.py::test_gmm_density_bic_and_training_cluster_predictions_are_real",
+      "paper_rule": "Methods: training-only standardization, mixture estimation and BIC model selection",
+      "role": "training",
+      "runtime_rule": "EM diagonal covariance with declared .001 ridge; select K=1..4 by exact diagonal-model BIC"
+    },
+    {
+      "adaptation": "Bounded setting and listed differences apply: Single public Binance BTC market replaces OKX BTC/PEPE and Nasdaq sources.",
+      "claim_index": 2,
+      "implementation": "GMMConditionalKNN.predict",
+      "oracle_node": "tests/test_six_paper_methods.py::test_knn_is_not_a_constant_hold_classifier",
+      "paper_rule": "Methods: classify buy/sell/hold within similarly clustered market trends",
+      "role": "inference",
+      "runtime_rule": "One-nearest-neighbor bank per selected mixture cluster; trade predicted minute60 then flatten"
+    }
+  ],
+  "strategy_id": "supplement.gmm_knn"
+}

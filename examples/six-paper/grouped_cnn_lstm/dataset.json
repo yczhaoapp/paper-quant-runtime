@@ -1,0 +1,22 @@
+{
+  "bar_seconds": 14400,
+  "content_sha256": "538183593126962a3c270a6738ef69d188f3232d17384ffa417144e82b3d7ac7",
+  "contract_version": "1.1",
+  "dataset_id": "supplement.grouped_cnn_lstm",
+  "event_count": 186,
+  "fields": [
+    "close",
+    "high",
+    "low",
+    "open",
+    "volume"
+  ],
+  "granularity": "minute",
+  "market_kind": "bar",
+  "session_close": null,
+  "session_open": null,
+  "session_timezone": "UTC",
+  "symbols": [
+    "BTCUSDT"
+  ]
+}

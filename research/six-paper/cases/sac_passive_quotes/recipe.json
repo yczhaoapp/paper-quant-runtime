@@ -1,0 +1,78 @@
+{
+  "additional_sources": [
+    {
+      "file": "../../../source-cache/six/1812.05905v2.pdf",
+      "format": "pdf",
+      "license": "Redistribution not asserted; exact cached public source",
+      "sha256": "30df4c4ff7c878aa2938ecaf651eb5cc05dc224eb0e3b5bcc8981dbf30d7a9bd",
+      "title": "Soft Actor-Critic Algorithms and Applications",
+      "url": "https://arxiv.org/pdf/1812.05905v2"
+    }
+  ],
+  "anchors": [
+    {
+      "claim_index": 0,
+      "page": 8,
+      "text": "Soft Actor-Critic (SAC) algorithm"
+    },
+    {
+      "claim_index": 1,
+      "page": 13,
+      "text": "non-adverse fill probability"
+    },
+    {
+      "claim_index": 2,
+      "page": 14,
+      "text": "maximum position size"
+    },
+    {
+      "claim_index": 0,
+      "page": 6,
+      "source_index": 1,
+      "text": "soft Bellman residual"
+    },
+    {
+      "claim_index": 0,
+      "page": 8,
+      "source_index": 1,
+      "text": "two soft Q-functions"
+    }
+  ],
+  "claim_file": "claims.json",
+  "expected": {
+    "actions": [
+      "cancel_order",
+      "none",
+      "submit_order"
+    ],
+    "bar_seconds": null,
+    "contract_version": "1.1",
+    "fields": [
+      "ask_price",
+      "ask_size",
+      "bid_price",
+      "bid_size"
+    ],
+    "granularity": "tick",
+    "kind": "reinforcement",
+    "market_kind": "quote_l1",
+    "strategy_id": "supplement.sac_passive_quotes",
+    "symbols": [
+      "MM"
+    ],
+    "training_required": true
+  },
+  "package": "../../../../strategies/supplement.sac_passive_quotes",
+  "package_source_sha256": "fd0e40006902f56bf1edade2cb7e9ecf06bdd03659cf2f5c0c9e289f543eeb81",
+  "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Retain Table1 dt=.001,T=1,spread=.01,q=5,p=.2 and total diffusion variance=.03.",
+  "source": {
+    "file": "../../../source-cache/six/2410.14504v2.pdf",
+    "format": "pdf",
+    "license": "Redistribution not asserted; exact cached public source",
+    "sha256": "a3071901feceeeb0367764fde6963ea4ede5e9093fd1e26b3509a4e49c63ef57",
+    "title": "Reinforcement Learning in Non-Markov Market-Making",
+    "url": "https://arxiv.org/pdf/2410.14504v2"
+  },
+  "spec_file": "method.json",
+  "spec_sha256": "1f67371789c448a5ccebb82361acf90b6384282beaef0b2fd59e26eb7cc1ffc5"
+}

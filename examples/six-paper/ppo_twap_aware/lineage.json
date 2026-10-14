@@ -1,0 +1,20 @@
+{
+  "behavior": "initial on-policy decision/action rollout",
+  "dt": 0.213,
+  "episode_seconds": 420.036,
+  "evaluation_seed": 10042,
+  "event_count": 1503,
+  "events_sha256": "086677b4462ea102b61b7e77f655e7619ccb9cde41bde4a6c56b578f7b314060",
+  "exclusions": "reduced quote simulator; queue priority, partial fills and endogenous maker impact absent",
+  "fee_rate": "0.0001 per fill",
+  "first_event": "2025-01-01T00:01:40.110000+00:00",
+  "last_event": "2025-01-01T00:07:00.036000+00:00",
+  "metaorder_scope": "rPOV2 interval40s in training and evaluation; training observes a late-start prefix from t250, evaluation observes eight children from t100",
+  "nonadverse_probability": 0.2,
+  "paper_training_budget": "3 versus original 140+ PPO episodes",
+  "time_scope": "100-second warmup and 320-second trading window",
+  "training_episodes": 3,
+  "training_seed": 43,
+  "training_sha256": "5c0b59a392b24228c19da302ddc019c6a0b82dfd9591cc1bdec40addc02b5f7b",
+  "type": "controlled_simulation"
+}

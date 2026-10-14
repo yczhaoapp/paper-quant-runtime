@@ -1,0 +1,17 @@
+{
+  "status": "implementation_complete",
+  "formal_verification": "Use attempt-scoped runs/six-final/six-paper.json; this file is a scope declaration, not a success receipt",
+  "base_commit": "747460544d5dabcafa9421031bdbc97a1bf28282",
+  "base_source_tree_sha256": "8c45892b29c0545751632b59f47f47900d56bd813f35a48286f21e12c9bc3b0a",
+  "scope": "Six evaluator-selected papers, reviewed upstream strategies and a separate supplemental runtime version",
+  "source_status": "all_six_exact_evaluator_pdf_hashes_verified",
+  "planned_cases": [
+    {"paper": "2403.07998v1", "method": "negative single-lag ADF weights, exact maximum-weight matching, causal log-spread trading", "kind": "rule", "scope": "four-asset controlled universe; no S&P500 historical performance claim"},
+    {"paper": "2412.12458v1", "method": "OLS AR(1) OU calibration and PIT 90-day percentile signals", "kind": "supervised", "scope": "preselected controlled pair; no private WRDS universe or manual industry selection"},
+    {"paper": "2205.08382v1", "method": "grouped convolution, many-to-one LSTM, BCE training, confidence and bet-size mapping", "kind": "supervised", "scope": "reduced networks and public BTC four-hour sample; excluded preparation components explicitly disclosed"},
+    {"paper": "2409.03762v1", "method": "59-minute causal features, train-only 4% labels, BIC GMM and cluster-conditional KNN", "kind": "supervised", "scope": "public BTC minute sample; diagonal-covariance GMM and selected features disclosed"},
+    {"paper": "2410.14504v2", "method": "SAC entropy objective, twin critics, target updates, inventory-aware passive quotes and adverse/nonadverse fills", "kind": "reinforcement", "scope": "reduced neural networks and training budget; exact paper dt and separately declared simulation window"},
+    {"paper": "2510.27334v1", "method": "decision/action PPO policies, positive-advantage self-imitation and TWAP-awareness", "kind": "reinforcement", "scope": "bounded Hawkes-like simulation and posted/cancelled top-of-book orders; no original impact or Sharpe claims"}
+  ],
+  "required_evidence": ["source hashes and page anchors", "method-to-code mapping", "independent parameterized and property oracles", "train/save/reload/infer/backtest where applicable", "public versus controlled data lineage and time split", "negative structured refusals", "host and strict sandbox validation", "cold replay", "version and all-artifact digest manifest"]
+}

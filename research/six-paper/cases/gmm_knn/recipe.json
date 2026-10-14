@@ -1,0 +1,56 @@
+{
+  "anchors": [
+    {
+      "claim_index": 0,
+      "page": 6,
+      "text": "first 59 minutes"
+    },
+    {
+      "claim_index": 1,
+      "page": 7,
+      "text": "Gaussian Mixture Model"
+    },
+    {
+      "claim_index": 2,
+      "page": 8,
+      "text": "K-nearest neighbours"
+    }
+  ],
+  "claim_file": "claims.json",
+  "expected": {
+    "actions": [
+      "none",
+      "target_position"
+    ],
+    "bar_seconds": 60,
+    "contract_version": "1.1",
+    "fields": [
+      "close",
+      "high",
+      "low",
+      "open",
+      "volume"
+    ],
+    "granularity": "minute",
+    "kind": "supervised",
+    "market_kind": "bar",
+    "strategy_id": "supplement.gmm_knn",
+    "symbols": [
+      "BTCUSDT"
+    ],
+    "training_required": true
+  },
+  "package": "../../../../strategies/supplement.gmm_knn",
+  "package_source_sha256": "968b1456bb56b87c403134412c4f98424e33a5dc6df8c7a390a83e77fe387666",
+  "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Single public Binance BTC market replaces OKX BTC/PEPE and Nasdaq sources.",
+  "source": {
+    "file": "../../../source-cache/six/2409.03762v1.pdf",
+    "format": "pdf",
+    "license": "Redistribution not asserted; exact cached public source",
+    "sha256": "9338d36fcacd418a85ddace0572224b62b1ffd59c4e1db9fa6ab2d6c819bfcd2",
+    "title": "Combining supervised and unsupervised learning methods to predict financial market movements",
+    "url": "https://arxiv.org/pdf/2409.03762v1"
+  },
+  "spec_file": "method.json",
+  "spec_sha256": "dadca5ebf261bc3db10d144ac84f94e06e3d0709d3d4b112551fb4a3ccabb8cd"
+}

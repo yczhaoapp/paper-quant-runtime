@@ -1,0 +1,14 @@
+{
+  "evaluation_sessions": 296,
+  "event_count": 592,
+  "events_sha256": "fef12036d03c5476109f82c298803e7ff491b949265b85ef52523182d2bcd135",
+  "exclusions": "preselected pair instead of private WRDS universe and manual selection",
+  "first_event": "2022-01-03T16:00:00+00:00",
+  "last_event": "2023-02-20T16:00:00+00:00",
+  "model": "Gaussian OU-compatible AR1 price spread",
+  "seed": 241212458,
+  "split": "first 504 only; no evaluation data in OU fit",
+  "training_sessions": 504,
+  "training_sha256": "ccbd6b4f9c25611cf1511db8c6ce9aad474a23aa5d28a42ea6b04239b0e9867c",
+  "type": "controlled_simulation"
+}

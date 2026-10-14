@@ -1,0 +1,2978 @@
+[
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-01T04:00:00Z",
+    "bar_open_time": "2024-03-01T00:00:00Z",
+    "event_id": "btc:1709251200000",
+    "event_time": "2024-03-01T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "61105.91",
+      "high": "61749.0",
+      "low": "60777.0",
+      "open": "61130.99",
+      "volume": "6345.57641"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-01T08:00:00Z",
+    "bar_open_time": "2024-03-01T04:00:00Z",
+    "event_id": "btc:1709265600000",
+    "event_time": "2024-03-01T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "61434.0",
+      "high": "61772.82",
+      "low": "61061.11",
+      "open": "61105.92",
+      "volume": "5719.40504"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-01T12:00:00Z",
+    "bar_open_time": "2024-03-01T08:00:00Z",
+    "event_id": "btc:1709280000000",
+    "event_time": "2024-03-01T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "61863.72",
+      "high": "62243.53",
+      "low": "61316.67",
+      "open": "61434.0",
+      "volume": "8452.27991"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-01T16:00:00Z",
+    "bar_open_time": "2024-03-01T12:00:00Z",
+    "event_id": "btc:1709294400000",
+    "event_time": "2024-03-01T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "61263.99",
+      "high": "62677.06",
+      "low": "61131.01",
+      "open": "61863.71",
+      "volume": "9971.27905"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-01T20:00:00Z",
+    "bar_open_time": "2024-03-01T16:00:00Z",
+    "event_id": "btc:1709308800000",
+    "event_time": "2024-03-01T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "62215.5",
+      "high": "62494.31",
+      "low": "61234.0",
+      "open": "61263.98",
+      "volume": "7886.35574"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-02T00:00:00Z",
+    "bar_open_time": "2024-03-01T20:00:00Z",
+    "event_id": "btc:1709323200000",
+    "event_time": "2024-03-02T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "62387.9",
+      "high": "63114.23",
+      "low": "62215.5",
+      "open": "62215.51",
+      "volume": "9363.03858"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-02T04:00:00Z",
+    "bar_open_time": "2024-03-02T00:00:00Z",
+    "event_id": "btc:1709337600000",
+    "event_time": "2024-03-02T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "62307.45",
+      "high": "62433.19",
+      "low": "61949.03",
+      "open": "62387.9",
+      "volume": "5441.91324"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-02T08:00:00Z",
+    "bar_open_time": "2024-03-02T04:00:00Z",
+    "event_id": "btc:1709352000000",
+    "event_time": "2024-03-02T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "62011.85",
+      "high": "62307.45",
+      "low": "61752.3",
+      "open": "62307.45",
+      "volume": "4846.35512"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-02T12:00:00Z",
+    "bar_open_time": "2024-03-02T08:00:00Z",
+    "event_id": "btc:1709366400000",
+    "event_time": "2024-03-02T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "61826.32",
+      "high": "62123.0",
+      "low": "61641.1",
+      "open": "62011.85",
+      "volume": "4411.57189"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-02T16:00:00Z",
+    "bar_open_time": "2024-03-02T12:00:00Z",
+    "event_id": "btc:1709380800000",
+    "event_time": "2024-03-02T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "61771.2",
+      "high": "62167.79",
+      "low": "61561.12",
+      "open": "61826.32",
+      "volume": "4301.35084"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-02T20:00:00Z",
+    "bar_open_time": "2024-03-02T16:00:00Z",
+    "event_id": "btc:1709395200000",
+    "event_time": "2024-03-02T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "62114.77",
+      "high": "62114.77",
+      "low": "61625.0",
+      "open": "61771.21",
+      "volume": "3418.28795"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-03T00:00:00Z",
+    "bar_open_time": "2024-03-02T20:00:00Z",
+    "event_id": "btc:1709409600000",
+    "event_time": "2024-03-03T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "61987.28",
+      "high": "62200.0",
+      "low": "61685.01",
+      "open": "62114.76",
+      "volume": "3115.25755"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-03T04:00:00Z",
+    "bar_open_time": "2024-03-03T00:00:00Z",
+    "event_id": "btc:1709424000000",
+    "event_time": "2024-03-03T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "61931.09",
+      "high": "62000.0",
+      "low": "61642.39",
+      "open": "61987.28",
+      "volume": "3127.09906"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-03T08:00:00Z",
+    "bar_open_time": "2024-03-03T04:00:00Z",
+    "event_id": "btc:1709438400000",
+    "event_time": "2024-03-03T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "61598.0",
+      "high": "62100.0",
+      "low": "61320.0",
+      "open": "61931.09",
+      "volume": "4831.45761"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-03T12:00:00Z",
+    "bar_open_time": "2024-03-03T08:00:00Z",
+    "event_id": "btc:1709452800000",
+    "event_time": "2024-03-03T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "61831.1",
+      "high": "61890.96",
+      "low": "61393.83",
+      "open": "61598.01",
+      "volume": "3942.85361"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-03T16:00:00Z",
+    "bar_open_time": "2024-03-03T12:00:00Z",
+    "event_id": "btc:1709467200000",
+    "event_time": "2024-03-03T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "62164.63",
+      "high": "62640.18",
+      "low": "61821.09",
+      "open": "61831.1",
+      "volume": "6685.90515"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-03T20:00:00Z",
+    "bar_open_time": "2024-03-03T16:00:00Z",
+    "event_id": "btc:1709481600000",
+    "event_time": "2024-03-03T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "62730.0",
+      "high": "62989.0",
+      "low": "62088.0",
+      "open": "62164.63",
+      "volume": "5623.12318"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-04T00:00:00Z",
+    "bar_open_time": "2024-03-03T20:00:00Z",
+    "event_id": "btc:1709496000000",
+    "event_time": "2024-03-04T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "63113.97",
+      "high": "63231.88",
+      "low": "62580.0",
+      "open": "62730.0",
+      "volume": "4784.47042"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-04T04:00:00Z",
+    "bar_open_time": "2024-03-04T00:00:00Z",
+    "event_id": "btc:1709510400000",
+    "event_time": "2024-03-04T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "63458.72",
+      "high": "64268.24",
+      "low": "62300.0",
+      "open": "63113.97",
+      "volume": "12563.71291"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-04T08:00:00Z",
+    "bar_open_time": "2024-03-04T04:00:00Z",
+    "event_id": "btc:1709524800000",
+    "event_time": "2024-03-04T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "64066.62",
+      "high": "64300.0",
+      "low": "63210.0",
+      "open": "63458.71",
+      "volume": "6654.96237"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-04T12:00:00Z",
+    "bar_open_time": "2024-03-04T08:00:00Z",
+    "event_id": "btc:1709539200000",
+    "event_time": "2024-03-04T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "65230.0",
+      "high": "65555.0",
+      "low": "64000.11",
+      "open": "64066.62",
+      "volume": "16002.48076"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-04T16:00:00Z",
+    "bar_open_time": "2024-03-04T12:00:00Z",
+    "event_id": "btc:1709553600000",
+    "event_time": "2024-03-04T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "66451.65",
+      "high": "66580.29",
+      "low": "64533.67",
+      "open": "65229.99",
+      "volume": "16689.8023"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-04T20:00:00Z",
+    "bar_open_time": "2024-03-04T16:00:00Z",
+    "event_id": "btc:1709568000000",
+    "event_time": "2024-03-04T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "67405.26",
+      "high": "67524.99",
+      "low": "66039.31",
+      "open": "66451.65",
+      "volume": "17313.10625"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-05T00:00:00Z",
+    "bar_open_time": "2024-03-04T20:00:00Z",
+    "event_id": "btc:1709582400000",
+    "event_time": "2024-03-05T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "68245.71",
+      "high": "68499.0",
+      "low": "66755.79",
+      "open": "67405.25",
+      "volume": "15611.09546"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-05T04:00:00Z",
+    "bar_open_time": "2024-03-05T00:00:00Z",
+    "event_id": "btc:1709596800000",
+    "event_time": "2024-03-05T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "68113.94",
+      "high": "68686.8",
+      "low": "67535.31",
+      "open": "68245.71",
+      "volume": "11448.26318"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-05T08:00:00Z",
+    "bar_open_time": "2024-03-05T04:00:00Z",
+    "event_id": "btc:1709611200000",
+    "event_time": "2024-03-05T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "66129.64",
+      "high": "68384.54",
+      "low": "65089.0",
+      "open": "68113.95",
+      "volume": "17780.29058"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-05T12:00:00Z",
+    "bar_open_time": "2024-03-05T08:00:00Z",
+    "event_id": "btc:1709625600000",
+    "event_time": "2024-03-05T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "66656.31",
+      "high": "67150.0",
+      "low": "65515.15",
+      "open": "66129.64",
+      "volume": "11938.90863"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-05T16:00:00Z",
+    "bar_open_time": "2024-03-05T12:00:00Z",
+    "event_id": "btc:1709640000000",
+    "event_time": "2024-03-05T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "66773.05",
+      "high": "69000.0",
+      "low": "66370.0",
+      "open": "66656.32",
+      "volume": "22508.23086"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-05T20:00:00Z",
+    "bar_open_time": "2024-03-05T16:00:00Z",
+    "event_id": "btc:1709654400000",
+    "event_time": "2024-03-05T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "61410.98",
+      "high": "66996.36",
+      "low": "59005.0",
+      "open": "66773.05",
+      "volume": "42797.37895"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-06T00:00:00Z",
+    "bar_open_time": "2024-03-05T20:00:00Z",
+    "event_id": "btc:1709668800000",
+    "event_time": "2024-03-06T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "63724.01",
+      "high": "64367.27",
+      "low": "61167.91",
+      "open": "61410.98",
+      "volume": "26223.7091"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-06T04:00:00Z",
+    "bar_open_time": "2024-03-06T00:00:00Z",
+    "event_id": "btc:1709683200000",
+    "event_time": "2024-03-06T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "63263.21",
+      "high": "64146.45",
+      "low": "62779.14",
+      "open": "63724.01",
+      "volume": "9495.88692"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-06T08:00:00Z",
+    "bar_open_time": "2024-03-06T04:00:00Z",
+    "event_id": "btc:1709697600000",
+    "event_time": "2024-03-06T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "66676.46",
+      "high": "66761.1",
+      "low": "63263.21",
+      "open": "63263.22",
+      "volume": "15208.16062"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-06T12:00:00Z",
+    "bar_open_time": "2024-03-06T08:00:00Z",
+    "event_id": "btc:1709712000000",
+    "event_time": "2024-03-06T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "67301.31",
+      "high": "67641.1",
+      "low": "66041.63",
+      "open": "66676.46",
+      "volume": "14316.87745"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-06T16:00:00Z",
+    "bar_open_time": "2024-03-06T12:00:00Z",
+    "event_id": "btc:1709726400000",
+    "event_time": "2024-03-06T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "66481.12",
+      "high": "67592.31",
+      "low": "64664.92",
+      "open": "67301.31",
+      "volume": "21399.96424"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-06T20:00:00Z",
+    "bar_open_time": "2024-03-06T16:00:00Z",
+    "event_id": "btc:1709740800000",
+    "event_time": "2024-03-06T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "66739.48",
+      "high": "67465.0",
+      "low": "66221.1",
+      "open": "66481.12",
+      "volume": "10674.76219"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-07T00:00:00Z",
+    "bar_open_time": "2024-03-06T20:00:00Z",
+    "event_id": "btc:1709755200000",
+    "event_time": "2024-03-07T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "66074.04",
+      "high": "67363.58",
+      "low": "65714.17",
+      "open": "66739.49",
+      "volume": "7643.20349"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-07T04:00:00Z",
+    "bar_open_time": "2024-03-07T00:00:00Z",
+    "event_id": "btc:1709769600000",
+    "event_time": "2024-03-07T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "65847.29",
+      "high": "66467.88",
+      "low": "65551.0",
+      "open": "66074.04",
+      "volume": "7749.00312"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-07T08:00:00Z",
+    "bar_open_time": "2024-03-07T04:00:00Z",
+    "event_id": "btc:1709784000000",
+    "event_time": "2024-03-07T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "66387.78",
+      "high": "66469.05",
+      "low": "65657.59",
+      "open": "65847.3",
+      "volume": "6679.10619"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-07T12:00:00Z",
+    "bar_open_time": "2024-03-07T08:00:00Z",
+    "event_id": "btc:1709798400000",
+    "event_time": "2024-03-07T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "66905.34",
+      "high": "67275.2",
+      "low": "66341.11",
+      "open": "66387.77",
+      "volume": "8562.6623"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-07T16:00:00Z",
+    "bar_open_time": "2024-03-07T12:00:00Z",
+    "event_id": "btc:1709812800000",
+    "event_time": "2024-03-07T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "67260.01",
+      "high": "67899.0",
+      "low": "66541.1",
+      "open": "66905.34",
+      "volume": "13605.46645"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-07T20:00:00Z",
+    "bar_open_time": "2024-03-07T16:00:00Z",
+    "event_id": "btc:1709827200000",
+    "event_time": "2024-03-07T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "67498.02",
+      "high": "67980.0",
+      "low": "67012.0",
+      "open": "67260.01",
+      "volume": "9547.44499"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-08T00:00:00Z",
+    "bar_open_time": "2024-03-07T20:00:00Z",
+    "event_id": "btc:1709841600000",
+    "event_time": "2024-03-08T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "66823.17",
+      "high": "67914.74",
+      "low": "66810.32",
+      "open": "67498.03",
+      "volume": "6916.20385"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-08T04:00:00Z",
+    "bar_open_time": "2024-03-08T00:00:00Z",
+    "event_id": "btc:1709856000000",
+    "event_time": "2024-03-08T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "67156.09",
+      "high": "67256.18",
+      "low": "66757.0",
+      "open": "66823.18",
+      "volume": "5636.13131"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-08T08:00:00Z",
+    "bar_open_time": "2024-03-08T04:00:00Z",
+    "event_id": "btc:1709870400000",
+    "event_time": "2024-03-08T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "67223.02",
+      "high": "67640.45",
+      "low": "66782.22",
+      "open": "67156.09",
+      "volume": "5528.83778"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-08T12:00:00Z",
+    "bar_open_time": "2024-03-08T08:00:00Z",
+    "event_id": "btc:1709884800000",
+    "event_time": "2024-03-08T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "67741.21",
+      "high": "67753.4",
+      "low": "67038.71",
+      "open": "67223.02",
+      "volume": "6407.54695"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-08T16:00:00Z",
+    "bar_open_time": "2024-03-08T12:00:00Z",
+    "event_id": "btc:1709899200000",
+    "event_time": "2024-03-08T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "67617.6",
+      "high": "69990.0",
+      "low": "67150.0",
+      "open": "67741.22",
+      "volume": "22754.678982"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-08T20:00:00Z",
+    "bar_open_time": "2024-03-08T16:00:00Z",
+    "event_id": "btc:1709913600000",
+    "event_time": "2024-03-08T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "68863.99",
+      "high": "68864.0",
+      "low": "66082.66",
+      "open": "67617.6",
+      "volume": "22384.90145"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-09T00:00:00Z",
+    "bar_open_time": "2024-03-08T20:00:00Z",
+    "event_id": "btc:1709928000000",
+    "event_time": "2024-03-09T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "68124.19",
+      "high": "69379.0",
+      "low": "67807.58",
+      "open": "68864.0",
+      "volume": "11549.83637"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-09T04:00:00Z",
+    "bar_open_time": "2024-03-09T00:00:00Z",
+    "event_id": "btc:1709942400000",
+    "event_time": "2024-03-09T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "68247.34",
+      "high": "68279.0",
+      "low": "67861.1",
+      "open": "68124.2",
+      "volume": "3976.42864"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-09T08:00:00Z",
+    "bar_open_time": "2024-03-09T04:00:00Z",
+    "event_id": "btc:1709956800000",
+    "event_time": "2024-03-09T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "68288.64",
+      "high": "68541.1",
+      "low": "68133.27",
+      "open": "68247.34",
+      "volume": "3391.79959"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-09T12:00:00Z",
+    "bar_open_time": "2024-03-09T08:00:00Z",
+    "event_id": "btc:1709971200000",
+    "event_time": "2024-03-09T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "68299.99",
+      "high": "68453.12",
+      "low": "67933.93",
+      "open": "68288.64",
+      "volume": "4166.2641"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-09T16:00:00Z",
+    "bar_open_time": "2024-03-09T12:00:00Z",
+    "event_id": "btc:1709985600000",
+    "event_time": "2024-03-09T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "68288.2",
+      "high": "68521.1",
+      "low": "68100.01",
+      "open": "68300.0",
+      "volume": "3154.11941"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-09T20:00:00Z",
+    "bar_open_time": "2024-03-09T16:00:00Z",
+    "event_id": "btc:1710000000000",
+    "event_time": "2024-03-09T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "68193.51",
+      "high": "68325.0",
+      "low": "68000.0",
+      "open": "68288.19",
+      "volume": "3079.82488"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-10T00:00:00Z",
+    "bar_open_time": "2024-03-09T20:00:00Z",
+    "event_id": "btc:1710014400000",
+    "event_time": "2024-03-10T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "68313.27",
+      "high": "68433.17",
+      "low": "68193.51",
+      "open": "68193.51",
+      "volume": "2104.46081"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-10T04:00:00Z",
+    "bar_open_time": "2024-03-10T00:00:00Z",
+    "event_id": "btc:1710028800000",
+    "event_time": "2024-03-10T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69136.79",
+      "high": "69216.0",
+      "low": "68200.0",
+      "open": "68313.28",
+      "volume": "7144.0803"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-10T08:00:00Z",
+    "bar_open_time": "2024-03-10T04:00:00Z",
+    "event_id": "btc:1710043200000",
+    "event_time": "2024-03-10T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69347.16",
+      "high": "69659.47",
+      "low": "69024.62",
+      "open": "69136.78",
+      "volume": "5397.01526"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-10T12:00:00Z",
+    "bar_open_time": "2024-03-10T08:00:00Z",
+    "event_id": "btc:1710057600000",
+    "event_time": "2024-03-10T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69568.46",
+      "high": "69887.61",
+      "low": "69162.0",
+      "open": "69347.16",
+      "volume": "7712.18719"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-10T16:00:00Z",
+    "bar_open_time": "2024-03-10T12:00:00Z",
+    "event_id": "btc:1710072000000",
+    "event_time": "2024-03-10T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69194.83",
+      "high": "69833.33",
+      "low": "68641.1",
+      "open": "69568.45",
+      "volume": "8240.59115"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-10T20:00:00Z",
+    "bar_open_time": "2024-03-10T16:00:00Z",
+    "event_id": "btc:1710086400000",
+    "event_time": "2024-03-10T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69400.19",
+      "high": "69768.58",
+      "low": "69111.89",
+      "open": "69194.83",
+      "volume": "4006.35572"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-11T00:00:00Z",
+    "bar_open_time": "2024-03-10T20:00:00Z",
+    "event_id": "btc:1710100800000",
+    "event_time": "2024-03-11T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "68955.88",
+      "high": "69470.01",
+      "low": "68094.75",
+      "open": "69400.19",
+      "volume": "5904.43873"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-11T04:00:00Z",
+    "bar_open_time": "2024-03-11T00:00:00Z",
+    "event_id": "btc:1710115200000",
+    "event_time": "2024-03-11T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "68604.42",
+      "high": "68955.9",
+      "low": "67024.96",
+      "open": "68955.88",
+      "volume": "9122.59767"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-11T08:00:00Z",
+    "bar_open_time": "2024-03-11T04:00:00Z",
+    "event_id": "btc:1710129600000",
+    "event_time": "2024-03-11T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "71019.99",
+      "high": "71298.0",
+      "low": "68445.91",
+      "open": "68604.41",
+      "volume": "17348.195928"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-11T12:00:00Z",
+    "bar_open_time": "2024-03-11T08:00:00Z",
+    "event_id": "btc:1710144000000",
+    "event_time": "2024-03-11T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "71487.2",
+      "high": "72226.3",
+      "low": "71019.99",
+      "open": "71019.99",
+      "volume": "16023.350068"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-11T16:00:00Z",
+    "bar_open_time": "2024-03-11T12:00:00Z",
+    "event_id": "btc:1710158400000",
+    "event_time": "2024-03-11T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "72010.0",
+      "high": "72661.1",
+      "low": "71304.2",
+      "open": "71487.21",
+      "volume": "15581.872268"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-11T20:00:00Z",
+    "bar_open_time": "2024-03-11T16:00:00Z",
+    "event_id": "btc:1710172800000",
+    "event_time": "2024-03-11T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "71970.0",
+      "high": "72800.0",
+      "low": "71760.0",
+      "open": "72010.01",
+      "volume": "11603.115722"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-12T00:00:00Z",
+    "bar_open_time": "2024-03-11T20:00:00Z",
+    "event_id": "btc:1710187200000",
+    "event_time": "2024-03-12T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "72078.1",
+      "high": "72750.0",
+      "low": "71836.36",
+      "open": "71970.0",
+      "volume": "5613.69407"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-12T04:00:00Z",
+    "bar_open_time": "2024-03-12T00:00:00Z",
+    "event_id": "btc:1710201600000",
+    "event_time": "2024-03-12T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "71619.0",
+      "high": "72470.41",
+      "low": "71400.0",
+      "open": "72078.1",
+      "volume": "6941.41973"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-12T08:00:00Z",
+    "bar_open_time": "2024-03-12T04:00:00Z",
+    "event_id": "btc:1710216000000",
+    "event_time": "2024-03-12T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "72121.1",
+      "high": "72355.15",
+      "low": "71301.0",
+      "open": "71619.0",
+      "volume": "6922.6066"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-12T12:00:00Z",
+    "bar_open_time": "2024-03-12T08:00:00Z",
+    "event_id": "btc:1710230400000",
+    "event_time": "2024-03-12T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "72023.82",
+      "high": "72376.0",
+      "low": "71388.0",
+      "open": "72121.1",
+      "volume": "7323.42979"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-12T16:00:00Z",
+    "bar_open_time": "2024-03-12T12:00:00Z",
+    "event_id": "btc:1710244800000",
+    "event_time": "2024-03-12T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "71703.41",
+      "high": "73000.0",
+      "low": "70800.0",
+      "open": "72023.82",
+      "volume": "17116.478251"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-12T20:00:00Z",
+    "bar_open_time": "2024-03-12T16:00:00Z",
+    "event_id": "btc:1710259200000",
+    "event_time": "2024-03-12T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "71349.99",
+      "high": "71829.11",
+      "low": "68620.82",
+      "open": "71703.41",
+      "volume": "24015.90765"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-13T00:00:00Z",
+    "bar_open_time": "2024-03-12T20:00:00Z",
+    "event_id": "btc:1710273600000",
+    "event_time": "2024-03-13T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "71452.01",
+      "high": "71550.05",
+      "low": "70607.86",
+      "open": "71349.99",
+      "volume": "6463.70467"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-13T04:00:00Z",
+    "bar_open_time": "2024-03-13T00:00:00Z",
+    "event_id": "btc:1710288000000",
+    "event_time": "2024-03-13T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "72057.43",
+      "high": "72217.79",
+      "low": "71333.31",
+      "open": "71452.0",
+      "volume": "6367.1435"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-13T08:00:00Z",
+    "bar_open_time": "2024-03-13T04:00:00Z",
+    "event_id": "btc:1710302400000",
+    "event_time": "2024-03-13T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "72855.16",
+      "high": "73182.22",
+      "low": "71920.0",
+      "open": "72057.43",
+      "volume": "8445.987492"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-13T12:00:00Z",
+    "bar_open_time": "2024-03-13T08:00:00Z",
+    "event_id": "btc:1710316800000",
+    "event_time": "2024-03-13T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "73065.41",
+      "high": "73650.25",
+      "low": "72820.0",
+      "open": "72855.15",
+      "volume": "9588.448875"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-13T16:00:00Z",
+    "bar_open_time": "2024-03-13T12:00:00Z",
+    "event_id": "btc:1710331200000",
+    "event_time": "2024-03-13T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "72634.95",
+      "high": "73180.0",
+      "low": "71634.52",
+      "open": "73065.4",
+      "volume": "14039.65954"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-13T20:00:00Z",
+    "bar_open_time": "2024-03-13T16:00:00Z",
+    "event_id": "btc:1710345600000",
+    "event_time": "2024-03-13T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "73349.24",
+      "high": "73394.19",
+      "low": "72350.0",
+      "open": "72634.95",
+      "volume": "8727.85823"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-14T00:00:00Z",
+    "bar_open_time": "2024-03-13T20:00:00Z",
+    "event_id": "btc:1710360000000",
+    "event_time": "2024-03-14T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "73072.41",
+      "high": "73410.22",
+      "low": "72788.15",
+      "open": "73349.24",
+      "volume": "5490.61401"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-14T04:00:00Z",
+    "bar_open_time": "2024-03-14T00:00:00Z",
+    "event_id": "btc:1710374400000",
+    "event_time": "2024-03-14T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "73267.08",
+      "high": "73288.3",
+      "low": "72500.0",
+      "open": "73072.4",
+      "volume": "5469.57319"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-14T08:00:00Z",
+    "bar_open_time": "2024-03-14T04:00:00Z",
+    "event_id": "btc:1710388800000",
+    "event_time": "2024-03-14T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "73224.0",
+      "high": "73777.0",
+      "low": "72680.0",
+      "open": "73267.08",
+      "volume": "7734.903346"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-14T12:00:00Z",
+    "bar_open_time": "2024-03-14T08:00:00Z",
+    "event_id": "btc:1710403200000",
+    "event_time": "2024-03-14T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "72884.0",
+      "high": "73528.11",
+      "low": "72627.0",
+      "open": "73224.0",
+      "volume": "6407.33652"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-14T16:00:00Z",
+    "bar_open_time": "2024-03-14T12:00:00Z",
+    "event_id": "btc:1710417600000",
+    "event_time": "2024-03-14T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "70844.01",
+      "high": "73047.16",
+      "low": "70543.64",
+      "open": "72884.01",
+      "volume": "18557.28967"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-14T20:00:00Z",
+    "bar_open_time": "2024-03-14T16:00:00Z",
+    "event_id": "btc:1710432000000",
+    "event_time": "2024-03-14T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69415.09",
+      "high": "71458.0",
+      "low": "68555.0",
+      "open": "70844.0",
+      "volume": "22921.42581"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-15T00:00:00Z",
+    "bar_open_time": "2024-03-14T20:00:00Z",
+    "event_id": "btc:1710446400000",
+    "event_time": "2024-03-15T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "71388.94",
+      "high": "71709.9",
+      "low": "69303.75",
+      "open": "69415.09",
+      "volume": "10667.10021"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-15T04:00:00Z",
+    "bar_open_time": "2024-03-15T00:00:00Z",
+    "event_id": "btc:1710460800000",
+    "event_time": "2024-03-15T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "68224.01",
+      "high": "72419.71",
+      "low": "66699.0",
+      "open": "71388.94",
+      "volume": "22422.85781"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-15T08:00:00Z",
+    "bar_open_time": "2024-03-15T04:00:00Z",
+    "event_id": "btc:1710475200000",
+    "event_time": "2024-03-15T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "68448.29",
+      "high": "68861.1",
+      "low": "66904.98",
+      "open": "68224.01",
+      "volume": "17229.30114"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-15T12:00:00Z",
+    "bar_open_time": "2024-03-15T08:00:00Z",
+    "event_id": "btc:1710489600000",
+    "event_time": "2024-03-15T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "67757.76",
+      "high": "68600.0",
+      "low": "65600.0",
+      "open": "68448.28",
+      "volume": "22721.61196"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-15T16:00:00Z",
+    "bar_open_time": "2024-03-15T12:00:00Z",
+    "event_id": "btc:1710504000000",
+    "event_time": "2024-03-15T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "68157.07",
+      "high": "68746.69",
+      "low": "67424.79",
+      "open": "67757.75",
+      "volume": "12481.72359"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-15T20:00:00Z",
+    "bar_open_time": "2024-03-15T16:00:00Z",
+    "event_id": "btc:1710518400000",
+    "event_time": "2024-03-15T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "68964.0",
+      "high": "70650.0",
+      "low": "67520.01",
+      "open": "68157.07",
+      "volume": "17320.34953"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-16T00:00:00Z",
+    "bar_open_time": "2024-03-15T20:00:00Z",
+    "event_id": "btc:1710532800000",
+    "event_time": "2024-03-16T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69499.85",
+      "high": "69750.0",
+      "low": "67413.8",
+      "open": "68964.0",
+      "volume": "11158.19143"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-16T04:00:00Z",
+    "bar_open_time": "2024-03-16T00:00:00Z",
+    "event_id": "btc:1710547200000",
+    "event_time": "2024-03-16T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69200.08",
+      "high": "70043.0",
+      "low": "68932.01",
+      "open": "69499.84",
+      "volume": "7063.23297"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-16T08:00:00Z",
+    "bar_open_time": "2024-03-16T04:00:00Z",
+    "event_id": "btc:1710561600000",
+    "event_time": "2024-03-16T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69432.45",
+      "high": "69460.91",
+      "low": "68600.0",
+      "open": "69200.07",
+      "volume": "5195.14968"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-16T12:00:00Z",
+    "bar_open_time": "2024-03-16T08:00:00Z",
+    "event_id": "btc:1710576000000",
+    "event_time": "2024-03-16T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "68256.01",
+      "high": "69436.24",
+      "low": "67725.53",
+      "open": "69432.45",
+      "volume": "7874.19098"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-16T16:00:00Z",
+    "bar_open_time": "2024-03-16T12:00:00Z",
+    "event_id": "btc:1710590400000",
+    "event_time": "2024-03-16T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "68385.58",
+      "high": "68499.1",
+      "low": "67524.0",
+      "open": "68256.0",
+      "volume": "8590.50806"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-16T20:00:00Z",
+    "bar_open_time": "2024-03-16T16:00:00Z",
+    "event_id": "btc:1710604800000",
+    "event_time": "2024-03-16T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "66911.52",
+      "high": "68407.94",
+      "low": "66670.0",
+      "open": "68385.58",
+      "volume": "11754.26553"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-17T00:00:00Z",
+    "bar_open_time": "2024-03-16T20:00:00Z",
+    "event_id": "btc:1710619200000",
+    "event_time": "2024-03-17T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "65300.63",
+      "high": "67538.49",
+      "low": "64780.0",
+      "open": "66911.51",
+      "volume": "15449.60614"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-17T04:00:00Z",
+    "bar_open_time": "2024-03-17T00:00:00Z",
+    "event_id": "btc:1710633600000",
+    "event_time": "2024-03-17T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "66538.99",
+      "high": "66576.39",
+      "low": "65122.23",
+      "open": "65300.64",
+      "volume": "10190.42681"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-17T08:00:00Z",
+    "bar_open_time": "2024-03-17T04:00:00Z",
+    "event_id": "btc:1710648000000",
+    "event_time": "2024-03-17T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "65636.67",
+      "high": "66560.0",
+      "low": "64533.0",
+      "open": "66538.99",
+      "volume": "9585.06163"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-17T12:00:00Z",
+    "bar_open_time": "2024-03-17T08:00:00Z",
+    "event_id": "btc:1710662400000",
+    "event_time": "2024-03-17T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "66955.49",
+      "high": "67515.0",
+      "low": "65290.0",
+      "open": "65636.68",
+      "volume": "9037.77471"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-17T16:00:00Z",
+    "bar_open_time": "2024-03-17T12:00:00Z",
+    "event_id": "btc:1710676800000",
+    "event_time": "2024-03-17T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "67965.5",
+      "high": "68111.45",
+      "low": "66436.92",
+      "open": "66955.49",
+      "volume": "8266.27135"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-17T20:00:00Z",
+    "bar_open_time": "2024-03-17T16:00:00Z",
+    "event_id": "btc:1710691200000",
+    "event_time": "2024-03-17T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "68536.73",
+      "high": "68693.75",
+      "low": "67769.86",
+      "open": "67965.51",
+      "volume": "6689.53988"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-18T00:00:00Z",
+    "bar_open_time": "2024-03-17T20:00:00Z",
+    "event_id": "btc:1710705600000",
+    "event_time": "2024-03-18T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "68393.48",
+      "high": "68904.4",
+      "low": "67953.35",
+      "open": "68536.72",
+      "volume": "5973.14151"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-18T04:00:00Z",
+    "bar_open_time": "2024-03-18T00:00:00Z",
+    "event_id": "btc:1710720000000",
+    "event_time": "2024-03-18T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "67972.01",
+      "high": "68425.97",
+      "low": "66800.0",
+      "open": "68393.47",
+      "volume": "9044.36516"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-18T08:00:00Z",
+    "bar_open_time": "2024-03-18T04:00:00Z",
+    "event_id": "btc:1710734400000",
+    "event_time": "2024-03-18T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "68218.38",
+      "high": "68956.0",
+      "low": "67704.01",
+      "open": "67972.01",
+      "volume": "6783.817"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-18T12:00:00Z",
+    "bar_open_time": "2024-03-18T08:00:00Z",
+    "event_id": "btc:1710748800000",
+    "event_time": "2024-03-18T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "68253.4",
+      "high": "68483.96",
+      "low": "67300.0",
+      "open": "68218.38",
+      "volume": "8039.1486"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-18T16:00:00Z",
+    "bar_open_time": "2024-03-18T12:00:00Z",
+    "event_id": "btc:1710763200000",
+    "event_time": "2024-03-18T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "67467.19",
+      "high": "68627.81",
+      "low": "66628.68",
+      "open": "68253.39",
+      "volume": "13191.14257"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-18T20:00:00Z",
+    "bar_open_time": "2024-03-18T16:00:00Z",
+    "event_id": "btc:1710777600000",
+    "event_time": "2024-03-18T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "66936.0",
+      "high": "68079.52",
+      "low": "66565.2",
+      "open": "67467.19",
+      "volume": "12161.56392"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-19T00:00:00Z",
+    "bar_open_time": "2024-03-18T20:00:00Z",
+    "event_id": "btc:1710792000000",
+    "event_time": "2024-03-19T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "67609.99",
+      "high": "67999.0",
+      "low": "66935.99",
+      "open": "66936.0",
+      "volume": "6471.04363"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-19T04:00:00Z",
+    "bar_open_time": "2024-03-19T00:00:00Z",
+    "event_id": "btc:1710806400000",
+    "event_time": "2024-03-19T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "65876.01",
+      "high": "68124.11",
+      "low": "64860.0",
+      "open": "67610.0",
+      "volume": "16347.35381"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-19T08:00:00Z",
+    "bar_open_time": "2024-03-19T04:00:00Z",
+    "event_id": "btc:1710820800000",
+    "event_time": "2024-03-19T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "64704.22",
+      "high": "65976.1",
+      "low": "63577.0",
+      "open": "65876.01",
+      "volume": "16011.77985"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-19T12:00:00Z",
+    "bar_open_time": "2024-03-19T08:00:00Z",
+    "event_id": "btc:1710835200000",
+    "event_time": "2024-03-19T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "63081.34",
+      "high": "64710.69",
+      "low": "62505.0",
+      "open": "64704.23",
+      "volume": "21759.46345"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-19T16:00:00Z",
+    "bar_open_time": "2024-03-19T12:00:00Z",
+    "event_id": "btc:1710849600000",
+    "event_time": "2024-03-19T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "64051.85",
+      "high": "64150.0",
+      "low": "62410.78",
+      "open": "63081.34",
+      "volume": "19821.88333"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-19T20:00:00Z",
+    "bar_open_time": "2024-03-19T16:00:00Z",
+    "event_id": "btc:1710864000000",
+    "event_time": "2024-03-19T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "64391.99",
+      "high": "65756.0",
+      "low": "63969.58",
+      "open": "64051.85",
+      "volume": "14712.724"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-20T00:00:00Z",
+    "bar_open_time": "2024-03-19T20:00:00Z",
+    "event_id": "btc:1710878400000",
+    "event_time": "2024-03-20T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "61937.4",
+      "high": "64500.12",
+      "low": "61555.0",
+      "open": "64392.0",
+      "volume": "12352.12043"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-20T04:00:00Z",
+    "bar_open_time": "2024-03-20T00:00:00Z",
+    "event_id": "btc:1710892800000",
+    "event_time": "2024-03-20T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "61860.81",
+      "high": "63466.21",
+      "low": "61666.0",
+      "open": "61937.41",
+      "volume": "14260.123"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-20T08:00:00Z",
+    "bar_open_time": "2024-03-20T04:00:00Z",
+    "event_id": "btc:1710907200000",
+    "event_time": "2024-03-20T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "62957.85",
+      "high": "63198.83",
+      "low": "60775.0",
+      "open": "61860.82",
+      "volume": "16405.1055"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-20T12:00:00Z",
+    "bar_open_time": "2024-03-20T08:00:00Z",
+    "event_id": "btc:1710921600000",
+    "event_time": "2024-03-20T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "63392.94",
+      "high": "63957.74",
+      "low": "62640.0",
+      "open": "62957.85",
+      "volume": "11101.8558"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-20T16:00:00Z",
+    "bar_open_time": "2024-03-20T12:00:00Z",
+    "event_id": "btc:1710936000000",
+    "event_time": "2024-03-20T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "63600.37",
+      "high": "64395.0",
+      "low": "63066.6",
+      "open": "63392.95",
+      "volume": "14577.40042"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-20T20:00:00Z",
+    "bar_open_time": "2024-03-20T16:00:00Z",
+    "event_id": "btc:1710950400000",
+    "event_time": "2024-03-20T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "65784.46",
+      "high": "66000.0",
+      "low": "62022.0",
+      "open": "63600.37",
+      "volume": "19560.39962"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-21T00:00:00Z",
+    "bar_open_time": "2024-03-20T20:00:00Z",
+    "event_id": "btc:1710964800000",
+    "event_time": "2024-03-21T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "67840.51",
+      "high": "68100.0",
+      "low": "65656.41",
+      "open": "65784.47",
+      "volume": "14515.70158"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-21T04:00:00Z",
+    "bar_open_time": "2024-03-21T00:00:00Z",
+    "event_id": "btc:1710979200000",
+    "event_time": "2024-03-21T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "66654.45",
+      "high": "68240.47",
+      "low": "66340.0",
+      "open": "67840.51",
+      "volume": "9548.03051"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-21T08:00:00Z",
+    "bar_open_time": "2024-03-21T04:00:00Z",
+    "event_id": "btc:1710993600000",
+    "event_time": "2024-03-21T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "66985.19",
+      "high": "67330.0",
+      "low": "66072.2",
+      "open": "66654.46",
+      "volume": "7775.81555"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-21T12:00:00Z",
+    "bar_open_time": "2024-03-21T08:00:00Z",
+    "event_id": "btc:1711008000000",
+    "event_time": "2024-03-21T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "67044.0",
+      "high": "67659.53",
+      "low": "66650.0",
+      "open": "66985.19",
+      "volume": "6826.1452"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-21T16:00:00Z",
+    "bar_open_time": "2024-03-21T12:00:00Z",
+    "event_id": "btc:1711022400000",
+    "event_time": "2024-03-21T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "66557.77",
+      "high": "67693.6",
+      "low": "65885.96",
+      "open": "67044.01",
+      "volume": "10244.26221"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-21T20:00:00Z",
+    "bar_open_time": "2024-03-21T16:00:00Z",
+    "event_id": "btc:1711036800000",
+    "event_time": "2024-03-21T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "65223.74",
+      "high": "67000.0",
+      "low": "64871.01",
+      "open": "66557.77",
+      "volume": "11883.44847"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-22T00:00:00Z",
+    "bar_open_time": "2024-03-21T20:00:00Z",
+    "event_id": "btc:1711051200000",
+    "event_time": "2024-03-22T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "65501.27",
+      "high": "65946.66",
+      "low": "64529.01",
+      "open": "65223.73",
+      "volume": "7079.77808"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-22T04:00:00Z",
+    "bar_open_time": "2024-03-22T00:00:00Z",
+    "event_id": "btc:1711065600000",
+    "event_time": "2024-03-22T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "65981.99",
+      "high": "66160.0",
+      "low": "65120.01",
+      "open": "65501.28",
+      "volume": "6860.14662"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-22T08:00:00Z",
+    "bar_open_time": "2024-03-22T04:00:00Z",
+    "event_id": "btc:1711080000000",
+    "event_time": "2024-03-22T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "66178.01",
+      "high": "66649.62",
+      "low": "65756.64",
+      "open": "65981.99",
+      "volume": "5005.64413"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-22T12:00:00Z",
+    "bar_open_time": "2024-03-22T08:00:00Z",
+    "event_id": "btc:1711094400000",
+    "event_time": "2024-03-22T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "64233.9",
+      "high": "66363.1",
+      "low": "64065.72",
+      "open": "66178.01",
+      "volume": "8364.76408"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-22T16:00:00Z",
+    "bar_open_time": "2024-03-22T12:00:00Z",
+    "event_id": "btc:1711108800000",
+    "event_time": "2024-03-22T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "63877.04",
+      "high": "64674.06",
+      "low": "62601.11",
+      "open": "64233.9",
+      "volume": "15779.03684"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-22T20:00:00Z",
+    "bar_open_time": "2024-03-22T16:00:00Z",
+    "event_id": "btc:1711123200000",
+    "event_time": "2024-03-22T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "63866.93",
+      "high": "64126.09",
+      "low": "62766.63",
+      "open": "63877.04",
+      "volume": "8473.14688"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-23T00:00:00Z",
+    "bar_open_time": "2024-03-22T20:00:00Z",
+    "event_id": "btc:1711137600000",
+    "event_time": "2024-03-23T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "63796.64",
+      "high": "63978.86",
+      "low": "62260.0",
+      "open": "63866.94",
+      "volume": "6999.63966"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-23T04:00:00Z",
+    "bar_open_time": "2024-03-23T00:00:00Z",
+    "event_id": "btc:1711152000000",
+    "event_time": "2024-03-23T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "63556.0",
+      "high": "64374.91",
+      "low": "63000.0",
+      "open": "63796.64",
+      "volume": "5352.28065"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-23T08:00:00Z",
+    "bar_open_time": "2024-03-23T04:00:00Z",
+    "event_id": "btc:1711166400000",
+    "event_time": "2024-03-23T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "64575.41",
+      "high": "64856.01",
+      "low": "63506.5",
+      "open": "63556.0",
+      "volume": "3673.223"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-23T12:00:00Z",
+    "bar_open_time": "2024-03-23T08:00:00Z",
+    "event_id": "btc:1711180800000",
+    "event_time": "2024-03-23T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "64629.62",
+      "high": "64857.14",
+      "low": "64186.21",
+      "open": "64575.41",
+      "volume": "3461.5518"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-23T16:00:00Z",
+    "bar_open_time": "2024-03-23T12:00:00Z",
+    "event_id": "btc:1711195200000",
+    "event_time": "2024-03-23T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "65104.05",
+      "high": "65414.69",
+      "low": "64278.15",
+      "open": "64629.61",
+      "volume": "5604.02124"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-23T20:00:00Z",
+    "bar_open_time": "2024-03-23T16:00:00Z",
+    "event_id": "btc:1711209600000",
+    "event_time": "2024-03-23T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "64872.9",
+      "high": "65999.0",
+      "low": "64786.25",
+      "open": "65104.06",
+      "volume": "5268.49718"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-24T00:00:00Z",
+    "bar_open_time": "2024-03-23T20:00:00Z",
+    "event_id": "btc:1711224000000",
+    "event_time": "2024-03-24T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "63990.01",
+      "high": "65199.97",
+      "low": "63861.66",
+      "open": "64872.9",
+      "volume": "3050.54022"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-24T04:00:00Z",
+    "bar_open_time": "2024-03-24T00:00:00Z",
+    "event_id": "btc:1711238400000",
+    "event_time": "2024-03-24T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "63962.98",
+      "high": "64723.16",
+      "low": "63922.85",
+      "open": "63990.02",
+      "volume": "2935.71455"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-24T08:00:00Z",
+    "bar_open_time": "2024-03-24T04:00:00Z",
+    "event_id": "btc:1711252800000",
+    "event_time": "2024-03-24T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "64583.43",
+      "high": "64583.44",
+      "low": "63772.29",
+      "open": "63962.98",
+      "volume": "2684.12371"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-24T12:00:00Z",
+    "bar_open_time": "2024-03-24T08:00:00Z",
+    "event_id": "btc:1711267200000",
+    "event_time": "2024-03-24T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "65334.01",
+      "high": "65368.66",
+      "low": "64476.0",
+      "open": "64583.44",
+      "volume": "4489.73276"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-24T16:00:00Z",
+    "bar_open_time": "2024-03-24T12:00:00Z",
+    "event_id": "btc:1711281600000",
+    "event_time": "2024-03-24T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "65673.36",
+      "high": "65925.19",
+      "low": "65177.28",
+      "open": "65334.0",
+      "volume": "5348.55639"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-24T20:00:00Z",
+    "bar_open_time": "2024-03-24T16:00:00Z",
+    "event_id": "btc:1711296000000",
+    "event_time": "2024-03-24T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "65843.02",
+      "high": "66045.99",
+      "low": "64600.01",
+      "open": "65673.36",
+      "volume": "6877.2094"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-25T00:00:00Z",
+    "bar_open_time": "2024-03-24T20:00:00Z",
+    "event_id": "btc:1711310400000",
+    "event_time": "2024-03-25T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "67209.99",
+      "high": "67628.69",
+      "low": "65730.6",
+      "open": "65843.02",
+      "volume": "9060.44334"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-25T04:00:00Z",
+    "bar_open_time": "2024-03-25T00:00:00Z",
+    "event_id": "btc:1711324800000",
+    "event_time": "2024-03-25T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "67350.0",
+      "high": "67350.0",
+      "low": "66385.06",
+      "open": "67210.0",
+      "volume": "5111.47135"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-25T08:00:00Z",
+    "bar_open_time": "2024-03-25T04:00:00Z",
+    "event_id": "btc:1711339200000",
+    "event_time": "2024-03-25T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "66821.19",
+      "high": "67740.0",
+      "low": "66710.0",
+      "open": "67350.0",
+      "volume": "5187.21371"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-25T12:00:00Z",
+    "bar_open_time": "2024-03-25T08:00:00Z",
+    "event_id": "btc:1711353600000",
+    "event_time": "2024-03-25T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "66810.15",
+      "high": "67344.23",
+      "low": "66747.65",
+      "open": "66821.19",
+      "volume": "4533.27519"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-25T16:00:00Z",
+    "bar_open_time": "2024-03-25T12:00:00Z",
+    "event_id": "btc:1711368000000",
+    "event_time": "2024-03-25T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69792.05",
+      "high": "70000.0",
+      "low": "66780.0",
+      "open": "66810.15",
+      "volume": "18421.73075"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-25T20:00:00Z",
+    "bar_open_time": "2024-03-25T16:00:00Z",
+    "event_id": "btc:1711382400000",
+    "event_time": "2024-03-25T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "70960.89",
+      "high": "71000.0",
+      "low": "69440.18",
+      "open": "69792.06",
+      "volume": "12949.80008"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-26T00:00:00Z",
+    "bar_open_time": "2024-03-25T20:00:00Z",
+    "event_id": "btc:1711396800000",
+    "event_time": "2024-03-26T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69880.01",
+      "high": "71150.0",
+      "low": "69562.09",
+      "open": "70960.89",
+      "volume": "7227.65378"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-26T04:00:00Z",
+    "bar_open_time": "2024-03-26T00:00:00Z",
+    "event_id": "btc:1711411200000",
+    "event_time": "2024-03-26T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "70423.11",
+      "high": "70606.0",
+      "low": "69732.8",
+      "open": "69880.0",
+      "volume": "4442.88157"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-26T08:00:00Z",
+    "bar_open_time": "2024-03-26T04:00:00Z",
+    "event_id": "btc:1711425600000",
+    "event_time": "2024-03-26T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "70486.38",
+      "high": "71561.1",
+      "low": "70260.3",
+      "open": "70423.11",
+      "volume": "6445.21132"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-26T12:00:00Z",
+    "bar_open_time": "2024-03-26T08:00:00Z",
+    "event_id": "btc:1711440000000",
+    "event_time": "2024-03-26T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "70693.16",
+      "high": "71280.0",
+      "low": "70268.66",
+      "open": "70486.38",
+      "volume": "6034.6806"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-26T16:00:00Z",
+    "bar_open_time": "2024-03-26T12:00:00Z",
+    "event_id": "btc:1711454400000",
+    "event_time": "2024-03-26T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "70250.0",
+      "high": "71136.63",
+      "low": "69280.0",
+      "open": "70693.17",
+      "volume": "11063.14222"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-26T20:00:00Z",
+    "bar_open_time": "2024-03-26T16:00:00Z",
+    "event_id": "btc:1711468800000",
+    "event_time": "2024-03-26T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69477.67",
+      "high": "70499.0",
+      "low": "69412.0",
+      "open": "70250.01",
+      "volume": "7627.77768"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-27T00:00:00Z",
+    "bar_open_time": "2024-03-26T20:00:00Z",
+    "event_id": "btc:1711483200000",
+    "event_time": "2024-03-27T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69988.0",
+      "high": "70305.33",
+      "low": "69401.72",
+      "open": "69477.66",
+      "volume": "3320.69078"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-27T04:00:00Z",
+    "bar_open_time": "2024-03-27T00:00:00Z",
+    "event_id": "btc:1711497600000",
+    "event_time": "2024-03-27T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "70387.99",
+      "high": "70739.65",
+      "low": "69840.0",
+      "open": "69987.99",
+      "volume": "4372.6997"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-27T08:00:00Z",
+    "bar_open_time": "2024-03-27T04:00:00Z",
+    "event_id": "btc:1711512000000",
+    "event_time": "2024-03-27T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69725.99",
+      "high": "70598.0",
+      "low": "69640.0",
+      "open": "70388.0",
+      "volume": "4193.40578"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-27T12:00:00Z",
+    "bar_open_time": "2024-03-27T08:00:00Z",
+    "event_id": "btc:1711526400000",
+    "event_time": "2024-03-27T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "70220.73",
+      "high": "70359.97",
+      "low": "69407.0",
+      "open": "69726.0",
+      "volume": "5171.78507"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-27T16:00:00Z",
+    "bar_open_time": "2024-03-27T12:00:00Z",
+    "event_id": "btc:1711540800000",
+    "event_time": "2024-03-27T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "68874.0",
+      "high": "71769.54",
+      "low": "68534.01",
+      "open": "70220.73",
+      "volume": "22329.46086"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-27T20:00:00Z",
+    "bar_open_time": "2024-03-27T16:00:00Z",
+    "event_id": "btc:1711555200000",
+    "event_time": "2024-03-27T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "68652.0",
+      "high": "69406.0",
+      "low": "68359.18",
+      "open": "68873.99",
+      "volume": "8096.55097"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-28T00:00:00Z",
+    "bar_open_time": "2024-03-27T20:00:00Z",
+    "event_id": "btc:1711569600000",
+    "event_time": "2024-03-28T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69469.99",
+      "high": "69637.66",
+      "low": "68630.0",
+      "open": "68652.01",
+      "volume": "4955.45447"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-28T04:00:00Z",
+    "bar_open_time": "2024-03-28T00:00:00Z",
+    "event_id": "btc:1711584000000",
+    "event_time": "2024-03-28T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69290.0",
+      "high": "69980.0",
+      "low": "68903.62",
+      "open": "69469.99",
+      "volume": "4222.74545"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-28T08:00:00Z",
+    "bar_open_time": "2024-03-28T04:00:00Z",
+    "event_id": "btc:1711598400000",
+    "event_time": "2024-03-28T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "70399.03",
+      "high": "70469.82",
+      "low": "69280.0",
+      "open": "69290.0",
+      "volume": "4925.19222"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-28T12:00:00Z",
+    "bar_open_time": "2024-03-28T08:00:00Z",
+    "event_id": "btc:1711612800000",
+    "event_time": "2024-03-28T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "70647.18",
+      "high": "70962.63",
+      "low": "70292.44",
+      "open": "70399.04",
+      "volume": "6772.71614"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-28T16:00:00Z",
+    "bar_open_time": "2024-03-28T12:00:00Z",
+    "event_id": "btc:1711627200000",
+    "event_time": "2024-03-28T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "71290.39",
+      "high": "71552.06",
+      "low": "70348.75",
+      "open": "70647.18",
+      "volume": "11335.7439"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-28T20:00:00Z",
+    "bar_open_time": "2024-03-28T16:00:00Z",
+    "event_id": "btc:1711641600000",
+    "event_time": "2024-03-28T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "70798.26",
+      "high": "71320.0",
+      "low": "70404.0",
+      "open": "71290.38",
+      "volume": "5199.87249"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-29T00:00:00Z",
+    "bar_open_time": "2024-03-28T20:00:00Z",
+    "event_id": "btc:1711656000000",
+    "event_time": "2024-03-29T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "70780.6",
+      "high": "71074.03",
+      "low": "70541.9",
+      "open": "70798.26",
+      "volume": "2982.76219"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-29T04:00:00Z",
+    "bar_open_time": "2024-03-29T00:00:00Z",
+    "event_id": "btc:1711670400000",
+    "event_time": "2024-03-29T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "70442.22",
+      "high": "70916.16",
+      "low": "70274.07",
+      "open": "70780.6",
+      "volume": "3035.25826"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-29T08:00:00Z",
+    "bar_open_time": "2024-03-29T04:00:00Z",
+    "event_id": "btc:1711684800000",
+    "event_time": "2024-03-29T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69794.0",
+      "high": "70538.78",
+      "low": "69746.33",
+      "open": "70442.23",
+      "volume": "4015.74929"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-29T12:00:00Z",
+    "bar_open_time": "2024-03-29T08:00:00Z",
+    "event_id": "btc:1711699200000",
+    "event_time": "2024-03-29T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "70142.78",
+      "high": "70318.0",
+      "low": "69566.0",
+      "open": "69794.01",
+      "volume": "4708.66434"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-29T16:00:00Z",
+    "bar_open_time": "2024-03-29T12:00:00Z",
+    "event_id": "btc:1711713600000",
+    "event_time": "2024-03-29T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69180.0",
+      "high": "70636.04",
+      "low": "69009.0",
+      "open": "70142.78",
+      "volume": "7043.97127"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-29T20:00:00Z",
+    "bar_open_time": "2024-03-29T16:00:00Z",
+    "event_id": "btc:1711728000000",
+    "event_time": "2024-03-29T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69665.99",
+      "high": "69666.0",
+      "low": "69078.62",
+      "open": "69179.99",
+      "volume": "4246.066"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-30T00:00:00Z",
+    "bar_open_time": "2024-03-29T20:00:00Z",
+    "event_id": "btc:1711742400000",
+    "event_time": "2024-03-30T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69850.54",
+      "high": "69916.5",
+      "low": "69290.0",
+      "open": "69665.99",
+      "volume": "2395.37437"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-30T04:00:00Z",
+    "bar_open_time": "2024-03-30T00:00:00Z",
+    "event_id": "btc:1711756800000",
+    "event_time": "2024-03-30T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69773.99",
+      "high": "70177.87",
+      "low": "69710.0",
+      "open": "69850.53",
+      "volume": "2533.94601"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-30T08:00:00Z",
+    "bar_open_time": "2024-03-30T04:00:00Z",
+    "event_id": "btc:1711771200000",
+    "event_time": "2024-03-30T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69852.18",
+      "high": "70321.1",
+      "low": "69755.98",
+      "open": "69774.0",
+      "volume": "2669.0432"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-30T12:00:00Z",
+    "bar_open_time": "2024-03-30T08:00:00Z",
+    "event_id": "btc:1711785600000",
+    "event_time": "2024-03-30T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "70183.55",
+      "high": "70183.67",
+      "low": "69811.37",
+      "open": "69852.18",
+      "volume": "2073.90457"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-30T16:00:00Z",
+    "bar_open_time": "2024-03-30T12:00:00Z",
+    "event_id": "btc:1711800000000",
+    "event_time": "2024-03-30T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69999.99",
+      "high": "70269.15",
+      "low": "69925.87",
+      "open": "70183.54",
+      "volume": "1960.15928"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-30T20:00:00Z",
+    "bar_open_time": "2024-03-30T16:00:00Z",
+    "event_id": "btc:1711814400000",
+    "event_time": "2024-03-30T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69896.34",
+      "high": "70280.06",
+      "low": "69670.0",
+      "open": "69999.99",
+      "volume": "2564.18678"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-31T00:00:00Z",
+    "bar_open_time": "2024-03-30T20:00:00Z",
+    "event_id": "btc:1711828800000",
+    "event_time": "2024-03-31T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69582.18",
+      "high": "69896.35",
+      "low": "69540.0",
+      "open": "69896.34",
+      "volume": "1843.37158"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-31T04:00:00Z",
+    "bar_open_time": "2024-03-31T00:00:00Z",
+    "event_id": "btc:1711843200000",
+    "event_time": "2024-03-31T04:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "69916.61",
+      "high": "70165.86",
+      "low": "69562.99",
+      "open": "69582.17",
+      "volume": "2971.88718"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-31T08:00:00Z",
+    "bar_open_time": "2024-03-31T04:00:00Z",
+    "event_id": "btc:1711857600000",
+    "event_time": "2024-03-31T08:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "70301.73",
+      "high": "70460.0",
+      "low": "69874.54",
+      "open": "69916.6",
+      "volume": "3491.10805"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-31T12:00:00Z",
+    "bar_open_time": "2024-03-31T08:00:00Z",
+    "event_id": "btc:1711872000000",
+    "event_time": "2024-03-31T12:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "70369.99",
+      "high": "70470.0",
+      "low": "70147.77",
+      "open": "70301.72",
+      "volume": "1973.67988"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-31T16:00:00Z",
+    "bar_open_time": "2024-03-31T12:00:00Z",
+    "event_id": "btc:1711886400000",
+    "event_time": "2024-03-31T16:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "70381.13",
+      "high": "70759.1",
+      "low": "70289.72",
+      "open": "70369.99",
+      "volume": "3579.74008"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-03-31T20:00:00Z",
+    "bar_open_time": "2024-03-31T16:00:00Z",
+    "event_id": "btc:1711900800000",
+    "event_time": "2024-03-31T20:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "71023.5",
+      "high": "71227.22",
+      "low": "70321.86",
+      "open": "70381.13",
+      "volume": "3712.47384"
+    }
+  },
+  {
+    "aggressor_side": null,
+    "available_time": "2024-04-01T00:00:00Z",
+    "bar_open_time": "2024-03-31T20:00:00Z",
+    "event_id": "btc:1711915200000",
+    "event_time": "2024-04-01T00:00:00Z",
+    "symbol": "BTCUSDT",
+    "trade_id": null,
+    "values": {
+      "close": "71280.01",
+      "high": "71366.0",
+      "low": "70639.93",
+      "open": "71023.51",
+      "volume": "3667.4553"
+    }
+  }
+]

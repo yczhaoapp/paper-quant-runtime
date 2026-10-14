@@ -42,6 +42,7 @@ class Anchor(PaperModel):
 
 
 class ExpectedStrategy(PaperModel):
+    contract_version: Literal["1.0", "1.1"] = "1.0"
     strategy_id: str
     kind: Literal["rule", "supervised", "reinforcement"]
     granularity: Literal["tick", "minute", "day"]
@@ -209,9 +210,16 @@ def verify_recipe(recipe_file: Path) -> dict[str, object]:
             raise ValueError("Paper source bytes differ from the recipe's pinned digest")
         source_digests.append(source_sha)
         if source.format == "pdf":
-            pages = list(_pdf_text(raw, frozenset(
-                anchor.page for anchor in recipe.anchors if anchor.source_index == source_index
-            )))
+            pages = list(
+                _pdf_text(
+                    raw,
+                    frozenset(
+                        anchor.page
+                        for anchor in recipe.anchors
+                        if anchor.source_index == source_index
+                    ),
+                )
+            )
         else:
             pages = list(extract_text(raw, source.format))
         source_pages.append(pages)
@@ -222,7 +230,8 @@ def verify_recipe(recipe_file: Path) -> dict[str, object]:
         raise ValueError("Strategy package source differs from reviewed recipe")
     expected = recipe.expected
     if (
-        declaration.strategy_id != expected.strategy_id
+        declaration.contract_version != expected.contract_version
+        or declaration.strategy_id != expected.strategy_id
         or declaration.kind != expected.kind
         or declaration.data.granularity != expected.granularity
         or declaration.data.fields != expected.fields
@@ -242,7 +251,18 @@ def verify_recipe(recipe_file: Path) -> dict[str, object]:
     if claim["strategy_id"] != expected.strategy_id or claim_source["url"] != recipe.source.url:
         raise ValueError("Paper claim does not identify the mapped strategy and source")
     declared_algorithm = claim.get("algorithm_source")
-    if (recipe.additional_sources or declared_algorithm is not None) and (
+    declared_algorithms = claim.get("algorithm_sources")
+    if declared_algorithms is not None:
+        if (
+            declared_algorithm is not None
+            or not isinstance(declared_algorithms, list)
+            or not declared_algorithms
+            or any(not isinstance(item, dict) for item in declared_algorithms)
+            or tuple(source.url for source in recipe.additional_sources)
+            != tuple(item.get("url") for item in declared_algorithms)
+        ):
+            raise ValueError("Supporting algorithm sources differ from the research claim")
+    elif (recipe.additional_sources or declared_algorithm is not None) and (
         not isinstance(declared_algorithm, dict)
         or tuple(source.url for source in recipe.additional_sources)
         != (declared_algorithm.get("url"),)

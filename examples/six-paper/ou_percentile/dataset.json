@@ -1,0 +1,18 @@
+{
+  "content_sha256": "fef12036d03c5476109f82c298803e7ff491b949265b85ef52523182d2bcd135",
+  "contract_version": "1.1",
+  "dataset_id": "supplement.ou_percentile",
+  "event_count": 592,
+  "fields": [
+    "close",
+    "open"
+  ],
+  "granularity": "day",
+  "session_close": "16:00:00",
+  "session_open": "09:00:00",
+  "session_timezone": "UTC",
+  "symbols": [
+    "OU_A",
+    "OU_B"
+  ]
+}

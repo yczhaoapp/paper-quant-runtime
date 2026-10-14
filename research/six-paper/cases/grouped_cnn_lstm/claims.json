@@ -1,0 +1,40 @@
+{
+  "claims": [
+    {
+      "locator": "PDF page 11",
+      "paper_rule": "Section2.2: three feature-group Conv1d branches, pooling, many-to-one LSTM and classification head",
+      "runtime_rule": "Train two reduced convolutional autoencoders; 24-to-20-to-10-to-8 branches; four-state LSTM"
+    },
+    {
+      "locator": "PDF page 14",
+      "paper_rule": "Eq4-9: candidate, input/forget/output gates, cell and hidden-state recursion",
+      "runtime_rule": "Shared LSTM parameters trained by reverse-mode differentiation through all eight sequence states"
+    },
+    {
+      "locator": "PDF page 15",
+      "paper_rule": "Eq11-13: supervised BCE and loss-based training quality proxy",
+      "runtime_rule": "Natural-log BCE; separately report printed 10^-loss proxy and whether paper quality threshold is met"
+    },
+    {
+      "locator": "PDF page 20",
+      "paper_rule": "Section3, Eq15-16: confidence thresholds from risk/reward and margin fraction abs(p-.5)",
+      "runtime_rule": "Declared theta=.5 thresholds; signed target fraction of current equity; neutral closes inventory"
+    }
+  ],
+  "differences": [
+    "Use public Binance BTC/USDT Jan-Feb2024 training and March2024 holdout rather than original exchange/window.",
+    "Wavelet denoising, XGBoost feature selection, large indicator grid and dropout are excluded.",
+    "Convolutional autoencoders omit the original encoder/decoder pool-upsampling stacks; latent channels are reduced.",
+    "LSTM width4 and FC width4 replace width20 and width10; Conv outputs are reduced.",
+    "Four supervised epochs and two reconstruction epochs form a bounded engineering run, not paper convergence.",
+    "Training quality threshold is reported honestly; runtime pass is not a well-trained or profitable-model assertion.",
+    "Printed 10^-BCE proxy uses a different log base from conventional BCE; preserve it as a named paper proxy.",
+    "Theta=.5, next-open fills and per-fill costs are declared execution adaptations; no SL/TP bracket engine."
+  ],
+  "reproduction_scope": "bounded local method adaptation; not full paper experiment",
+  "source": {
+    "title": "Compatible deep neural network framework with financial time series data, including data preprocessor, neural network model and trading strategy",
+    "url": "https://arxiv.org/pdf/2205.08382v1"
+  },
+  "strategy_id": "supplement.grouped_cnn_lstm"
+}

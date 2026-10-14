@@ -1,0 +1,89 @@
+{
+  "additional_sources": [
+    {
+      "file": "../../../source-cache/six/1707.06347v2.pdf",
+      "format": "pdf",
+      "license": "Redistribution not asserted; exact cached public source",
+      "sha256": "e78feadadbdbb0b601b3c2bcc81404722cd431a489b307545f9b7bea1e8c4f5b",
+      "title": "Proximal Policy Optimization Algorithms",
+      "url": "https://arxiv.org/pdf/1707.06347v2"
+    },
+    {
+      "file": "../../../source-cache/six/1806.05635v1.pdf",
+      "format": "pdf",
+      "license": "Redistribution not asserted; exact cached public source",
+      "sha256": "fa300f57b4d0ed7159b4ba156950ea1498b92ef966bae12e3a6774283570ebb7",
+      "title": "Self-Imitation Learning",
+      "url": "https://arxiv.org/pdf/1806.05635v1"
+    }
+  ],
+  "anchors": [
+    {
+      "claim_index": 0,
+      "page": 4,
+      "text": "Proximal Policy Optimisation"
+    },
+    {
+      "claim_index": 1,
+      "page": 4,
+      "text": "self-imitation learning"
+    },
+    {
+      "claim_index": 2,
+      "page": 5,
+      "text": "the TW AP agent\u2019s behaviours"
+    },
+    {
+      "claim_index": 0,
+      "page": 3,
+      "source_index": 1,
+      "text": "probability ratio"
+    },
+    {
+      "claim_index": 1,
+      "page": 2,
+      "source_index": 2,
+      "text": "off-policy"
+    }
+  ],
+  "claim_file": "claims.json",
+  "expected": {
+    "actions": [
+      "cancel_order",
+      "none",
+      "submit_order"
+    ],
+    "bar_seconds": null,
+    "contract_version": "1.1",
+    "fields": [
+      "ask_price",
+      "ask_size",
+      "bid_price",
+      "bid_size",
+      "lambda_buy",
+      "lambda_sell",
+      "twap_present"
+    ],
+    "granularity": "tick",
+    "kind": "reinforcement",
+    "market_kind": "quote_l1",
+    "strategy_id": "supplement.ppo_twap_aware",
+    "symbols": [
+      "MM"
+    ],
+    "training_required": true
+  },
+  "package": "../../../../strategies/supplement.ppo_twap_aware",
+  "package_source_sha256": "81da686088f0d733a066797a83dab6d5e15d1f0b1fa42578694ea497f8a7b375",
+  "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Five observations and width8 networks replace the full source high-dimensional LOB networks.",
+  "source": {
+    "file": "../../../source-cache/six/2510.27334v1.pdf",
+    "format": "pdf",
+    "license": "Redistribution not asserted; exact cached public source",
+    "sha256": "74c12732e501bbe8b9689c5dbdab2b441f4607abe33028fcb607a52eb3ef1fee",
+    "title": "When AI Trading Agents Compete: Adverse Selection of Meta-Orders by Reinforcement Learning-Based Market Making",
+    "url": "https://arxiv.org/pdf/2510.27334v1"
+  },
+  "spec_file": "method.json",
+  "spec_sha256": "2d723d22ca18b48b1960bde97602548213b8515264e94c5b9253f6d97792499b"
+}

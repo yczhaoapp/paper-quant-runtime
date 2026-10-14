@@ -1,0 +1,35 @@
+{
+  "class_name": "GMMConditionalKNN",
+  "declaration": {
+    "actions": [
+      "none",
+      "target_position"
+    ],
+    "contract_version": "1.1",
+    "data": {
+      "bar_seconds": 60,
+      "fields": [
+        "close",
+        "high",
+        "low",
+        "open",
+        "volume"
+      ],
+      "granularity": "minute",
+      "market_kind": "bar",
+      "max_staleness_seconds": null,
+      "minimum_book_depth": null,
+      "minimum_events_per_symbol": 1,
+      "symbols": [
+        "BTCUSDT"
+      ]
+    },
+    "kind": "supervised",
+    "max_abs_position": "0.01",
+    "max_order_quantity": "0.02",
+    "source": "https://arxiv.org/pdf/2409.03762v1",
+    "strategy_id": "supplement.gmm_knn",
+    "training_required": true
+  },
+  "source_sha256": "968b1456bb56b87c403134412c4f98424e33a5dc6df8c7a390a83e77fe387666"
+}

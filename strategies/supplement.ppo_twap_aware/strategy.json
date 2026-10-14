@@ -1,0 +1,38 @@
+{
+  "class_name": "PPOTWAPAware",
+  "declaration": {
+    "actions": [
+      "cancel_order",
+      "none",
+      "submit_order"
+    ],
+    "contract_version": "1.1",
+    "data": {
+      "bar_seconds": null,
+      "fields": [
+        "ask_price",
+        "ask_size",
+        "bid_price",
+        "bid_size",
+        "lambda_buy",
+        "lambda_sell",
+        "twap_present"
+      ],
+      "granularity": "tick",
+      "market_kind": "quote_l1",
+      "max_staleness_seconds": null,
+      "minimum_book_depth": null,
+      "minimum_events_per_symbol": 1,
+      "symbols": [
+        "MM"
+      ]
+    },
+    "kind": "reinforcement",
+    "max_abs_position": "10",
+    "max_order_quantity": "1",
+    "source": "https://arxiv.org/pdf/2510.27334v1",
+    "strategy_id": "supplement.ppo_twap_aware",
+    "training_required": true
+  },
+  "source_sha256": "81da686088f0d733a066797a83dab6d5e15d1f0b1fa42578694ea497f8a7b375"
+}

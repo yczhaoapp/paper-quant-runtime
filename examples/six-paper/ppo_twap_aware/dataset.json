@@ -1,0 +1,28 @@
+{
+  "content_sha256": "086677b4462ea102b61b7e77f655e7619ccb9cde41bde4a6c56b578f7b314060",
+  "contract_version": "1.1",
+  "dataset_id": "supplement.ppo_twap_aware",
+  "event_count": 1503,
+  "fields": [
+    "ask_price",
+    "ask_size",
+    "bid_price",
+    "bid_size",
+    "buy_flow",
+    "lambda_buy",
+    "lambda_sell",
+    "meta_child",
+    "sell_flow",
+    "twap_present",
+    "uniform_buy",
+    "uniform_sell"
+  ],
+  "granularity": "tick",
+  "market_kind": "quote_l1",
+  "session_close": null,
+  "session_open": null,
+  "session_timezone": "UTC",
+  "symbols": [
+    "MM"
+  ]
+}

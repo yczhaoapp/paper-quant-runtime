@@ -1,0 +1,26 @@
+{
+  "claims": [
+    {
+      "locator": "PDF page 3",
+      "paper_rule": "OU Model Integration, Eq8-10: fit AR1 and convert a,b,residual SD to OU parameters",
+      "runtime_rule": "Fit training-only spreads, reject a outside (0,1), preserve lambda/mu/sigma equations"
+    },
+    {
+      "locator": "PDF page 4",
+      "paper_rule": "Signal Generation: PIT 25th/75th entry and crossing 50th exit, executed following day",
+      "runtime_rule": "Use prior 90 observed z-scores and frozen training OU fit; submit both next-open hedge targets"
+    }
+  ],
+  "differences": [
+    "Preselected generated pair replaces WRDS/Datastream, distance ranking and manual industry selection.",
+    "Eq7 contains a printed exponent inconsistent with Eq9-10; calibration follows internally consistent Eq10.",
+    "Training 504 controlled sessions and evaluation 296 sessions replace the original historical universe.",
+    "No original return, Sharpe, factor neutrality or empirical pair-selection reproduction claim."
+  ],
+  "reproduction_scope": "bounded local method adaptation; not full paper experiment",
+  "source": {
+    "title": "An Application of the Ornstein-Uhlenbeck Process to Pairs Trading",
+    "url": "https://arxiv.org/pdf/2412.12458v1"
+  },
+  "strategy_id": "supplement.ou_percentile"
+}

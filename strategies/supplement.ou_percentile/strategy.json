@@ -1,0 +1,33 @@
+{
+  "class_name": "OUPercentilePairs",
+  "declaration": {
+    "actions": [
+      "none",
+      "target_position"
+    ],
+    "contract_version": "1.1",
+    "data": {
+      "bar_seconds": null,
+      "fields": [
+        "close",
+        "open"
+      ],
+      "granularity": "day",
+      "market_kind": null,
+      "max_staleness_seconds": null,
+      "minimum_book_depth": null,
+      "minimum_events_per_symbol": 1,
+      "symbols": [
+        "OU_A",
+        "OU_B"
+      ]
+    },
+    "kind": "supervised",
+    "max_abs_position": "1",
+    "max_order_quantity": "2",
+    "source": "https://arxiv.org/pdf/2412.12458v1",
+    "strategy_id": "supplement.ou_percentile",
+    "training_required": true
+  },
+  "source_sha256": "7cd04e3d37eb0d94535b62e8671b842e9cc44afb232fe765a5b530f23f1b6720"
+}

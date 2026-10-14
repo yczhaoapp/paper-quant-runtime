@@ -1,0 +1,34 @@
+{
+  "claims": [
+    {
+      "locator": "PDF page 13",
+      "paper_rule": "Section 4.1, Eq18: log-price OLS residuals and single-lag ADF edge weights",
+      "runtime_rule": "Exact intercept-bearing lag-one ADF t-statistic; use its negative as graph weight"
+    },
+    {
+      "locator": "PDF page 14",
+      "paper_rule": "Section 4.1: jointly maximize selected pair weights with no repeated assets",
+      "runtime_rule": "Exact subset dynamic programming on a bounded four-asset universe"
+    },
+    {
+      "locator": "PDF page 15",
+      "paper_rule": "Section 4.2: daily trailing regression, winsorized z-score and beta-dollar hedge",
+      "runtime_rule": "504 prior sessions, calendar-month pair refresh and next-open non-atomic hedge fills"
+    }
+  ],
+  "differences": [
+    "Four generated assets replace the S&P500 universe and Yahoo 2017-2023 sample.",
+    "Choose the z-score variant only; q-score variant, original costs and performance experiments excluded.",
+    "Page6 Eq3 and following prose have opposite sign descriptions; execution follows Section4.2 economic direction.",
+    "Page15 calls the statistic a z-score but says variance; divide by residual standard deviation.",
+    "Subset-DP has the exact maximum-weight objective but is not the scalable blossom implementation.",
+    "Hedge legs fill separately at subsequent symbol opens; no atomic paired fill claim.",
+    "Target quantities are explicitly rounded to eight decimal places."
+  ],
+  "reproduction_scope": "bounded local method adaptation; not full paper experiment",
+  "source": {
+    "title": "Pairs Trading Using a Novel Graphical Matching Approach",
+    "url": "https://arxiv.org/pdf/2403.07998v1"
+  },
+  "strategy_id": "supplement.graph_matching"
+}

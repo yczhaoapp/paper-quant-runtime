@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "sources": [
+    {
+      "bytes": 912873,
+      "cached": false,
+      "distribution": "not_asserted",
+      "file": "research/source-cache/six/2403.07998v1.pdf",
+      "id": "2403.07998v1",
+      "sha256": "65982d757976069548223d51f40fb9143ddb24994d0ee662d0e3c75d4f056fbe",
+      "status": "passed",
+      "title": "Pairs Trading Using a Novel Graphical Matching Approach",
+      "url": "https://arxiv.org/pdf/2403.07998v1"
+    },
+    {
+      "bytes": 832534,
+      "cached": false,
+      "distribution": "not_asserted",
+      "file": "research/source-cache/six/2412.12458v1.pdf",
+      "id": "2412.12458v1",
+      "sha256": "2b5c4dd169b851b4892fdee95fcd87dd091ede9234c09a6d11c7297f5e2865c7",
+      "status": "passed",
+      "title": "An Application of the Ornstein-Uhlenbeck Process to Pairs Trading",
+      "url": "https://arxiv.org/pdf/2412.12458v1"
+    },
+    {
+      "bytes": 1029321,
+      "cached": false,
+      "distribution": "not_asserted",
+      "file": "research/source-cache/six/2205.08382v1.pdf",
+      "id": "2205.08382v1",
+      "sha256": "82c0033f3555793139c834accdae22fccaef16152f72c65889e17c764c5ba486",
+      "status": "passed",
+      "title": "Compatible deep neural network framework with financial time series data, including data preprocessor, neural network model and trading strategy",
+      "url": "https://arxiv.org/pdf/2205.08382v1"
+    },
+    {
+      "bytes": 2160482,
+      "cached": false,
+      "distribution": "not_asserted",
+      "file": "research/source-cache/six/2409.03762v1.pdf",
+      "id": "2409.03762v1",
+      "sha256": "9338d36fcacd418a85ddace0572224b62b1ffd59c4e1db9fa6ab2d6c819bfcd2",
+      "status": "passed",
+      "title": "Combining supervised and unsupervised learning methods to predict financial market movements",
+      "url": "https://arxiv.org/pdf/2409.03762v1"
+    },
+    {
+      "bytes": 755764,
+      "cached": false,
+      "distribution": "not_asserted",
+      "file": "research/source-cache/six/2410.14504v2.pdf",
+      "id": "2410.14504v2",
+      "sha256": "a3071901feceeeb0367764fde6963ea4ede5e9093fd1e26b3509a4e49c63ef57",
+      "status": "passed",
+      "title": "Reinforcement Learning in Non-Markov Market-Making",
+      "url": "https://arxiv.org/pdf/2410.14504v2"
+    },
+    {
+      "bytes": 1122353,
+      "cached": false,
+      "distribution": "not_asserted",
+      "file": "research/source-cache/six/2510.27334v1.pdf",
+      "id": "2510.27334v1",
+      "sha256": "74c12732e501bbe8b9689c5dbdab2b441f4607abe33028fcb607a52eb3ef1fee",
+      "status": "passed",
+      "title": "When AI Trading Agents Compete: Adverse Selection of Meta-Orders by Reinforcement Learning-Based Market Making",
+      "url": "https://arxiv.org/pdf/2510.27334v1"
+    }
+  ],
+  "supporting_sources": [
+    {
+      "distribution": "not_asserted",
+      "file": "research/source-cache/six/1707.06347v2.pdf",
+      "id": "1707.06347v2",
+      "role": "supporting_algorithm",
+      "sha256": "e78feadadbdbb0b601b3c2bcc81404722cd431a489b307545f9b7bea1e8c4f5b",
+      "title": "Proximal Policy Optimization Algorithms",
+      "url": "https://arxiv.org/pdf/1707.06347v2"
+    },
+    {
+      "distribution": "not_asserted",
+      "file": "research/source-cache/six/1806.05635v1.pdf",
+      "id": "1806.05635v1",
+      "role": "supporting_algorithm",
+      "sha256": "fa300f57b4d0ed7159b4ba156950ea1498b92ef966bae12e3a6774283570ebb7",
+      "title": "Self-Imitation Learning",
+      "url": "https://arxiv.org/pdf/1806.05635v1"
+    },
+    {
+      "distribution": "not_asserted",
+      "file": "research/source-cache/six/1812.05905v2.pdf",
+      "id": "1812.05905v2",
+      "role": "supporting_algorithm",
+      "sha256": "30df4c4ff7c878aa2938ecaf651eb5cc05dc224eb0e3b5bcc8981dbf30d7a9bd",
+      "title": "Soft Actor-Critic Algorithms and Applications",
+      "url": "https://arxiv.org/pdf/1812.05905v2"
+    }
+  ]
+}

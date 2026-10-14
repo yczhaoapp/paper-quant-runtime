@@ -1,0 +1,45 @@
+{
+  "algorithm_sources": [
+    {
+      "title": "Proximal Policy Optimization Algorithms",
+      "url": "https://arxiv.org/pdf/1707.06347v2"
+    },
+    {
+      "title": "Self-Imitation Learning",
+      "url": "https://arxiv.org/pdf/1806.05635v1"
+    }
+  ],
+  "claims": [
+    {
+      "locator": "PDF page 4",
+      "paper_rule": "RL MM Agent: decision and action networks trained by PPO",
+      "runtime_rule": "Two categorical policies, explicit joint behavior log-probability binding, clipped objective and value regression"
+    },
+    {
+      "locator": "PDF page 4",
+      "paper_rule": "RL MM Agent: imitate previous trajectories with return above current value estimate",
+      "runtime_rule": "Positive-advantage actor and value losses; no imitation from nonpositive-return advantage"
+    },
+    {
+      "locator": "PDF page 5",
+      "paper_rule": "Training RL Agent, Table4: rho=0,+1,-1 denotes absent,buy,sell metaorder",
+      "runtime_rule": "Price/inventory/Hawkes-intensity/rho observations; post or cancel top-of-book quotes through contract1.1"
+    }
+  ],
+  "differences": [
+    "Five observations and width8 networks replace the full source high-dimensional LOB networks.",
+    "Training uses a late-start rPOV2-style prefix instead of the source rPOV1 training metaorder; evaluation observes eight unit children.",
+    "Three initial on-policy rollouts and four 32-transition PPO minibatches replace 140+ training episodes.",
+    "Quote stream uses bounded exponential Hawkes excitation with metaorder flow; not the original compound full LOB.",
+    "Queue, deep-book, partial fills, endogenous market-maker impact and original urgency-based TWAP agent are excluded.",
+    "100-second warmup, .213-second action step and 40-second metaorder interval are retained in the bounded setup.",
+    "One-basis-point per-fill fee differs from the source liquidation fee; the exact configured ledger is reported.",
+    "No original Sharpe, slippage, square-root impact or full-system pressure-test reproduction claim."
+  ],
+  "reproduction_scope": "bounded local method adaptation; not full paper experiment",
+  "source": {
+    "title": "When AI Trading Agents Compete: Adverse Selection of Meta-Orders by Reinforcement Learning-Based Market Making",
+    "url": "https://arxiv.org/pdf/2510.27334v1"
+  },
+  "strategy_id": "supplement.ppo_twap_aware"
+}

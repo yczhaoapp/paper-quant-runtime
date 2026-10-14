@@ -1,0 +1,12 @@
+{
+  "calibration_sessions": 504,
+  "event_count": 2600,
+  "events_sha256": "1637185d195b66a05ef6d083736402bb9f9d348cb60fd42d64a526ae611a6e52",
+  "exclusions": "not S&P500 universe or empirical 2017-2023 experiment",
+  "first_event": "2020-01-01T16:00:00+00:00",
+  "last_event": "2022-06-28T16:00:00+00:00",
+  "model": "common log random walk plus AR1 idiosyncratic spreads",
+  "seed": 240307998,
+  "training_sha256": null,
+  "type": "controlled_simulation"
+}

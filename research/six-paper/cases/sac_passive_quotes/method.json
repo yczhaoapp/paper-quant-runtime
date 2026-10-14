@@ -1,0 +1,53 @@
+{
+  "additional_source_sha256": [
+    "30df4c4ff7c878aa2938ecaf651eb5cc05dc224eb0e3b5bcc8981dbf30d7a9bd"
+  ],
+  "excluded_paper_components": [
+    "Retain Table1 dt=.001,T=1,spread=.01,q=5,p=.2 and total diffusion variance=.03.",
+    "Separate parameter-extraction network omitted; actor/critics take normalized state directly.",
+    "Four random-behavior episodes and 128 updates replace 1000 training episodes and 200 test episodes.",
+    "Hidden layers8 replace256; fixed entropy coefficient .2 and gamma .99 are disclosed.",
+    "Modern twin-Q target follows the implemented stable-baselines-style SAC rather than the earlier separate-V equations.",
+    "Gaussian latent score is explicitly quantized into sell/hold/buy posting controls.",
+    "The critic learns the collected continuous latent, whose quantized posting control produced the reward; it does not treat an integer control as that latent.",
+    "Simulated diffusion approximation and independent order-flow draws do not reconstruct a calibrated non-Markov LOB.",
+    "No queue priority, partial fills, market impact or original experimental reward distribution claim."
+  ],
+  "fields": [
+    "ask_price",
+    "ask_size",
+    "bid_price",
+    "bid_size"
+  ],
+  "source_sha256": "a3071901feceeeb0367764fde6963ea4ede5e9093fd1e26b3509a4e49c63ef57",
+  "steps": [
+    {
+      "adaptation": "Bounded setting and listed differences apply: Retain Table1 dt=.001,T=1,spread=.01,q=5,p=.2 and total diffusion variance=.03.",
+      "claim_index": 0,
+      "implementation": "SACPassiveQuotes.train",
+      "oracle_node": "tests/test_six_paper_methods.py::test_sac_soft_bellman_terminal_and_entropy_properties",
+      "paper_rule": "Section2.2 and Section3.2: Gaussian SAC actor, entropy-regularized policy and twin critics",
+      "role": "training",
+      "runtime_rule": "SAC twin-Q soft target, reparameterized tanh actor, target EMA and bounded (8,8) hidden layers"
+    },
+    {
+      "adaptation": "Bounded setting and listed differences apply: Retain Table1 dt=.001,T=1,spread=.01,q=5,p=.2 and total diffusion variance=.03.",
+      "claim_index": 1,
+      "implementation": "SACPassiveQuotes.decide",
+      "oracle_node": "tests/test_six_paper_methods.py::test_sac_soft_bellman_terminal_and_entropy_properties",
+      "paper_rule": "Eq25-32: adverse quote crosses or nonadverse flow fills; cash and inventory ledger",
+      "role": "execution",
+      "runtime_rule": "Unit passive quotes, p=.2 flow draws, cancellation between control intervals and exact marked inventory"
+    },
+    {
+      "adaptation": "Bounded setting and listed differences apply: Retain Table1 dt=.001,T=1,spread=.01,q=5,p=.2 and total diffusion variance=.03.",
+      "claim_index": 2,
+      "implementation": "SACPassiveQuotes.train",
+      "oracle_node": "tests/test_six_paper_methods.py::test_sac_soft_bellman_terminal_and_entropy_properties",
+      "paper_rule": "Eq33-35: price/inventory state, q=5 feasible controls, marked wealth minus inventory penalty",
+      "role": "reward",
+      "runtime_rule": "Replay actual collected quote rewards; penalty .001*abs(next inventory)*dt; terminal target has no bootstrap"
+    }
+  ],
+  "strategy_id": "supplement.sac_passive_quotes"
+}

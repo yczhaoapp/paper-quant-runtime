@@ -1,0 +1,61 @@
+{
+  "anchors": [
+    {
+      "claim_index": 0,
+      "page": 11,
+      "text": "three separate lines of convolutional layers"
+    },
+    {
+      "claim_index": 1,
+      "page": 14,
+      "text": "many-to-one LSTM"
+    },
+    {
+      "claim_index": 2,
+      "page": 15,
+      "text": "binary cross-entropy loss function"
+    },
+    {
+      "claim_index": 3,
+      "page": 20,
+      "text": "two thresholds"
+    }
+  ],
+  "claim_file": "claims.json",
+  "expected": {
+    "actions": [
+      "none",
+      "target_position"
+    ],
+    "bar_seconds": 14400,
+    "contract_version": "1.1",
+    "fields": [
+      "close",
+      "high",
+      "low",
+      "open",
+      "volume"
+    ],
+    "granularity": "minute",
+    "kind": "supervised",
+    "market_kind": "bar",
+    "strategy_id": "supplement.grouped_cnn_lstm",
+    "symbols": [
+      "BTCUSDT"
+    ],
+    "training_required": true
+  },
+  "package": "../../../../strategies/supplement.grouped_cnn_lstm",
+  "package_source_sha256": "a75c362defe30d794d9ff0ce3f8de103561194dbc1e2e0d488707690c283e9ce",
+  "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Use public Binance BTC/USDT Jan-Feb2024 training and March2024 holdout rather than original exchange/window.",
+  "source": {
+    "file": "../../../source-cache/six/2205.08382v1.pdf",
+    "format": "pdf",
+    "license": "Redistribution not asserted; exact cached public source",
+    "sha256": "82c0033f3555793139c834accdae22fccaef16152f72c65889e17c764c5ba486",
+    "title": "Compatible deep neural network framework with financial time series data, including data preprocessor, neural network model and trading strategy",
+    "url": "https://arxiv.org/pdf/2205.08382v1"
+  },
+  "spec_file": "method.json",
+  "spec_sha256": "e209374f9663e92a1e9f64337cc6ebc82f5967b7d93846ed88ac9988d713e13c"
+}

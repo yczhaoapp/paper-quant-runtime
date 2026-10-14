@@ -42,20 +42,31 @@ def _git_state() -> tuple[str | None, bool]:
 def _validate_acceptance(value: object, identity: dict[str, object], image_id: str) -> dict:
     if not isinstance(value, dict):
         raise ValueError("Child acceptance receipt must be a JSON object")
-    if (value.get("status") != "passed" or type(value.get("count")) is not int
-        or value["count"] != 18 or value.get("strict") is not True
+    if (
+        value.get("status") != "passed"
+        or type(value.get("count")) is not int
+        or value["count"] != 18
+        or value.get("strict") is not True
         or value.get("strict_image_id") != image_id
-        or not isinstance(value.get("attempt_id"), str) or not value["attempt_id"]
-        or not isinstance(value.get("completed_at"), str) or not value["completed_at"]
+        or not isinstance(value.get("attempt_id"), str)
+        or not value["attempt_id"]
+        or not isinstance(value.get("completed_at"), str)
+        or not value["completed_at"]
         or any(value.get(key) != expected for key, expected in identity.items())
-        or type(value.get("git_clean")) is not bool):
+        or type(value.get("git_clean")) is not bool
+    ):
         raise ValueError("Child acceptance is not bound to this source and strict image")
     cases = value.get("cases")
-    catalog_ids = {item["strategy"] for item in json.loads(
-        (ROOT / "examples/catalog.json").read_text())["cases"]}
-    if (not isinstance(cases, list) or len(cases) != 18
+    catalog_ids = {
+        item["strategy"]
+        for item in json.loads((ROOT / "examples/catalog.json").read_text())["cases"]
+    }
+    if (
+        not isinstance(cases, list)
+        or len(cases) != 18
         or any(not isinstance(case, dict) for case in cases)
-        or {case.get("strategy_id") for case in cases} != catalog_ids):
+        or {case.get("strategy_id") for case in cases} != catalog_ids
+    ):
         raise ValueError("Child acceptance does not cover the eighteen-case catalog")
     return value
 
@@ -114,7 +125,7 @@ def main() -> int:
                 "-f",
                 "Dockerfile.worker",
                 "-t",
-                "paperquant-worker:local",
+                "paperquant-worker:six-paper-0.2",
                 ".",
             ],
             attempt_dir / "build.log",
@@ -122,7 +133,14 @@ def main() -> int:
         )
         phase = "inspect"
         image_id = _run(
-            [args.docker, "image", "inspect", "--format", "{{.Id}}", "paperquant-worker:local"],
+            [
+                args.docker,
+                "image",
+                "inspect",
+                "--format",
+                "{{.Id}}",
+                "paperquant-worker:six-paper-0.2",
+            ],
             attempt_dir / "inspect.log",
             timeout=30,
         )
@@ -134,8 +152,19 @@ def main() -> int:
         environment["PAPERQUANT_TEST_DOCKER"] = "1"
         environment["PYTHONPATH"] = "src"
         _run(
-            [sys.executable, "-m", "pytest", "-c", "pyproject.toml", "-o", "addopts=",
-             "-q", "tests", "--junitxml", str(attempt_dir / "tests.xml")],
+            [
+                sys.executable,
+                "-m",
+                "pytest",
+                "-c",
+                "pyproject.toml",
+                "-o",
+                "addopts=",
+                "-q",
+                "tests",
+                "--junitxml",
+                str(attempt_dir / "tests.xml"),
+            ],
             attempt_dir / "tests.log",
             timeout=900,
             environment=environment,
@@ -145,15 +174,24 @@ def main() -> int:
         _write_json(receipt, state)
         phase = "acceptance"
         _run(
-            [sys.executable, "scripts/acceptance.py", "--output", str(attempt_dir / "acceptance"),
-             "--strict-image-id", image_id] + (["--require-clean"] if args.require_clean else []),
+            [
+                sys.executable,
+                "scripts/acceptance.py",
+                "--output",
+                str(attempt_dir / "acceptance"),
+                "--strict-image-id",
+                image_id,
+            ]
+            + (["--require-clean"] if args.require_clean else []),
             attempt_dir / "acceptance.log",
             timeout=900,
             environment=environment,
         )
         acceptance_file = attempt_dir / "acceptance/acceptance.json"
         acceptance = _validate_acceptance(
-            json.loads(acceptance_file.read_text()), identity, image_id,
+            json.loads(acceptance_file.read_text()),
+            identity,
+            image_id,
         )
         phase = "source-recheck"
         check_source_identity(ROOT, identity, require_clean=args.require_clean)

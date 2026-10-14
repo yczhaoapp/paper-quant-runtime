@@ -1,0 +1,44 @@
+{
+  "sources": [
+    {
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/4h/BTCUSDT-4h-2024-01.zip",
+      "published_checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/4h/BTCUSDT-4h-2024-01.zip.CHECKSUM",
+      "archive_sha256": "87e793786cacd14285fe8a54c2a96bdb7f618861e30c63ba962b09e5500bc937",
+      "csv": "BTCUSDT-4h-2024-01.csv",
+      "csv_sha256": "1ae43bb0edfccd8d35c5112378dabff946ec21895fbca42482d4620d02a799e9",
+      "rows": 186,
+      "timestamp_unit": "milliseconds since Unix epoch",
+      "scope": "BTC/USDT spot OHLCV, UTC; public time proxy differs from source paper exchange and window"
+    },
+    {
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/4h/BTCUSDT-4h-2024-02.zip",
+      "published_checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/4h/BTCUSDT-4h-2024-02.zip.CHECKSUM",
+      "archive_sha256": "26a3131bf90b9697c8df77bca1ca4784cc33019cc9f01606951337c4f79d4651",
+      "csv": "BTCUSDT-4h-2024-02.csv",
+      "csv_sha256": "a7d11efe7d2cb0d09fe41e3f68b12e83bc981fa1cb3e442d0eaacb98152848f6",
+      "rows": 174,
+      "timestamp_unit": "milliseconds since Unix epoch",
+      "scope": "BTC/USDT spot OHLCV, UTC; public time proxy differs from source paper exchange and window"
+    },
+    {
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/4h/BTCUSDT-4h-2024-03.zip",
+      "published_checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/4h/BTCUSDT-4h-2024-03.zip.CHECKSUM",
+      "archive_sha256": "d5a4624e4242675bb269b347102f74b8b60097d48b1b1c004195072cbfc4b676",
+      "csv": "BTCUSDT-4h-2024-03.csv",
+      "csv_sha256": "37abfd5ddc16279260024f04f9713caadf840692c1879059904e0a9025bccb92",
+      "rows": 186,
+      "timestamp_unit": "milliseconds since Unix epoch",
+      "scope": "BTC/USDT spot OHLCV, UTC; public time proxy differs from source paper exchange and window"
+    },
+    {
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-01.zip",
+      "published_checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-01.zip.CHECKSUM",
+      "archive_sha256": "40b78258091a468f8756843f207f5913eafc1d6e756c40a78711320d93fa5e75",
+      "csv": "BTCUSDT-1m-2024-01.csv",
+      "csv_sha256": "acdcd5dee054732c93d60094c4be319447661dd5cc341fd206a6d9f87eb48c21",
+      "rows": 44640,
+      "timestamp_unit": "milliseconds since Unix epoch",
+      "scope": "BTC/USDT spot OHLCV, UTC; public time proxy differs from source paper exchange and window"
+    }
+  ]
+}

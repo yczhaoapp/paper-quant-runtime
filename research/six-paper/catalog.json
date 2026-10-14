@@ -1,0 +1,409 @@
+{
+  "cases": [
+    {
+      "engine": "reference",
+      "fee_rate": "0",
+      "fixture": "examples/six-paper/graph_matching",
+      "oracle_nodes": [
+        "tests/test_six_paper_methods.py::test_graph_trading_signal_matches_independent_log_regression",
+        "tests/test_six_paper_methods.py::test_matching_is_global_optimum_and_has_no_shared_assets",
+        "tests/test_six_paper_methods.py::test_single_lag_adf_matches_numpy_ols_and_standard_error"
+      ],
+      "paper_id": "2403.07998v1",
+      "recipe": "research/six-paper/cases/graph_matching/recipe.json",
+      "source_mapping": {
+        "additional_page_counts": [],
+        "additional_source_sha256": [],
+        "anchors": [
+          {
+            "claim_index": 0,
+            "locator": "PDF page 13",
+            "page": 13,
+            "source_index": 0,
+            "source_sha256": "65982d757976069548223d51f40fb9143ddb24994d0ee662d0e3c75d4f056fbe",
+            "text": "single-lag Augmented Dickey-"
+          },
+          {
+            "claim_index": 1,
+            "locator": "PDF page 14",
+            "page": 14,
+            "source_index": 0,
+            "source_sha256": "65982d757976069548223d51f40fb9143ddb24994d0ee662d0e3c75d4f056fbe",
+            "text": "maximum weight matching"
+          },
+          {
+            "claim_index": 2,
+            "locator": "PDF page 15",
+            "page": 15,
+            "source_index": 0,
+            "source_sha256": "65982d757976069548223d51f40fb9143ddb24994d0ee662d0e3c75d4f056fbe",
+            "text": "winsorized"
+          }
+        ],
+        "claim_sha256": "7b9b08c09d0359e1b47a48ae512a0154d2f1fec1710e936b681465dfeb77b42f",
+        "format": "pdf",
+        "interpretation": "human-reviewed mapping; anchor checks do not prove semantic fidelity",
+        "method_oracle_nodes": [
+          "tests/test_six_paper_methods.py::test_single_lag_adf_matches_numpy_ols_and_standard_error",
+          "tests/test_six_paper_methods.py::test_matching_is_global_optimum_and_has_no_shared_assets",
+          "tests/test_six_paper_methods.py::test_graph_trading_signal_matches_independent_log_regression"
+        ],
+        "method_spec_sha256": "27f93bd9170d6d1b690f7faf672cd61dcbca4a09003183819a347494e4c9306c",
+        "method_steps": 3,
+        "package_source_sha256": "c041c6c89d7bb458eac8b594dd4b32d7e709ee84182df5b96aa917c1f671b82d",
+        "page_count": 32,
+        "paper_title": "Pairs Trading Using a Novel Graphical Matching Approach",
+        "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Four generated assets replace the S&P500 universe and Yahoo 2017-2023 sample.",
+        "source_sha256": "65982d757976069548223d51f40fb9143ddb24994d0ee662d0e3c75d4f056fbe",
+        "source_url": "https://arxiv.org/pdf/2403.07998v1",
+        "strategy_id": "supplement.graph_matching"
+      },
+      "strategy_id": "supplement.graph_matching",
+      "training_required": false
+    },
+    {
+      "engine": "reference",
+      "fee_rate": "0",
+      "fixture": "examples/six-paper/ou_percentile",
+      "oracle_nodes": [
+        "tests/test_six_paper_methods.py::test_ou_calibration_matches_independent_ar1_equations",
+        "tests/test_six_paper_methods.py::test_ou_refuses_nonstationary_calibration_and_quantiles_match_numpy"
+      ],
+      "paper_id": "2412.12458v1",
+      "recipe": "research/six-paper/cases/ou_percentile/recipe.json",
+      "source_mapping": {
+        "additional_page_counts": [],
+        "additional_source_sha256": [],
+        "anchors": [
+          {
+            "claim_index": 0,
+            "locator": "PDF page 3",
+            "page": 3,
+            "source_index": 0,
+            "source_sha256": "2b5c4dd169b851b4892fdee95fcd87dd091ede9234c09a6d11c7297f5e2865c7",
+            "text": "autoregressive model"
+          },
+          {
+            "claim_index": 1,
+            "locator": "PDF page 4",
+            "page": 4,
+            "source_index": 0,
+            "source_sha256": "2b5c4dd169b851b4892fdee95fcd87dd091ede9234c09a6d11c7297f5e2865c7",
+            "text": "90 day window"
+          }
+        ],
+        "claim_sha256": "5137e7862327554e5c5e17b2eea56d0d8450cd33834e4b70ae5fa98967f742ad",
+        "format": "pdf",
+        "interpretation": "human-reviewed mapping; anchor checks do not prove semantic fidelity",
+        "method_oracle_nodes": [
+          "tests/test_six_paper_methods.py::test_ou_calibration_matches_independent_ar1_equations",
+          "tests/test_six_paper_methods.py::test_ou_refuses_nonstationary_calibration_and_quantiles_match_numpy"
+        ],
+        "method_spec_sha256": "6888ce0e120a5182412e5a22b9bfb05b83f5d3863437fdcd7a9c470de6b67613",
+        "method_steps": 2,
+        "package_source_sha256": "7cd04e3d37eb0d94535b62e8671b842e9cc44afb232fe765a5b530f23f1b6720",
+        "page_count": 13,
+        "paper_title": "An Application of the Ornstein-Uhlenbeck Process to Pairs Trading",
+        "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Preselected generated pair replaces WRDS/Datastream, distance ranking and manual industry selection.",
+        "source_sha256": "2b5c4dd169b851b4892fdee95fcd87dd091ede9234c09a6d11c7297f5e2865c7",
+        "source_url": "https://arxiv.org/pdf/2412.12458v1",
+        "strategy_id": "supplement.ou_percentile"
+      },
+      "strategy_id": "supplement.ou_percentile",
+      "training_required": true
+    },
+    {
+      "engine": "reference",
+      "fee_rate": "0.0001",
+      "fixture": "examples/six-paper/grouped_cnn_lstm",
+      "oracle_nodes": [
+        "tests/test_six_paper_methods.py::test_autodiff_gradients_match_independent_math_and_finite_differences",
+        "tests/test_six_paper_methods.py::test_cnn_training_updates_all_model_stages_and_confidence_equations",
+        "tests/test_six_paper_methods.py::test_confidence_and_bet_size_mapping_uses_real_probability_boundaries",
+        "tests/test_six_paper_methods.py::test_convolution_and_lstm_match_separate_numpy_equations"
+      ],
+      "paper_id": "2205.08382v1",
+      "recipe": "research/six-paper/cases/grouped_cnn_lstm/recipe.json",
+      "source_mapping": {
+        "additional_page_counts": [],
+        "additional_source_sha256": [],
+        "anchors": [
+          {
+            "claim_index": 0,
+            "locator": "PDF page 11",
+            "page": 11,
+            "source_index": 0,
+            "source_sha256": "82c0033f3555793139c834accdae22fccaef16152f72c65889e17c764c5ba486",
+            "text": "three separate lines of convolutional layers"
+          },
+          {
+            "claim_index": 1,
+            "locator": "PDF page 14",
+            "page": 14,
+            "source_index": 0,
+            "source_sha256": "82c0033f3555793139c834accdae22fccaef16152f72c65889e17c764c5ba486",
+            "text": "many-to-one LSTM"
+          },
+          {
+            "claim_index": 2,
+            "locator": "PDF page 15",
+            "page": 15,
+            "source_index": 0,
+            "source_sha256": "82c0033f3555793139c834accdae22fccaef16152f72c65889e17c764c5ba486",
+            "text": "binary cross-entropy loss function"
+          },
+          {
+            "claim_index": 3,
+            "locator": "PDF page 20",
+            "page": 20,
+            "source_index": 0,
+            "source_sha256": "82c0033f3555793139c834accdae22fccaef16152f72c65889e17c764c5ba486",
+            "text": "two thresholds"
+          }
+        ],
+        "claim_sha256": "1494649d71b5cd9cd27d0a5d9382774d07b5dd708f55a3dd417d6f3d6ea4633d",
+        "format": "pdf",
+        "interpretation": "human-reviewed mapping; anchor checks do not prove semantic fidelity",
+        "method_oracle_nodes": [
+          "tests/test_six_paper_methods.py::test_cnn_training_updates_all_model_stages_and_confidence_equations",
+          "tests/test_six_paper_methods.py::test_convolution_and_lstm_match_separate_numpy_equations",
+          "tests/test_six_paper_methods.py::test_autodiff_gradients_match_independent_math_and_finite_differences",
+          "tests/test_six_paper_methods.py::test_confidence_and_bet_size_mapping_uses_real_probability_boundaries"
+        ],
+        "method_spec_sha256": "e209374f9663e92a1e9f64337cc6ebc82f5967b7d93846ed88ac9988d713e13c",
+        "method_steps": 4,
+        "package_source_sha256": "a75c362defe30d794d9ff0ce3f8de103561194dbc1e2e0d488707690c283e9ce",
+        "page_count": 26,
+        "paper_title": "Compatible deep neural network framework with financial time series data, including data preprocessor, neural network model and trading strategy",
+        "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Use public Binance BTC/USDT Jan-Feb2024 training and March2024 holdout rather than original exchange/window.",
+        "source_sha256": "82c0033f3555793139c834accdae22fccaef16152f72c65889e17c764c5ba486",
+        "source_url": "https://arxiv.org/pdf/2205.08382v1",
+        "strategy_id": "supplement.grouped_cnn_lstm"
+      },
+      "strategy_id": "supplement.grouped_cnn_lstm",
+      "training_required": true
+    },
+    {
+      "engine": "reference",
+      "fee_rate": "0.0001",
+      "fixture": "examples/six-paper/gmm_knn",
+      "oracle_nodes": [
+        "tests/test_six_paper_methods.py::test_59_minute_features_match_independent_peak_regression_and_have_no_future_slot",
+        "tests/test_six_paper_methods.py::test_gmm_density_bic_and_training_cluster_predictions_are_real",
+        "tests/test_six_paper_methods.py::test_knn_is_not_a_constant_hold_classifier"
+      ],
+      "paper_id": "2409.03762v1",
+      "recipe": "research/six-paper/cases/gmm_knn/recipe.json",
+      "source_mapping": {
+        "additional_page_counts": [],
+        "additional_source_sha256": [],
+        "anchors": [
+          {
+            "claim_index": 0,
+            "locator": "PDF page 6",
+            "page": 6,
+            "source_index": 0,
+            "source_sha256": "9338d36fcacd418a85ddace0572224b62b1ffd59c4e1db9fa6ab2d6c819bfcd2",
+            "text": "first 59 minutes"
+          },
+          {
+            "claim_index": 1,
+            "locator": "PDF page 7",
+            "page": 7,
+            "source_index": 0,
+            "source_sha256": "9338d36fcacd418a85ddace0572224b62b1ffd59c4e1db9fa6ab2d6c819bfcd2",
+            "text": "Gaussian Mixture Model"
+          },
+          {
+            "claim_index": 2,
+            "locator": "PDF page 8",
+            "page": 8,
+            "source_index": 0,
+            "source_sha256": "9338d36fcacd418a85ddace0572224b62b1ffd59c4e1db9fa6ab2d6c819bfcd2",
+            "text": "K-nearest neighbours"
+          }
+        ],
+        "claim_sha256": "715b83c215d17e65cb753b80df926adc6bd229b2ec816015ff0662b9d56f8ab2",
+        "format": "pdf",
+        "interpretation": "human-reviewed mapping; anchor checks do not prove semantic fidelity",
+        "method_oracle_nodes": [
+          "tests/test_six_paper_methods.py::test_59_minute_features_match_independent_peak_regression_and_have_no_future_slot",
+          "tests/test_six_paper_methods.py::test_gmm_density_bic_and_training_cluster_predictions_are_real",
+          "tests/test_six_paper_methods.py::test_knn_is_not_a_constant_hold_classifier"
+        ],
+        "method_spec_sha256": "dadca5ebf261bc3db10d144ac84f94e06e3d0709d3d4b112551fb4a3ccabb8cd",
+        "method_steps": 3,
+        "package_source_sha256": "968b1456bb56b87c403134412c4f98424e33a5dc6df8c7a390a83e77fe387666",
+        "page_count": 22,
+        "paper_title": "Combining supervised and unsupervised learning methods to predict financial market movements",
+        "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Single public Binance BTC market replaces OKX BTC/PEPE and Nasdaq sources.",
+        "source_sha256": "9338d36fcacd418a85ddace0572224b62b1ffd59c4e1db9fa6ab2d6c819bfcd2",
+        "source_url": "https://arxiv.org/pdf/2409.03762v1",
+        "strategy_id": "supplement.gmm_knn"
+      },
+      "strategy_id": "supplement.gmm_knn",
+      "training_required": true
+    },
+    {
+      "engine": "passive",
+      "fee_rate": "0",
+      "fixture": "examples/six-paper/sac_passive_quotes",
+      "oracle_nodes": [
+        "tests/test_six_paper_methods.py::test_sac_soft_bellman_terminal_and_entropy_properties"
+      ],
+      "paper_id": "2410.14504v2",
+      "recipe": "research/six-paper/cases/sac_passive_quotes/recipe.json",
+      "source_mapping": {
+        "additional_page_counts": [
+          17
+        ],
+        "additional_source_sha256": [
+          "30df4c4ff7c878aa2938ecaf651eb5cc05dc224eb0e3b5bcc8981dbf30d7a9bd"
+        ],
+        "anchors": [
+          {
+            "claim_index": 0,
+            "locator": "PDF page 8",
+            "page": 8,
+            "source_index": 0,
+            "source_sha256": "a3071901feceeeb0367764fde6963ea4ede5e9093fd1e26b3509a4e49c63ef57",
+            "text": "Soft Actor-Critic (SAC) algorithm"
+          },
+          {
+            "claim_index": 1,
+            "locator": "PDF page 13",
+            "page": 13,
+            "source_index": 0,
+            "source_sha256": "a3071901feceeeb0367764fde6963ea4ede5e9093fd1e26b3509a4e49c63ef57",
+            "text": "non-adverse fill probability"
+          },
+          {
+            "claim_index": 2,
+            "locator": "PDF page 14",
+            "page": 14,
+            "source_index": 0,
+            "source_sha256": "a3071901feceeeb0367764fde6963ea4ede5e9093fd1e26b3509a4e49c63ef57",
+            "text": "maximum position size"
+          },
+          {
+            "claim_index": 0,
+            "locator": "PDF page 8",
+            "page": 6,
+            "source_index": 1,
+            "source_sha256": "30df4c4ff7c878aa2938ecaf651eb5cc05dc224eb0e3b5bcc8981dbf30d7a9bd",
+            "text": "soft Bellman residual"
+          },
+          {
+            "claim_index": 0,
+            "locator": "PDF page 8",
+            "page": 8,
+            "source_index": 1,
+            "source_sha256": "30df4c4ff7c878aa2938ecaf651eb5cc05dc224eb0e3b5bcc8981dbf30d7a9bd",
+            "text": "two soft Q-functions"
+          }
+        ],
+        "claim_sha256": "3e1a920bba4638d5d9328e86014e8dd876441102835c32f12b598467df514502",
+        "format": "pdf",
+        "interpretation": "human-reviewed mapping; anchor checks do not prove semantic fidelity",
+        "method_oracle_nodes": [
+          "tests/test_six_paper_methods.py::test_sac_soft_bellman_terminal_and_entropy_properties",
+          "tests/test_six_paper_methods.py::test_sac_soft_bellman_terminal_and_entropy_properties",
+          "tests/test_six_paper_methods.py::test_sac_soft_bellman_terminal_and_entropy_properties"
+        ],
+        "method_spec_sha256": "1f67371789c448a5ccebb82361acf90b6384282beaef0b2fd59e26eb7cc1ffc5",
+        "method_steps": 3,
+        "package_source_sha256": "fd0e40006902f56bf1edade2cb7e9ecf06bdd03659cf2f5c0c9e289f543eeb81",
+        "page_count": 23,
+        "paper_title": "Reinforcement Learning in Non-Markov Market-Making",
+        "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Retain Table1 dt=.001,T=1,spread=.01,q=5,p=.2 and total diffusion variance=.03.",
+        "source_sha256": "a3071901feceeeb0367764fde6963ea4ede5e9093fd1e26b3509a4e49c63ef57",
+        "source_url": "https://arxiv.org/pdf/2410.14504v2",
+        "strategy_id": "supplement.sac_passive_quotes"
+      },
+      "strategy_id": "supplement.sac_passive_quotes",
+      "training_required": true
+    },
+    {
+      "engine": "passive",
+      "fee_rate": "0.0001",
+      "fixture": "examples/six-paper/ppo_twap_aware",
+      "oracle_nodes": [
+        "tests/test_six_paper_methods.py::test_ppo_clipping_changes_gradient_by_advantage_sign_and_masks_infeasible_actions",
+        "tests/test_six_paper_methods.py::test_self_imitation_uses_only_positive_return_advantage"
+      ],
+      "paper_id": "2510.27334v1",
+      "recipe": "research/six-paper/cases/ppo_twap_aware/recipe.json",
+      "source_mapping": {
+        "additional_page_counts": [
+          12,
+          13
+        ],
+        "additional_source_sha256": [
+          "e78feadadbdbb0b601b3c2bcc81404722cd431a489b307545f9b7bea1e8c4f5b",
+          "fa300f57b4d0ed7159b4ba156950ea1498b92ef966bae12e3a6774283570ebb7"
+        ],
+        "anchors": [
+          {
+            "claim_index": 0,
+            "locator": "PDF page 4",
+            "page": 4,
+            "source_index": 0,
+            "source_sha256": "74c12732e501bbe8b9689c5dbdab2b441f4607abe33028fcb607a52eb3ef1fee",
+            "text": "Proximal Policy Optimisation"
+          },
+          {
+            "claim_index": 1,
+            "locator": "PDF page 4",
+            "page": 4,
+            "source_index": 0,
+            "source_sha256": "74c12732e501bbe8b9689c5dbdab2b441f4607abe33028fcb607a52eb3ef1fee",
+            "text": "self-imitation learning"
+          },
+          {
+            "claim_index": 2,
+            "locator": "PDF page 5",
+            "page": 5,
+            "source_index": 0,
+            "source_sha256": "74c12732e501bbe8b9689c5dbdab2b441f4607abe33028fcb607a52eb3ef1fee",
+            "text": "the TW AP agent\u2019s behaviours"
+          },
+          {
+            "claim_index": 0,
+            "locator": "PDF page 4",
+            "page": 3,
+            "source_index": 1,
+            "source_sha256": "e78feadadbdbb0b601b3c2bcc81404722cd431a489b307545f9b7bea1e8c4f5b",
+            "text": "probability ratio"
+          },
+          {
+            "claim_index": 1,
+            "locator": "PDF page 4",
+            "page": 2,
+            "source_index": 2,
+            "source_sha256": "fa300f57b4d0ed7159b4ba156950ea1498b92ef966bae12e3a6774283570ebb7",
+            "text": "off-policy"
+          }
+        ],
+        "claim_sha256": "2dbc1e3fd029c848cb4802b319823c0f8521cd89bc3dc0921b356ae86c45a827",
+        "format": "pdf",
+        "interpretation": "human-reviewed mapping; anchor checks do not prove semantic fidelity",
+        "method_oracle_nodes": [
+          "tests/test_six_paper_methods.py::test_ppo_clipping_changes_gradient_by_advantage_sign_and_masks_infeasible_actions",
+          "tests/test_six_paper_methods.py::test_self_imitation_uses_only_positive_return_advantage",
+          "tests/test_six_paper_methods.py::test_ppo_clipping_changes_gradient_by_advantage_sign_and_masks_infeasible_actions"
+        ],
+        "method_spec_sha256": "2d723d22ca18b48b1960bde97602548213b8515264e94c5b9253f6d97792499b",
+        "method_steps": 3,
+        "package_source_sha256": "81da686088f0d733a066797a83dab6d5e15d1f0b1fa42578694ea497f8a7b375",
+        "page_count": 8,
+        "paper_title": "When AI Trading Agents Compete: Adverse Selection of Meta-Orders by Reinforcement Learning-Based Market Making",
+        "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Five observations and width8 networks replace the full source high-dimensional LOB networks.",
+        "source_sha256": "74c12732e501bbe8b9689c5dbdab2b441f4607abe33028fcb607a52eb3ef1fee",
+        "source_url": "https://arxiv.org/pdf/2510.27334v1",
+        "strategy_id": "supplement.ppo_twap_aware"
+      },
+      "strategy_id": "supplement.ppo_twap_aware",
+      "training_required": true
+    }
+  ]
+}

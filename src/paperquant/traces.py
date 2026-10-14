@@ -2,7 +2,7 @@
 
 from decimal import Decimal
 
-from paperquant.models import RunReport, SubmitOrder, TargetPosition
+from paperquant.models import CancelOrder, RunReport, SubmitOrder, TargetPosition
 
 
 def validate_traces(report: RunReport) -> None:
@@ -18,8 +18,12 @@ def validate_traces(report: RunReport) -> None:
             accepted[order.order_id] = order
         else:
             creation = accepted.get(order.order_id)
-            if (creation is None or order.order_id in terminal
-                or creation.symbol != order.symbol or order.timestamp < creation.timestamp):
+            if (
+                creation is None
+                or order.order_id in terminal
+                or creation.symbol != order.symbol
+                or order.timestamp < creation.timestamp
+            ):
                 raise ValueError("Order has an invalid lifecycle transition")
             terminal[order.order_id] = order
     if accepted.keys() != terminal.keys():
@@ -33,9 +37,14 @@ def validate_traces(report: RunReport) -> None:
         seen_fills.add(fill.order_id)
         creation = accepted.get(fill.order_id)
         completion = terminal.get(fill.order_id)
-        if (creation is None or completion is None or completion.status != "filled"
-            or fill.symbol != creation.symbol or fill.timestamp != completion.timestamp
-            or fill.timestamp < creation.timestamp):
+        if (
+            creation is None
+            or completion is None
+            or completion.status != "filled"
+            or fill.symbol != creation.symbol
+            or fill.timestamp != completion.timestamp
+            or fill.timestamp < creation.timestamp
+        ):
             raise ValueError("Fill differs from its order lifecycle")
         if plan.max_order_quantity is not None and fill.quantity > plan.max_order_quantity:
             raise ValueError("Fill exceeds the declared order quantity limit")
@@ -57,13 +66,41 @@ def validate_traces(report: RunReport) -> None:
                 if action.symbol in targets:
                     raise ValueError("Decision contains duplicate target intents")
                 targets.add(action.symbol)
-                if (plan.max_abs_position is not None
-                    and abs(action.quantity) > plan.max_abs_position):
+                if (
+                    plan.max_abs_position is not None
+                    and abs(action.quantity) > plan.max_abs_position
+                ):
                     raise ValueError("Target exceeds the declared position limit")
             elif isinstance(action, SubmitOrder):
-                if (plan.max_order_quantity is not None
-                    and action.quantity > plan.max_order_quantity):
+                if (
+                    plan.max_order_quantity is not None
+                    and action.quantity > plan.max_order_quantity
+                ):
                     raise ValueError("Order exceeds the declared quantity limit")
+            elif isinstance(action, CancelOrder):
+                completion = terminal.get(action.client_order_id)
+                if (
+                    completion is None
+                    or completion.status != "cancelled"
+                    or completion.symbol != action.symbol
+                    or completion.timestamp != decision.event_time
+                ):
+                    raise ValueError("Cancellation action lacks its exact terminal event")
+    cancel_actions = [
+        (action.client_order_id, action.symbol, decision.event_time)
+        for decision in report.decisions
+        for action in decision.actions
+        if isinstance(action, CancelOrder)
+    ]
+    cancelled_events = [
+        (order.order_id, order.symbol, order.timestamp)
+        for order in report.orders
+        if order.status == "cancelled"
+    ]
+    if sorted(cancel_actions) != sorted(cancelled_events) or len(
+        {a[0] for a in cancel_actions}
+    ) != len(cancel_actions):
+        raise ValueError("Cancelled lifecycle differs from declared cancellation requests")
     for account in report.accounts:
         if len(account.open_order_ids) != len(set(account.open_order_ids)):
             raise ValueError("Account contains duplicate open order IDs")
@@ -79,6 +116,5 @@ def validate_traces(report: RunReport) -> None:
         for position in account.positions:
             if position.symbol not in plan.symbols:
                 raise ValueError("Account position has an unknown symbol")
-            if (plan.max_abs_position is not None
-                and abs(position.quantity) > plan.max_abs_position):
+            if plan.max_abs_position is not None and abs(position.quantity) > plan.max_abs_position:
                 raise ValueError("Account exceeds the declared position limit")

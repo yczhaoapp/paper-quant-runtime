@@ -2,6 +2,7 @@
 
 from paperquant.models import (
     AccountSnapshot,
+    CancelOrder,
     DataNeed,
     Granularity,
     MarketEvent,
@@ -14,9 +15,11 @@ from paperquant.models import (
     TargetPosition,
     TrainingRequest,
 )
+from paperquant.numerics import Conv1D, DenseMLP, LSTMCell, Scalar, gradient_step
 
 __all__ = [
     "AccountSnapshot",
+    "CancelOrder",
     "DataNeed",
     "Granularity",
     "MarketKind",
@@ -28,4 +31,9 @@ __all__ = [
     "SubmitOrder",
     "TargetPosition",
     "TrainingRequest",
+    "Scalar",
+    "DenseMLP",
+    "Conv1D",
+    "LSTMCell",
+    "gradient_step",
 ]

@@ -64,7 +64,7 @@ class DockerWorkerStrategy:
         package_dir: Path,
         declaration: StrategyDeclaration,
         source_sha256: str,
-        image: str = "paperquant-worker:local",
+        image: str = "paperquant-worker:six-paper-0.2",
     ) -> None:
         self.run_id = run_id
         self.declaration = declaration
@@ -149,9 +149,13 @@ class DockerWorkerStrategy:
             self._verify_container(container_id, package_path)
         except ContractFault as exc:
             self.close()
-            raise ContractFault(exc.failure.model_copy(update={
-                "details": {**exc.failure.details, "worker_container_cleanup": "verified"}
-            })) from exc
+            raise ContractFault(
+                exc.failure.model_copy(
+                    update={
+                        "details": {**exc.failure.details, "worker_container_cleanup": "verified"}
+                    }
+                )
+            ) from exc
         except Exception as exc:
             self.close()
             _unavailable(
@@ -243,18 +247,28 @@ class DockerWorkerStrategy:
             result = self._receive()
         except ContractFault as exc:
             operation_stage = {
-                "train": Stage.TRAIN, "load": Stage.LOAD, "decide": Stage.INFER,
+                "train": Stage.TRAIN,
+                "load": Stage.LOAD,
+                "decide": Stage.INFER,
             }.get(str(request.get("op")), Stage.LOAD)
-            raise ContractFault(exc.failure.model_copy(update={
-                "stage": operation_stage,
-                "details": {**exc.failure.details, "operation": str(request.get("op"))},
-            })) from exc
+            raise ContractFault(
+                exc.failure.model_copy(
+                    update={
+                        "stage": operation_stage,
+                        "details": {**exc.failure.details, "operation": str(request.get("op"))},
+                    }
+                )
+            ) from exc
         if result.get("ok") is not True:
             if result.get("code") == "ACTION_INVALID" and request.get("op") == "decide":
-                raise ContractFault(Failure(
-                    run_id=self.run_id, stage=Stage.INFER, code=ErrorCode.ACTION_INVALID,
-                    message="Isolated strategy returned an invalid action",
-                ))
+                raise ContractFault(
+                    Failure(
+                        run_id=self.run_id,
+                        stage=Stage.INFER,
+                        code=ErrorCode.ACTION_INVALID,
+                        message="Isolated strategy returned an invalid action",
+                    )
+                )
             raise RuntimeError(f"worker rejected operation: {result.get('cause', 'unknown')}")
         return result
 
@@ -276,11 +290,15 @@ class DockerWorkerStrategy:
         try:
             return _ACTIONS.validate_python(response["actions"])
         except (KeyError, ValidationError, TypeError, ValueError) as exc:
-            raise ContractFault(Failure(
-                run_id=self.run_id, stage=Stage.INFER, code=ErrorCode.ACTION_INVALID,
-                message="Isolated strategy action did not satisfy the wire schema",
-                details={"cause": type(exc).__name__},
-            )) from exc
+            raise ContractFault(
+                Failure(
+                    run_id=self.run_id,
+                    stage=Stage.INFER,
+                    code=ErrorCode.ACTION_INVALID,
+                    message="Isolated strategy action did not satisfy the wire schema",
+                    details={"cause": type(exc).__name__},
+                )
+            ) from exc
 
     def restart_for_inference(self) -> DockerWorkerStrategy:
         """Destroy the training worker before starting an untrained inference worker."""
@@ -325,25 +343,36 @@ class DockerWorkerStrategy:
         try:
             removed = subprocess.run(
                 ["docker", "rm", "-f", self._container_name],
-                capture_output=True, timeout=10, check=False,
+                capture_output=True,
+                timeout=10,
+                check=False,
             )
             inspected = subprocess.run(
                 ["docker", "inspect", self._container_name],
-                capture_output=True, timeout=10, check=False,
+                capture_output=True,
+                timeout=10,
+                check=False,
             )
             missing = b"no such" in inspected.stderr.lower()
             if inspected.returncode == 0 or not missing:
-                _unavailable(self.run_id, "Strict worker cleanup was not verified",
-                             container=self._container_name,
-                             remove_exit=str(removed.returncode))
+                _unavailable(
+                    self.run_id,
+                    "Strict worker cleanup was not verified",
+                    container=self._container_name,
+                    remove_exit=str(removed.returncode),
+                )
         except (OSError, subprocess.TimeoutExpired) as exc:
-            _unavailable(self.run_id, "Strict worker cleanup could not be verified",
-                         cause=type(exc).__name__)
+            _unavailable(
+                self.run_id, "Strict worker cleanup could not be verified", cause=type(exc).__name__
+            )
         finally:
             self._cid_directory.cleanup()
         if process_error is not None:
-            _unavailable(self.run_id, "Docker client did not exit cleanly",
-                         cause=type(process_error).__name__)
+            _unavailable(
+                self.run_id,
+                "Docker client did not exit cleanly",
+                cause=type(process_error).__name__,
+            )
 
     def __enter__(self) -> Self:
         return self
@@ -351,6 +380,10 @@ class DockerWorkerStrategy:
     def __exit__(self, _type: object, exc: object, _traceback: object) -> None:
         self.close()
         if isinstance(exc, ContractFault):
-            raise ContractFault(exc.failure.model_copy(update={
-                "details": {**exc.failure.details, "worker_container_cleanup": "verified"}
-            })) from exc
+            raise ContractFault(
+                exc.failure.model_copy(
+                    update={
+                        "details": {**exc.failure.details, "worker_container_cleanup": "verified"}
+                    }
+                )
+            ) from exc

@@ -1,0 +1,33 @@
+{
+  "claims": [
+    {
+      "locator": "PDF page 6",
+      "paper_rule": "Methods: training 4th-percentile log-return labels and causal 59-minute proposed features",
+      "runtime_rule": "Prior minute changes, peak curvature/height regression and last-six-to-all-window change ratio"
+    },
+    {
+      "locator": "PDF page 7",
+      "paper_rule": "Methods: training-only standardization, mixture estimation and BIC model selection",
+      "runtime_rule": "EM diagonal covariance with declared .001 ridge; select K=1..4 by exact diagonal-model BIC"
+    },
+    {
+      "locator": "PDF page 8",
+      "paper_rule": "Methods: classify buy/sell/hold within similarly clustered market trends",
+      "runtime_rule": "One-nearest-neighbor bank per selected mixture cluster; trade predicted minute60 then flatten"
+    }
+  ],
+  "differences": [
+    "Single public Binance BTC market replaces OKX BTC/PEPE and Nasdaq sources.",
+    "Seven-day sample and 4/3-day split replace six months and multiple temporal holdouts.",
+    "Diagonal covariance and K=1..4 grid are declared; paper does not give all estimator settings.",
+    "Feature text says six tail values but indices53..59 contain seven; choose exactly six, with a dedicated oracle.",
+    "Degenerate/no-peak regression uses an explicit zero slope and local mean feature convention.",
+    "KNN only; RF, DNN, SVM, XGBoost, random benchmark and original APC profitability reproduction excluded."
+  ],
+  "reproduction_scope": "bounded local method adaptation; not full paper experiment",
+  "source": {
+    "title": "Combining supervised and unsupervised learning methods to predict financial market movements",
+    "url": "https://arxiv.org/pdf/2409.03762v1"
+  },
+  "strategy_id": "supplement.gmm_knn"
+}

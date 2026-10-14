@@ -1,0 +1,20 @@
+{
+  "behavior": "uniform continuous latent, quantized and inventory-bounded quote control replay",
+  "dt": 0.001,
+  "episode_seconds": 1,
+  "evaluation_seed": 10036,
+  "event_count": 1001,
+  "events_sha256": "763b918eb1c0c970762de97abb6595f900cedde2a6a5b40766ba64eb58b7409a",
+  "exclusions": "reduced quote simulator; queue priority, partial fills and endogenous maker impact absent",
+  "fee_rate": "0",
+  "first_event": "2025-01-01T00:00:00+00:00",
+  "last_event": "2025-01-01T00:00:01+00:00",
+  "metaorder_scope": "not_applicable",
+  "nonadverse_probability": 0.2,
+  "paper_training_budget": "4 versus original 1000 SAC episodes",
+  "time_scope": "Table1 dt=.001 and T=1 retained",
+  "training_episodes": 4,
+  "training_seed": 37,
+  "training_sha256": "b878401209f959c58141460ea9ea9a76f8e95a02b8082663fb6c31ba7c7e9e12",
+  "type": "controlled_simulation"
+}
