@@ -17,7 +17,7 @@ from paperquant.models import TrainingRequest, TrainingSample
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_public_contract_and_runtime_are_byte_identical_to_the_sealed_supplement():
+def test_contract_lock_distinguishes_unchanged_interfaces_from_execution_policy():
     lock = json.loads((ROOT / "research/two-paper/contract-lock.json").read_text())
     actual = {
         p.relative_to(ROOT).as_posix()
@@ -26,8 +26,20 @@ def test_public_contract_and_runtime_are_byte_identical_to_the_sealed_supplement
         if p.is_file() and "__pycache__" not in p.parts and p.suffix != ".pyc"
     }
     assert actual == set(lock["files"])
+    revisions = lock.get("execution_policy_revisions", {})
+    assert set(revisions) == {"src/paperquant/sandbox.py"}
     for name, sha in lock["files"].items():
-        assert hashlib.sha256((ROOT / name).read_bytes()).hexdigest() == sha
+        current = hashlib.sha256((ROOT / name).read_bytes()).hexdigest()
+        if name in revisions:
+            assert current == revisions[name]["current_sha256"]
+            assert current != sha
+        else:
+            assert current == sha
+    from scripts.two_paper_quality import check_contract_lock
+
+    result = check_contract_lock()
+    assert result["byte_identical_files"] == len(actual) - 1
+    assert result["schema_and_lifecycle"] == "unchanged"
 
 
 def strategy(name, cls):

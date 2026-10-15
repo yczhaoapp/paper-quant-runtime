@@ -53,12 +53,6 @@ class GroupedCNNLSTM:
         self.second = [Conv1D(2, 2, 3, rng), Conv1D(1, 1, 3, rng), Conv1D(1, 1, 3, rng)]
         self.lstm = LSTMCell(4, hidden, rng)
         self.head = DenseMLP((hidden, hidden, 1), rng)
-        recurrent = set(self.lstm.parameters())
-        self._zero_gradient = {p: 0.0 for p in self.parameters()}
-        self._zero_nonrecurrent_gradient = {
-            p: 0.0 for p in self.parameters() if p not in recurrent
-        }
-        self._zero_head_gradient = {p: 0.0 for p in self.head.parameters()}
 
     @staticmethod
     def features(bars, *, mode=0):
@@ -191,14 +185,10 @@ class GroupedCNNLSTM:
         return 1 / (1 + math.exp(-value)) if value >= 0 else math.exp(value) / (1 + math.exp(value))
 
     @staticmethod
-    def conv_patches(layer, inputs):
+    def conv_fast(layer, inputs, *, activate=True, activation=0, prepared=None):
         length = len(inputs[0]) + 2 * layer.padding - layer.kernel + 1
         padded = [[0.0] * layer.padding + row + [0.0] * layer.padding for row in inputs]
-        return [[x for row in padded for x in row[t : t + layer.kernel]] for t in range(length)]
-
-    @staticmethod
-    def conv_fast(layer, inputs, *, activate=True, activation=0, prepared=None, patches=None):
-        patches = patches if patches is not None else GroupedCNNLSTM.conv_patches(layer, inputs)
+        patches = [[x for row in padded for x in row[t : t + layer.kernel]] for t in range(length)]
         output = []
         weights_flat = (
             prepared
@@ -207,8 +197,8 @@ class GroupedCNNLSTM:
         )
         for weights, bias in zip(weights_flat, layer.biases, strict=True):
             channel = []
-            for patch in patches:
-                value = bias.value + math.sumprod(weights, patch)
+            for t in range(length):
+                value = bias.value + math.sumprod(weights, patches[t])
                 channel.append(
                     (max(0.0, value) if activation else math.tanh(value)) if activate else value
                 )
@@ -216,68 +206,31 @@ class GroupedCNNLSTM:
         return output
 
     @staticmethod
-    def conv_backward(
-        layer, inputs, output, upstream, gradient, *, activate=True, activation=0,
-        input_gradient=True, parameter_accumulator=None,
-    ):
+    def conv_backward(layer, inputs, output, upstream, gradient, *, activate=True, activation=0):
         padded = [[0.0] * layer.padding + row + [0.0] * layer.padding for row in inputs]
-        result = [[0.0] * len(row) for row in padded] if input_gradient else []
-        batch = None
-        if parameter_accumulator is not None:
-            batch = parameter_accumulator.get(layer)
-            if batch is None:
-                batch = {"columns": [[[] for _ in row] for row in layer.weights[0]],
-                         "signals": [[] for _ in layer.weights]}
-                parameter_accumulator[layer] = batch
-            width = len(upstream[0])
-            for columns, row in zip(batch["columns"], padded, strict=True):
-                for k, column in enumerate(columns):
-                    column.extend(row[k:k + width])
+        result = [[0.0] * len(row) for row in padded]
         for c, (weights, bias) in enumerate(zip(layer.weights, layer.biases, strict=True)):
-            derivatives = [
-                incoming * ((output[c][t] > 0) if activation else (1 - output[c][t] ** 2))
-                if activate else incoming
-                for t, incoming in enumerate(upstream[c])
-            ]
-            if batch is not None:
-                batch["signals"][c].extend(derivatives)
-            else:
-                for derivative in derivatives:
-                    gradient[bias] += derivative
-                for row, input_row in zip(weights, padded, strict=True):
+            for t, incoming in enumerate(upstream[c]):
+                derivative = (
+                    incoming * ((output[c][t] > 0) if activation else (1 - output[c][t] ** 2))
+                    if activate
+                    else incoming
+                )
+                gradient[bias] += derivative
+                for row, input_row, input_gradient in zip(weights, padded, result, strict=True):
                     for k, weight in enumerate(row):
-                        gradient[weight] += math.sumprod(
-                            derivatives, input_row[k : k + len(derivatives)]
-                        )
-            if not any(derivatives):
-                continue
-            if input_gradient:
-                for t, derivative in enumerate(derivatives):
-                    if derivative == 0.0:
-                        continue
-                    for row, input_row in zip(weights, result, strict=True):
-                        for k, weight in enumerate(row):
-                            input_row[t + k] += derivative * weight.value
+                        gradient[weight] += derivative * input_row[t + k]
+                        input_gradient[t + k] += derivative * weight.value
         return (
             [row[layer.padding : len(row) - layer.padding] for row in result]
-            if layer.padding else result
+            if layer.padding
+            else result
         )
-
-    @staticmethod
-    def reduce_convolution_batch(batch, gradient, divisor=1):
-        for layer, entry in batch.items():
-            for weights, bias, signal in zip(
-                layer.weights, layer.biases, entry["signals"], strict=True
-            ):
-                gradient[bias] += sum(signal) / divisor
-                for row, columns in zip(weights, entry["columns"], strict=True):
-                    for weight, column in zip(row, columns, strict=True):
-                        gradient[weight] += math.sumprod(signal, column) / divisor
 
     def snapshot_weights(self):
         convs = self.encoders + self.decoders + self.first + self.second
         dense = self.lstm.gates + [self.head]
-        snapshot = {
+        return {
             "conv": {
                 layer: [[w.value for row in group for w in row] for group in layer.weights]
                 for layer in convs
@@ -287,15 +240,6 @@ class GroupedCNNLSTM:
                 for layer in dense
             },
         }
-        recurrent_rows = [
-            row for gate in self.lstm.gates for row in snapshot["dense"][gate][0]
-        ]
-        snapshot["recurrent_rows"] = recurrent_rows
-        snapshot["recurrent_columns"] = list(zip(*recurrent_rows, strict=True))
-        snapshot["recurrent_biases"] = [
-            b.value for gate in self.lstm.gates for b in gate.biases[0]
-        ]
-        return snapshot
 
     def fast_prediction(
         self,
@@ -306,9 +250,6 @@ class GroupedCNNLSTM:
         prepared=None,
         return_hidden=False,
         sequence=None,
-        first_patches=None,
-        recurrent_accumulator=None,
-        convolution_accumulator=None,
     ):
         """Same convolution/LSTM/head equations with analytic backpropagation.
 
@@ -327,12 +268,11 @@ class GroupedCNNLSTM:
         caches = []
         if sequence is None:
             sequence = []
-        for index, (group, first, second) in enumerate(
+        for group, first, second in (
             [] if frozen_conv else zip(groups, self.first, self.second, strict=True)
         ):
             first_out = self.conv_fast(
-                first, group, activation=self.activation, prepared=prepared["conv"][first],
-                patches=first_patches[index] if first_patches is not None else None,
+                first, group, activation=self.activation, prepared=prepared["conv"][first]
             )
             indices = [
                 [max(range(t, t + 2), key=lambda i: row[i]) for t in range(0, len(row) - 1, 2)]
@@ -345,23 +285,18 @@ class GroupedCNNLSTM:
                 second, pooled, activation=self.activation, prepared=prepared["conv"][second]
             )
             sequence.extend(second_out)
-            if label is not None:
-                caches.append((group, first_out, indices, pooled, second_out))
+            caches.append((group, first_out, indices, pooled, second_out))
         hidden, cell = [0.0] * self.hidden, [0.0] * self.hidden
         recurrent = []
         for t in range(len(sequence[0])):
             combined = hidden + [row[t] for row in sequence]
-            values = [
-                math.sumprod(row, combined) + bias
-                for row, bias in zip(
-                    prepared["recurrent_rows"], prepared["recurrent_biases"], strict=True
-                )
-            ]
-            gates = [
-                [math.tanh(v) for v in values[:self.hidden]],
-                *[[0.5 * (1 + math.tanh(0.5 * v)) for v in values[i:i + self.hidden]]
-                  for i in range(self.hidden, 4 * self.hidden, self.hidden)],
-            ]
+            gates = []
+            for index, gate in enumerate(self.lstm.gates):
+                values = [
+                    math.sumprod(row, combined) + bias.value
+                    for row, bias in zip(prepared["dense"][gate][0], gate.biases[0], strict=True)
+                ]
+                gates.append([math.tanh(v) if index == 0 else self.sigmoid(v) for v in values])
             candidate, update, forget, output = gates
             previous_cell = cell
             cell = [
@@ -369,8 +304,7 @@ class GroupedCNNLSTM:
                 for u, c, f, old in zip(update, candidate, forget, previous_cell, strict=True)
             ]
             hidden = [o * math.tanh(c) for o, c in zip(output, cell, strict=True)]
-            if label is not None:
-                recurrent.append((combined, previous_cell, cell, gates))
+            recurrent.append((combined, previous_cell, cell, gates))
         if return_hidden:
             return hidden
         head_hidden = [
@@ -384,12 +318,7 @@ class GroupedCNNLSTM:
         if label is None:
             return probability
         loss = max(logit, 0) - label * logit + math.log1p(math.exp(-abs(logit)))
-        gradient = (
-            self._zero_head_gradient if (convolution_accumulator is not None
-                                        and recurrent_accumulator is not None)
-            else self._zero_nonrecurrent_gradient if recurrent_accumulator is not None
-            else self._zero_gradient
-        ).copy()
+        gradient = {p: 0.0 for p in self.parameters()}
         derivative = probability - label
         gradient[self.head.biases[1][0]] += derivative
         for weight, value in zip(self.head.weights[1][0], head_hidden, strict=True):
@@ -407,15 +336,8 @@ class GroupedCNNLSTM:
             for j, weight in enumerate(weights):
                 gradient[weight] += dz * hidden[j]
                 dh[j] += dz * weight.value
-        if not any(dh):
-            # A zero upstream derivative leaves every trunk gradient at zero.
-            return probability, loss, gradient
         dc = [0.0] * self.hidden
-        dsequence = [] if frozen_conv else [[0.0] * len(row) for row in sequence]
-        # Parameter gradients can be reduced over time after the recurrence
-        # gradients are known; parameter values stay fixed throughout this pass.
-        reverse_columns = list(zip(*(row[0] for row in reversed(recurrent)), strict=True))
-        gate_signals = [[] for _ in self.lstm.gates]
+        dsequence = [[0.0] * len(row) for row in sequence]
         for t in reversed(range(len(recurrent))):
             combined, previous_cell, current_cell, gates = recurrent[t]
             candidate, update, forget, output = gates
@@ -439,40 +361,19 @@ class GroupedCNNLSTM:
                 ],
                 [h * c * o * (1 - o) for h, c, o in zip(dh, tanh_cell, output, strict=True)],
             ]
-            signals_flat = [value for values in gate_gradients for value in values]
-            width = self.hidden if frozen_conv else len(combined)
-            dcombined = [
-                math.sumprod(signals_flat, column)
-                for column in prepared["recurrent_columns"][:width]
-            ]
-            for signals, values in zip(gate_signals, gate_gradients, strict=True):
-                signals.append(values)
+            dcombined = [0.0] * len(combined)
+            for gate, dg in zip(self.lstm.gates, gate_gradients, strict=True):
+                for i, (weights, bias) in enumerate(
+                    zip(gate.weights[0], gate.biases[0], strict=True)
+                ):
+                    gradient[bias] += dg[i]
+                    for j, weight in enumerate(weights):
+                        gradient[weight] += dg[i] * combined[j]
+                        dcombined[j] += dg[i] * weight.value
             dh = dcombined[: self.hidden]
             dc = [g * f for g, f in zip(cell_gradient, forget, strict=True)]
             for row, value in zip(dsequence, dcombined[self.hidden :], strict=True):
                 row[t] = value
-        if recurrent_accumulator is not None:
-            for destination, column in zip(
-                recurrent_accumulator["columns"], reverse_columns, strict=True
-            ):
-                destination.extend(column)
-            for destinations, signals in zip(
-                recurrent_accumulator["signals"], gate_signals, strict=True
-            ):
-                for destination, values in zip(
-                    destinations, zip(*signals, strict=True), strict=True
-                ):
-                    destination.extend(values)
-        else:
-            for gate, signals in zip(self.lstm.gates, gate_signals, strict=True):
-                derivatives = list(zip(*signals, strict=True))
-                for weights, bias, values in zip(
-                    gate.weights[0], gate.biases[0], derivatives, strict=True
-                ):
-                    for value in values:
-                        gradient[bias] += value
-                    for weight, column in zip(weights, reverse_columns, strict=True):
-                        gradient[weight] += math.sumprod(values, column)
         offset = 0
         for index, (group, first_out, indices, pooled, second_out) in enumerate(caches):
             width = len(second_out)
@@ -483,7 +384,6 @@ class GroupedCNNLSTM:
                 dsequence[offset : offset + width],
                 gradient,
                 activation=self.activation,
-                parameter_accumulator=convolution_accumulator,
             )
             offset += width
             dfirst = [[0.0] * len(row) for row in first_out]
@@ -491,9 +391,7 @@ class GroupedCNNLSTM:
                 for i, value in zip(selected, upstream, strict=True):
                     row[i] += value
             dgroup = self.conv_backward(
-                self.first[index], group, first_out, dfirst, gradient, activation=self.activation,
-                input_gradient=bool(index and not frozen),
-                parameter_accumulator=convolution_accumulator,
+                self.first[index], group, first_out, dfirst, gradient, activation=self.activation
             )
             if index and not frozen:
                 self.conv_backward(
@@ -502,25 +400,8 @@ class GroupedCNNLSTM:
                     encoded[index - 1],
                     dgroup,
                     gradient,
-                    input_gradient=False,
-                    parameter_accumulator=convolution_accumulator,
                 )
         return probability, loss, gradient
-
-    def recurrent_batch(self):
-        return {
-            "columns": [[] for _ in range(self.lstm.gates[0].widths[0])],
-            "signals": [[[] for _ in range(self.hidden)] for _ in self.lstm.gates],
-        }
-
-    def reduce_recurrent_batch(self, batch, gradient, divisor):
-        for gate, signals in zip(self.lstm.gates, batch["signals"], strict=True):
-            for weights, bias, values in zip(
-                gate.weights[0], gate.biases[0], signals, strict=True
-            ):
-                gradient[bias] += sum(values) / divisor
-                for weight, column in zip(weights, batch["columns"], strict=True):
-                    gradient[weight] += math.sumprod(values, column) / divisor
 
     def convolution_sequence(self, channels):
         encoded = [
@@ -542,31 +423,27 @@ class GroupedCNNLSTM:
         t = optimizer["step"]
         norm = math.sqrt(sum(gradient[p] ** 2 for p in parameters))
         clip = min(1.0, 5.0 / max(norm, 1e-12))
-        correction_m, correction_v = 1 - 0.9**t, 1 - 0.999**t
         for p in parameters:
             g = gradient[p] * clip
             m, v = optimizer["moments"].get(p, (0.0, 0.0))
             m, v = 0.9 * m + 0.1 * g, 0.999 * v + 0.001 * g * g
             optimizer["moments"][p] = (m, v)
-            p.value -= rate * (m / correction_m) / (math.sqrt(v / correction_v) + 1e-8)
+            p.value -= rate * (m / (1 - 0.9**t)) / (math.sqrt(v / (1 - 0.999**t)) + 1e-8)
             if not math.isfinite(p.value):
                 raise ValueError("CNN optimization produced a nonfinite parameter")
 
-    def head_prediction(self, hidden, *, label=None, prepared=None):
-        prepared = prepared if prepared is not None else [
-            [[w.value for w in row] for row in layer] for layer in self.head.weights
-        ]
+    def head_prediction(self, hidden, *, label=None):
         values = [
-            math.sumprod(row, hidden) + b.value
-            for row, b in zip(prepared[0], self.head.biases[0], strict=True)
+            sum(w.value * x for w, x in zip(row, hidden, strict=True)) + b.value
+            for row, b in zip(self.head.weights[0], self.head.biases[0], strict=True)
         ]
         values = [max(0.0, v) if self.activation else math.tanh(v) for v in values]
-        logit = math.sumprod(prepared[1][0], values)
+        logit = sum(w.value * x for w, x in zip(self.head.weights[1][0], values, strict=True))
         logit += self.head.biases[1][0].value
         probability = self.sigmoid(logit)
         if label is None:
             return probability
-        gradient = self._zero_head_gradient.copy()
+        gradient = {p: 0.0 for p in self.head.parameters()}
         derivative = probability - label
         gradient[self.head.biases[1][0]] = derivative
         for weight, value in zip(self.head.weights[1][0], values, strict=True):
@@ -686,8 +563,9 @@ class GroupedCNNLSTM:
         stamps = [float(s.features["window_end_ms"]) for s in request.samples]
         if any(b <= a for a, b in zip(stamps, stamps[1:], strict=False)):
             raise ValueError("CNN window end times must strictly increase")
-        window_features = [self.features(window, mode=self.feature_mode) for window in windows]
-        features = [row for i in train_indices for row in window_features[i]]
+        features = [
+            row for i in train_indices for row in self.features(windows[i], mode=self.feature_mode)
+        ]
         if options["scaler"]:
             # Author-inspired train-only MinMax normalization. Validation/test
             # values may lie outside [0,1]; never refit or clip those partitions.
@@ -702,23 +580,12 @@ class GroupedCNNLSTM:
                 or 1.0
                 for j in range(10)
             ]
-        channels = [
-            [[(row[j] - self.means[j]) / self.scales[j] for row in feature] for j in range(10)]
-            for feature in window_features
-        ]
-        del window_features
+        channels = [self.channels(window) for window in windows]
         before = [p.value for p in self.parameters()]
         rng = random.Random(request.seed)
         ae_optimizer = {"step": 0, "moments": {}}
         ae_parameters = [p for layer in self.encoders + self.decoders for p in layer.parameters()]
         ae_losses = []
-        # These normalized inputs stay fixed while the encoder weights train.
-        encoder_patches = [
-            [self.conv_patches(net, group) for net, group in zip(
-                self.encoders, [row[5:7], row[7:10]], strict=True
-            )]
-            for row in channels
-        ]
         for _epoch in range(options["ae_epochs"]):
             order = list(train_indices)
             rng.shuffle(order)
@@ -726,19 +593,15 @@ class GroupedCNNLSTM:
             for start in range(0, len(order), options["batch_size"]):
                 batch = order[start : start + options["batch_size"]]
                 gradient = {p: 0.0 for p in ae_parameters}
-                convolution_batch = {}
                 prepared = self.snapshot_weights()
                 for i in batch:
-                    for index, (group, encoder, decoder) in enumerate(zip(
+                    for group, encoder, decoder in zip(
                         [channels[i][5:7], channels[i][7:10]],
                         self.encoders,
                         self.decoders,
                         strict=True,
-                    )):
-                        encoded = self.conv_fast(
-                            encoder, group, prepared=prepared["conv"][encoder],
-                            patches=encoder_patches[i][index],
-                        )
+                    ):
+                        encoded = self.conv_fast(encoder, group, prepared=prepared["conv"][encoder])
                         decoded = self.conv_fast(
                             decoder, encoded, activate=False, prepared=prepared["conv"][decoder]
                         )
@@ -748,20 +611,13 @@ class GroupedCNNLSTM:
                             for a, b in zip(decoded, group, strict=True)
                         ]
                         total_loss += sum(v * v for row in errors for v in row) / scale
-                        factor = 2 / scale / len(batch)
-                        upstream = [[factor * v for v in row] for row in errors]
+                        upstream = [[2 * v / scale / len(batch) for v in row] for row in errors]
                         dencoded = self.conv_backward(
-                            decoder, encoded, decoded, upstream, gradient, activate=False,
-                            parameter_accumulator=convolution_batch,
+                            decoder, encoded, decoded, upstream, gradient, activate=False
                         )
-                        self.conv_backward(
-                            encoder, group, encoded, dencoded, gradient, input_gradient=False,
-                            parameter_accumulator=convolution_batch,
-                        )
-                self.reduce_convolution_batch(convolution_batch, gradient)
+                        self.conv_backward(encoder, group, encoded, dencoded, gradient)
                 self.adam_step(ae_parameters, gradient, ae_optimizer, options["learning_rate"])
             ae_losses.append(total_loss / len(order))
-        del encoder_patches
         train_labels = [labels[i] for i in train_indices]
         val_labels = [labels[i] for i in val_indices]
         encoder_after_pretraining = [p.value for net in self.encoders for p in net.parameters()]
@@ -776,13 +632,6 @@ class GroupedCNNLSTM:
                 for row in channels
             ]
 
-        frozen_patches = (
-            [[self.conv_patches(layer, group) for layer, group in zip(
-                self.first, groups, strict=True
-            )] for groups in frozen_groups]
-            if frozen_groups is not None else None
-        )
-
         def score(indices, targets):
             prepared = self.snapshot_weights()
             return self.metrics(
@@ -791,7 +640,6 @@ class GroupedCNNLSTM:
                         channels[i],
                         groups=frozen_groups[i] if frozen_groups else None,
                         prepared=prepared,
-                        first_patches=frozen_patches[i] if frozen_patches is not None else None,
                     )
                     for i in indices
                 ],
@@ -816,7 +664,6 @@ class GroupedCNNLSTM:
             )
             for p in layer.parameters()
         ]
-        nonrecurrent_parameters = self.head.parameters()
         trace = []
         for epoch in range(1, options["max_epochs"] + 1):
             order = list(train_indices)
@@ -825,8 +672,6 @@ class GroupedCNNLSTM:
             for start in range(0, len(order), options["batch_size"]):
                 batch = order[start : start + options["batch_size"]]
                 accumulated = {p: 0.0 for p in parameters}
-                recurrent_batch = self.recurrent_batch()
-                convolution_batch = {}
                 prepared = self.snapshot_weights()
                 for i in batch:
                     probability, _, gradient = self.fast_prediction(
@@ -834,16 +679,11 @@ class GroupedCNNLSTM:
                         label=labels[i],
                         prepared=prepared,
                         groups=frozen_groups[i] if frozen_groups else None,
-                        first_patches=frozen_patches[i] if frozen_patches is not None else None,
-                        recurrent_accumulator=recurrent_batch,
-                        convolution_accumulator=convolution_batch,
                     )
                     epoch_probabilities.append(probability)
                     epoch_labels.append(labels[i])
-                    for p in nonrecurrent_parameters:
+                    for p in parameters:
                         accumulated[p] += gradient[p] / len(batch)
-                self.reduce_recurrent_batch(recurrent_batch, accumulated, len(batch))
-                self.reduce_convolution_batch(convolution_batch, accumulated, len(batch))
                 self.adam_step(parameters, accumulated, optimizer, options["learning_rate"])
             train_score = self.metrics(epoch_probabilities, epoch_labels)
             val_score = score(val_indices, val_labels)
@@ -882,18 +722,15 @@ class GroupedCNNLSTM:
                 for start in range(0, len(order), options["batch_size"]):
                     batch = order[start : start + options["batch_size"]]
                     gradient = {p: 0.0 for p in recurrent_parameters}
-                    recurrent_batch = self.recurrent_batch()
                     prepared = self.snapshot_weights()
                     for i in batch:
                         probability, _, sample_gradient = self.fast_prediction(
-                            channels[i], label=labels[i], sequence=sequences[i], prepared=prepared,
-                            recurrent_accumulator=recurrent_batch,
+                            channels[i], label=labels[i], sequence=sequences[i], prepared=prepared
                         )
                         epoch_probabilities.append(probability)
                         epoch_labels.append(labels[i])
-                        for p in self.head.parameters():
+                        for p in recurrent_parameters:
                             gradient[p] += sample_gradient[p] / len(batch)
-                    self.reduce_recurrent_batch(recurrent_batch, gradient, len(batch))
                     self.adam_step(
                         recurrent_parameters, gradient, optimizer, options["learning_rate"]
                     )
@@ -938,12 +775,9 @@ class GroupedCNNLSTM:
                 for start in range(0, len(order), options["batch_size"]):
                     batch = order[start : start + options["batch_size"]]
                     gradient = {p: 0.0 for p in head_parameters}
-                    head_prepared = [
-                        [[w.value for w in row] for row in layer] for layer in self.head.weights
-                    ]
                     for i in batch:
                         probability, sample_gradient = self.head_prediction(
-                            hidden_vectors[i], label=labels[i], prepared=head_prepared
+                            hidden_vectors[i], label=labels[i]
                         )
                         epoch_probabilities.append(probability)
                         epoch_labels.append(labels[i])
@@ -973,21 +807,10 @@ class GroupedCNNLSTM:
                     break
             for p, value in zip(self.parameters(), best, strict=True):
                 p.value = value
-        if head_epochs:
-            head_prepared = [
-                [[w.value for w in row] for row in layer] for layer in self.head.weights
-            ]
-            selected_train, selected_validation = (
-                self.metrics([
-                    self.head_prediction(hidden_vectors[i], prepared=head_prepared)
-                    for i in indices
-                ], targets)
-                for indices, targets in ((train_indices, train_labels), (val_indices, val_labels))
-            )
-        else:
-            selected_train, selected_validation = (
-                score(train_indices, train_labels), score(val_indices, val_labels)
-            )
+        selected_train, selected_validation = (
+            score(train_indices, train_labels),
+            score(val_indices, val_labels),
+        )
         after = [p.value for p in self.parameters()]
         return json.dumps(
             {

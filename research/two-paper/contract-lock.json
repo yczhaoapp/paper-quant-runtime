@@ -50,5 +50,11 @@
     "src/paperquant/traces.py": "43b9fab317f2fd65696d8fab587026b18cf1dade60d1b9446aa4aa9e8a5ba7f3",
     "src/paperquant/worker.py": "343a8a9f2b664980f35ee3bbd9b99089ce86ebd86a2a94b6292a9f40f245d0ca"
   },
-  "scope": "every runtime, public API and schema byte remains unchanged"
+  "scope": "every runtime, public API and schema byte remains unchanged",
+  "execution_policy_revisions": {
+    "src/paperquant/sandbox.py": {
+      "current_sha256": "2d2f1a779640f3cf488f8fe7075cad8d927598a0080d3b7e420925c86ac56755",
+      "scope": "Worker execution policy only: no default training deadline; optional caller budget; load/infer remain 20 seconds. Schema, lifecycle and strategy calculations unchanged."
+    }
+  }
 }

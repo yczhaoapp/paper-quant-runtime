@@ -285,6 +285,7 @@ class HangingLearner:
         run_id=f"timeout-{operation}", package_dir=package,
         declaration=declaration(learning=True),
         source_sha256=hashlib.sha256(source.encode()).hexdigest(),
+        training_timeout=1,
     )
     container_id = worker.receipt.container_id
     original_receive = worker._receive
