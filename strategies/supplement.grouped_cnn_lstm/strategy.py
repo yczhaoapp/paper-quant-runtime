@@ -185,10 +185,14 @@ class GroupedCNNLSTM:
         return 1 / (1 + math.exp(-value)) if value >= 0 else math.exp(value) / (1 + math.exp(value))
 
     @staticmethod
-    def conv_fast(layer, inputs, *, activate=True, activation=0, prepared=None):
+    def conv_patches(layer, inputs):
         length = len(inputs[0]) + 2 * layer.padding - layer.kernel + 1
         padded = [[0.0] * layer.padding + row + [0.0] * layer.padding for row in inputs]
-        patches = [[x for row in padded for x in row[t : t + layer.kernel]] for t in range(length)]
+        return [[x for row in padded for x in row[t : t + layer.kernel]] for t in range(length)]
+
+    @staticmethod
+    def conv_fast(layer, inputs, *, activate=True, activation=0, prepared=None, patches=None):
+        patches = patches if patches is not None else GroupedCNNLSTM.conv_patches(layer, inputs)
         output = []
         weights_flat = (
             prepared
@@ -197,8 +201,8 @@ class GroupedCNNLSTM:
         )
         for weights, bias in zip(weights_flat, layer.biases, strict=True):
             channel = []
-            for t in range(length):
-                value = bias.value + math.sumprod(weights, patches[t])
+            for patch in patches:
+                value = bias.value + math.sumprod(weights, patch)
                 channel.append(
                     (max(0.0, value) if activation else math.tanh(value)) if activate else value
                 )
@@ -269,6 +273,7 @@ class GroupedCNNLSTM:
         prepared=None,
         return_hidden=False,
         sequence=None,
+        first_patches=None,
     ):
         """Same convolution/LSTM/head equations with analytic backpropagation.
 
@@ -287,11 +292,12 @@ class GroupedCNNLSTM:
         caches = []
         if sequence is None:
             sequence = []
-        for group, first, second in (
+        for index, (group, first, second) in enumerate(
             [] if frozen_conv else zip(groups, self.first, self.second, strict=True)
         ):
             first_out = self.conv_fast(
-                first, group, activation=self.activation, prepared=prepared["conv"][first]
+                first, group, activation=self.activation, prepared=prepared["conv"][first],
+                patches=first_patches[index] if first_patches is not None else None,
             )
             indices = [
                 [max(range(t, t + 2), key=lambda i: row[i]) for t in range(0, len(row) - 1, 2)]
@@ -304,7 +310,8 @@ class GroupedCNNLSTM:
                 second, pooled, activation=self.activation, prepared=prepared["conv"][second]
             )
             sequence.extend(second_out)
-            caches.append((group, first_out, indices, pooled, second_out))
+            if label is not None:
+                caches.append((group, first_out, indices, pooled, second_out))
         hidden, cell = [0.0] * self.hidden, [0.0] * self.hidden
         recurrent = []
         for t in range(len(sequence[0])):
@@ -622,6 +629,13 @@ class GroupedCNNLSTM:
         ae_optimizer = {"step": 0, "moments": {}}
         ae_parameters = [p for layer in self.encoders + self.decoders for p in layer.parameters()]
         ae_losses = []
+        # These normalized inputs stay fixed while the encoder weights train.
+        encoder_patches = [
+            [self.conv_patches(net, group) for net, group in zip(
+                self.encoders, [row[5:7], row[7:10]], strict=True
+            )]
+            for row in channels
+        ]
         for _epoch in range(options["ae_epochs"]):
             order = list(train_indices)
             rng.shuffle(order)
@@ -631,13 +645,16 @@ class GroupedCNNLSTM:
                 gradient = {p: 0.0 for p in ae_parameters}
                 prepared = self.snapshot_weights()
                 for i in batch:
-                    for group, encoder, decoder in zip(
+                    for index, (group, encoder, decoder) in enumerate(zip(
                         [channels[i][5:7], channels[i][7:10]],
                         self.encoders,
                         self.decoders,
                         strict=True,
-                    ):
-                        encoded = self.conv_fast(encoder, group, prepared=prepared["conv"][encoder])
+                    )):
+                        encoded = self.conv_fast(
+                            encoder, group, prepared=prepared["conv"][encoder],
+                            patches=encoder_patches[i][index],
+                        )
                         decoded = self.conv_fast(
                             decoder, encoded, activate=False, prepared=prepared["conv"][decoder]
                         )
@@ -656,6 +673,7 @@ class GroupedCNNLSTM:
                         )
                 self.adam_step(ae_parameters, gradient, ae_optimizer, options["learning_rate"])
             ae_losses.append(total_loss / len(order))
+        del encoder_patches
         train_labels = [labels[i] for i in train_indices]
         val_labels = [labels[i] for i in val_indices]
         encoder_after_pretraining = [p.value for net in self.encoders for p in net.parameters()]
@@ -670,6 +688,13 @@ class GroupedCNNLSTM:
                 for row in channels
             ]
 
+        frozen_patches = (
+            [[self.conv_patches(layer, group) for layer, group in zip(
+                self.first, groups, strict=True
+            )] for groups in frozen_groups]
+            if frozen_groups is not None else None
+        )
+
         def score(indices, targets):
             prepared = self.snapshot_weights()
             return self.metrics(
@@ -678,6 +703,7 @@ class GroupedCNNLSTM:
                         channels[i],
                         groups=frozen_groups[i] if frozen_groups else None,
                         prepared=prepared,
+                        first_patches=frozen_patches[i] if frozen_patches is not None else None,
                     )
                     for i in indices
                 ],
@@ -717,6 +743,7 @@ class GroupedCNNLSTM:
                         label=labels[i],
                         prepared=prepared,
                         groups=frozen_groups[i] if frozen_groups else None,
+                        first_patches=frozen_patches[i] if frozen_patches is not None else None,
                     )
                     epoch_probabilities.append(probability)
                     epoch_labels.append(labels[i])

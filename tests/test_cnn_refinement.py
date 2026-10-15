@@ -176,9 +176,18 @@ def test_frozen_encoder_cache_matches_uncached_prediction_and_training_gradients
     right, cached_loss, cached_gradient = model.fast_prediction(channels, label=1, groups=groups)
     assert right == pytest.approx(left, abs=1e-12)
     assert cached_loss == pytest.approx(loss, abs=1e-12)
+    patches = [model.conv_patches(net, group) for net, group in zip(
+        model.first, groups, strict=True
+    )]
+    accelerated, accelerated_loss, accelerated_gradient = model.fast_prediction(
+        channels, label=1, groups=groups, first_patches=patches
+    )
+    assert accelerated == pytest.approx(left, abs=1e-12)
+    assert accelerated_loss == pytest.approx(loss, abs=1e-12)
     for layer in model.first + model.second + [model.lstm, model.head]:
         for p in layer.parameters():
             assert cached_gradient[p] == pytest.approx(gradient[p], abs=1e-12)
+            assert accelerated_gradient[p] == pytest.approx(gradient[p], abs=1e-12)
     for layer in model.encoders:
         assert all(cached_gradient[p] == 0 for p in layer.parameters())
 

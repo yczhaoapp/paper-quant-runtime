@@ -1,0 +1,95 @@
+name: CNN compute evidence
+on:
+  push:
+    branches: [codex/cnn-compute-diagnostic]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compute:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: subject
+    env:
+      PYTHONUTF8: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ad9c8ade137963c68b5ef02a36c7f381fba0db2e
+          path: subject
+          persist-credentials: false
+      - uses: actions/checkout@v7
+        with:
+          ref: 8634043ca8f51490084f155b1f21be86e2639309
+          path: baseline
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4
+        with:
+          version: "0.12.18"
+          working-directory: subject
+      - run: uv sync --locked --extra dev
+      - name: Actual host fitting and profiling, no resource certification
+        shell: uv run --no-sync python {0}
+        run: |
+          import cProfile, hashlib, importlib.util, json, platform, pstats, subprocess, time
+          from pathlib import Path
+          from paperquant.models import TrainingRequest
+          from scripts.gate_support import source_identity
+          output=Path('runs/compute'); output.mkdir(parents=True,exist_ok=True)
+          def load(path,name):
+              spec=importlib.util.spec_from_file_location(name,path); m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m); return m.GroupedCNNLSTM
+          current=load(Path('strategies/supplement.grouped_cnn_lstm/strategy.py'),'new_cnn')
+          previous=load(Path('../baseline/strategies/supplement.grouped_cnn_lstm/strategy.py'),'old_cnn')
+          raw=Path('examples/six-paper/grouped_cnn_lstm/training.json').read_bytes()
+          assert raw==Path('../baseline/examples/six-paper/grouped_cnn_lstm/training.json').read_bytes()
+          request=TrainingRequest.model_validate_json(raw)
+          records={}
+          for name,cls in [('baseline',previous),('current',current)]:
+              started=time.perf_counter(); payload=cls().train(request); elapsed=time.perf_counter()-started
+              (output/(name+'.bin')).write_bytes(payload)
+              records[name]={'elapsed_host_seconds':elapsed,'model':json.loads(payload),'model_sha256':hashlib.sha256(payload).hexdigest()}
+          error=max(abs(a-b) for a,b in zip(records['baseline']['model']['parameters'],records['current']['model']['parameters'],strict=True))
+          assert error<1e-10
+          assert records['baseline']['model']['options']==records['current']['model']['options']
+          for record in records.values(): record.pop('model')
+          result={'scope':'uncapped trusted host computation diagnostic; strict worker is checked separately','identity':source_identity(Path.cwd(),require_clean=True),'cpu':subprocess.check_output(['lscpu'],text=True),'python':platform.python_version(),'training_file_sha256':hashlib.sha256(raw).hexdigest(),'records':records,'max_parameter_error':error}
+          (output/'host.json').write_text(json.dumps(result,indent=2)+'\n')
+          print(json.dumps(records),flush=True)
+          prof=cProfile.Profile();prof.enable();current().train(request);prof.disable()
+          with (output/'profile.txt').open('w') as stream:pstats.Stats(prof,stream=stream).strip_dirs().sort_stats('tottime').print_stats(40)
+          print((output/'profile.txt').read_text(),flush=True)
+      - name: Build unchanged native AMD64 runtime worker
+        run: docker build --no-cache -f Dockerfile.worker -t paperquant-worker:six-paper-0.2 .
+      - name: Probe actual training under existing worker limits
+        shell: uv run --no-sync python {0}
+        run: |
+          import hashlib,json,time
+          from pathlib import Path
+          from paperquant.package import inspect_package
+          from paperquant.sandbox import DockerWorkerStrategy
+          from paperquant.models import TrainingRequest,ContractFault
+          from scripts.gate_support import source_identity
+          output=Path('runs/compute'); manifest,_=inspect_package('compute-probe',Path('strategies/supplement.grouped_cnn_lstm'))
+          request=TrainingRequest.model_validate_json(Path('examples/six-paper/grouped_cnn_lstm/training.json').read_bytes())
+          worker=DockerWorkerStrategy(run_id='compute-probe',package_dir=Path('strategies/supplement.grouped_cnn_lstm').resolve(),declaration=manifest.declaration,source_sha256=manifest.source_sha256)
+          result={'scope':'training-only strict resource probe, no backtest certification','identity':source_identity(Path.cwd(),require_clean=True),'worker_receipt':worker.receipt.model_dump(mode='json')}
+          try:
+              started=time.perf_counter();payload=worker.train(request);elapsed=time.perf_counter()-started
+              result.update(status='passed',elapsed_seconds=elapsed,model_sha256=hashlib.sha256(payload).hexdigest())
+          except ContractFault as exc:
+              result.update(status='failed',failure=exc.failure.model_dump(mode='json'))
+          finally:worker.close()
+          (output/'strict-probe.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result),flush=True)
+          assert result['status']=='passed'
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: cnn-compute-ad9c8ad
+          path: subject/runs/compute
+          if-no-files-found: error
