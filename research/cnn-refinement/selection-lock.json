@@ -365,7 +365,15 @@
   "host_payload_sha256": "f2eeb6b7c6f653decf3266fd3fadccfb3b85bfa92f52913dc9bbc38e4f5d9acb",
   "locked_at": "2026-10-14T23:09:30.583106+00:00",
   "market_prediction_assertion": "not established; no profitability or original experiment reproduction claim",
-  "package_source_sha256": "a4d75d0cd1fa750f1a5e6c5eaf3240b68d572284a621e3da3bddecfcf868b245",
+  "numeric_implementation_revision": {
+    "baseline_commit": "8634043ca8f51490084f155b1f21be86e2639309",
+    "baseline_package_source_sha256": "a4d75d0cd1fa750f1a5e6c5eaf3240b68d572284a621e3da3bddecfcf868b245",
+    "original_budget_probe_scope": "budget_probe_seconds/status retain the original development machine probe; current platform runs have separate version-bound receipts",
+    "parameter_comparison_tolerance": 1e-10,
+    "scope": "Equivalent gradient reductions, cached transposes and unused/zero upstream gradient elimination; no configuration or data reselection",
+    "test_window_scope": "previously observed 2025Q1 window reused solely for deterministic execution validation"
+  },
+  "package_source_sha256": "39a9f5762554d406dc32cb31525076b5d1dc278b12155120a94ff168cba43fa0",
   "post_selection_formatting": {
     "pre_format_lock_sha256": "536dfdefc2db2c6d3c512cfece1155a2110035e1ad92f81074f7319a7497a2b7",
     "scope": "formatting only after CSV acquisition, before predictions; configuration and numerical implementation unchanged",

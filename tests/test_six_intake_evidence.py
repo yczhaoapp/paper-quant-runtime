@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
-import os
+import shutil
 from decimal import Decimal
 from pathlib import Path
 
@@ -105,10 +105,20 @@ def test_multi_algorithm_mapping_checks_all_sources_and_rejects_claim_substituti
     assert len(checked["additional_source_sha256"]) == 2
     assert {a["source_index"] for a in checked["anchors"]} == {0, 1, 2}
     claims = json.loads((original.parent / recipe["claim_file"]).read_text())
+    # A complete relative-path recipe fixture also works when the repository
+    # and the system temporary directory are on different Windows volumes.
     for key in ("package", "claim_file", "spec_file"):
-        recipe[key] = os.path.relpath((original.parent / recipe[key]).resolve(), tmp_path)
-    for source in [recipe["source"], *recipe["additional_sources"]]:
-        source["file"] = os.path.relpath((original.parent / source["file"]).resolve(), tmp_path)
+        source = (original.parent / recipe[key]).resolve()
+        destination = tmp_path / key
+        if source.is_dir():
+            shutil.copytree(source, destination)
+        else:
+            shutil.copyfile(source, destination)
+        recipe[key] = destination.name
+    for index, source in enumerate([recipe["source"], *recipe["additional_sources"]]):
+        destination = tmp_path / f"paper-{index}.pdf"
+        shutil.copyfile((original.parent / source["file"]).resolve(), destination)
+        source["file"] = destination.name
     claims["algorithm_sources"][1]["url"] = "https://example.org/unrelated-algorithm"
     (tmp_path / "claims.json").write_text(json.dumps(claims))
     recipe["claim_file"] = "claims.json"
