@@ -59,6 +59,8 @@ jobs:
                     "system": platform.system(), "machine": platform.machine(),
                     "python": sys.version, "runner_os": os.environ["RUNNER_OS"],
                     "runner_arch": os.environ["RUNNER_ARCH"],
+                    "pytest_basetemp": "runs/pytest-tmp",
+                    "temporary_path_scope": "same volume as relative-path recipe fixtures; all test nodes and assertions unchanged",
                     "run_url": os.environ["GITHUB_SERVER_URL"] + "/" + os.environ["GITHUB_REPOSITORY"] + "/actions/runs/" + os.environ["GITHUB_RUN_ID"],
                     "uv_lock_sha256": hashlib.sha256(Path("uv.lock").read_bytes()).hexdigest()}
           Path("runs/environment.json").write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
@@ -69,7 +71,7 @@ jobs:
       - name: Prepare the independent case
         run: uv run --no-sync python scripts/build_busseti_case.py --fetch --output runs/source-preparation/busseti-build
       - name: Complete host test suite with JUnit
-        run: uv run --no-sync python -m pytest -q -p no:cacheprovider --junitxml runs/host-tests.xml
+        run: uv run --no-sync python -m pytest -q -p no:cacheprovider --basetemp runs/pytest-tmp --junitxml runs/host-tests.xml
       - name: Lint
         run: uv run --no-sync ruff check .
       - name: Type check
@@ -115,6 +117,7 @@ jobs:
           path: |
             runs
             !runs/**/paper.pdf
+            !runs/pytest-tmp/**
           if-no-files-found: error
 
   strict:
@@ -178,6 +181,7 @@ jobs:
           path: |
             runs
             !runs/**/paper.pdf
+            !runs/pytest-tmp/**
           if-no-files-found: error
 
   release-gates:
