@@ -196,7 +196,7 @@
         ],
         "method_spec_sha256": "5f81280392c9381692cb98f99abf54224e429645a14da08245b48c7871718b9a",
         "method_steps": 16,
-        "package_source_sha256": "96c8094032e173b5f6d2708a5d87f20e82b09c97db7b979c1561fcd6c3c557f8",
+        "package_source_sha256": "06e11d2230bc868a4ad04ae78652f5ce2ac74d1b09f526004e53a094210fa108",
         "page_count": 26,
         "paper_title": "Compatible deep neural network framework with financial time series data, including data preprocessor, neural network model and trading strategy",
         "review_note": "Upstream paper interpretation and code were authored after the original sealed submission. This is reviewed directional intake, not autonomous generation from arbitrary prose. Public BTC/USDT Jan-Jun2024 training, July-September development validation, independent January-March2025 test; prior August-September and October-December negative results retained.",

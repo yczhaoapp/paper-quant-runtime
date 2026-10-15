@@ -373,7 +373,7 @@
     "scope": "Equivalent gradient reductions, cached transposes and unused/zero upstream gradient elimination; no configuration or data reselection",
     "test_window_scope": "previously observed 2025Q1 window reused solely for deterministic execution validation"
   },
-  "package_source_sha256": "96c8094032e173b5f6d2708a5d87f20e82b09c97db7b979c1561fcd6c3c557f8",
+  "package_source_sha256": "06e11d2230bc868a4ad04ae78652f5ce2ac74d1b09f526004e53a094210fa108",
   "post_selection_formatting": {
     "pre_format_lock_sha256": "536dfdefc2db2c6d3c512cfece1155a2110035e1ad92f81074f7319a7497a2b7",
     "scope": "formatting only after CSV acquisition, before predictions; configuration and numerical implementation unchanged",
