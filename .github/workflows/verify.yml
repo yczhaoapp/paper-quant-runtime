@@ -9,8 +9,8 @@ permissions:
   contents: read
 
 env:
-  SUBJECT_COMMIT: 4a09226a62a9b549759b8cc2e4cb32485706b054
-  SUBJECT_TREE_SHA256: c9db31616a2d3fa6460e0a6506c8ff5300a7f7931fe519fc50adc5a5e5a4e922
+  SUBJECT_COMMIT: d09f9ec77379a4b781fd6908456f633537f73257
+  SUBJECT_TREE_SHA256: c0fcdc21c646969a55f641ac427ea757d0d521c2f500417ef0fb008fcc421f62
   PYTHONUTF8: "1"
   PYTHONDONTWRITEBYTECODE: "1"
   PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
@@ -93,7 +93,7 @@ jobs:
           assert identity["git_commit"] == os.environ["SUBJECT_COMMIT"]
           assert identity["source_tree_sha256"] == os.environ["SUBJECT_TREE_SHA256"]
           cases = list(ET.parse("runs/host-tests.xml").iter("testcase"))
-          assert len(cases) == 569
+          assert len(cases) == 577
           allowed = set(json.loads(Path("research/strict-test-nodes.json").read_bytes())["required_nodes"])
           skipped = []
           for case in cases:
@@ -165,7 +165,7 @@ jobs:
               assert receipt["source_tree_sha256"] == os.environ["SUBJECT_TREE_SHA256"]
           tests = Path("runs/strict/attempts") / strict["attempt_id"] / "tests.xml"
           cases = list(ET.parse(tests).iter("testcase"))
-          assert len(cases) == 569
+          assert len(cases) == 577
           assert not any(c.find(t) is not None for c in cases for t in ["failure", "error", "skipped"])
           image = json.loads(subprocess.check_output(["docker", "image", "inspect", "paperquant-worker:six-paper-0.2"], text=True))[0]
           assert image["Os"] == "linux" and image["Architecture"] == "amd64"
