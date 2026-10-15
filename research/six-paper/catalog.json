@@ -173,7 +173,7 @@
             "text": "two thresholds"
           }
         ],
-        "claim_sha256": "7142ce7ce7c93eb20ceb0b67a3da321f85beb49831bf7cc36f68578f2dc2aeba",
+        "claim_sha256": "e119934f10426fd6ebdc80fc5e6cb0012e232e786fdeafbb960f59ea62fb8634",
         "format": "pdf",
         "interpretation": "human-reviewed mapping; anchor checks do not prove semantic fidelity",
         "method_oracle_nodes": [
@@ -194,7 +194,7 @@
           "tests/test_cnn_refinement.py::test_cached_convolution_recurrent_stage_preserves_forward_and_recurrent_gradients",
           "tests/test_cnn_refinement.py::test_deployed_hidden4_relu_stages_learn_unseen_patterns_without_threshold_changes"
         ],
-        "method_spec_sha256": "5f81280392c9381692cb98f99abf54224e429645a14da08245b48c7871718b9a",
+        "method_spec_sha256": "46c8f3e5f1da3a281c6141bfa02e201efee9a0e44523438c2b0323bde47bbe9c",
         "method_steps": 16,
         "package_source_sha256": "a4d75d0cd1fa750f1a5e6c5eaf3240b68d572284a621e3da3bddecfcf868b245",
         "page_count": 26,
