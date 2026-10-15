@@ -206,31 +206,45 @@ class GroupedCNNLSTM:
         return output
 
     @staticmethod
-    def conv_backward(layer, inputs, output, upstream, gradient, *, activate=True, activation=0):
+    def conv_backward(
+        layer, inputs, output, upstream, gradient, *, activate=True, activation=0,
+        input_gradient=True,
+    ):
         padded = [[0.0] * layer.padding + row + [0.0] * layer.padding for row in inputs]
-        result = [[0.0] * len(row) for row in padded]
+        result = [[0.0] * len(row) for row in padded] if input_gradient else []
         for c, (weights, bias) in enumerate(zip(layer.weights, layer.biases, strict=True)):
-            for t, incoming in enumerate(upstream[c]):
-                derivative = (
-                    incoming * ((output[c][t] > 0) if activation else (1 - output[c][t] ** 2))
-                    if activate
-                    else incoming
-                )
+            derivatives = [
+                incoming * ((output[c][t] > 0) if activation else (1 - output[c][t] ** 2))
+                if activate else incoming
+                for t, incoming in enumerate(upstream[c])
+            ]
+            if not any(derivatives):
+                continue
+            for derivative in derivatives:
                 gradient[bias] += derivative
-                for row, input_row, input_gradient in zip(weights, padded, result, strict=True):
-                    for k, weight in enumerate(row):
-                        gradient[weight] += derivative * input_row[t + k]
-                        input_gradient[t + k] += derivative * weight.value
+            # Each weight gradient is a dot product over output positions.
+            # Frozen upstream layers need parameter gradients, not input gradients.
+            for row, input_row in zip(weights, padded, strict=True):
+                for k, weight in enumerate(row):
+                    gradient[weight] += math.sumprod(
+                        derivatives, input_row[k : k + len(derivatives)]
+                    )
+            if input_gradient:
+                for t, derivative in enumerate(derivatives):
+                    if derivative == 0.0:
+                        continue
+                    for row, input_row in zip(weights, result, strict=True):
+                        for k, weight in enumerate(row):
+                            input_row[t + k] += derivative * weight.value
         return (
             [row[layer.padding : len(row) - layer.padding] for row in result]
-            if layer.padding
-            else result
+            if layer.padding else result
         )
 
     def snapshot_weights(self):
         convs = self.encoders + self.decoders + self.first + self.second
         dense = self.lstm.gates + [self.head]
-        return {
+        snapshot = {
             "conv": {
                 layer: [[w.value for row in group for w in row] for group in layer.weights]
                 for layer in convs
@@ -240,6 +254,11 @@ class GroupedCNNLSTM:
                 for layer in dense
             },
         }
+        snapshot["dense_columns"] = {
+            layer: list(zip(*values[0], strict=True))
+            for layer, values in snapshot["dense"].items()
+        }
+        return snapshot
 
     def fast_prediction(
         self,
@@ -304,7 +323,8 @@ class GroupedCNNLSTM:
                 for u, c, f, old in zip(update, candidate, forget, previous_cell, strict=True)
             ]
             hidden = [o * math.tanh(c) for o, c in zip(output, cell, strict=True)]
-            recurrent.append((combined, previous_cell, cell, gates))
+            if label is not None:
+                recurrent.append((combined, previous_cell, cell, gates))
         if return_hidden:
             return hidden
         head_hidden = [
@@ -336,8 +356,15 @@ class GroupedCNNLSTM:
             for j, weight in enumerate(weights):
                 gradient[weight] += dz * hidden[j]
                 dh[j] += dz * weight.value
+        if not any(dh):
+            # A zero upstream derivative leaves every trunk gradient at zero.
+            return probability, loss, gradient
         dc = [0.0] * self.hidden
-        dsequence = [[0.0] * len(row) for row in sequence]
+        dsequence = [] if frozen_conv else [[0.0] * len(row) for row in sequence]
+        # Parameter gradients can be reduced over time after the recurrence
+        # gradients are known; parameter values stay fixed throughout this pass.
+        reverse_columns = list(zip(*(row[0] for row in reversed(recurrent)), strict=True))
+        gate_signals = [[] for _ in self.lstm.gates]
         for t in reversed(range(len(recurrent))):
             combined, previous_cell, current_cell, gates = recurrent[t]
             candidate, update, forget, output = gates
@@ -361,19 +388,26 @@ class GroupedCNNLSTM:
                 ],
                 [h * c * o * (1 - o) for h, c, o in zip(dh, tanh_cell, output, strict=True)],
             ]
-            dcombined = [0.0] * len(combined)
-            for gate, dg in zip(self.lstm.gates, gate_gradients, strict=True):
-                for i, (weights, bias) in enumerate(
-                    zip(gate.weights[0], gate.biases[0], strict=True)
-                ):
-                    gradient[bias] += dg[i]
-                    for j, weight in enumerate(weights):
-                        gradient[weight] += dg[i] * combined[j]
-                        dcombined[j] += dg[i] * weight.value
+            dcombined = [0.0] * (self.hidden if frozen_conv else len(combined))
+            for gate, dg, signals in zip(
+                self.lstm.gates, gate_gradients, gate_signals, strict=True
+            ):
+                signals.append(dg)
+                for j in range(len(dcombined)):
+                    dcombined[j] += math.sumprod(dg, prepared["dense_columns"][gate][j])
             dh = dcombined[: self.hidden]
             dc = [g * f for g, f in zip(cell_gradient, forget, strict=True)]
             for row, value in zip(dsequence, dcombined[self.hidden :], strict=True):
                 row[t] = value
+        for gate, signals in zip(self.lstm.gates, gate_signals, strict=True):
+            derivatives = list(zip(*signals, strict=True))
+            for weights, bias, values in zip(
+                gate.weights[0], gate.biases[0], derivatives, strict=True
+            ):
+                for value in values:
+                    gradient[bias] += value
+                for weight, column in zip(weights, reverse_columns, strict=True):
+                    gradient[weight] += math.sumprod(values, column)
         offset = 0
         for index, (group, first_out, indices, pooled, second_out) in enumerate(caches):
             width = len(second_out)
@@ -391,7 +425,8 @@ class GroupedCNNLSTM:
                 for i, value in zip(selected, upstream, strict=True):
                     row[i] += value
             dgroup = self.conv_backward(
-                self.first[index], group, first_out, dfirst, gradient, activation=self.activation
+                self.first[index], group, first_out, dfirst, gradient, activation=self.activation,
+                input_gradient=bool(index and not frozen),
             )
             if index and not frozen:
                 self.conv_backward(
@@ -400,6 +435,7 @@ class GroupedCNNLSTM:
                     encoded[index - 1],
                     dgroup,
                     gradient,
+                    input_gradient=False,
                 )
         return probability, loss, gradient
 
@@ -615,7 +651,9 @@ class GroupedCNNLSTM:
                         dencoded = self.conv_backward(
                             decoder, encoded, decoded, upstream, gradient, activate=False
                         )
-                        self.conv_backward(encoder, group, encoded, dencoded, gradient)
+                        self.conv_backward(
+                            encoder, group, encoded, dencoded, gradient, input_gradient=False
+                        )
                 self.adam_step(ae_parameters, gradient, ae_optimizer, options["learning_rate"])
             ae_losses.append(total_loss / len(order))
         train_labels = [labels[i] for i in train_indices]
