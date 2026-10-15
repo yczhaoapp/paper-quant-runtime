@@ -225,8 +225,15 @@ def cnn_inputs():
         lock = json.loads(refinement.read_text())
         history = lock["configuration"]["history_bars"]
         request = request_for(lock["configuration"], history=history, seed=lock["seed"])
-        evaluation = raw_bars("4h", plan["validation"])[-(history - 1) :]
+        first = datetime.strptime(plan["evaluation"][0], "%Y-%m").replace(tzinfo=UTC)
+        warmup_month = (first - timedelta(days=1)).strftime("%Y-%m")
+        previous = raw_bars("4h", [warmup_month])
+        if len(previous) < history - 1:
+            raise ValueError("Preceding public month lacks sufficient CNN warmup bars")
+        evaluation = previous[-(history - 1) :] if history > 1 else []
         evaluation += raw_bars("4h", plan["evaluation"])
+        if any(b[0] - a[0] != 14400000 for a, b in zip(evaluation, evaluation[1:], strict=False)):
+            raise ValueError("CNN warmup and evaluation bars must be consecutive")
         publish(
             "grouped_cnn_lstm",
             bar_events(evaluation, 14400),
@@ -238,7 +245,11 @@ def cnn_inputs():
                 "training": plan["training"],
                 "validation": plan["validation"],
                 "evaluation": plan["evaluation"],
-                "evaluation_warmup": "last history_bars-1 completed validation bars",
+                "evaluation_warmup": "immediately preceding history_bars-1 completed public bars",
+                "evaluation_warmup_month": warmup_month,
+                "input_correction": "0.2.4 replaces stale September2024 warmup with contiguous "
+                "December2024 bars; model/configuration/training unchanged; observed "
+                "2025Q1 reused for evidence validation, not a new untouched holdout",
                 "experiment_plan": "research/cnn-refinement/experiment-plan.json",
                 "configuration_lock": "research/cnn-refinement/selection-lock.json",
                 "prior_negative_evaluation": lock["prior_negative_result"],

@@ -1,0 +1,45 @@
+CNN局部方法与契约验证——独立补充版本0.2.4
+
+本轮修正
+0.2.3的cnn_refinement.scope残留“October-December 2024”，与实际2025年一季度测试不一致。
+本轮从锁定实验计划和运行包的实际bar_open_time生成区间，核对完整连续四小时行情及预测数量。
+原0.2.3归档及当时报告保留；本轮收据是新增执行，不覆盖或追溯修改原记录。
+日期核查同时发现0.2.3把9月底23个bar拼接到2025年1月，预热与评价之间存在三个月缺口。
+本轮按确定性规则使用评价前一个公开月份的最后23根bar（2024年12月），补齐连续时间上下文。
+该输入修正及新输入哈希记录在lineage与input-lock；仅改变最初23个预测的上下文，没有模型调参。
+已完成的2025年一季度评价属于复用既定测试的证据核验，没有重新称为本轮未观察测试。
+模型、特征、选定参数、训练载荷、选择规则与theta=.5交易阈值不变；没有基于测试结果调参。
+
+零成交说明
+正式输入包含23个预热事件及2025年一季度540个完整四小时bar，共563个事件。
+540个预测都纳入动作检查，最后一个预测缺少后续收盘标签，539个用于预测评分。
+完成bar的收盘/可用时刻用于推理；测试所属月份采用UTC bar_open_time，季度最后bar在4月1日收盘。
+独立从保存模型重算概率，逐项核对实际目标持仓符号、数量、标的和理由。
+theta=.5对应空头阈值1/3、多头阈值2/3；真实测试所有概率未跨阈值，全部目标为0。
+审计核对账户持续空仓、现金与权益一致及每个目标的accepted与expired记录。
+前539个零目标为target_already_satisfied；最后目标为no_next_event，两个原因分别统计。
+order_state_records是状态记录总数，distinct_order_ids才是独立订单标识数，两者与成交数分别报告。
+实际概率范围、订单状态和成交数由execution_diagnostic生成，不预先硬编码为成功结果。
+
+通过含义
+契约生命周期passed：实际训练、制品保存、全新实例加载、逐事件推理、最小回测与冷重放完成。
+声明的局部方法passed：六篇验收实际执行绑定oracle，保留JUnit与哈希；quality审计本身不执行oracle。
+训练质量：根据实际制品记录，当前未达到论文10^-BCE代理指标的0.8门槛。
+泛化优势：未确立；基线/BCE/AUC的数字比较仅是描述性结果，不作统计显著性或盈利证明。
+整篇论文实验：未复现。范围仍是分组CNN、LSTM、BCE及置信度/下注量映射的局部方法适配。
+原wavelet、XGBoost、大指标网格、完整AE、BatchNorm、原始网络宽度与收敛日程的差异见claims.json。
+
+受控执行证据
+同一策略源码及同一配置，在明确标记的可学习模拟数据上另行执行训练和加载。
+其训练请求哈希和模型哈希分别核对，不能与真实行情模型混同。
+独立重算保存模型的概率和目标，真实成交和账户结果分别保存，主机与Docker轨迹逐项比较。
+受控成交说明训练与动作/成交路径可执行，不证明真实行情模型交易能力或原论文收益。
+gate失败时写failed；控制案例必须具有实际训练产物、非零目标和成交，不能由静态动作回放代替。
+
+复现
+uv sync --locked --extra dev
+uv run --no-sync python -m scripts.prepare_six_sources --fetch --output runs/source-preparation
+uv run --no-sync python scripts/verify_strict.py --require-clean --output runs/cnn-evidence-strict
+uv run --no-sync python -m scripts.accept_cnn_refinement --strict --require-clean --output runs/cnn-evidence-final
+cnn-evidence-final/cnn-refinement.json是本轮入口收据，其attempt目录提供cnn-evidence.json和逐次原始报告。
+正式验收将契约/Schema保持、来源/方法、真实行情及受控模拟分别记录；评审档位由公开条款核验。

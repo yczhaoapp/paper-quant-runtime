@@ -6,13 +6,15 @@
     "2025-02",
     "2025-03"
   ],
-  "evaluation_warmup": "last history_bars-1 completed validation bars",
+  "evaluation_warmup": "immediately preceding history_bars-1 completed public bars",
+  "evaluation_warmup_month": "2024-12",
   "event_count": 563,
-  "events_sha256": "1ca713978f63325850fc789717b78666d6e13bba126434293988cec2edb98e8c",
+  "events_sha256": "afb6bccc6d9686e43c17da3301dbbe33b55767aebfb3db1a716585a5778ef2b5",
   "exclusions": "local method adaptation; no original experiment or profit claim",
   "experiment_plan": "research/cnn-refinement/experiment-plan.json",
   "feature_selection": "Fixed window-relative channels; predeclared train-only standard vs author-inspired MinMax and two learning rates; all development candidates retained",
-  "first_event": "2024-09-27T08:00:00+00:00",
+  "first_event": "2024-12-28T08:00:00+00:00",
+  "input_correction": "0.2.4 replaces stale September2024 warmup with contiguous December2024 bars; model/configuration/training unchanged; observed 2025Q1 reused for evidence validation, not a new untouched holdout",
   "last_event": "2025-04-01T00:00:00+00:00",
   "prior_negative_evaluation": {
     "auc": 0.47811,

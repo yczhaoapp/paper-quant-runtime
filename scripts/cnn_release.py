@@ -9,6 +9,7 @@ from pathlib import Path
 import numpy as np
 
 from paperquant.compiler import fingerprint
+from scripts.cnn_evidence import evaluation_window
 from scripts.cnn_research import metrics
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -37,6 +38,10 @@ def selection_lock():
 
 def audit_cnn(model, state, bundle, rows, traces, truth, predicted):
     lock = selection_lock()
+    plan = json.loads((ROOT / "research/cnn-refinement/experiment-plan.json").read_text())
+    window = evaluation_window(bundle.effective_events, model.history_bars, plan)
+    if len(traces) != window["prediction_events"] or len(truth) != window["labelled_predictions"]:
+        raise ValueError("CNN prediction and scoring counts differ from executed evaluation dates")
     if (
         state["options"] != lock["configuration"]
         or state["seed"] != lock["seed"]
@@ -74,9 +79,13 @@ def audit_cnn(model, state, bundle, rows, traces, truth, predicted):
             "beats_logistic_bce": cnn_metrics["bce"] < logistic_metrics["bce"],
             "auc_above_half": cnn_metrics["auc"] > 0.5,
             "profitability_established": False,
+            "interpretation": "descriptive metric comparisons; no statistical significance "
+            "or stable generalization advantage established",
         },
         "prior_negative_result": lock["prior_negative_result"],
         "feature_selection_disclosure": lock["feature_selection_disclosure"],
         "protocol_deviation": lock["protocol_deviation"],
-        "scope": "new independent October-December 2024 evaluation; local method adaptation",
+        "evaluation_window": window,
+        "scope": "local method adaptation; prediction-bar months "
+        + ", ".join(window["actual_months"]),
     }

@@ -9,6 +9,7 @@ import math
 from decimal import Decimal
 from pathlib import Path
 
+from scripts.cnn_evidence import audit_execution
 from scripts.gate_support import write_json
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -92,6 +93,9 @@ def quality_for_run(run_dir, report, bundle):
         from scripts.cnn_release import audit_cnn
 
         refinement = audit_cnn(model, state, bundle, rows, traces, truth, predicted)
+        execution = audit_execution(
+            report, bundle.effective_events, traces, history=history, theta=model.theta
+        )
         test_metrics.update(refinement["cnn"])
     else:
         threshold = state["threshold"]
@@ -145,6 +149,17 @@ def quality_for_run(run_dir, report, bundle):
     }
     if name == "grouped_cnn_lstm":
         result["cnn_refinement"] = refinement
+        result["execution_diagnostic"] = execution
+        result["evidence_status"] = {
+            "contract_lifecycle": "passed",
+            "prediction_to_target_mapping": "passed",
+            "training_quality_threshold": "met"
+            if fitting["paper_quality_threshold_met"]
+            else "not_met",
+            "generalization_advantage": "not_established",
+            "paper_full_experiment": "not_reproduced",
+            "method_oracles": "see enclosing six-paper receipt; not executed by quality audit",
+        }
     write_json(run_dir / "quality.json", result)
     write_json(run_dir / "prediction-audit.json", {"predictions": traces})
     return result

@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "paper-quant-runtime"
-version = "0.2.3"
+version = "0.2.4"
 description = "A contract-first runtime for research strategies and reproducible paper trading."
 requires-python = ">=3.12,<3.14"
 dependencies = [
