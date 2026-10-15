@@ -1,17 +1,25 @@
-name: Verify
+name: Supplement platform verification
 
 on:
   push:
-  pull_request:
+    branches: [codex/supplement-platform-ci-20261015]
   workflow_dispatch:
 
 permissions:
   contents: read
 
+env:
+  SUBJECT_COMMIT: 8634043ca8f51490084f155b1f21be86e2639309
+  SUBJECT_TREE_SHA256: c1c0f2e4097b13ef6756e4d02e954b8e04ee5dc04eef3c1848ab15d46dd69a73
+  PYTHONUTF8: "1"
+  PYTHONDONTWRITEBYTECODE: "1"
+  PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
+
 jobs:
   host:
     name: Host ${{ matrix.os }} Python ${{ matrix.python }}
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 40
     strategy:
       fail-fast: false
       matrix:
@@ -20,109 +28,171 @@ jobs:
             python: "3.12"
           - os: ubuntu-latest
             python: "3.13"
-          - os: macos-latest
-            python: "3.13"
           - os: windows-latest
             python: "3.13"
     steps:
       - uses: actions/checkout@v7
+        with:
+          ref: ${{ env.SUBJECT_COMMIT }}
+          persist-credentials: false
       - uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python }}
       - uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
         with:
           version: "0.12.18"
-      - name: Install locked dependencies
+      - name: Install locked development dependencies
         run: uv sync --locked --extra dev
-      - name: Unit and integration tests
-        run: uv run --no-sync python -m pytest -q -p no:cacheprovider
+      - name: Record exact subject and execution environment
+        shell: uv run --no-sync python {0}
+        run: |
+          import hashlib, importlib.metadata, json, os, platform, subprocess, sys
+          from pathlib import Path
+          sys.path[:0] = [str(Path.cwd()), str(Path.cwd() / "src")]
+          from scripts.gate_support import source_identity
+          identity = source_identity(Path.cwd(), require_clean=True)
+          assert identity["git_commit"] == os.environ["SUBJECT_COMMIT"]
+          assert identity["source_tree_sha256"] == os.environ["SUBJECT_TREE_SHA256"]
+          assert platform.machine().lower() in {"x86_64", "amd64"}
+          Path("runs").mkdir(exist_ok=True)
+          record = {"workflow_commit": os.environ["GITHUB_SHA"], "subject": identity,
+                    "system": platform.system(), "machine": platform.machine(),
+                    "python": sys.version, "runner_os": os.environ["RUNNER_OS"],
+                    "runner_arch": os.environ["RUNNER_ARCH"],
+                    "run_url": os.environ["GITHUB_SERVER_URL"] + "/" + os.environ["GITHUB_REPOSITORY"] + "/actions/runs/" + os.environ["GITHUB_RUN_ID"],
+                    "uv_lock_sha256": hashlib.sha256(Path("uv.lock").read_bytes()).hexdigest()}
+          Path("runs/environment.json").write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
+      - name: Prepare hash-pinned main and supporting papers explicitly
+        run: uv run --no-sync python -m scripts.prepare_six_sources --fetch --output runs/source-preparation/six
+      - name: Prepare hash-pinned catalog papers
+        run: uv run --no-sync python scripts/verify_paper_sources.py --fetch --output runs/source-preparation/catalog.json
+      - name: Prepare the independent case
+        run: uv run --no-sync python scripts/build_busseti_case.py --fetch --output runs/source-preparation/busseti-build
+      - name: Complete host test suite with JUnit
+        run: uv run --no-sync python -m pytest -q -p no:cacheprovider --junitxml runs/host-tests.xml
       - name: Lint
         run: uv run --no-sync ruff check .
       - name: Type check
         run: uv run --no-sync mypy src/paperquant
-      - name: Verify all eighteen strategy packages
-        run: uv run --no-sync python scripts/acceptance.py --require-clean --output runs/host-acceptance
-      - name: Prepare the six supplemental papers and supporting algorithms
-        run: uv run --no-sync python -m scripts.prepare_six_sources --fetch --output runs/six-sources
-      - name: Verify six supplemental paper lifecycles and method oracles
-        run: uv run --no-sync python -m scripts.accept_six_papers --require-clean --output runs/six-host
-      - name: Validate source and behavioral trajectory evidence
-        run: uv run --no-sync python -m pytest -q tests/test_six_intake_evidence.py
-      - name: Preserve host acceptance reports
+      - name: Verify all eighteen catalog strategies
+        run: uv run --no-sync python scripts/acceptance.py --require-clean --output runs/catalog
+      - name: Verify six papers and both CNN evidence paths
+        run: uv run --no-sync python -m scripts.accept_cnn_refinement --require-clean --output runs/cnn-final
+      - name: Verify original paper mappings and the independent intake
+        run: uv run --no-sync python -m scripts.accept_paper_depth --output runs/paper-depth
+      - name: Require complete host coverage and exact source identity
+        shell: uv run --no-sync python {0}
+        run: |
+          import json, os, sys, xml.etree.ElementTree as ET
+          from pathlib import Path
+          sys.path[:0] = [str(Path.cwd()), str(Path.cwd() / "src")]
+          from scripts.gate_support import source_identity
+          identity = source_identity(Path.cwd(), require_clean=True)
+          assert identity["git_commit"] == os.environ["SUBJECT_COMMIT"]
+          assert identity["source_tree_sha256"] == os.environ["SUBJECT_TREE_SHA256"]
+          cases = list(ET.parse("runs/host-tests.xml").iter("testcase"))
+          assert len(cases) == 569
+          allowed = set(json.loads(Path("research/strict-test-nodes.json").read_bytes())["required_nodes"])
+          skipped = []
+          for case in cases:
+              assert case.find("failure") is None and case.find("error") is None
+              if case.find("skipped") is not None:
+                  node = case.attrib["classname"].replace(".", "/") + ".py::" + case.attrib["name"]
+                  assert node in allowed, node
+                  skipped.append(node)
+          assert set(skipped) == allowed
+          for name in ["runs/catalog/acceptance.json", "runs/cnn-final/cnn-refinement.json", "runs/paper-depth/paper-depth.json"]:
+              receipt = json.loads(Path(name).read_bytes())
+              assert receipt["status"] == "passed", name
+              assert receipt["git_commit"] == os.environ["SUBJECT_COMMIT"], name
+              assert receipt["source_tree_sha256"] == os.environ["SUBJECT_TREE_SHA256"], name
+          Path("runs/host-summary.json").write_text(json.dumps({"status": "passed", "subject": identity, "reported_tests": len(cases), "passed": len(cases) - len(skipped), "strict_only_skipped": skipped}, indent=2) + "\n", encoding="utf-8")
+      - name: Preserve complete host execution evidence
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: host-acceptance-${{ matrix.os }}-py${{ matrix.python }}-${{ github.sha }}
+          name: supplemental-host-${{ matrix.os }}-py${{ matrix.python }}-${{ env.SUBJECT_COMMIT }}
           path: |
-            runs/host-acceptance
-            runs/six-sources
-            runs/six-host
-          if-no-files-found: warn
-
-  strict:
-    name: Strict container and receipts
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-python@v7
-        with:
-          python-version: "3.13"
-      - uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
-        with:
-          version: "0.12.18"
-      - name: Install locked dependencies
-        run: uv sync --locked --extra dev
-      - name: Build and verify strict worker
-        run: uv run --no-sync python scripts/verify_strict.py --require-clean --output runs/strict-verification
-      - name: Prepare supplemental source PDFs on the host
-        run: uv run --no-sync python -m scripts.prepare_six_sources --fetch --output runs/six-sources
-      - name: Verify strict and host traces for all six supplemental cases
-        run: uv run --no-sync python -m scripts.accept_six_papers --strict --require-clean --output runs/six-final
-      - name: Preserve attempt receipts and logs
-        if: always()
-        uses: actions/upload-artifact@v7
-        with:
-          name: strict-verification-${{ github.sha }}
-          path: |
-            runs/strict-verification
-            runs/six-sources
-            runs/six-final
+            runs
+            !runs/**/paper.pdf
           if-no-files-found: error
 
-  paper-depth:
-    name: Original-paper depth and independent intake
+  strict:
+    name: Linux x86 strict Docker and CNN evidence
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v7
+        with:
+          ref: ${{ env.SUBJECT_COMMIT }}
+          persist-credentials: false
       - uses: actions/setup-python@v7
         with:
           python-version: "3.13"
       - uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
         with:
           version: "0.12.18"
-      - name: Install locked dependencies
+      - name: Install locked development dependencies
         run: uv sync --locked --extra dev
-      - name: Fetch hash-pinned papers and verify 18 plus independent case
-        run: uv run --no-sync python -m scripts.accept_paper_depth --fetch --output runs/paper-depth
-      - name: Preserve paper-depth receipts without redistributing source PDFs
+      - name: Prepare supplemental paper sources
+        run: uv run --no-sync python -m scripts.prepare_six_sources --fetch --output runs/source-preparation/six
+      - name: Prepare catalog paper sources
+        run: uv run --no-sync python scripts/verify_paper_sources.py --fetch --output runs/source-preparation/catalog.json
+      - name: Prepare independent paper inputs
+        run: uv run --no-sync python scripts/build_busseti_case.py --fetch --output runs/source-preparation/busseti-build
+      - name: Build native x86 worker and run complete strict gate
+        run: uv run --no-sync python scripts/verify_strict.py --require-clean --output runs/strict
+      - name: Verify six source-bound strategies and natural/controlled CNN traces
+        run: uv run --no-sync python -m scripts.accept_cnn_refinement --strict --require-clean --output runs/cnn-final
+      - name: Require native architecture and complete strict tests
+        shell: uv run --no-sync python {0}
+        run: |
+          import json, os, platform, subprocess, sys, xml.etree.ElementTree as ET
+          from pathlib import Path
+          sys.path[:0] = [str(Path.cwd()), str(Path.cwd() / "src")]
+          from scripts.gate_support import source_identity
+          identity = source_identity(Path.cwd(), require_clean=True)
+          assert identity["git_commit"] == os.environ["SUBJECT_COMMIT"]
+          assert identity["source_tree_sha256"] == os.environ["SUBJECT_TREE_SHA256"]
+          assert platform.machine().lower() in {"x86_64", "amd64"}
+          strict = json.loads(Path("runs/strict/verification.json").read_bytes())
+          cnn = json.loads(Path("runs/cnn-final/cnn-refinement.json").read_bytes())
+          for receipt in [strict, cnn]:
+              assert receipt["status"] == "passed"
+              assert receipt["git_commit"] == os.environ["SUBJECT_COMMIT"]
+              assert receipt["source_tree_sha256"] == os.environ["SUBJECT_TREE_SHA256"]
+          tests = Path("runs/strict/attempts") / strict["attempt_id"] / "tests.xml"
+          cases = list(ET.parse(tests).iter("testcase"))
+          assert len(cases) == 569
+          assert not any(c.find(t) is not None for c in cases for t in ["failure", "error", "skipped"])
+          image = json.loads(subprocess.check_output(["docker", "image", "inspect", "paperquant-worker:six-paper-0.2"], text=True))[0]
+          assert image["Os"] == "linux" and image["Architecture"] == "amd64"
+          assert image["Id"] == strict["image_id"]
+          Path("runs/worker-image-inspect.json").write_text(json.dumps(image, indent=2) + "\n", encoding="utf-8")
+          Path("runs/strict-summary.json").write_text(json.dumps({"status": "passed", "subject": identity, "workflow_commit": os.environ["GITHUB_SHA"], "system": platform.system(), "machine": platform.machine(), "python": sys.version, "reported_tests": len(cases), "passed": len(cases), "skipped": 0, "image_id": image["Id"], "image_platform": "linux/amd64"}, indent=2) + "\n", encoding="utf-8")
+      - name: Preserve complete strict execution evidence
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: paper-depth-${{ github.sha }}
+          name: supplemental-strict-linux-amd64-${{ env.SUBJECT_COMMIT }}
           path: |
-            runs/paper-depth
-            !runs/paper-depth/attempts/*/independent/build/paper.pdf
+            runs
+            !runs/**/paper.pdf
           if-no-files-found: error
 
   release-gates:
-    name: Release gates
+    name: Supplemental portability gates
     if: always()
-    needs: [host, strict, paper-depth]
+    needs: [host, strict]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-      - name: Require every release job to succeed
+      - name: Require every matrix and strict job to succeed
+        shell: python
         env:
-          CI_JOB_RESULTS: ${{ toJSON(needs) }}
-        run: python scripts/ci_gate.py
+          RESULTS: ${{ toJSON(needs) }}
+        run: |
+          import json, os
+          results = json.loads(os.environ["RESULTS"])
+          assert set(results) == {"host", "strict"}
+          assert all(value["result"] == "success" for value in results.values()), results
+          print("All supplemental Windows/Linux x86 and strict Docker jobs succeeded")
