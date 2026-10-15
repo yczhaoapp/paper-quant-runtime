@@ -39,6 +39,8 @@ jobs:
         run: |
           import cProfile, hashlib, importlib.util, json, platform, pstats, subprocess, time
           from pathlib import Path
+          import sys
+          sys.path[:0]=[str(Path.cwd()),str(Path.cwd()/"src")]
           from paperquant.models import TrainingRequest
           from scripts.gate_support import source_identity
           output=Path('runs/compute'); output.mkdir(parents=True,exist_ok=True)
@@ -71,6 +73,8 @@ jobs:
         run: |
           import hashlib,json,time
           from pathlib import Path
+          import sys
+          sys.path[:0]=[str(Path.cwd()),str(Path.cwd()/"src")]
           from paperquant.package import inspect_package
           from paperquant.sandbox import DockerWorkerStrategy
           from paperquant.models import TrainingRequest,ContractFault
