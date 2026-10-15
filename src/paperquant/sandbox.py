@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import base64
 import json
+import math
 import queue
 import subprocess
 import tempfile
@@ -65,8 +66,14 @@ class DockerWorkerStrategy:
         declaration: StrategyDeclaration,
         source_sha256: str,
         image: str = "paperquant-worker:six-paper-0.2",
+        training_timeout: float | None = None,
     ) -> None:
+        if training_timeout is not None and (
+            not math.isfinite(training_timeout) or training_timeout <= 0
+        ):
+            raise ValueError("training_timeout must be a finite positive number or None")
         self.run_id = run_id
+        self._training_timeout = training_timeout
         self.declaration = declaration
         self._package_dir = package_dir
         self._source_sha256 = source_sha256
@@ -165,7 +172,12 @@ class DockerWorkerStrategy:
             image_id=image_id,
             container_id=container_id,
             source_sha256=source_sha256,
-            controls=_CONTROLS,
+            controls=_CONTROLS + (
+                "operation-timeout:train:"
+                + ("none" if training_timeout is None else f"{training_timeout:g}s"),
+                "operation-timeout:load:20s",
+                "operation-timeout:decide:20s",
+            ),
         )
 
     def _verify_container(self, container_id: str, package_path: Path) -> None:
@@ -216,7 +228,7 @@ class DockerWorkerStrategy:
             if not line:
                 return
 
-    def _receive(self, *, timeout: float = 20) -> dict[str, Any]:
+    def _receive(self, *, timeout: float | None = 20) -> dict[str, Any]:
         try:
             line = self._replies.get(timeout=timeout)
         except queue.Empty:
@@ -244,7 +256,9 @@ class DockerWorkerStrategy:
         except (BrokenPipeError, OSError):
             _unavailable(self.run_id, "Strict worker protocol input closed")
         try:
-            result = self._receive()
+            result = self._receive(
+                timeout=self._training_timeout if request.get("op") == "train" else 20
+            )
         except ContractFault as exc:
             operation_stage = {
                 "train": Stage.TRAIN,

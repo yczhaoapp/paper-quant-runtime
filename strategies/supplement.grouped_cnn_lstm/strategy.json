@@ -31,5 +31,5 @@
     "strategy_id": "supplement.grouped_cnn_lstm",
     "training_required": true
   },
-  "source_sha256": "06e11d2230bc868a4ad04ae78652f5ce2ac74d1b09f526004e53a094210fa108"
+  "source_sha256": "a4d75d0cd1fa750f1a5e6c5eaf3240b68d572284a621e3da3bddecfcf868b245"
 }

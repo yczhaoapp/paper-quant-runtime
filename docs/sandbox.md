@@ -18,3 +18,5 @@ uv run --no-sync python scripts/verify_strict.py --require-clean --output runs/s
 严格测试命令清除外部 `PYTEST_ADDOPTS`、`PYTEST_PLUGINS`，关闭第三方 pytest 插件自动加载，并显式清空配置中的额外选项。完整测试输出保存为本轮 `tests.xml`。脚本独立核对 `research/strict-test-nodes.json` 中经审阅的 27 个隔离、安全与目录外生命周期节点：每个必须恰好出现一次且实际通过，缺失、跳过、xfail、重复或失败均拒绝授予 R2。论文缓存尚未准备时的可选测试跳过不等同于安全验证完成；论文全文另由 `paper-depth` 门禁显式获取并验证，不固定整个测试集的总数量。
 
 子验收收据必须为结构正确的 JSON 对象，包含新的尝试编号、完成时间、完整 18 项清单，并与父验收的 Git 提交、源码树、干净状态和实际镜像 ID 一致。构建、检查、测试、解析子收据或最终身份复验中的普通异常均结束为 `failed`，撤销当前镜像收据及 R2 声明。历史尝试保留在各自目录中，不能替代本轮成功。
+
+训练执行期限由调用方显式选择：`DockerWorkerStrategy(training_timeout=None)` 默认不设固定训练墙钟期限；有限正数指定本次预算。加载和推理仍各为20秒，启动为30秒。收据的 `controls` 记录实际操作期限。CPU、内存、网络和文件系统隔离不随此设置改变；协议EOF和容器退出仍立即结构化失败。CI整项作业的基础设施期限独立于论文训练方法和验收标准。

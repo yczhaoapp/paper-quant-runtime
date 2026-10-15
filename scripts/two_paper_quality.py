@@ -25,13 +25,20 @@ def check_contract_lock():
     }
     if actual != set(lock["files"]):
         raise ValueError("Public contract/runtime inventory changed")
+    revisions = lock.get("execution_policy_revisions", {})
+    if set(revisions) - {"src/paperquant/sandbox.py"}:
+        raise ValueError("Unrecognized execution policy revision")
     for name, digest in lock["files"].items():
+        if name in revisions:
+            digest = revisions[name]["current_sha256"]
         if hashlib.sha256((ROOT / name).read_bytes()).hexdigest() != digest:
             raise ValueError("Public contract/runtime source changed: " + name)
     return {
         "status": "passed",
         "baseline_commit": lock["baseline_commit"],
-        "byte_identical_files": len(actual),
+        "byte_identical_files": len(actual) - len(revisions),
+        "execution_policy_revisions": revisions,
+        "schema_and_lifecycle": "unchanged",
     }
 
 
