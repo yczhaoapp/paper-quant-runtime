@@ -238,7 +238,9 @@ MAPPINGS = [
             "Causal 64-bar EMA/Williams and SMA/volatility alternatives were evaluated on "
             "development validation but were not selected; this is explicit model selection.",
             "Selected four-unit configuration uses cached frozen-stage features and numerical "
-            "dot products; original worker time, memory, CPU and imports remain unchanged.",
+            "dot products. Training has no default fixed wall-clock deadline; callers may choose "
+            "a finite budget. Load and inference retain 20-second deadlines; memory, CPU, import, "
+            "network and filesystem restrictions are unchanged.",
         ],
     ),
     (
