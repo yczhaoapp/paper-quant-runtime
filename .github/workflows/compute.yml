@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: ad9c8ade137963c68b5ef02a36c7f381fba0db2e
+          ref: 4a09226a62a9b549759b8cc2e4cb32485706b054
           path: subject
           persist-credentials: false
       - uses: actions/checkout@v7
@@ -94,6 +94,6 @@ jobs:
       - uses: actions/upload-artifact@v7
         if: always()
         with:
-          name: cnn-compute-ad9c8ad
+          name: cnn-compute-4a09226
           path: subject/runs/compute
           if-no-files-found: error

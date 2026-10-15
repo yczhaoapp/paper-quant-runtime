@@ -191,6 +191,28 @@ def test_frozen_encoder_cache_matches_uncached_prediction_and_training_gradients
     for layer in model.encoders:
         assert all(cached_gradient[p] == 0 for p in layer.parameters())
 
+    # Compare cross-sample/time batch reductions with independent Scalar autodiff.
+    expected = {p: 0.0 for p in model.parameters()}
+    actual = {p: 0.0 for p in model.parameters()}
+    recurrent_batch, convolution_batch = model.recurrent_batch(), {}
+    other = [[value * 0.8 + 0.13 for value in row] for row in channels]
+    for sample, label in ((channels, 1), (other, 0)):
+        probability = model.forward(sample)
+        objective = -probability.log() if label else -(1 - probability).log()
+        objective.backward()
+        for parameter in model.parameters():
+            expected[parameter] += parameter.grad / 2
+        _, _, sample_gradient = model.fast_prediction(
+            sample, label=label, recurrent_accumulator=recurrent_batch,
+            convolution_accumulator=convolution_batch,
+        )
+        for parameter in model.head.parameters():
+            actual[parameter] += sample_gradient[parameter] / 2
+    model.reduce_recurrent_batch(recurrent_batch, actual, 2)
+    model.reduce_convolution_batch(convolution_batch, actual, 2)
+    for parameter in model.parameters():
+        assert actual[parameter] == pytest.approx(expected[parameter], abs=1e-12)
+
 
 def training_request(*, seed=13, count=32, epochs=2, mode=2):
     samples = []
